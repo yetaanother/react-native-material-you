@@ -1,0 +1,19 @@
+{
+  "name": "@yetaanother/react-native-material-you",
+  "version": "0.0.1",
+  "description": "React native implementation of Google's Material You components",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Prashant Chaubey",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-native": "^0.66.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.34",
+    "@types/react-native": "^0.66.2"
+  }
+}

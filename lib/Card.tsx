@@ -1,0 +1,8 @@
+import React, {FunctionComponent} from "react";
+import { Text} from "react-native";
+
+export const Card: FunctionComponent = () => {
+    return <>
+        <Text>Card</Text>
+    </>
+};
