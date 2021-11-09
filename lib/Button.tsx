@@ -1,11 +1,15 @@
 import React, { FunctionComponent } from "react";
 import {
+  ImageStyle,
   Platform,
   Pressable as NativePressable,
   StyleSheet,
   Text,
+  TextStyle,
   View,
+  ViewStyle,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 interface ButtonProps {
   theme?: "light" | "dark";
@@ -14,6 +18,7 @@ interface ButtonProps {
   state?: "enabled" | "hovered" | "focused" | "pressed" | "disabled";
   title: string;
   onPress: () => void;
+  style?: ViewStyle | TextStyle | ImageStyle;
 }
 
 export const Button: FunctionComponent<ButtonProps> = ({
@@ -23,49 +28,93 @@ export const Button: FunctionComponent<ButtonProps> = ({
   state,
   title,
   onPress,
+  style,
 }: ButtonProps) => {
   state = !state ? "enabled" : state;
   type = !type ? "filled" : type;
   theme = !theme ? "light" : theme;
+  style = !style ? {} : style;
 
   const render = () => {
-    let buttonStyles = { ...styles.button };
+    return (
+      <View style={getOpacityLayerStyles()}>
+        <NativePressable style={getButtonStyles()} onPress={onPress}>
+          {renderContent()}
+        </NativePressable>
+      </View>
+    );
+  };
+
+  const getButtonStyles = () => {
+    let buttonStyles: ViewStyle | TextStyle | ImageStyle = { ...styles.parent };
+    // States
     if (state === "disabled") {
       buttonStyles = { ...buttonStyles, ...styles.buttonDisabled };
     } else if (state === "hovered") {
       buttonStyles = { ...buttonStyles, ...styles.boxShadow };
     }
-
-    let opacityLayerStyles = {};
-    if (state === "hovered") {
-      opacityLayerStyles = { ...opacityLayerStyles, ...styles.opacity92 };
-    } else if (state === "focused" || state === "pressed") {
-      opacityLayerStyles = { ...opacityLayerStyles, ...styles.opacity96 };
+    //Icon
+    if (icon) {
+      buttonStyles = { ...buttonStyles, ...styles.buttonWithIcon };
     }
+    return { ...buttonStyles, ...style };
+  };
 
+  const getOpacityLayerStyles = () => {
+    if (state === "hovered") {
+      return { ...styles.opacity92 };
+    } else if (state === "focused" || state === "pressed") {
+      return { ...styles.opacity96 };
+    } else {
+      return {};
+    }
+  };
+
+  const renderContent = () => {
+    let textStyles = getTextStyles();
+
+    //https://icons.expo.fyi/
+    if (icon) {
+      return (
+        <>
+          <Ionicons
+            name={icon}
+            size={18}
+            color={state === "disabled" ? "#1C1B1F" : "white"}
+            style={getIconStyles()}
+          />
+          <Text style={textStyles}>{title}</Text>
+        </>
+      );
+    }
+    return <Text style={textStyles}>{title}</Text>;
+  };
+
+  const getTextStyles = () => {
     let textStyles = { ...styles.text };
     if (state === "disabled") {
       textStyles = { ...textStyles, ...styles.textDisabled };
     }
+    return textStyles;
+  };
 
-    return (
-      <View style={opacityLayerStyles}>
-        <NativePressable style={buttonStyles} onPress={onPress}>
-          <Text style={textStyles}>{title}</Text>
-        </NativePressable>
-      </View>
-    );
+  const getIconStyles = () => {
+    let iconStyles = { ...styles.icon };
+    if (state === "disabled") {
+      iconStyles = { ...iconStyles, ...styles.iconDisabled };
+    }
+    return iconStyles;
   };
 
   return render();
 };
 
 const styles = StyleSheet.create({
-  button: {
+  parent: {
     alignItems: "center",
     justifyContent: "center",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     paddingVertical: 10,
     paddingHorizontal: 24,
     borderRadius: 100,
@@ -73,6 +122,10 @@ const styles = StyleSheet.create({
   },
   buttonDisabled: {
     backgroundColor: "rgba(31,31,31, 0.12)",
+  },
+  buttonWithIcon: {
+    paddingLeft: 16,
+    paddingRight: 24,
   },
   text: {
     fontFamily: "Roboto",
@@ -109,5 +162,11 @@ const styles = StyleSheet.create({
         elevation: 3,
       },
     }),
+  },
+  icon: {
+    marginRight: 8,
+  },
+  iconDisabled: {
+    opacity: 0.38,
   },
 });
