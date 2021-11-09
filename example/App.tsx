@@ -1,21 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { Button as NativeButton, StyleSheet, View } from "react-native";
+import { Button } from "@yetaanother/react-native-material-you";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <View style={{ ...styles.button, marginTop: 48 }}>
+        <NativeButton title={"Native"} onPress={() => {}} />
+        <Button title={"Enabled"} onPress={() => {}} />
+        <Button title={"Hovered"} onPress={() => {}} state={"hovered"} />
+        <Button title={"Focused"} onPress={() => {}} state={"focused"} />
+      </View>
+      <View style={{ ...styles.button, margin: 16 }}>
+        <Button title={"Pressed"} onPress={() => {}} state={"pressed"} />
+        <Button title={"Disabled"} onPress={() => {}} state={"disabled"} />
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  button: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "black",
+    padding: 8,
   },
 });
