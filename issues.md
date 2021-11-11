@@ -1,0 +1,2 @@
+1. Don't know how to apply multiple box shadow as we do in CSS
+2. Don't know how to apply exactly this css for elevated buttons: ` linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), #FFFBFE;` I just applied the color gradients but don't know how to apply the angle and the color at the last.

@@ -10,6 +10,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 interface ButtonProps {
   theme?: "light" | "dark";
@@ -36,6 +37,18 @@ export const Button: FunctionComponent<ButtonProps> = ({
   style = !style ? {} : style;
 
   const render = () => {
+    if (type === "elevated" && getGradientColors().length > 1) {
+      return (
+        <NativePressable style={getButtonStyles()} onPress={onPress}>
+          <LinearGradient
+            style={styles.linearGradient}
+            colors={getGradientColors()}
+          >
+            <View style={getInnerStyles()}>{renderContent()}</View>
+          </LinearGradient>
+        </NativePressable>
+      );
+    }
     return (
       <NativePressable style={getButtonStyles()} onPress={onPress}>
         <View style={getInnerStyles()}>{renderContent()}</View>
@@ -43,31 +56,67 @@ export const Button: FunctionComponent<ButtonProps> = ({
     );
   };
 
+  const getGradientColors = () => {
+    if (type === "elevated") {
+      if (state === "hovered") {
+        return ["rgba(103, 80, 164, 0.08)", "rgba(103, 80, 164, 0.08)"];
+      } else if (
+        state === "enabled" ||
+        state == "pressed" ||
+        state === "focused"
+      ) {
+        return ["rgba(103, 80, 164, 0.05)", "rgba(103, 80, 164, 0.05)"];
+      }
+    }
+    return [];
+  };
+
   const getButtonStyles = () => {
     let buttonStyles: ViewStyle | TextStyle | ImageStyle = { ...styles.button };
 
     if (type === "filled") {
       if (state === "disabled") {
-        buttonStyles = { ...buttonStyles, ...styles.buttonDisabled };
+        buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
       } else if (state === "hovered") {
         buttonStyles = { ...buttonStyles, ...styles.boxShadow };
       }
     } else if (type === "outlined") {
-      buttonStyles = { ...buttonStyles, ...styles.buttonOutlined };
+      buttonStyles = { ...buttonStyles, ...styles.buttonTypeOutlined };
       if (state === "focused") {
-        buttonStyles = { ...buttonStyles, ...styles.buttonOutlinedFocused };
+        buttonStyles = {
+          ...buttonStyles,
+          ...styles.buttonTypeOutlinedStateFocused,
+        };
       } else if (state === "disabled") {
-        buttonStyles = { ...buttonStyles, ...styles.buttonOutlinedDisabled };
+        buttonStyles = {
+          ...buttonStyles,
+          ...styles.buttonStateDisabled,
+        };
       }
     } else if (type === "text") {
-      buttonStyles = { ...buttonStyles, ...styles.buttonText };
+      buttonStyles = { ...buttonStyles, ...styles.buttonTypeText };
       if (state === "hovered") {
-        buttonStyles = { ...buttonStyles, ...styles.buttonTextHovered };
+        buttonStyles = {
+          ...buttonStyles,
+          ...styles.buttonTypeTextStateHovered,
+        };
       } else if (state === "focused" || state === "pressed") {
         buttonStyles = {
           ...buttonStyles,
-          ...styles.buttonTextFocusedOrPressed,
+          ...styles.buttonTypeTextStateFocusedOrPressed,
         };
+      }
+    } else if (type === "elevated") {
+      buttonStyles = {
+        ...buttonStyles,
+        ...styles.buttonTypeElevated,
+      };
+      if (state == "disabled") {
+        buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
+      } else if (state === "hovered") {
+        buttonStyles = { ...buttonStyles, ...styles.boxShadowDouble };
+      } else {
+        buttonStyles = { ...buttonStyles, ...styles.boxShadow };
       }
     }
     return { ...buttonStyles, ...style };
@@ -77,25 +126,32 @@ export const Button: FunctionComponent<ButtonProps> = ({
     let innerStyles = { ...styles.inner };
     if (type == "filled") {
       if (state === "hovered") {
-        innerStyles = { ...innerStyles, ...styles.innerHovered };
+        innerStyles = { ...innerStyles, ...styles.innerStateHovered };
       } else if (state === "focused" || state === "pressed") {
-        innerStyles = { ...innerStyles, ...styles.innerFocusedOrPressed };
+        innerStyles = { ...innerStyles, ...styles.innerStateFocusedOrPressed };
       }
-    } else if (type === "outlined") {
+    } else if (type === "outlined" || type === "elevated") {
       if (state === "hovered") {
-        innerStyles = { ...innerStyles, ...styles.innerOutlinedHovered };
+        innerStyles = {
+          ...innerStyles,
+          ...styles.innerTypeOutlinedOrElevatedStateHovered,
+        };
       } else if (state === "focused" || state === "pressed") {
         innerStyles = {
           ...innerStyles,
-          ...styles.innerOutlinedFocusedOrPressed,
+          ...styles.innerTypeOutlinedOrElevatedStateFocusedOrPressed,
         };
       }
     } else if (type === "text") {
-      innerStyles = { ...innerStyles, ...styles.inner };
+      innerStyles = { ...innerStyles, ...styles.innerTypeText };
     }
 
     if (icon) {
-      innerStyles = { ...innerStyles, ...styles.innerWithIcon };
+      if (type === "text") {
+        innerStyles = { ...innerStyles, ...styles.innerWithIconTypeText };
+      } else {
+        innerStyles = { ...innerStyles, ...styles.innerWithIcon };
+      }
     }
     return innerStyles;
   };
@@ -134,7 +190,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
       } else {
         return "#6750A4";
       }
-    } else if (type === "text") {
+    } else if (type === "text" || type === "elevated") {
       if (state === "disabled") {
         return "#1C1B1F";
       } else {
@@ -149,17 +205,18 @@ export const Button: FunctionComponent<ButtonProps> = ({
     let textStyles = { ...styles.text };
     if (type === "filled") {
       if (state === "disabled") {
-        textStyles = { ...textStyles, ...styles.textDisabled };
+        textStyles = { ...textStyles, ...styles.textStateDisabled };
       }
-    } else if (type === "outlined") {
-      textStyles = { ...textStyles, ...styles.textOutlined };
+    } else if (type === "outlined" || type === "text" || type === "elevated") {
+      textStyles = {
+        ...textStyles,
+        ...styles.textTypeOutlinedOrTextOrElevated,
+      };
       if (state === "disabled") {
-        textStyles = { ...textStyles, ...styles.textOutlinedDisabled };
-      }
-    } else if (type === "text") {
-      textStyles = { ...textStyles, ...styles.textText };
-      if (state === "disabled") {
-        textStyles = { ...textStyles, ...styles.textTextDisabled };
+        textStyles = {
+          ...textStyles,
+          ...styles.textStateDisabled,
+        };
       }
     }
     return textStyles;
@@ -168,7 +225,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
   const getIconStyles = () => {
     let iconStyles = { ...styles.icon };
     if (state === "disabled") {
-      iconStyles = { ...iconStyles, ...styles.iconDisabled };
+      iconStyles = { ...iconStyles, ...styles.iconStateDisabled };
     }
     return iconStyles;
   };
@@ -181,29 +238,32 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "#6750A4",
   },
-  buttonDisabled: {
+  buttonStateDisabled: {
     backgroundColor: "rgba(31,31,31, 0.12)",
   },
-  buttonOutlined: {
+  buttonTypeOutlined: {
     backgroundColor: "#FFFFFF",
     borderStyle: "solid",
     borderColor: "#79747E",
     borderWidth: 1,
   },
-  buttonOutlinedFocused: {
+  buttonTypeOutlinedStateFocused: {
     borderColor: "#6750A4",
   },
-  buttonOutlinedDisabled: {
-    borderColor: "rgba(31, 31, 31, 0.12)",
-  },
-  buttonText: {
+  buttonTypeText: {
     backgroundColor: "#FFFFFF",
   },
-  buttonTextHovered: {
+  buttonTypeTextStateHovered: {
     backgroundColor: "rgba(103, 80, 164, 0.08)",
   },
-  buttonTextFocusedOrPressed: {
+  buttonTypeTextStateFocusedOrPressed: {
     backgroundColor: "rgba(103, 80, 164, 0.12)",
+  },
+  buttonTypeElevated: {
+    backgroundColor: "#FFFFFF",
+  },
+  linearGradient: {
+    borderRadius: 100,
   },
   inner: {
     alignItems: "center",
@@ -214,24 +274,28 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderRadius: 100,
   },
-  innerHovered: {
+  innerStateHovered: {
     backgroundColor: "rgba(255,255,255,0.08)",
   },
-  innerFocusedOrPressed: {
+  innerStateFocusedOrPressed: {
     backgroundColor: "rgba(255,255,255,0.12)",
   },
-  innerOutlinedHovered: {
+  innerTypeOutlinedOrElevatedStateHovered: {
     backgroundColor: "rgba(103, 80, 164, 0.08)",
   },
-  innerOutlinedFocusedOrPressed: {
+  innerTypeOutlinedOrElevatedStateFocusedOrPressed: {
     backgroundColor: "rgba(103, 80, 164, 0.12)",
   },
-  innerText: {
-    paddingHorizontal: 24,
+  innerTypeText: {
+    paddingHorizontal: 12,
   },
   innerWithIcon: {
     paddingLeft: 16,
     paddingRight: 24,
+  },
+  innerWithIconTypeText: {
+    paddingLeft: 12,
+    paddingRight: 16,
   },
   text: {
     fontFamily: "Roboto",
@@ -242,23 +306,12 @@ const styles = StyleSheet.create({
     letterSpacing: 0.1,
     color: "#FFFFFF",
   },
-  textDisabled: {
+  textStateDisabled: {
     color: "#1C1B1F",
     opacity: 0.38,
   },
-  textOutlined: {
+  textTypeOutlinedOrTextOrElevated: {
     color: "#6750A4",
-  },
-  textOutlinedDisabled: {
-    color: "#1C1B1F",
-    opacity: 0.38,
-  },
-  textText: {
-    color: "#6750A4",
-  },
-  textTextDisabled: {
-    color: "#1C1B1F",
-    opacity: 0.38,
   },
   // https://ethercreative.github.io/react-native-shadow-generator/
   boxShadow: {
@@ -274,13 +327,31 @@ const styles = StyleSheet.create({
       },
       android: {
         elevation: 3,
+        shadowColor: "#000000",
+      },
+    }),
+  },
+  boxShadowDouble: {
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000000",
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+      },
+      android: {
+        elevation: 5,
+        shadowColor: "#000000",
       },
     }),
   },
   icon: {
     marginRight: 8,
   },
-  iconDisabled: {
+  iconStateDisabled: {
     opacity: 0.38,
   },
 });

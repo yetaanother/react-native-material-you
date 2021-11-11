@@ -262,12 +262,104 @@ export default function App() {
     );
   };
 
+  const getElevatedButtons = () => {
+    return (
+      <>
+        <Text>Elevated buttons</Text>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+            type={"elevated"}
+          />
+          <Button
+            title={"Hovered"}
+            onPress={() => {}}
+            state={"hovered"}
+            style={{ margin: 4 }}
+            type={"elevated"}
+          />
+          <Button
+            title={"Focused"}
+            onPress={() => {}}
+            state={"focused"}
+            style={{ margin: 4 }}
+            type={"elevated"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Pressed"}
+            onPress={() => {}}
+            state={"pressed"}
+            style={{ margin: 4 }}
+            type={"elevated"}
+          />
+          <Button
+            title={"Disabled"}
+            onPress={() => {}}
+            state={"disabled"}
+            style={{ margin: 4 }}
+            type={"elevated"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"elevated"}
+          />
+          <Button
+            title={"Hovered"}
+            onPress={() => {}}
+            state={"hovered"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"elevated"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Focused"}
+            onPress={() => {}}
+            state={"focused"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"elevated"}
+          />
+          <Button
+            title={"Pressed"}
+            onPress={() => {}}
+            state={"pressed"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"elevated"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Disabled"}
+            onPress={() => {}}
+            state={"disabled"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"elevated"}
+          />
+        </View>
+      </>
+    );
+  };
+
   return (
     <ScrollView>
       <View style={{ ...styles.parent, marginVertical: 48 }}>
         {getFilledButtons()}
         {getOutlinedButtons()}
         {getTextButtons()}
+        {getElevatedButtons()}
       </View>
     </ScrollView>
   );
