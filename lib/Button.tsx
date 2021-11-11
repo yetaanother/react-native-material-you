@@ -54,6 +54,11 @@ export const Button: FunctionComponent<ButtonProps> = ({
       }
     } else if (type === "outlined") {
       buttonStyles = { ...buttonStyles, ...styles.buttonOutlined };
+      if (state === "focused") {
+        buttonStyles = { ...buttonStyles, ...styles.buttonOutlinedFocused };
+      } else if (state === "disabled") {
+        buttonStyles = { ...buttonStyles, ...styles.buttonOutlinedDisabled };
+      }
     }
     return { ...buttonStyles, ...style };
   };
@@ -66,10 +71,14 @@ export const Button: FunctionComponent<ButtonProps> = ({
       } else if (state === "focused" || state === "pressed") {
         innerStyles = { ...innerStyles, ...styles.innerFocusedOrPressed };
       }
-    }
-    if (type === "outlined") {
+    } else if (type === "outlined") {
       if (state === "hovered") {
         innerStyles = { ...innerStyles, ...styles.innerOutlinedHovered };
+      } else if (state === "focused" || state === "pressed") {
+        innerStyles = {
+          ...innerStyles,
+          ...styles.innerOutlinedFocusedOrPressed,
+        };
       }
     }
 
@@ -88,7 +97,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
           <Ionicons
             name={icon}
             size={18}
-            color={state === "disabled" ? "#1C1B1F" : "white"}
+            color={getIconColor()}
             style={getIconStyles()}
           />
           <Text style={textStyles}>{title}</Text>
@@ -96,6 +105,26 @@ export const Button: FunctionComponent<ButtonProps> = ({
       );
     }
     return <Text style={textStyles}>{title}</Text>;
+  };
+
+  const getIconColor = () => {
+    if (type === "filled") {
+      if (state === "disabled") {
+        return "#1C1B1F";
+      } else {
+        return "#FFFFFF";
+      }
+    } else if (type === "outlined") {
+      if (state === "disabled") {
+        return "#1C1B1F";
+      } else if (state === "pressed") {
+        return "#625B71";
+      } else {
+        return "#6750A4";
+      }
+    }
+
+    return "#FFFFFF";
   };
 
   const getTextStyles = () => {
@@ -106,6 +135,9 @@ export const Button: FunctionComponent<ButtonProps> = ({
       }
     } else if (type === "outlined") {
       textStyles = { ...textStyles, ...styles.textOutlined };
+      if (state === "disabled") {
+        textStyles = { ...textStyles, ...styles.textOutlinedDisabled };
+      }
     }
     return textStyles;
   };
@@ -135,6 +167,12 @@ const styles = StyleSheet.create({
     borderColor: "#79747E",
     borderWidth: 1,
   },
+  buttonOutlinedFocused: {
+    borderColor: "#6750A4",
+  },
+  buttonOutlinedDisabled: {
+    borderColor: "rgba(31, 31, 31, 0.12)",
+  },
   inner: {
     alignItems: "center",
     justifyContent: "center",
@@ -142,6 +180,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingVertical: 10,
     paddingHorizontal: 24,
+    borderRadius: 100,
   },
   innerHovered: {
     backgroundColor: "rgba(255,255,255,0.08)",
@@ -151,6 +190,9 @@ const styles = StyleSheet.create({
   },
   innerOutlinedHovered: {
     backgroundColor: "rgba(103, 80, 164, 0.08)",
+  },
+  innerOutlinedFocusedOrPressed: {
+    backgroundColor: "rgba(103, 80, 164, 0.12)",
   },
   innerWithIcon: {
     paddingLeft: 16,
@@ -171,6 +213,10 @@ const styles = StyleSheet.create({
   },
   textOutlined: {
     color: "#6750A4",
+  },
+  textOutlinedDisabled: {
+    color: "#1C1B1F",
+    opacity: 0.38,
   },
   // https://ethercreative.github.io/react-native-shadow-generator/
   boxShadow: {
