@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import { Button } from "@yetaanother/react-native-material-you";
+import { ThemeProvider } from "../lib/ThemeProvider";
 
 export default function App() {
   const [currScreen, setCurrScreen] = useState<
@@ -50,9 +51,17 @@ export default function App() {
   const getCurrScreen = () => {
     switch (currScreen) {
       case "dark buttons":
-        return getDarkButtons();
+        return (
+          <ThemeProvider hexColor={"#6650a4"} dark={true}>
+            {getDarkButtons()}
+          </ThemeProvider>
+        );
       case "light buttons":
-        return getLightButtons();
+        return (
+          <ThemeProvider hexColor={"#6650a4"}>
+            {getLightButtons()}
+          </ThemeProvider>
+        );
     }
   };
   const getLightButtons = () => {
@@ -68,7 +77,12 @@ export default function App() {
   };
 
   const getDarkButtons = () => {
-    return <View style={styles.parentDark}>{getDarkFilledButtons()}</View>;
+    return (
+      <View style={styles.parentDark}>
+        {getDarkFilledButtons()}
+        {getDarkOutlinedButtons()}
+      </View>
+    );
   };
 
   const getFilledButtons = () => {
@@ -602,6 +616,106 @@ export default function App() {
       </>
     );
   };
+  const getDarkOutlinedButtons = () => {
+    return (
+      <>
+        <Text style={{ color: "white" }}>Outlined buttons</Text>
+        <View style={{ ...styles.childDark }}>
+          <Button
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+            type={"outlined"}
+            theme={"dark"}
+          />
+          <Button
+            title={"Hovered"}
+            onPress={() => {}}
+            state={"hovered"}
+            style={{ margin: 4 }}
+            type={"outlined"}
+            theme={"dark"}
+          />
+          <Button
+            title={"Focused"}
+            onPress={() => {}}
+            state={"focused"}
+            style={{ margin: 4 }}
+            type={"outlined"}
+            theme={"dark"}
+          />
+        </View>
+        <View style={{ ...styles.childDark }}>
+          <Button
+            title={"Pressed"}
+            onPress={() => {}}
+            state={"pressed"}
+            style={{ margin: 4 }}
+            type={"outlined"}
+            theme={"dark"}
+          />
+          <Button
+            title={"Disabled"}
+            onPress={() => {}}
+            state={"disabled"}
+            style={{ margin: 4 }}
+            type={"outlined"}
+            theme={"dark"}
+          />
+        </View>
+        <View style={{ ...styles.childDark }}>
+          <Button
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"outlined"}
+            theme={"dark"}
+          />
+          <Button
+            title={"Hovered"}
+            onPress={() => {}}
+            state={"hovered"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"outlined"}
+            theme={"dark"}
+          />
+        </View>
+        <View style={{ ...styles.childDark }}>
+          <Button
+            title={"Focused"}
+            onPress={() => {}}
+            state={"focused"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"outlined"}
+          />
+          <Button
+            title={"Pressed"}
+            onPress={() => {}}
+            state={"pressed"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"outlined"}
+            theme={"dark"}
+          />
+        </View>
+        <View style={{ ...styles.childDark }}>
+          <Button
+            title={"Disabled"}
+            onPress={() => {}}
+            state={"disabled"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"outlined"}
+            theme={"dark"}
+          />
+        </View>
+      </>
+    );
+  };
+
   return render();
 }
 

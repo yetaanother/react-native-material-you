@@ -15,8 +15,10 @@
     "react-native": "^0.66.2"
   },
   "devDependencies": {
+    "@types/jasmine": "^3.10.2",
     "@types/react": "^17.0.34",
     "@types/react-native": "^0.66.2",
+    "jasmine": "^3.10.0",
     "prettier": "^2.4.1"
   }
 }

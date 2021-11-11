@@ -17,3 +17,5 @@ package-lock.json
 # IntelliJ
 .idea/
 *.iml
+
+material-color-utilities/
