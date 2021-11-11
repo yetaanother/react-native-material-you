@@ -73,56 +73,70 @@ export const Button: FunctionComponent<ButtonProps> = ({
 
   const getButtonStyles = () => {
     let buttonStyles: ViewStyle | TextStyle | ImageStyle = { ...styles.button };
-    if (type === "filled") {
-      if (state === "disabled") {
-        buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
-      } else if (state === "hovered") {
-        buttonStyles = { ...buttonStyles, ...styles.boxShadow };
-      }
-    } else if (type === "outlined") {
-      buttonStyles = { ...buttonStyles, ...styles.buttonTypeOutlined };
-      if (state === "focused") {
+    if (theme === "light") {
+      if (type === "filled") {
+        if (state === "disabled") {
+          buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
+        } else if (state === "hovered") {
+          buttonStyles = { ...buttonStyles, ...styles.boxShadow };
+        }
+      } else if (type === "outlined") {
+        buttonStyles = { ...buttonStyles, ...styles.buttonTypeOutlined };
+        if (state === "focused") {
+          buttonStyles = {
+            ...buttonStyles,
+            ...styles.buttonTypeOutlinedStateFocused,
+          };
+        } else if (state === "disabled") {
+          buttonStyles = {
+            ...buttonStyles,
+            ...styles.buttonStateDisabled,
+          };
+        }
+      } else if (type === "text") {
+        buttonStyles = { ...buttonStyles, ...styles.buttonTypeText };
+        if (state === "hovered") {
+          buttonStyles = {
+            ...buttonStyles,
+            ...styles.buttonTypeTextStateHovered,
+          };
+        } else if (state === "focused" || state === "pressed") {
+          buttonStyles = {
+            ...buttonStyles,
+            ...styles.buttonTypeTextStateFocusedOrPressed,
+          };
+        }
+      } else if (type === "elevated") {
         buttonStyles = {
           ...buttonStyles,
-          ...styles.buttonTypeOutlinedStateFocused,
+          ...styles.buttonTypeElevated,
         };
-      } else if (state === "disabled") {
-        buttonStyles = {
-          ...buttonStyles,
-          ...styles.buttonStateDisabled,
-        };
+        if (state == "disabled") {
+          buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
+        } else if (state === "hovered") {
+          buttonStyles = { ...buttonStyles, ...styles.boxShadowDouble };
+        } else {
+          buttonStyles = { ...buttonStyles, ...styles.boxShadow };
+        }
+      } else if (type === "tonal") {
+        buttonStyles = { ...buttonStyles, ...styles.buttonTypeTonal };
+        if (state === "disabled") {
+          buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
+        } else if (state === "hovered") {
+          buttonStyles = { ...buttonStyles, ...styles.boxShadow };
+        }
       }
-    } else if (type === "text") {
-      buttonStyles = { ...buttonStyles, ...styles.buttonTypeText };
-      if (state === "hovered") {
-        buttonStyles = {
-          ...buttonStyles,
-          ...styles.buttonTypeTextStateHovered,
-        };
-      } else if (state === "focused" || state === "pressed") {
-        buttonStyles = {
-          ...buttonStyles,
-          ...styles.buttonTypeTextStateFocusedOrPressed,
-        };
-      }
-    } else if (type === "elevated") {
-      buttonStyles = {
-        ...buttonStyles,
-        ...styles.buttonTypeElevated,
-      };
-      if (state == "disabled") {
-        buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
-      } else if (state === "hovered") {
-        buttonStyles = { ...buttonStyles, ...styles.boxShadowDouble };
-      } else {
-        buttonStyles = { ...buttonStyles, ...styles.boxShadow };
-      }
-    } else if (type === "tonal") {
-      buttonStyles = { ...buttonStyles, ...styles.buttonTypeTonal };
-      if (state === "disabled") {
-        buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
-      } else if (state === "hovered") {
-        buttonStyles = { ...buttonStyles, ...styles.boxShadow };
+    } else if (theme === "dark") {
+      buttonStyles = { ...buttonStyles, ...styles.buttonThemeDark };
+      if (type === "filled") {
+        if (state === "disabled") {
+          buttonStyles = {
+            ...buttonStyles,
+            ...styles.buttonThemeDarkStateDisabled,
+          };
+        } else if (state === "hovered") {
+          buttonStyles = { ...buttonStyles, ...styles.boxShadow };
+        }
       }
     }
     return { ...buttonStyles, ...style };
@@ -130,40 +144,63 @@ export const Button: FunctionComponent<ButtonProps> = ({
 
   const getInnerStyles = () => {
     let innerStyles = { ...styles.inner };
-    if (type == "filled") {
-      if (state === "hovered") {
-        innerStyles = { ...innerStyles, ...styles.innerStateHovered };
-      } else if (state === "focused" || state === "pressed") {
-        innerStyles = { ...innerStyles, ...styles.innerStateFocusedOrPressed };
+    if (theme === "light") {
+      if (type == "filled") {
+        if (state === "hovered") {
+          innerStyles = { ...innerStyles, ...styles.innerStateHovered };
+        } else if (state === "focused" || state === "pressed") {
+          innerStyles = {
+            ...innerStyles,
+            ...styles.innerStateFocusedOrPressed,
+          };
+        }
+      } else if (type === "outlined" || type === "elevated") {
+        if (state === "hovered") {
+          innerStyles = {
+            ...innerStyles,
+            ...styles.innerTypeOutlinedOrElevatedStateHovered,
+          };
+        } else if (state === "focused" || state === "pressed") {
+          innerStyles = {
+            ...innerStyles,
+            ...styles.innerTypeOutlinedOrElevatedStateFocusedOrPressed,
+          };
+        }
+      } else if (type === "text") {
+        innerStyles = { ...innerStyles, ...styles.innerTypeText };
+      } else if (type === "tonal") {
+        if (state === "hovered") {
+          innerStyles = {
+            ...innerStyles,
+            ...styles.innerTypeTonalStateHovered,
+          };
+        } else if (state === "focused" || state === "pressed") {
+          innerStyles = {
+            ...innerStyles,
+            ...styles.innerTypeTonalStateFocusedOrPressed,
+          };
+        }
       }
-    } else if (type === "outlined" || type === "elevated") {
-      if (state === "hovered") {
-        innerStyles = {
-          ...innerStyles,
-          ...styles.innerTypeOutlinedOrElevatedStateHovered,
-        };
-      } else if (state === "focused" || state === "pressed") {
-        innerStyles = {
-          ...innerStyles,
-          ...styles.innerTypeOutlinedOrElevatedStateFocusedOrPressed,
-        };
-      }
-    } else if (type === "text") {
-      innerStyles = { ...innerStyles, ...styles.innerTypeText };
-    } else if (type === "tonal") {
-      if (state === "hovered") {
-        innerStyles = {
-          ...innerStyles,
-          ...styles.innerTypeTonalStateHovered,
-        };
-      } else if (state === "focused" || state === "pressed") {
-        innerStyles = {
-          ...innerStyles,
-          ...styles.innerTypeTonalStateFocusedOrPressed,
-        };
+    } else if (theme === "dark") {
+      if (type == "filled") {
+        if (state === "hovered") {
+          innerStyles = {
+            ...innerStyles,
+            ...styles.innerThemeDarkStateHovered,
+          };
+        } else if (state === "focused" || state === "pressed") {
+          innerStyles = {
+            ...innerStyles,
+            ...styles.innerThemeDarkStateFocusedOrPressed,
+          };
+        } else if (state === "disabled") {
+          innerStyles = {
+            ...innerStyles,
+            ...styles.innerThemeDarkStateDisabled,
+          };
+        }
       }
     }
-
     if (icon) {
       if (type === "text") {
         innerStyles = { ...innerStyles, ...styles.innerWithIconTypeText };
@@ -171,6 +208,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
         innerStyles = { ...innerStyles, ...styles.innerWithIcon };
       }
     }
+
     return innerStyles;
   };
 
@@ -194,31 +232,41 @@ export const Button: FunctionComponent<ButtonProps> = ({
   };
 
   const getIconColor = () => {
-    if (type === "filled") {
-      if (state === "disabled") {
-        return "#1C1B1F";
-      } else {
-        return "#FFFFFF";
+    if (theme === "light") {
+      if (type === "filled") {
+        if (state === "disabled") {
+          return "#1C1B1F";
+        } else {
+          return "#FFFFFF";
+        }
+      } else if (type === "outlined") {
+        if (state === "disabled") {
+          return "#1C1B1F";
+        } else if (state === "pressed") {
+          return "#625B71";
+        } else {
+          return "#6750A4";
+        }
+      } else if (type === "text" || type === "elevated") {
+        if (state === "disabled") {
+          return "#1C1B1F";
+        } else {
+          return "#6750A4";
+        }
+      } else if (type === "tonal") {
+        if (state === "disabled") {
+          return "#1C1B1F";
+        } else {
+          return "#1D192B";
+        }
       }
-    } else if (type === "outlined") {
-      if (state === "disabled") {
-        return "#1C1B1F";
-      } else if (state === "pressed") {
-        return "#625B71";
-      } else {
-        return "#6750A4";
-      }
-    } else if (type === "text" || type === "elevated") {
-      if (state === "disabled") {
-        return "#1C1B1F";
-      } else {
-        return "#6750A4";
-      }
-    } else if (type === "tonal") {
-      if (state === "disabled") {
-        return "#1C1B1F";
-      } else {
-        return "#1D192B";
+    } else if (theme === "dark") {
+      if (type === "filled") {
+        if (state === "disabled") {
+          return "#E6E1E5";
+        } else {
+          return "#381E72";
+        }
       }
     }
 
@@ -227,31 +275,44 @@ export const Button: FunctionComponent<ButtonProps> = ({
 
   const getTextStyles = () => {
     let textStyles = { ...styles.text };
-    if (type === "filled") {
-      if (state === "disabled") {
-        textStyles = { ...textStyles, ...styles.textStateDisabled };
-      }
-    } else if (type === "outlined" || type === "text" || type === "elevated") {
-      textStyles = {
-        ...textStyles,
-        ...styles.textTypeOutlinedOrTextOrElevated,
-      };
-      if (state === "disabled") {
+    if (theme === "light") {
+      if (type === "filled") {
+        if (state === "disabled") {
+          textStyles = { ...textStyles, ...styles.textStateDisabled };
+        }
+      } else if (
+        type === "outlined" ||
+        type === "text" ||
+        type === "elevated"
+      ) {
         textStyles = {
           ...textStyles,
-          ...styles.textStateDisabled,
+          ...styles.textTypeOutlinedOrTextOrElevated,
         };
-      }
-    } else if (type === "tonal") {
-      textStyles = {
-        ...textStyles,
-        ...styles.textTypeTonal,
-      };
-      if (state === "disabled") {
+        if (state === "disabled") {
+          textStyles = {
+            ...textStyles,
+            ...styles.textStateDisabled,
+          };
+        }
+      } else if (type === "tonal") {
         textStyles = {
           ...textStyles,
-          ...styles.textStateDisabled,
+          ...styles.textTypeTonal,
         };
+        if (state === "disabled") {
+          textStyles = {
+            ...textStyles,
+            ...styles.textStateDisabled,
+          };
+        }
+      }
+    } else if (theme === "dark") {
+      textStyles = { ...textStyles, ...styles.textThemeDark };
+      if (type === "filled") {
+        if (state === "disabled") {
+          textStyles = { ...textStyles, ...styles.textThemeDarkStateDisabled };
+        }
       }
     }
     return textStyles;
@@ -300,6 +361,12 @@ const styles = StyleSheet.create({
   buttonTypeTonal: {
     backgroundColor: "#E8DEF8",
   },
+  buttonThemeDark: {
+    backgroundColor: "#D0BCFF",
+  },
+  buttonThemeDarkStateDisabled: {
+    backgroundColor: "#1F1F1F",
+  },
   linearGradient: {
     borderRadius: 100,
   },
@@ -333,6 +400,15 @@ const styles = StyleSheet.create({
   innerTypeText: {
     paddingHorizontal: 12,
   },
+  innerThemeDarkStateHovered: {
+    backgroundColor: "rgba(208, 188, 255, 0.08)",
+  },
+  innerThemeDarkStateFocusedOrPressed: {
+    backgroundColor: "rgba(208, 188, 255, 0.12)",
+  },
+  innerThemeDarkStateDisabled: {
+    backgroundColor: "rgba(227, 227, 227, 0.12)",
+  },
   innerWithIcon: {
     paddingLeft: 16,
     paddingRight: 24,
@@ -359,6 +435,13 @@ const styles = StyleSheet.create({
   },
   textTypeTonal: {
     color: "#1D192B",
+  },
+  textThemeDark: {
+    color: "#381E72",
+  },
+  textThemeDarkStateDisabled: {
+    color: "#E6E1E5",
+    opacity: 0.38,
   },
   // https://ethercreative.github.io/react-native-shadow-generator/
   boxShadow: {

@@ -1,8 +1,76 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Button as NativeButton,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { Button } from "@yetaanother/react-native-material-you";
 
 export default function App() {
+  const [currScreen, setCurrScreen] = useState<
+    "light buttons" | "dark buttons"
+  >("light buttons");
+
+  const render = () => {
+    return (
+      <ScrollView>
+        <View style={{ marginVertical: 48 }}>
+          {getToggleButtons()}
+          {getCurrScreen()}
+        </View>
+      </ScrollView>
+    );
+  };
+
+  const getToggleButtons = () => {
+    return (
+      <View style={{ flexDirection: "row" }}>
+        <View style={{ margin: 4 }}>
+          <NativeButton
+            title={"Light buttons"}
+            onPress={() => {
+              setCurrScreen("light buttons");
+            }}
+          />
+        </View>
+        <View style={{ margin: 4 }}>
+          <NativeButton
+            title={"Dark buttons"}
+            onPress={() => {
+              setCurrScreen("dark buttons");
+            }}
+          />
+        </View>
+      </View>
+    );
+  };
+
+  const getCurrScreen = () => {
+    switch (currScreen) {
+      case "dark buttons":
+        return getDarkButtons();
+      case "light buttons":
+        return getLightButtons();
+    }
+  };
+  const getLightButtons = () => {
+    return (
+      <View style={styles.parent}>
+        {getFilledButtons()}
+        {getOutlinedButtons()}
+        {getTextButtons()}
+        {getElevatedButtons()}
+        {getTonalButtons()}
+      </View>
+    );
+  };
+
+  const getDarkButtons = () => {
+    return <View style={styles.parentDark}>{getDarkFilledButtons()}</View>;
+  };
+
   const getFilledButtons = () => {
     return (
       <>
@@ -444,24 +512,112 @@ export default function App() {
     );
   };
 
-  return (
-    <ScrollView>
-      <View style={{ ...styles.parent, marginVertical: 48 }}>
-        {getFilledButtons()}
-        {getOutlinedButtons()}
-        {getTextButtons()}
-        {getElevatedButtons()}
-        {getTonalButtons()}
-      </View>
-    </ScrollView>
-  );
+  const getDarkFilledButtons = () => {
+    return (
+      <>
+        <Text style={{ color: "white" }}>Filled buttons</Text>
+        <View style={{ ...styles.childDark }}>
+          <Button
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+            theme={"dark"}
+          />
+          <Button
+            title={"Hovered"}
+            onPress={() => {}}
+            state={"hovered"}
+            style={{ margin: 4 }}
+            theme={"dark"}
+          />
+          <Button
+            title={"Focused"}
+            onPress={() => {}}
+            state={"focused"}
+            style={{ margin: 4 }}
+            theme={"dark"}
+          />
+        </View>
+        <View style={{ ...styles.childDark }}>
+          <Button
+            title={"Pressed"}
+            onPress={() => {}}
+            state={"pressed"}
+            style={{ margin: 4 }}
+            theme={"dark"}
+          />
+          <Button
+            title={"Disabled"}
+            onPress={() => {}}
+            state={"disabled"}
+            style={{ margin: 4 }}
+            theme={"dark"}
+          />
+        </View>
+        <View style={{ ...styles.childDark }}>
+          <Button
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+            icon={"add"}
+            theme={"dark"}
+          />
+          <Button
+            title={"Hovered"}
+            onPress={() => {}}
+            state={"hovered"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            theme={"dark"}
+          />
+        </View>
+        <View style={{ ...styles.childDark }}>
+          <Button
+            title={"Focused"}
+            onPress={() => {}}
+            state={"focused"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            theme={"dark"}
+          />
+          <Button
+            title={"Pressed"}
+            onPress={() => {}}
+            state={"pressed"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            theme={"dark"}
+          />
+        </View>
+        <View style={{ ...styles.childDark }}>
+          <Button
+            title={"Disabled"}
+            onPress={() => {}}
+            state={"disabled"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            theme={"dark"}
+          />
+        </View>
+      </>
+    );
+  };
+  return render();
 }
 
 const styles = StyleSheet.create({
   parent: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "#fff",
+    backgroundColor: "#FFFFFF",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    padding: 8,
+  },
+  parentDark: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "#1F1F1F",
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 8,
@@ -469,7 +625,16 @@ const styles = StyleSheet.create({
   child: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "#fff",
+    backgroundColor: "#FFF",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    padding: 4,
+    margin: 4,
+  },
+  childDark: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: "#1F1F1F",
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 4,
