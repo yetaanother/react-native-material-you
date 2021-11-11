@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Button } from "@yetaanother/react-native-material-you";
 
 export default function App() {
@@ -171,11 +171,103 @@ export default function App() {
     );
   };
 
+  const getTextButtons = () => {
+    return (
+      <>
+        <Text>Text buttons</Text>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+            type={"text"}
+          />
+          <Button
+            title={"Hovered"}
+            onPress={() => {}}
+            state={"hovered"}
+            style={{ margin: 4 }}
+            type={"text"}
+          />
+          <Button
+            title={"Focused"}
+            onPress={() => {}}
+            state={"focused"}
+            style={{ margin: 4 }}
+            type={"text"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Pressed"}
+            onPress={() => {}}
+            state={"pressed"}
+            style={{ margin: 4 }}
+            type={"text"}
+          />
+          <Button
+            title={"Disabled"}
+            onPress={() => {}}
+            state={"disabled"}
+            style={{ margin: 4 }}
+            type={"text"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"text"}
+          />
+          <Button
+            title={"Hovered"}
+            onPress={() => {}}
+            state={"hovered"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"text"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Focused"}
+            onPress={() => {}}
+            state={"focused"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"text"}
+          />
+          <Button
+            title={"Pressed"}
+            onPress={() => {}}
+            state={"pressed"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"text"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Disabled"}
+            onPress={() => {}}
+            state={"disabled"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"text"}
+          />
+        </View>
+      </>
+    );
+  };
+
   return (
     <ScrollView>
       <View style={{ ...styles.parent, marginVertical: 48 }}>
         {getFilledButtons()}
         {getOutlinedButtons()}
+        {getTextButtons()}
       </View>
     </ScrollView>
   );

@@ -59,6 +59,16 @@ export const Button: FunctionComponent<ButtonProps> = ({
       } else if (state === "disabled") {
         buttonStyles = { ...buttonStyles, ...styles.buttonOutlinedDisabled };
       }
+    } else if (type === "text") {
+      buttonStyles = { ...buttonStyles, ...styles.buttonText };
+      if (state === "hovered") {
+        buttonStyles = { ...buttonStyles, ...styles.buttonTextHovered };
+      } else if (state === "focused" || state === "pressed") {
+        buttonStyles = {
+          ...buttonStyles,
+          ...styles.buttonTextFocusedOrPressed,
+        };
+      }
     }
     return { ...buttonStyles, ...style };
   };
@@ -80,6 +90,8 @@ export const Button: FunctionComponent<ButtonProps> = ({
           ...styles.innerOutlinedFocusedOrPressed,
         };
       }
+    } else if (type === "text") {
+      innerStyles = { ...innerStyles, ...styles.inner };
     }
 
     if (icon) {
@@ -122,6 +134,12 @@ export const Button: FunctionComponent<ButtonProps> = ({
       } else {
         return "#6750A4";
       }
+    } else if (type === "text") {
+      if (state === "disabled") {
+        return "#1C1B1F";
+      } else {
+        return "#6750A4";
+      }
     }
 
     return "#FFFFFF";
@@ -137,6 +155,11 @@ export const Button: FunctionComponent<ButtonProps> = ({
       textStyles = { ...textStyles, ...styles.textOutlined };
       if (state === "disabled") {
         textStyles = { ...textStyles, ...styles.textOutlinedDisabled };
+      }
+    } else if (type === "text") {
+      textStyles = { ...textStyles, ...styles.textText };
+      if (state === "disabled") {
+        textStyles = { ...textStyles, ...styles.textTextDisabled };
       }
     }
     return textStyles;
@@ -173,6 +196,15 @@ const styles = StyleSheet.create({
   buttonOutlinedDisabled: {
     borderColor: "rgba(31, 31, 31, 0.12)",
   },
+  buttonText: {
+    backgroundColor: "#FFFFFF",
+  },
+  buttonTextHovered: {
+    backgroundColor: "rgba(103, 80, 164, 0.08)",
+  },
+  buttonTextFocusedOrPressed: {
+    backgroundColor: "rgba(103, 80, 164, 0.12)",
+  },
   inner: {
     alignItems: "center",
     justifyContent: "center",
@@ -193,6 +225,9 @@ const styles = StyleSheet.create({
   },
   innerOutlinedFocusedOrPressed: {
     backgroundColor: "rgba(103, 80, 164, 0.12)",
+  },
+  innerText: {
+    paddingHorizontal: 24,
   },
   innerWithIcon: {
     paddingLeft: 16,
@@ -215,6 +250,13 @@ const styles = StyleSheet.create({
     color: "#6750A4",
   },
   textOutlinedDisabled: {
+    color: "#1C1B1F",
+    opacity: 0.38,
+  },
+  textText: {
+    color: "#6750A4",
+  },
+  textTextDisabled: {
     color: "#1C1B1F",
     opacity: 0.38,
   },
