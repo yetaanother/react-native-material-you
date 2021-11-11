@@ -73,7 +73,6 @@ export const Button: FunctionComponent<ButtonProps> = ({
 
   const getButtonStyles = () => {
     let buttonStyles: ViewStyle | TextStyle | ImageStyle = { ...styles.button };
-
     if (type === "filled") {
       if (state === "disabled") {
         buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
@@ -118,6 +117,13 @@ export const Button: FunctionComponent<ButtonProps> = ({
       } else {
         buttonStyles = { ...buttonStyles, ...styles.boxShadow };
       }
+    } else if (type === "tonal") {
+      buttonStyles = { ...buttonStyles, ...styles.buttonTypeTonal };
+      if (state === "disabled") {
+        buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
+      } else if (state === "hovered") {
+        buttonStyles = { ...buttonStyles, ...styles.boxShadow };
+      }
     }
     return { ...buttonStyles, ...style };
   };
@@ -144,6 +150,18 @@ export const Button: FunctionComponent<ButtonProps> = ({
       }
     } else if (type === "text") {
       innerStyles = { ...innerStyles, ...styles.innerTypeText };
+    } else if (type === "tonal") {
+      if (state === "hovered") {
+        innerStyles = {
+          ...innerStyles,
+          ...styles.innerTypeTonalStateHovered,
+        };
+      } else if (state === "focused" || state === "pressed") {
+        innerStyles = {
+          ...innerStyles,
+          ...styles.innerTypeTonalStateFocusedOrPressed,
+        };
+      }
     }
 
     if (icon) {
@@ -196,6 +214,12 @@ export const Button: FunctionComponent<ButtonProps> = ({
       } else {
         return "#6750A4";
       }
+    } else if (type === "tonal") {
+      if (state === "disabled") {
+        return "#1C1B1F";
+      } else {
+        return "#1D192B";
+      }
     }
 
     return "#FFFFFF";
@@ -211,6 +235,17 @@ export const Button: FunctionComponent<ButtonProps> = ({
       textStyles = {
         ...textStyles,
         ...styles.textTypeOutlinedOrTextOrElevated,
+      };
+      if (state === "disabled") {
+        textStyles = {
+          ...textStyles,
+          ...styles.textStateDisabled,
+        };
+      }
+    } else if (type === "tonal") {
+      textStyles = {
+        ...textStyles,
+        ...styles.textTypeTonal,
       };
       if (state === "disabled") {
         textStyles = {
@@ -262,6 +297,9 @@ const styles = StyleSheet.create({
   buttonTypeElevated: {
     backgroundColor: "#FFFFFF",
   },
+  buttonTypeTonal: {
+    backgroundColor: "#E8DEF8",
+  },
   linearGradient: {
     borderRadius: 100,
   },
@@ -285,6 +323,12 @@ const styles = StyleSheet.create({
   },
   innerTypeOutlinedOrElevatedStateFocusedOrPressed: {
     backgroundColor: "rgba(103, 80, 164, 0.12)",
+  },
+  innerTypeTonalStateHovered: {
+    backgroundColor: "rgba(29, 25, 43, 0.08)",
+  },
+  innerTypeTonalStateFocusedOrPressed: {
+    backgroundColor: "rgba(29, 25, 43, 0.12)",
   },
   innerTypeText: {
     paddingHorizontal: 12,
@@ -312,6 +356,9 @@ const styles = StyleSheet.create({
   },
   textTypeOutlinedOrTextOrElevated: {
     color: "#6750A4",
+  },
+  textTypeTonal: {
+    color: "#1D192B",
   },
   // https://ethercreative.github.io/react-native-shadow-generator/
   boxShadow: {

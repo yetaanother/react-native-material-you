@@ -353,6 +353,97 @@ export default function App() {
     );
   };
 
+  const getTonalButtons = () => {
+    return (
+      <>
+        <Text>Tonal buttons</Text>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+            type={"tonal"}
+          />
+          <Button
+            title={"Hovered"}
+            onPress={() => {}}
+            state={"hovered"}
+            style={{ margin: 4 }}
+            type={"tonal"}
+          />
+          <Button
+            title={"Focused"}
+            onPress={() => {}}
+            state={"focused"}
+            style={{ margin: 4 }}
+            type={"tonal"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Pressed"}
+            onPress={() => {}}
+            state={"pressed"}
+            style={{ margin: 4 }}
+            type={"tonal"}
+          />
+          <Button
+            title={"Disabled"}
+            onPress={() => {}}
+            state={"disabled"}
+            style={{ margin: 4 }}
+            type={"tonal"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"tonal"}
+          />
+          <Button
+            title={"Hovered"}
+            onPress={() => {}}
+            state={"hovered"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"tonal"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Focused"}
+            onPress={() => {}}
+            state={"focused"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"tonal"}
+          />
+          <Button
+            title={"Pressed"}
+            onPress={() => {}}
+            state={"pressed"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"tonal"}
+          />
+        </View>
+        <View style={{ ...styles.child }}>
+          <Button
+            title={"Disabled"}
+            onPress={() => {}}
+            state={"disabled"}
+            style={{ margin: 4 }}
+            icon={"add"}
+            type={"tonal"}
+          />
+        </View>
+      </>
+    );
+  };
+
   return (
     <ScrollView>
       <View style={{ ...styles.parent, marginVertical: 48 }}>
@@ -360,6 +451,7 @@ export default function App() {
         {getOutlinedButtons()}
         {getTextButtons()}
         {getElevatedButtons()}
+        {getTonalButtons()}
       </View>
     </ScrollView>
   );
