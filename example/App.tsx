@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import {
   Button as NativeButton,
+  ImageStyle,
   ScrollView,
   StyleSheet,
   Text,
+  TextStyle,
   View,
+  ViewStyle,
 } from "react-native";
 import { Button } from "@yetaanother/react-native-material-you";
-import { ThemeProvider } from "../lib/ThemeProvider";
+import { ThemeProvider } from "@yetaanother/react-native-material-you";
 
 export default function App() {
   const [currScreen, setCurrScreen] = useState<
@@ -52,44 +55,38 @@ export default function App() {
     switch (currScreen) {
       case "dark buttons":
         return (
-          <ThemeProvider hexColor={"#6650a4"} dark={true}>
-            {getDarkButtons()}
+          <ThemeProvider hexColor={"#6750A4"} dark={true}>
+            {getButtons(styles.parentDark, styles.childDark)}
           </ThemeProvider>
         );
       case "light buttons":
         return (
-          <ThemeProvider hexColor={"#6650a4"}>
-            {getLightButtons()}
+          <ThemeProvider hexColor={"#6750A4"}>
+            {getButtons(styles.parent, styles.child)}
           </ThemeProvider>
         );
     }
   };
-  const getLightButtons = () => {
+  const getButtons = (
+    parentStyle: ViewStyle | TextStyle | ImageStyle,
+    childStyle: ViewStyle | TextStyle | ImageStyle
+  ) => {
     return (
-      <View style={styles.parent}>
-        {getFilledButtons()}
-        {getOutlinedButtons()}
-        {getTextButtons()}
-        {getElevatedButtons()}
-        {getTonalButtons()}
+      <View style={parentStyle}>
+        {getFilledButtons(childStyle)}
+        {getOutlinedButtons(childStyle)}
+        {getTextButtons(childStyle)}
+        {getElevatedButtons(childStyle)}
+        {getTonalButtons(childStyle)}
       </View>
     );
   };
 
-  const getDarkButtons = () => {
-    return (
-      <View style={styles.parentDark}>
-        {getDarkFilledButtons()}
-        {getDarkOutlinedButtons()}
-      </View>
-    );
-  };
-
-  const getFilledButtons = () => {
+  const getFilledButtons = (childStyle: ViewStyle | TextStyle | ImageStyle) => {
     return (
       <>
         <Text>Filled buttons</Text>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button title={"Enabled"} onPress={() => {}} style={{ margin: 4 }} />
           <Button
             title={"Hovered"}
@@ -104,7 +101,7 @@ export default function App() {
             style={{ margin: 4 }}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Pressed"}
             onPress={() => {}}
@@ -118,7 +115,7 @@ export default function App() {
             style={{ margin: 4 }}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Enabled"}
             onPress={() => {}}
@@ -133,7 +130,7 @@ export default function App() {
             icon={"add"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Focused"}
             onPress={() => {}}
@@ -149,7 +146,7 @@ export default function App() {
             icon={"add"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Disabled"}
             onPress={() => {}}
@@ -162,11 +159,13 @@ export default function App() {
     );
   };
 
-  const getOutlinedButtons = () => {
+  const getOutlinedButtons = (
+    childStyle: ViewStyle | TextStyle | ImageStyle
+  ) => {
     return (
       <>
         <Text>Outlined buttons</Text>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Enabled"}
             onPress={() => {}}
@@ -188,7 +187,7 @@ export default function App() {
             type={"outlined"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Pressed"}
             onPress={() => {}}
@@ -204,7 +203,7 @@ export default function App() {
             type={"outlined"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Enabled"}
             onPress={() => {}}
@@ -221,7 +220,7 @@ export default function App() {
             type={"outlined"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Focused"}
             onPress={() => {}}
@@ -239,7 +238,7 @@ export default function App() {
             type={"outlined"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Disabled"}
             onPress={() => {}}
@@ -253,11 +252,11 @@ export default function App() {
     );
   };
 
-  const getTextButtons = () => {
+  const getTextButtons = (childStyle: ViewStyle | TextStyle | ImageStyle) => {
     return (
       <>
         <Text>Text buttons</Text>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Enabled"}
             onPress={() => {}}
@@ -279,7 +278,7 @@ export default function App() {
             type={"text"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Pressed"}
             onPress={() => {}}
@@ -295,7 +294,7 @@ export default function App() {
             type={"text"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Enabled"}
             onPress={() => {}}
@@ -312,7 +311,7 @@ export default function App() {
             type={"text"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Focused"}
             onPress={() => {}}
@@ -330,7 +329,7 @@ export default function App() {
             type={"text"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Disabled"}
             onPress={() => {}}
@@ -344,11 +343,13 @@ export default function App() {
     );
   };
 
-  const getElevatedButtons = () => {
+  const getElevatedButtons = (
+    childStyle: ViewStyle | TextStyle | ImageStyle
+  ) => {
     return (
       <>
         <Text>Elevated buttons</Text>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Enabled"}
             onPress={() => {}}
@@ -370,7 +371,7 @@ export default function App() {
             type={"elevated"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Pressed"}
             onPress={() => {}}
@@ -386,7 +387,7 @@ export default function App() {
             type={"elevated"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Enabled"}
             onPress={() => {}}
@@ -403,7 +404,7 @@ export default function App() {
             type={"elevated"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Focused"}
             onPress={() => {}}
@@ -421,7 +422,7 @@ export default function App() {
             type={"elevated"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Disabled"}
             onPress={() => {}}
@@ -435,11 +436,11 @@ export default function App() {
     );
   };
 
-  const getTonalButtons = () => {
+  const getTonalButtons = (childStyle: ViewStyle | TextStyle | ImageStyle) => {
     return (
       <>
         <Text>Tonal buttons</Text>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Enabled"}
             onPress={() => {}}
@@ -461,7 +462,7 @@ export default function App() {
             type={"tonal"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Pressed"}
             onPress={() => {}}
@@ -477,7 +478,7 @@ export default function App() {
             type={"tonal"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Enabled"}
             onPress={() => {}}
@@ -494,7 +495,7 @@ export default function App() {
             type={"tonal"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Focused"}
             onPress={() => {}}
@@ -512,7 +513,7 @@ export default function App() {
             type={"tonal"}
           />
         </View>
-        <View style={{ ...styles.child }}>
+        <View style={childStyle}>
           <Button
             title={"Disabled"}
             onPress={() => {}}
@@ -520,196 +521,6 @@ export default function App() {
             style={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}
-          />
-        </View>
-      </>
-    );
-  };
-
-  const getDarkFilledButtons = () => {
-    return (
-      <>
-        <Text style={{ color: "white" }}>Filled buttons</Text>
-        <View style={{ ...styles.childDark }}>
-          <Button
-            title={"Enabled"}
-            onPress={() => {}}
-            style={{ margin: 4 }}
-            theme={"dark"}
-          />
-          <Button
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
-            style={{ margin: 4 }}
-            theme={"dark"}
-          />
-          <Button
-            title={"Focused"}
-            onPress={() => {}}
-            state={"focused"}
-            style={{ margin: 4 }}
-            theme={"dark"}
-          />
-        </View>
-        <View style={{ ...styles.childDark }}>
-          <Button
-            title={"Pressed"}
-            onPress={() => {}}
-            state={"pressed"}
-            style={{ margin: 4 }}
-            theme={"dark"}
-          />
-          <Button
-            title={"Disabled"}
-            onPress={() => {}}
-            state={"disabled"}
-            style={{ margin: 4 }}
-            theme={"dark"}
-          />
-        </View>
-        <View style={{ ...styles.childDark }}>
-          <Button
-            title={"Enabled"}
-            onPress={() => {}}
-            style={{ margin: 4 }}
-            icon={"add"}
-            theme={"dark"}
-          />
-          <Button
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
-            style={{ margin: 4 }}
-            icon={"add"}
-            theme={"dark"}
-          />
-        </View>
-        <View style={{ ...styles.childDark }}>
-          <Button
-            title={"Focused"}
-            onPress={() => {}}
-            state={"focused"}
-            style={{ margin: 4 }}
-            icon={"add"}
-            theme={"dark"}
-          />
-          <Button
-            title={"Pressed"}
-            onPress={() => {}}
-            state={"pressed"}
-            style={{ margin: 4 }}
-            icon={"add"}
-            theme={"dark"}
-          />
-        </View>
-        <View style={{ ...styles.childDark }}>
-          <Button
-            title={"Disabled"}
-            onPress={() => {}}
-            state={"disabled"}
-            style={{ margin: 4 }}
-            icon={"add"}
-            theme={"dark"}
-          />
-        </View>
-      </>
-    );
-  };
-  const getDarkOutlinedButtons = () => {
-    return (
-      <>
-        <Text style={{ color: "white" }}>Outlined buttons</Text>
-        <View style={{ ...styles.childDark }}>
-          <Button
-            title={"Enabled"}
-            onPress={() => {}}
-            style={{ margin: 4 }}
-            type={"outlined"}
-            theme={"dark"}
-          />
-          <Button
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
-            style={{ margin: 4 }}
-            type={"outlined"}
-            theme={"dark"}
-          />
-          <Button
-            title={"Focused"}
-            onPress={() => {}}
-            state={"focused"}
-            style={{ margin: 4 }}
-            type={"outlined"}
-            theme={"dark"}
-          />
-        </View>
-        <View style={{ ...styles.childDark }}>
-          <Button
-            title={"Pressed"}
-            onPress={() => {}}
-            state={"pressed"}
-            style={{ margin: 4 }}
-            type={"outlined"}
-            theme={"dark"}
-          />
-          <Button
-            title={"Disabled"}
-            onPress={() => {}}
-            state={"disabled"}
-            style={{ margin: 4 }}
-            type={"outlined"}
-            theme={"dark"}
-          />
-        </View>
-        <View style={{ ...styles.childDark }}>
-          <Button
-            title={"Enabled"}
-            onPress={() => {}}
-            style={{ margin: 4 }}
-            icon={"add"}
-            type={"outlined"}
-            theme={"dark"}
-          />
-          <Button
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
-            style={{ margin: 4 }}
-            icon={"add"}
-            type={"outlined"}
-            theme={"dark"}
-          />
-        </View>
-        <View style={{ ...styles.childDark }}>
-          <Button
-            title={"Focused"}
-            onPress={() => {}}
-            state={"focused"}
-            style={{ margin: 4 }}
-            icon={"add"}
-            type={"outlined"}
-          />
-          <Button
-            title={"Pressed"}
-            onPress={() => {}}
-            state={"pressed"}
-            style={{ margin: 4 }}
-            icon={"add"}
-            type={"outlined"}
-            theme={"dark"}
-          />
-        </View>
-        <View style={{ ...styles.childDark }}>
-          <Button
-            title={"Disabled"}
-            onPress={() => {}}
-            state={"disabled"}
-            style={{ margin: 4 }}
-            icon={"add"}
-            type={"outlined"}
-            theme={"dark"}
           />
         </View>
       </>

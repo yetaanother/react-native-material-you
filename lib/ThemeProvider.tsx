@@ -1,9 +1,9 @@
-import { createContext, FunctionComponent, ReactElement } from "react";
+import React, { createContext, FunctionComponent, ReactElement } from "react";
 import { Scheme } from "./material-color-utilities/scheme/scheme";
 import { intFromHex } from "./material-color-utilities/utils/color_utils";
+import { SchemeAdapter } from "./SchemeAdapter";
 
-export const coreLightScheme = Scheme.light(intFromHex("#6650a4"));
-
+const coreLightScheme = SchemeAdapter.from(Scheme.light(intFromHex("#6650a4")));
 export const ThemeContext = createContext(coreLightScheme);
 
 interface ThemeProviderProps {
@@ -21,6 +21,8 @@ export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
     ? Scheme.light(intFromHex(hexColor))
     : Scheme.dark(intFromHex(hexColor));
   return (
-    <ThemeContext.Provider value={scheme}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={SchemeAdapter.from(scheme)}>
+      {children}
+    </ThemeContext.Provider>
   );
 };
