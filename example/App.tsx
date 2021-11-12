@@ -18,7 +18,9 @@ import {
 
 // noinspection JSUnusedGlobalSymbols
 export default function App() {
-  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light cards");
+  const [currScreen, setCurrScreen] = useState<ExampleScreen>(
+    "light button states"
+  );
 
   const render = () => {
     return (
@@ -611,13 +613,33 @@ export default function App() {
     return (
       <View style={parentStyle}>
         <View style={childStyle}>
-          <Button containerStyle={{ margin: 4 }} title={"Enabled"} type={"filled"} />
-          <Button containerStyle={{ margin: 4 }} title={"Enabled"} type={"outlined"} />
-          <Button containerStyle={{ margin: 4 }} title={"Enabled"} type={"text"} />
+          <Button
+            containerStyle={{ margin: 4 }}
+            title={"Enabled"}
+            type={"filled"}
+          />
+          <Button
+            containerStyle={{ margin: 4 }}
+            title={"Enabled"}
+            type={"outlined"}
+          />
+          <Button
+            containerStyle={{ margin: 4 }}
+            title={"Enabled"}
+            type={"text"}
+          />
         </View>
         <View style={childStyle}>
-          <Button containerStyle={{ margin: 4 }} title={"Enabled"} type={"elevated"} />
-          <Button containerStyle={{ margin: 4 }} title={"Enabled"} type={"tonal"} />
+          <Button
+            containerStyle={{ margin: 4 }}
+            title={"Enabled"}
+            type={"elevated"}
+          />
+          <Button
+            containerStyle={{ margin: 4 }}
+            title={"Enabled"}
+            type={"tonal"}
+          />
         </View>
         <View style={childStyle}>
           <Button

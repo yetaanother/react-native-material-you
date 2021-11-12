@@ -17,6 +17,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import { ThemeContext } from "./ThemeProvider";
 import { SchemeAdapter } from "./SchemeAdapter";
 import { rgbaWithOpacity } from "./utils";
+import { SettingsContext } from "./SettingsProvider";
+import { Settings } from "./Settings";
 
 interface CrudeButtonProps {
   type?: ButtonType;
@@ -44,7 +46,8 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   onBlur,
 }: CrudeButtonProps) => {
   const scheme = useContext(ThemeContext);
-  const styles = createStyles(scheme);
+  const settings = useContext(SettingsContext);
+  const styles = createStyles(scheme, settings);
 
   state = !state ? "enabled" : state;
   type = !type ? "filled" : type;
@@ -302,12 +305,12 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
 };
 
 const defaultBorderRadius = 100;
-const stateHoveredOpacity = 0.08;
-const statePressedOrFocusedOpacity = 0.12;
-const stateDisabledOpacity = 0.12;
-const contentStateDisabledOpacity = 0.38;
+const defaultStateHoveredOpacity = 0.08;
+const defaultStatePressedOrFocusedOpacity = 0.12;
+const defaultStateDisabledOpacity = 0.12;
+const defaultContentStateDisabledOpacity = 0.38;
 
-const createStyles = (scheme: SchemeAdapter) =>
+const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     button: {
       borderRadius: defaultBorderRadius,
@@ -316,7 +319,7 @@ const createStyles = (scheme: SchemeAdapter) =>
     buttonStateDisabled: {
       backgroundColor: rgbaWithOpacity(
         scheme.onSurfaceRGB,
-        stateDisabledOpacity
+        defaultStateDisabledOpacity
       ),
     },
     buttonTypeOutlined: {
@@ -330,15 +333,15 @@ const createStyles = (scheme: SchemeAdapter) =>
       borderColor: scheme.primaryHex,
     },
     buttonTypeOutlinedStateDisabled: {
-      borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, stateDisabledOpacity),
+      borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, defaultStateDisabledOpacity),
     },
     buttonTypeTextStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, stateHoveredOpacity),
+      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, defaultStateHoveredOpacity),
     },
     buttonTypeTextStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.primaryRGB,
-        statePressedOrFocusedOpacity
+        defaultStatePressedOrFocusedOpacity
       ),
     },
     buttonTypeElevated: {
@@ -355,56 +358,59 @@ const createStyles = (scheme: SchemeAdapter) =>
       justifyContent: "center",
       display: "flex",
       flexDirection: "row",
-      paddingVertical: 10,
-      paddingHorizontal: 24,
+      paddingVertical: settings.buttonInnerPaddingVertical,
+      paddingHorizontal: settings.buttonInnerPaddingHorizontal,
       borderRadius: defaultBorderRadius,
     },
     innerStateHovered: {
       backgroundColor: rgbaWithOpacity(
         scheme.onPrimaryRGB,
-        stateHoveredOpacity
+        defaultStateHoveredOpacity
       ),
     },
     innerStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.onPrimaryRGB,
-        statePressedOrFocusedOpacity
+        defaultStatePressedOrFocusedOpacity
       ),
     },
     innerTypeOutlinedOrElevatedStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, stateHoveredOpacity),
+      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, defaultStateHoveredOpacity),
     },
     innerTypeOutlinedOrElevatedStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.primaryRGB,
-        statePressedOrFocusedOpacity
+        defaultStatePressedOrFocusedOpacity
       ),
     },
     innerTypeTonalStateHovered: {
       backgroundColor: rgbaWithOpacity(
         scheme.onSecondaryContainerRGB,
-        stateHoveredOpacity
+        defaultStateHoveredOpacity
       ),
     },
     innerTypeTonalStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.onSecondaryContainerRGB,
-        statePressedOrFocusedOpacity
+        defaultStatePressedOrFocusedOpacity
       ),
     },
     innerTypeText: {
-      paddingHorizontal: 12,
+      paddingHorizontal: settings.buttonTypeTextInnerPaddingHorizontal,
     },
     innerWithIcon: {
-      paddingLeft: 16,
-      paddingRight: 24,
+      paddingLeft:
+        settings.buttonInnerPaddingHorizontal - settings.buttonIconMarginRight,
+      paddingRight: settings.buttonInnerPaddingHorizontal,
     },
     innerWithIconTypeText: {
-      paddingLeft: 12,
-      paddingRight: 16,
+      paddingLeft: settings.buttonTypeTextInnerPaddingHorizontal,
+      paddingRight:
+        settings.buttonTypeTextInnerPaddingHorizontal +
+        settings.buttonIconMarginRight / 2,
     },
     text: {
-      fontFamily: "Roboto",
+      fontFamily: settings.textFontFamily,
       fontStyle: "normal",
       fontSize: 14,
       lineHeight: 20,
@@ -414,7 +420,7 @@ const createStyles = (scheme: SchemeAdapter) =>
     },
     textStateDisabled: {
       color: scheme.onSurfaceHex,
-      opacity: contentStateDisabledOpacity,
+      opacity: defaultContentStateDisabledOpacity,
     },
     textTypeOutlinedOrTextOrElevated: {
       color: scheme.primaryHex,
@@ -458,9 +464,9 @@ const createStyles = (scheme: SchemeAdapter) =>
       }),
     },
     icon: {
-      marginRight: 8,
+      marginRight: settings.buttonIconMarginRight,
     },
     iconStateDisabled: {
-      opacity: contentStateDisabledOpacity,
+      opacity: defaultContentStateDisabledOpacity,
     },
   });

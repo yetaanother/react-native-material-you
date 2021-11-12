@@ -11,6 +11,8 @@ import { NavRail } from "./NavRail";
 import { ThemeProvider } from "./ThemeProvider";
 import { ThemeContext } from "./ThemeProvider";
 import { Button } from "./Button";
+import { SettingsProvider } from "./SettingsProvider";
+import { SettingsContext } from "./SettingsProvider";
 
 export {
   CrudeButton,
@@ -26,4 +28,6 @@ export {
   ThemeContext,
   ThemeProvider,
   Button,
+  SettingsProvider,
+  SettingsContext,
 };
