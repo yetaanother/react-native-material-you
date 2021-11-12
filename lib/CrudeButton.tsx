@@ -66,13 +66,19 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   const getGradientColors = () => {
     if (type === "elevated") {
       if (state === "hovered") {
-        return ["rgba(103, 80, 164, 0.08)", "rgba(103, 80, 164, 0.08)"];
+        return [
+          rgbaWithOpacity(scheme.primaryRGB, 0.08),
+          rgbaWithOpacity(scheme.primaryRGB, 0.08),
+        ];
       } else if (
         state === "enabled" ||
         state == "pressed" ||
         state === "focused"
       ) {
-        return ["rgba(103, 80, 164, 0.05)", "rgba(103, 80, 164, 0.05)"];
+        return [
+          rgbaWithOpacity(scheme.primaryRGB, 0.05),
+          rgbaWithOpacity(scheme.primaryRGB, 0.05),
+        ];
       }
     }
     return [];
@@ -211,17 +217,11 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       } else {
         return scheme.onPrimaryHex;
       }
-    } else if (type === "outlined" || type === "text") {
+    } else if (type === "outlined" || type === "text" || type === "elevated") {
       if (state === "disabled") {
         return scheme.onSurfaceHex;
       } else {
         return scheme.primaryHex;
-      }
-    } else if (type === "elevated") {
-      if (state === "disabled") {
-        return "#1C1B1F";
-      } else {
-        return "#6750A4";
       }
     } else if (type === "tonal") {
       if (state === "disabled") {
@@ -319,7 +319,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       ),
     },
     buttonTypeElevated: {
-      backgroundColor: "#FFFFFF",
+      backgroundColor: scheme.surfaceHex,
     },
     buttonTypeTonal: {
       backgroundColor: "#E8DEF8",
