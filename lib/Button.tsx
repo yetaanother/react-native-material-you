@@ -14,7 +14,7 @@ interface ButtonProps {
   type: ButtonType;
   onPress?: (event: GestureResponderEvent) => void;
   icon?: any;
-  style?: ViewStyle | TextStyle | ImageStyle;
+  containerStyle?: ViewStyle | TextStyle | ImageStyle;
   disabled?: boolean;
   onPressIn?: (event: GestureResponderEvent) => void;
   onPressOut?: (event: GestureResponderEvent) => void;
@@ -26,7 +26,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
   title,
   onPress,
   icon,
-  style,
+  containerStyle,
   type,
   disabled,
   onPressIn,
@@ -44,7 +44,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
       title={title}
       onPress={onPress}
       icon={icon}
-      style={style}
+      containerStyle={containerStyle}
       state={state}
       type={type}
       onPressIn={(event) => {

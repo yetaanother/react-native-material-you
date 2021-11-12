@@ -155,19 +155,19 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
           />
           <CrudeButton
             title={"Hovered"}
             onPress={() => {}}
             state={"hovered"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
           />
           <CrudeButton
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
           />
         </View>
         <View style={childStyle}>
@@ -175,27 +175,27 @@ export default function App() {
             title={"Pressed"}
             onPress={() => {}}
             state={"pressed"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
           />
           <CrudeButton
             title={"Disabled"}
             onPress={() => {}}
             state={"disabled"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
           />
         </View>
         <View style={childStyle}>
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
           />
           <CrudeButton
             title={"Hovered"}
             onPress={() => {}}
             state={"hovered"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
           />
         </View>
@@ -204,14 +204,14 @@ export default function App() {
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
           />
           <CrudeButton
             title={"Pressed"}
             onPress={() => {}}
             state={"pressed"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
           />
         </View>
@@ -220,7 +220,7 @@ export default function App() {
             title={"Disabled"}
             onPress={() => {}}
             state={"disabled"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
           />
         </View>
@@ -239,21 +239,21 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"outlined"}
           />
           <CrudeButton
             title={"Hovered"}
             onPress={() => {}}
             state={"hovered"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"outlined"}
           />
           <CrudeButton
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"outlined"}
           />
         </View>
@@ -262,14 +262,14 @@ export default function App() {
             title={"Pressed"}
             onPress={() => {}}
             state={"pressed"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"outlined"}
           />
           <CrudeButton
             title={"Disabled"}
             onPress={() => {}}
             state={"disabled"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"outlined"}
           />
         </View>
@@ -277,7 +277,7 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"outlined"}
           />
@@ -285,7 +285,7 @@ export default function App() {
             title={"Hovered"}
             onPress={() => {}}
             state={"hovered"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"outlined"}
           />
@@ -295,7 +295,7 @@ export default function App() {
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"outlined"}
           />
@@ -303,7 +303,7 @@ export default function App() {
             title={"Pressed"}
             onPress={() => {}}
             state={"pressed"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"outlined"}
           />
@@ -313,7 +313,7 @@ export default function App() {
             title={"Disabled"}
             onPress={() => {}}
             state={"disabled"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"outlined"}
           />
@@ -333,21 +333,21 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"text"}
           />
           <CrudeButton
             title={"Hovered"}
             onPress={() => {}}
             state={"hovered"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"text"}
           />
           <CrudeButton
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"text"}
           />
         </View>
@@ -356,14 +356,14 @@ export default function App() {
             title={"Pressed"}
             onPress={() => {}}
             state={"pressed"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"text"}
           />
           <CrudeButton
             title={"Disabled"}
             onPress={() => {}}
             state={"disabled"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"text"}
           />
         </View>
@@ -371,7 +371,7 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"text"}
           />
@@ -379,7 +379,7 @@ export default function App() {
             title={"Hovered"}
             onPress={() => {}}
             state={"hovered"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"text"}
           />
@@ -389,7 +389,7 @@ export default function App() {
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"text"}
           />
@@ -397,7 +397,7 @@ export default function App() {
             title={"Pressed"}
             onPress={() => {}}
             state={"pressed"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"text"}
           />
@@ -407,7 +407,7 @@ export default function App() {
             title={"Disabled"}
             onPress={() => {}}
             state={"disabled"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"text"}
           />
@@ -427,21 +427,21 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"elevated"}
           />
           <CrudeButton
             title={"Hovered"}
             onPress={() => {}}
             state={"hovered"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"elevated"}
           />
           <CrudeButton
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"elevated"}
           />
         </View>
@@ -450,14 +450,14 @@ export default function App() {
             title={"Pressed"}
             onPress={() => {}}
             state={"pressed"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"elevated"}
           />
           <CrudeButton
             title={"Disabled"}
             onPress={() => {}}
             state={"disabled"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"elevated"}
           />
         </View>
@@ -465,7 +465,7 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"elevated"}
           />
@@ -473,7 +473,7 @@ export default function App() {
             title={"Hovered"}
             onPress={() => {}}
             state={"hovered"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"elevated"}
           />
@@ -483,7 +483,7 @@ export default function App() {
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"elevated"}
           />
@@ -491,7 +491,7 @@ export default function App() {
             title={"Pressed"}
             onPress={() => {}}
             state={"pressed"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"elevated"}
           />
@@ -501,7 +501,7 @@ export default function App() {
             title={"Disabled"}
             onPress={() => {}}
             state={"disabled"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"elevated"}
           />
@@ -521,21 +521,21 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"tonal"}
           />
           <CrudeButton
             title={"Hovered"}
             onPress={() => {}}
             state={"hovered"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"tonal"}
           />
           <CrudeButton
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"tonal"}
           />
         </View>
@@ -544,14 +544,14 @@ export default function App() {
             title={"Pressed"}
             onPress={() => {}}
             state={"pressed"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"tonal"}
           />
           <CrudeButton
             title={"Disabled"}
             onPress={() => {}}
             state={"disabled"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             type={"tonal"}
           />
         </View>
@@ -559,7 +559,7 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}
           />
@@ -567,7 +567,7 @@ export default function App() {
             title={"Hovered"}
             onPress={() => {}}
             state={"hovered"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}
           />
@@ -577,7 +577,7 @@ export default function App() {
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}
           />
@@ -585,7 +585,7 @@ export default function App() {
             title={"Pressed"}
             onPress={() => {}}
             state={"pressed"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}
           />
@@ -595,7 +595,7 @@ export default function App() {
             title={"Disabled"}
             onPress={() => {}}
             state={"disabled"}
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}
           />
@@ -611,23 +611,23 @@ export default function App() {
     return (
       <View style={parentStyle}>
         <View style={childStyle}>
-          <Button style={{ margin: 4 }} title={"Enabled"} type={"filled"} />
-          <Button style={{ margin: 4 }} title={"Enabled"} type={"outlined"} />
-          <Button style={{ margin: 4 }} title={"Enabled"} type={"text"} />
+          <Button containerStyle={{ margin: 4 }} title={"Enabled"} type={"filled"} />
+          <Button containerStyle={{ margin: 4 }} title={"Enabled"} type={"outlined"} />
+          <Button containerStyle={{ margin: 4 }} title={"Enabled"} type={"text"} />
         </View>
         <View style={childStyle}>
-          <Button style={{ margin: 4 }} title={"Enabled"} type={"elevated"} />
-          <Button style={{ margin: 4 }} title={"Enabled"} type={"tonal"} />
+          <Button containerStyle={{ margin: 4 }} title={"Enabled"} type={"elevated"} />
+          <Button containerStyle={{ margin: 4 }} title={"Enabled"} type={"tonal"} />
         </View>
         <View style={childStyle}>
           <Button
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             title={"Enabled"}
             type={"filled"}
             icon={"add"}
           />
           <Button
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             title={"Enabled"}
             type={"outlined"}
             icon={"add"}
@@ -635,13 +635,13 @@ export default function App() {
         </View>
         <View style={childStyle}>
           <Button
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             title={"Enabled"}
             type={"text"}
             icon={"add"}
           />
           <Button
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             title={"Enabled"}
             type={"elevated"}
             icon={"add"}
@@ -649,7 +649,7 @@ export default function App() {
         </View>
         <View style={childStyle}>
           <Button
-            style={{ margin: 4 }}
+            containerStyle={{ margin: 4 }}
             title={"Enabled"}
             type={"tonal"}
             icon={"add"}

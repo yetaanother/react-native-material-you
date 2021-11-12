@@ -24,7 +24,7 @@ interface CrudeButtonProps {
   state?: ButtonState;
   title: string;
   onPress: (event: GestureResponderEvent) => void;
-  style?: ViewStyle | TextStyle | ImageStyle;
+  containerStyle?: ViewStyle | TextStyle | ImageStyle;
   onPressIn?: (event: GestureResponderEvent) => void;
   onPressOut?: (event: GestureResponderEvent) => void;
   onFocus?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
@@ -37,7 +37,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   state,
   title,
   onPress,
-  style,
+  containerStyle,
   onPressIn,
   onPressOut,
   onFocus,
@@ -48,7 +48,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
 
   state = !state ? "enabled" : state;
   type = !type ? "filled" : type;
-  style = !style ? {} : style;
+  containerStyle = !containerStyle ? {} : containerStyle;
 
   const render = () => {
     if (type === "elevated" && getGradientColors().length > 1) {
@@ -162,7 +162,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
         buttonStyles = { ...buttonStyles, ...styles.boxShadow };
       }
     }
-    return { ...buttonStyles, ...style };
+    return { ...buttonStyles, ...containerStyle };
   };
 
   const getInnerStyles = () => {
