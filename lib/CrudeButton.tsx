@@ -15,7 +15,7 @@ import { ThemeContext } from "./ThemeProvider";
 import { SchemeAdapter } from "./SchemeAdapter";
 import { rgbaWithOpacity } from "./utils";
 
-interface ButtonProps {
+interface CrudeButtonProps {
   type?: "filled" | "outlined" | "text" | "elevated" | "tonal";
   icon?: any;
   state?: "enabled" | "hovered" | "focused" | "pressed" | "disabled";
@@ -24,14 +24,14 @@ interface ButtonProps {
   style?: ViewStyle | TextStyle | ImageStyle;
 }
 
-export const Button: FunctionComponent<ButtonProps> = ({
+export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   type,
   icon,
   state,
   title,
   onPress,
   style,
-}: ButtonProps) => {
+}: CrudeButtonProps) => {
   const scheme = useContext(ThemeContext);
   const styles = createStyles(scheme);
 

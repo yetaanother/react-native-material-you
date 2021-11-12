@@ -1,5 +1,5 @@
 import { AppBar } from "./AppBar";
-import { Button } from "./Button";
+import { CrudeButton } from "./CrudeButton";
 import { Card } from "./Card";
 import { Chip } from "./Chip";
 import { Dialog } from "./Dialog";
@@ -12,7 +12,7 @@ import { ThemeProvider } from "./ThemeProvider";
 import { ThemeContext } from "./ThemeProvider";
 
 export {
-  Button,
+  CrudeButton,
   Chip,
   Card,
   Dialog,
