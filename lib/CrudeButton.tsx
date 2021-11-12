@@ -39,10 +39,6 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   type = !type ? "filled" : type;
   style = !style ? {} : style;
 
-  //todo remove
-  console.log(state, type, style);
-  console.log(scheme);
-
   const render = () => {
     if (type === "elevated" && getGradientColors().length > 1) {
       return (
@@ -225,9 +221,9 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       }
     } else if (type === "tonal") {
       if (state === "disabled") {
-        return "#1C1B1F";
+        return scheme.onSurfaceHex;
       } else {
-        return "#1D192B";
+        return scheme.onSecondaryContainerHex;
       }
     }
 
@@ -322,7 +318,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       backgroundColor: scheme.surfaceHex,
     },
     buttonTypeTonal: {
-      backgroundColor: "#E8DEF8",
+      backgroundColor: scheme.secondaryContainerHex,
     },
     linearGradient: {
       borderRadius: defaultBorderRadius,
@@ -358,10 +354,16 @@ const createStyles = (scheme: SchemeAdapter) =>
       ),
     },
     innerTypeTonalStateHovered: {
-      backgroundColor: "rgba(29, 25, 43, 0.08)",
+      backgroundColor: rgbaWithOpacity(
+        scheme.onSecondaryContainerRGB,
+        stateHoveredOpacity
+      ),
     },
     innerTypeTonalStateFocusedOrPressed: {
-      backgroundColor: "rgba(29, 25, 43, 0.12)",
+      backgroundColor: rgbaWithOpacity(
+        scheme.onSecondaryContainerRGB,
+        statePressedOrFocusedOpacity
+      ),
     },
     innerTypeText: {
       paddingHorizontal: 12,
@@ -391,7 +393,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       color: scheme.primaryHex,
     },
     textTypeTonal: {
-      color: "#1D192B",
+      color: scheme.onSecondaryContainerHex,
     },
     // https://ethercreative.github.io/react-native-shadow-generator/
     boxShadow: {
