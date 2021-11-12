@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import {
   ImageStyle,
   Platform,
@@ -11,6 +11,9 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { ThemeContext } from "./ThemeProvider";
+import { SchemeAdapter } from "./SchemeAdapter";
+import { rgbaWithOpacity } from "./utils";
 
 interface ButtonProps {
   theme?: "light" | "dark";
@@ -31,10 +34,17 @@ export const Button: FunctionComponent<ButtonProps> = ({
   onPress,
   style,
 }: ButtonProps) => {
+  const scheme = useContext(ThemeContext);
+  const styles = createStyles(scheme);
+
   state = !state ? "enabled" : state;
   type = !type ? "filled" : type;
   theme = !theme ? "light" : theme;
   style = !style ? {} : style;
+
+  //todo remove
+  console.log(state, type, theme, style);
+  console.log(scheme);
 
   const render = () => {
     if (type === "elevated" && getGradientColors().length > 1) {
@@ -90,7 +100,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
         } else if (state === "disabled") {
           buttonStyles = {
             ...buttonStyles,
-            ...styles.buttonStateDisabled,
+            ...styles.buttonTypeOutlinedStateDisabled,
           };
         }
       } else if (type === "text") {
@@ -329,159 +339,175 @@ export const Button: FunctionComponent<ButtonProps> = ({
   return render();
 };
 
-const styles = StyleSheet.create({
-  button: {
-    borderRadius: 100,
-    backgroundColor: "#6750A4",
-  },
-  buttonStateDisabled: {
-    backgroundColor: "rgba(31,31,31, 0.12)",
-  },
-  buttonTypeOutlined: {
-    backgroundColor: "#FFFFFF",
-    borderStyle: "solid",
-    borderColor: "#79747E",
-    borderWidth: 1,
-  },
-  buttonTypeOutlinedStateFocused: {
-    borderColor: "#6750A4",
-  },
-  buttonTypeText: {
-    backgroundColor: "#FFFFFF",
-  },
-  buttonTypeTextStateHovered: {
-    backgroundColor: "rgba(103, 80, 164, 0.08)",
-  },
-  buttonTypeTextStateFocusedOrPressed: {
-    backgroundColor: "rgba(103, 80, 164, 0.12)",
-  },
-  buttonTypeElevated: {
-    backgroundColor: "#FFFFFF",
-  },
-  buttonTypeTonal: {
-    backgroundColor: "#E8DEF8",
-  },
-  buttonThemeDark: {
-    backgroundColor: "#D0BCFF",
-  },
-  buttonThemeDarkStateDisabled: {
-    backgroundColor: "#1F1F1F",
-  },
-  linearGradient: {
-    borderRadius: 100,
-  },
-  inner: {
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-    flexDirection: "row",
-    paddingVertical: 10,
-    paddingHorizontal: 24,
-    borderRadius: 100,
-  },
-  innerStateHovered: {
-    backgroundColor: "rgba(255,255,255,0.08)",
-  },
-  innerStateFocusedOrPressed: {
-    backgroundColor: "rgba(255,255,255,0.12)",
-  },
-  innerTypeOutlinedOrElevatedStateHovered: {
-    backgroundColor: "rgba(103, 80, 164, 0.08)",
-  },
-  innerTypeOutlinedOrElevatedStateFocusedOrPressed: {
-    backgroundColor: "rgba(103, 80, 164, 0.12)",
-  },
-  innerTypeTonalStateHovered: {
-    backgroundColor: "rgba(29, 25, 43, 0.08)",
-  },
-  innerTypeTonalStateFocusedOrPressed: {
-    backgroundColor: "rgba(29, 25, 43, 0.12)",
-  },
-  innerTypeText: {
-    paddingHorizontal: 12,
-  },
-  innerThemeDarkStateHovered: {
-    backgroundColor: "rgba(208, 188, 255, 0.08)",
-  },
-  innerThemeDarkStateFocusedOrPressed: {
-    backgroundColor: "rgba(208, 188, 255, 0.12)",
-  },
-  innerThemeDarkStateDisabled: {
-    backgroundColor: "rgba(227, 227, 227, 0.12)",
-  },
-  innerWithIcon: {
-    paddingLeft: 16,
-    paddingRight: 24,
-  },
-  innerWithIconTypeText: {
-    paddingLeft: 12,
-    paddingRight: 16,
-  },
-  text: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: "500",
-    letterSpacing: 0.1,
-    color: "#FFFFFF",
-  },
-  textStateDisabled: {
-    color: "#1C1B1F",
-    opacity: 0.38,
-  },
-  textTypeOutlinedOrTextOrElevated: {
-    color: "#6750A4",
-  },
-  textTypeTonal: {
-    color: "#1D192B",
-  },
-  textThemeDark: {
-    color: "#381E72",
-  },
-  textThemeDarkStateDisabled: {
-    color: "#E6E1E5",
-    opacity: 0.38,
-  },
-  // https://ethercreative.github.io/react-native-shadow-generator/
-  boxShadow: {
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000000",
-        shadowOffset: {
-          width: 0,
-          height: 1,
+const defaultBorderRadius = 100;
+const stateHoveredOpacity = 0.08;
+const statePressedOrFocusedOpacity = 0.12;
+const stateDisabledOpacity = 0.38;
+
+const createStyles = (scheme: SchemeAdapter) =>
+  StyleSheet.create({
+    button: {
+      borderRadius: defaultBorderRadius,
+      backgroundColor: scheme.primaryHex,
+    },
+    buttonStateDisabled: {
+      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+    },
+    buttonTypeOutlined: {
+      backgroundColor: "#FFFFFF",
+      borderStyle: "solid",
+      borderColor: "#79747E",
+      borderWidth: 1,
+    },
+    buttonTypeOutlinedStateFocused: {
+      borderColor: "#6750A4",
+    },
+    buttonTypeOutlinedStateDisabled: {
+      backgroundColor: "#FFFFFF",
+      borderColor: "rgba(31, 31, 31, 0.12)",
+    },
+    buttonTypeText: {
+      backgroundColor: "#FFFFFF",
+    },
+    buttonTypeTextStateHovered: {
+      backgroundColor: "rgba(103, 80, 164, 0.08)",
+    },
+    buttonTypeTextStateFocusedOrPressed: {
+      backgroundColor: "rgba(103, 80, 164, 0.12)",
+    },
+    buttonTypeElevated: {
+      backgroundColor: "#FFFFFF",
+    },
+    buttonTypeTonal: {
+      backgroundColor: "#E8DEF8",
+    },
+    buttonThemeDark: {
+      backgroundColor: "#D0BCFF",
+    },
+    buttonThemeDarkStateDisabled: {
+      backgroundColor: "#1F1F1F",
+    },
+    linearGradient: {
+      borderRadius: defaultBorderRadius,
+    },
+    inner: {
+      alignItems: "center",
+      justifyContent: "center",
+      display: "flex",
+      flexDirection: "row",
+      paddingVertical: 10,
+      paddingHorizontal: 24,
+      borderRadius: defaultBorderRadius,
+    },
+    innerStateHovered: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onPrimaryRGB,
+        stateHoveredOpacity
+      ),
+    },
+    innerStateFocusedOrPressed: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onPrimaryRGB,
+        statePressedOrFocusedOpacity
+      ),
+    },
+    innerTypeOutlinedOrElevatedStateHovered: {
+      backgroundColor: "rgba(103, 80, 164, 0.08)",
+    },
+    innerTypeOutlinedOrElevatedStateFocusedOrPressed: {
+      backgroundColor: "rgba(103, 80, 164, 0.12)",
+    },
+    innerTypeTonalStateHovered: {
+      backgroundColor: "rgba(29, 25, 43, 0.08)",
+    },
+    innerTypeTonalStateFocusedOrPressed: {
+      backgroundColor: "rgba(29, 25, 43, 0.12)",
+    },
+    innerTypeText: {
+      paddingHorizontal: 12,
+    },
+    innerThemeDarkStateHovered: {
+      backgroundColor: "rgba(208, 188, 255, 0.08)",
+    },
+    innerThemeDarkStateFocusedOrPressed: {
+      backgroundColor: "rgba(208, 188, 255, 0.12)",
+    },
+    innerThemeDarkStateDisabled: {
+      backgroundColor: "rgba(227, 227, 227, 0.12)",
+    },
+    innerWithIcon: {
+      paddingLeft: 16,
+      paddingRight: 24,
+    },
+    innerWithIconTypeText: {
+      paddingLeft: 12,
+      paddingRight: 16,
+    },
+    text: {
+      fontFamily: "Roboto",
+      fontStyle: "normal",
+      fontSize: 14,
+      lineHeight: 20,
+      fontWeight: "500",
+      letterSpacing: 0.1,
+      color: scheme.onPrimaryHex,
+    },
+    textStateDisabled: {
+      color: scheme.onSurfaceHex,
+      opacity: stateDisabledOpacity,
+    },
+    textTypeOutlinedOrTextOrElevated: {
+      color: "#6750A4",
+    },
+    textTypeTonal: {
+      color: "#1D192B",
+    },
+    textThemeDark: {
+      color: "#381E72",
+    },
+    textThemeDarkStateDisabled: {
+      color: "#E6E1E5",
+      opacity: stateDisabledOpacity,
+    },
+    // https://ethercreative.github.io/react-native-shadow-generator/
+    boxShadow: {
+      ...Platform.select({
+        ios: {
+          shadowColor: scheme.shadowHex,
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: 2,
         },
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-      },
-      android: {
-        elevation: 3,
-        shadowColor: "#000000",
-      },
-    }),
-  },
-  boxShadowDouble: {
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000000",
-        shadowOffset: {
-          width: 0,
-          height: 3,
+        android: {
+          elevation: 3,
+          shadowColor: scheme.shadowHex,
         },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-      },
-      android: {
-        elevation: 5,
-        shadowColor: "#000000",
-      },
-    }),
-  },
-  icon: {
-    marginRight: 8,
-  },
-  iconStateDisabled: {
-    opacity: 0.38,
-  },
-});
+      }),
+    },
+    boxShadowDouble: {
+      ...Platform.select({
+        ios: {
+          shadowColor: scheme.shadowHex,
+          shadowOffset: {
+            width: 0,
+            height: 3,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: 5,
+        },
+        android: {
+          elevation: 5,
+          shadowColor: scheme.shadowHex,
+        },
+      }),
+    },
+    icon: {
+      marginRight: 8,
+    },
+    iconStateDisabled: {
+      opacity: stateDisabledOpacity,
+    },
+  });
