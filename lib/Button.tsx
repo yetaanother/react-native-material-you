@@ -245,17 +245,15 @@ export const Button: FunctionComponent<ButtonProps> = ({
     if (theme === "light") {
       if (type === "filled") {
         if (state === "disabled") {
-          return "#1C1B1F";
+          return scheme.onSurfaceHex;
         } else {
-          return "#FFFFFF";
+          return scheme.onPrimaryHex;
         }
       } else if (type === "outlined") {
         if (state === "disabled") {
-          return "#1C1B1F";
-        } else if (state === "pressed") {
-          return "#625B71";
+          return scheme.onSurfaceHex;
         } else {
-          return "#6750A4";
+          return scheme.primaryHex;
         }
       } else if (type === "text" || type === "elevated") {
         if (state === "disabled") {
@@ -354,17 +352,16 @@ const createStyles = (scheme: SchemeAdapter) =>
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
     },
     buttonTypeOutlined: {
-      backgroundColor: "#FFFFFF",
+      backgroundColor: scheme.surfaceHex,
       borderStyle: "solid",
-      borderColor: "#79747E",
+      borderColor: scheme.outlineHex,
       borderWidth: 1,
     },
     buttonTypeOutlinedStateFocused: {
-      borderColor: "#6750A4",
+      borderColor: scheme.primaryHex,
     },
     buttonTypeOutlinedStateDisabled: {
-      backgroundColor: "#FFFFFF",
-      borderColor: "rgba(31, 31, 31, 0.12)",
+      borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
     },
     buttonTypeText: {
       backgroundColor: "#FFFFFF",
@@ -412,10 +409,13 @@ const createStyles = (scheme: SchemeAdapter) =>
       ),
     },
     innerTypeOutlinedOrElevatedStateHovered: {
-      backgroundColor: "rgba(103, 80, 164, 0.08)",
+      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, stateHoveredOpacity),
     },
     innerTypeOutlinedOrElevatedStateFocusedOrPressed: {
-      backgroundColor: "rgba(103, 80, 164, 0.12)",
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        statePressedOrFocusedOpacity
+      ),
     },
     innerTypeTonalStateHovered: {
       backgroundColor: "rgba(29, 25, 43, 0.08)",
@@ -457,7 +457,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       opacity: stateDisabledOpacity,
     },
     textTypeOutlinedOrTextOrElevated: {
-      color: "#6750A4",
+      color: scheme.primaryHex,
     },
     textTypeTonal: {
       color: "#1D192B",
