@@ -281,7 +281,8 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
 const defaultBorderRadius = 100;
 const stateHoveredOpacity = 0.08;
 const statePressedOrFocusedOpacity = 0.12;
-const stateDisabledOpacity = 0.38;
+const stateDisabledOpacity = 0.12;
+const contentStateDisabledOpacity = 0.38;
 
 const createStyles = (scheme: SchemeAdapter) =>
   StyleSheet.create({
@@ -290,7 +291,10 @@ const createStyles = (scheme: SchemeAdapter) =>
       backgroundColor: scheme.primaryHex,
     },
     buttonStateDisabled: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+      backgroundColor: rgbaWithOpacity(
+        scheme.onSurfaceRGB,
+        stateDisabledOpacity
+      ),
     },
     buttonTypeOutlined: {
       // This field is optional. Right now not including it to be in sync with Figma design kit
@@ -303,7 +307,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       borderColor: scheme.primaryHex,
     },
     buttonTypeOutlinedStateDisabled: {
-      borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+      borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, stateDisabledOpacity),
     },
     buttonTypeTextStateHovered: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, stateHoveredOpacity),
@@ -381,7 +385,7 @@ const createStyles = (scheme: SchemeAdapter) =>
     },
     textStateDisabled: {
       color: scheme.onSurfaceHex,
-      opacity: stateDisabledOpacity,
+      opacity: contentStateDisabledOpacity,
     },
     textTypeOutlinedOrTextOrElevated: {
       color: scheme.primaryHex,
@@ -428,6 +432,6 @@ const createStyles = (scheme: SchemeAdapter) =>
       marginRight: 8,
     },
     iconStateDisabled: {
-      opacity: stateDisabledOpacity,
+      opacity: contentStateDisabledOpacity,
     },
   });
