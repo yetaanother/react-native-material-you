@@ -78,56 +78,46 @@ export default function App() {
       case "dark button states":
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
-            {getButtons(styles.parentDark, styles.childDark, styles.textDark)}
+            {getButtonStates(
+              styles.parentDark,
+              styles.childDark,
+              styles.textDark
+            )}
           </ThemeProvider>
         );
       case "light button states":
         return (
           <ThemeProvider hexColor={"#6750A4"}>
-            {getButtons(styles.parent, styles.child, styles.text)}
+            {getButtonStates(styles.parent, styles.child, styles.text)}
           </ThemeProvider>
         );
       case "light buttons":
+        return <>{getButtons(styles.parent, styles.child)}</>;
+      case "dark buttons":
         return (
-          <View style={styles.parent}>
-            <View style={styles.child}>
-              <Button style={{ margin: 4 }} title={"Enabled"} type={"filled"} />
-              <Button
-                style={{ margin: 4 }}
-                title={"Enabled"}
-                type={"outlined"}
-              />
-              <Button style={{ margin: 4 }} title={"Enabled"} type={"text"} />
-            </View>
-            <View style={styles.child}>
-              <Button
-                style={{ margin: 4 }}
-                title={"Enabled"}
-                type={"elevated"}
-              />
-              <Button style={{ margin: 4 }} title={"Enabled"} type={"tonal"} />
-            </View>
-          </View>
+          <ThemeProvider hexColor={"#6750A4"} dark={true}>
+            {getButtons(styles.parentDark, styles.childDark)}
+          </ThemeProvider>
         );
     }
   };
-  const getButtons = (
+  const getButtonStates = (
     parentStyle: ViewStyle | TextStyle | ImageStyle,
     childStyle: ViewStyle | TextStyle | ImageStyle,
     textStyle: ViewStyle | TextStyle | ImageStyle
   ) => {
     return (
       <View style={parentStyle}>
-        {getFilledButtons(childStyle, textStyle)}
-        {getOutlinedButtons(childStyle, textStyle)}
-        {getTextButtons(childStyle, textStyle)}
-        {getElevatedButtons(childStyle, textStyle)}
-        {getTonalButtons(childStyle, textStyle)}
+        {getFilledButtonStates(childStyle, textStyle)}
+        {getOutlinedButtonStates(childStyle, textStyle)}
+        {getTextButtonStates(childStyle, textStyle)}
+        {getElevatedButtonStates(childStyle, textStyle)}
+        {getTonalButtonStates(childStyle, textStyle)}
       </View>
     );
   };
 
-  const getFilledButtons = (
+  const getFilledButtonStates = (
     childStyle: ViewStyle | TextStyle | ImageStyle,
     textStyle: ViewStyle | TextStyle | ImageStyle
   ) => {
@@ -211,7 +201,7 @@ export default function App() {
     );
   };
 
-  const getOutlinedButtons = (
+  const getOutlinedButtonStates = (
     childStyle: ViewStyle | TextStyle | ImageStyle,
     textStyle: ViewStyle | TextStyle | ImageStyle
   ) => {
@@ -305,7 +295,7 @@ export default function App() {
     );
   };
 
-  const getTextButtons = (
+  const getTextButtonStates = (
     childStyle: ViewStyle | TextStyle | ImageStyle,
     textStyle: ViewStyle | TextStyle | ImageStyle
   ) => {
@@ -399,7 +389,7 @@ export default function App() {
     );
   };
 
-  const getElevatedButtons = (
+  const getElevatedButtonStates = (
     childStyle: ViewStyle | TextStyle | ImageStyle,
     textStyle: ViewStyle | TextStyle | ImageStyle
   ) => {
@@ -493,7 +483,7 @@ export default function App() {
     );
   };
 
-  const getTonalButtons = (
+  const getTonalButtonStates = (
     childStyle: ViewStyle | TextStyle | ImageStyle,
     textStyle: ViewStyle | TextStyle | ImageStyle
   ) => {
@@ -584,6 +574,61 @@ export default function App() {
           />
         </View>
       </>
+    );
+  };
+
+  const getButtons = (
+    parentStyle: ViewStyle | TextStyle | ImageStyle,
+    childStyle: ViewStyle | TextStyle | ImageStyle
+  ) => {
+    return (
+      <View style={parentStyle}>
+        <View style={childStyle}>
+          <Button style={{ margin: 4 }} title={"Enabled"} type={"filled"} />
+          <Button style={{ margin: 4 }} title={"Enabled"} type={"outlined"} />
+          <Button style={{ margin: 4 }} title={"Enabled"} type={"text"} />
+        </View>
+        <View style={childStyle}>
+          <Button style={{ margin: 4 }} title={"Enabled"} type={"elevated"} />
+          <Button style={{ margin: 4 }} title={"Enabled"} type={"tonal"} />
+        </View>
+        <View style={childStyle}>
+          <Button
+            style={{ margin: 4 }}
+            title={"Enabled"}
+            type={"filled"}
+            icon={"add"}
+          />
+          <Button
+            style={{ margin: 4 }}
+            title={"Enabled"}
+            type={"outlined"}
+            icon={"add"}
+          />
+        </View>
+        <View style={childStyle}>
+          <Button
+            style={{ margin: 4 }}
+            title={"Enabled"}
+            type={"text"}
+            icon={"add"}
+          />
+          <Button
+            style={{ margin: 4 }}
+            title={"Enabled"}
+            type={"elevated"}
+            icon={"add"}
+          />
+        </View>
+        <View style={childStyle}>
+          <Button
+            style={{ margin: 4 }}
+            title={"Enabled"}
+            type={"tonal"}
+            icon={"add"}
+          />
+        </View>
+      </View>
     );
   };
 
