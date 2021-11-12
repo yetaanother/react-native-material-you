@@ -9,13 +9,15 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { CrudeButton } from "@yetaanother/react-native-material-you";
-import { ThemeProvider } from "@yetaanother/react-native-material-you";
+import {
+  CrudeButton,
+  Button,
+  ThemeProvider,
+} from "@yetaanother/react-native-material-you";
 
+// noinspection JSUnusedGlobalSymbols
 export default function App() {
-  const [currScreen, setCurrScreen] = useState<
-    "light buttons" | "dark buttons"
-  >("light buttons");
+  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light buttons");
 
   const render = () => {
     return (
@@ -30,64 +32,114 @@ export default function App() {
 
   const getToggleButtons = () => {
     return (
-      <View style={{ flexDirection: "row" }}>
-        <View style={{ margin: 4 }}>
-          <NativeButton
-            title={"Light buttons"}
-            onPress={() => {
-              setCurrScreen("light buttons");
-            }}
-          />
+      <>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Light states"}
+              onPress={() => {
+                setCurrScreen("light button states");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Dark states"}
+              onPress={() => {
+                setCurrScreen("dark button states");
+              }}
+            />
+          </View>
         </View>
-        <View style={{ margin: 4 }}>
-          <NativeButton
-            title={"Dark buttons"}
-            onPress={() => {
-              setCurrScreen("dark buttons");
-            }}
-          />
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Light buttons"}
+              onPress={() => {
+                setCurrScreen("light buttons");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Dark buttons"}
+              onPress={() => {
+                setCurrScreen("dark buttons");
+              }}
+            />
+          </View>
         </View>
-      </View>
+      </>
     );
   };
 
   const getCurrScreen = () => {
     switch (currScreen) {
-      case "dark buttons":
+      case "dark button states":
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
-            {getButtons(styles.parentDark, styles.childDark)}
+            {getButtons(styles.parentDark, styles.childDark, styles.textDark)}
+          </ThemeProvider>
+        );
+      case "light button states":
+        return (
+          <ThemeProvider hexColor={"#6750A4"}>
+            {getButtons(styles.parent, styles.child, styles.text)}
           </ThemeProvider>
         );
       case "light buttons":
         return (
-          <ThemeProvider hexColor={"#6750A4"}>
-            {getButtons(styles.parent, styles.child)}
-          </ThemeProvider>
+          <View style={styles.parent}>
+            <View style={styles.child}>
+              <Button style={{ margin: 4 }} title={"Enabled"} type={"filled"} />
+              <Button
+                style={{ margin: 4 }}
+                title={"Enabled"}
+                type={"outlined"}
+              />
+              <Button style={{ margin: 4 }} title={"Enabled"} type={"text"} />
+            </View>
+            <View style={styles.child}>
+              <Button
+                style={{ margin: 4 }}
+                title={"Enabled"}
+                type={"elevated"}
+              />
+              <Button style={{ margin: 4 }} title={"Enabled"} type={"tonal"} />
+            </View>
+          </View>
         );
     }
   };
   const getButtons = (
     parentStyle: ViewStyle | TextStyle | ImageStyle,
-    childStyle: ViewStyle | TextStyle | ImageStyle
+    childStyle: ViewStyle | TextStyle | ImageStyle,
+    textStyle: ViewStyle | TextStyle | ImageStyle
   ) => {
     return (
       <View style={parentStyle}>
-        {getFilledButtons(childStyle)}
-        {getOutlinedButtons(childStyle)}
-        {getTextButtons(childStyle)}
-        {getElevatedButtons(childStyle)}
-        {getTonalButtons(childStyle)}
+        {getFilledButtons(childStyle, textStyle)}
+        {getOutlinedButtons(childStyle, textStyle)}
+        {getTextButtons(childStyle, textStyle)}
+        {getElevatedButtons(childStyle, textStyle)}
+        {getTonalButtons(childStyle, textStyle)}
       </View>
     );
   };
 
-  const getFilledButtons = (childStyle: ViewStyle | TextStyle | ImageStyle) => {
+  const getFilledButtons = (
+    childStyle: ViewStyle | TextStyle | ImageStyle,
+    textStyle: ViewStyle | TextStyle | ImageStyle
+  ) => {
     return (
       <>
-        <Text>Filled buttons</Text>
+        <Text style={textStyle}>Filled buttons</Text>
         <View style={childStyle}>
-          <CrudeButton title={"Enabled"} onPress={() => {}} style={{ margin: 4 }} />
+          <CrudeButton
+            title={"Enabled"}
+            onPress={() => {}}
+            style={{ margin: 4 }}
+          />
           <CrudeButton
             title={"Hovered"}
             onPress={() => {}}
@@ -160,11 +212,12 @@ export default function App() {
   };
 
   const getOutlinedButtons = (
-    childStyle: ViewStyle | TextStyle | ImageStyle
+    childStyle: ViewStyle | TextStyle | ImageStyle,
+    textStyle: ViewStyle | TextStyle | ImageStyle
   ) => {
     return (
       <>
-        <Text>Outlined buttons</Text>
+        <Text style={textStyle}>Outlined buttons</Text>
         <View style={childStyle}>
           <CrudeButton
             title={"Enabled"}
@@ -252,10 +305,13 @@ export default function App() {
     );
   };
 
-  const getTextButtons = (childStyle: ViewStyle | TextStyle | ImageStyle) => {
+  const getTextButtons = (
+    childStyle: ViewStyle | TextStyle | ImageStyle,
+    textStyle: ViewStyle | TextStyle | ImageStyle
+  ) => {
     return (
       <>
-        <Text>Text buttons</Text>
+        <Text style={textStyle}>Text buttons</Text>
         <View style={childStyle}>
           <CrudeButton
             title={"Enabled"}
@@ -344,11 +400,12 @@ export default function App() {
   };
 
   const getElevatedButtons = (
-    childStyle: ViewStyle | TextStyle | ImageStyle
+    childStyle: ViewStyle | TextStyle | ImageStyle,
+    textStyle: ViewStyle | TextStyle | ImageStyle
   ) => {
     return (
       <>
-        <Text>Elevated buttons</Text>
+        <Text style={textStyle}>Elevated buttons</Text>
         <View style={childStyle}>
           <CrudeButton
             title={"Enabled"}
@@ -436,10 +493,13 @@ export default function App() {
     );
   };
 
-  const getTonalButtons = (childStyle: ViewStyle | TextStyle | ImageStyle) => {
+  const getTonalButtons = (
+    childStyle: ViewStyle | TextStyle | ImageStyle,
+    textStyle: ViewStyle | TextStyle | ImageStyle
+  ) => {
     return (
       <>
-        <Text>Tonal buttons</Text>
+        <Text style={textStyle}>Tonal buttons</Text>
         <View style={childStyle}>
           <CrudeButton
             title={"Enabled"}
@@ -564,5 +624,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 4,
     margin: 4,
+  },
+  text: {
+    color: "black",
+  },
+  textDark: {
+    color: "white",
   },
 });

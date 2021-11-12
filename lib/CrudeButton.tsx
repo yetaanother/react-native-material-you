@@ -1,9 +1,12 @@
 import React, { FunctionComponent, useContext } from "react";
 import {
+  GestureResponderEvent,
   ImageStyle,
+  NativeSyntheticEvent,
   Platform,
   Pressable as NativePressable,
   StyleSheet,
+  TargetedEvent,
   Text,
   TextStyle,
   View,
@@ -16,12 +19,16 @@ import { SchemeAdapter } from "./SchemeAdapter";
 import { rgbaWithOpacity } from "./utils";
 
 interface CrudeButtonProps {
-  type?: "filled" | "outlined" | "text" | "elevated" | "tonal";
+  type?: ButtonType;
   icon?: any;
-  state?: "enabled" | "hovered" | "focused" | "pressed" | "disabled";
+  state?: ButtonState;
   title: string;
-  onPress: () => void;
+  onPress: (event: GestureResponderEvent) => void;
   style?: ViewStyle | TextStyle | ImageStyle;
+  onPressIn?: (event: GestureResponderEvent) => void;
+  onPressOut?: (event: GestureResponderEvent) => void;
+  onFocus?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
+  onBlur?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
 }
 
 export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
@@ -31,6 +38,10 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   title,
   onPress,
   style,
+  onPressIn,
+  onPressOut,
+  onFocus,
+  onBlur,
 }: CrudeButtonProps) => {
   const scheme = useContext(ThemeContext);
   const styles = createStyles(scheme);
@@ -42,7 +53,15 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   const render = () => {
     if (type === "elevated" && getGradientColors().length > 1) {
       return (
-        <NativePressable style={getButtonStyles()} onPress={onPress}>
+        <NativePressable
+          style={getButtonStyles()}
+          onPress={onPress}
+          onPressIn={onPressIn}
+          onPressOut={onPressOut}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          disabled={state === "disabled"}
+        >
           <LinearGradient
             style={styles.linearGradient}
             colors={getGradientColors()}
@@ -53,7 +72,15 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       );
     }
     return (
-      <NativePressable style={getButtonStyles()} onPress={onPress}>
+      <NativePressable
+        style={getButtonStyles()}
+        onPress={onPress}
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        disabled={state === "disabled"}
+      >
         <View style={getInnerStyles()}>{renderContent()}</View>
       </NativePressable>
     );

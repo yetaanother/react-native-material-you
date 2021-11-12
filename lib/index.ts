@@ -10,6 +10,7 @@ import { NavDrawer } from "./NavDrawer";
 import { NavRail } from "./NavRail";
 import { ThemeProvider } from "./ThemeProvider";
 import { ThemeContext } from "./ThemeProvider";
+import { Button } from "./Button";
 
 export {
   CrudeButton,
@@ -24,4 +25,5 @@ export {
   AppBar,
   ThemeContext,
   ThemeProvider,
+  Button,
 };
