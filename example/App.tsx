@@ -18,9 +18,7 @@ import {
 
 // noinspection JSUnusedGlobalSymbols
 export default function App() {
-  const [currScreen, setCurrScreen] = useState<ExampleScreen>(
-    "light button states"
-  );
+  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light cards");
 
   const render = () => {
     return (
@@ -688,7 +686,20 @@ export default function App() {
     return (
       <View style={parentStyle}>
         <View style={childStyle}>
-          <Card />
+          <Card
+            primaryAction={true}
+            secondaryAction={true}
+            title={"Title"}
+            content={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor"
+            }
+            subTitle={"Subhead"}
+            imageSrc={require("./assets/card-background.jpg")}
+            monogram={true}
+            headerTitle={"Header"}
+            headerSubTitle={"Subhead"}
+            closable={true}
+          />
         </View>
       </View>
     );

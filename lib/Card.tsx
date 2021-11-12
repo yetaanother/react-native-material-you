@@ -1,5 +1,11 @@
 import React, { FunctionComponent, useContext } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { ThemeContext } from "./ThemeProvider";
 import { SchemeAdapter } from "./SchemeAdapter";
 import { Ionicons } from "@expo/vector-icons";
@@ -10,17 +16,44 @@ interface CardProps {
   type?: CardType;
   headerTitle?: string;
   headerSubTitle?: string;
-  headerIcon?: string;
-  imageSrc?: string;
-  title?: string;
-  subTitle?: string;
-  content?: string;
-  onPrimaryPress?: () => void;
-  onSecondaryPress?: () => void;
+  monogram?: boolean;
+  monogramLetter?: string;
+  closeIcon?: any;
+  closable?: boolean;
   onClosePress?: () => void;
+  imageSrc?: ImageSourcePropType;
+  title: string;
+  subTitle?: string;
+  content: string;
+  primaryAction?: boolean;
+  secondaryAction?: boolean;
+  onPrimaryPress?: () => void;
+  primaryActionLabel?: string;
+  onSecondaryPress?: () => void;
+  secondaryActionLabel?: string;
 }
 
-export const Card: FunctionComponent<CardProps> = ({ horizontal, type }) => {
+export const Card: FunctionComponent<CardProps> = ({
+  horizontal,
+  type,
+  onPrimaryPress,
+  onSecondaryPress,
+  primaryActionLabel,
+  secondaryActionLabel,
+  primaryAction,
+  secondaryAction,
+  title,
+  content,
+  subTitle,
+  imageSrc,
+  monogram,
+  monogramLetter,
+  closable,
+  closeIcon,
+  onClosePress,
+  headerTitle,
+  headerSubTitle,
+}) => {
   const scheme = useContext(ThemeContext);
   const styles = createStyles(scheme);
 
@@ -39,61 +72,81 @@ export const Card: FunctionComponent<CardProps> = ({ horizontal, type }) => {
   };
 
   const renderHeader = () => {
+    if (!monogram && !closable && !headerTitle && !headerSubTitle) {
+      return;
+    }
     return (
       <View style={styles.header}>
         <View>
-          <Text style={{ ...styles.monogram }}>A</Text>
+          {monogram && (
+            <Text style={{ ...styles.monogram }}>
+              {!monogramLetter ? "A" : monogramLetter}
+            </Text>
+          )}
         </View>
         <View style={styles.headerContent}>
-          <Text style={styles.headerTitle}>Header</Text>
-          <Text style={styles.headerSubTitle}>Subhead</Text>
+          {headerTitle && <Text style={styles.headerTitle}>{headerTitle}</Text>}
+          {headerSubTitle && (
+            <Text style={styles.headerSubTitle}>{headerSubTitle}</Text>
+          )}
         </View>
-        <View style={styles.icon}>
-          <Ionicons name={"close"} size={14} color={scheme.outlineHex} />
-        </View>
+        {closable && (
+          <View style={styles.icon}>
+            <Ionicons
+              name={!closeIcon ? "close" : closeIcon}
+              size={14}
+              color={scheme.outlineHex}
+              onPress={onClosePress}
+            />
+          </View>
+        )}
       </View>
     );
   };
 
   const renderImage = () => {
-    return (
-      <Image
-        style={styles.image}
-        source={require("./assets/card-background.jpg")}
-      />
-    );
+    if (!imageSrc) {
+      return;
+    }
+    return <Image style={styles.image} source={imageSrc} />;
   };
 
   const renderContent = () => {
     return (
       <>
         <View style={styles.body}>
-          <Text style={styles.bodyTitle}>Title</Text>
-          <Text style={styles.bodySubTitle}>Subhead</Text>
+          <Text style={styles.bodyTitle}>{title}</Text>
+          {subTitle && <Text style={styles.bodySubTitle}>{subTitle}</Text>}
         </View>
         <View style={{ ...styles.body, height: 72 }}>
-          <Text style={styles.bodySubTitle}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor
-          </Text>
+          <Text style={styles.bodySubTitle}>{content}</Text>
         </View>
       </>
     );
   };
 
   const renderButtons = () => {
+    if (!primaryAction && !secondaryAction) {
+      return;
+    }
     return (
       <View style={styles.buttons}>
-        <Button
-          containerStyle={styles.button}
-          title={"Enabled"}
-          type={"outlined"}
-        />
-        <Button
-          containerStyle={styles.button}
-          title={"Enabled"}
-          type={"filled"}
-        />
+        {secondaryAction && (
+          <Button
+            containerStyle={styles.button}
+            title={!secondaryActionLabel ? "Enabled" : secondaryActionLabel}
+            type={"outlined"}
+            onPress={onSecondaryPress}
+          />
+        )}
+        {primaryAction && (
+          <Button
+            containerStyle={styles.button}
+            title={!primaryActionLabel ? "Enabled" : primaryActionLabel}
+            type={"filled"}
+            onPress={onPrimaryPress}
+          />
+        )}
       </View>
     );
   };
