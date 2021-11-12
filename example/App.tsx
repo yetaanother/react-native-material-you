@@ -13,11 +13,12 @@ import {
   CrudeButton,
   Button,
   ThemeProvider,
+  Card,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
 export default function App() {
-  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light buttons");
+  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light cards");
 
   const render = () => {
     return (
@@ -69,6 +70,24 @@ export default function App() {
             />
           </View>
         </View>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Light cards"}
+              onPress={() => {
+                setCurrScreen("light cards");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Dark cards"}
+              onPress={() => {
+                setCurrScreen("dark cards");
+              }}
+            />
+          </View>
+        </View>
       </>
     );
   };
@@ -97,6 +116,14 @@ export default function App() {
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
             {getButtons(styles.parentDark, styles.childDark)}
+          </ThemeProvider>
+        );
+      case "light cards":
+        return <>{getCards(styles.parent, styles.child)}</>;
+      case "dark cards":
+        return (
+          <ThemeProvider hexColor={"#6750A4"} dark={true}>
+            {getCards(styles.parentDark, styles.childDark)}
           </ThemeProvider>
         );
     }
@@ -627,6 +654,19 @@ export default function App() {
             type={"tonal"}
             icon={"add"}
           />
+        </View>
+      </View>
+    );
+  };
+
+  const getCards = (
+    parentStyle: ViewStyle | TextStyle | ImageStyle,
+    childStyle: ViewStyle | TextStyle | ImageStyle
+  ) => {
+    return (
+      <View style={parentStyle}>
+        <View style={childStyle}>
+          <Card />
         </View>
       </View>
     );
