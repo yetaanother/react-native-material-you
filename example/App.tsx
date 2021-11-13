@@ -701,6 +701,23 @@ export default function App() {
             closable={true}
           />
         </View>
+        <View style={childStyle}>
+          <Card
+            primaryAction={true}
+            secondaryAction={true}
+            title={"Title"}
+            content={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor"
+            }
+            subTitle={"Subhead"}
+            imageSrc={require("./assets/card-background.jpg")}
+            monogram={true}
+            headerTitle={"Header"}
+            headerSubTitle={"Subhead"}
+            closable={true}
+            type={"elevated"}
+          />
+        </View>
       </View>
     );
   };

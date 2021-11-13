@@ -2,6 +2,7 @@ import React, { FunctionComponent, useContext } from "react";
 import {
   Image,
   ImageSourcePropType,
+  Platform,
   StyleSheet,
   Text,
   View,
@@ -62,13 +63,25 @@ export const Card: FunctionComponent<CardProps> = ({
 
   const render = () => {
     return (
-      <View style={styles.card}>
+      <View style={getCardStyles()}>
         {renderHeader()}
         {renderImage()}
         {renderContent()}
         {renderButtons()}
       </View>
     );
+  };
+
+  const getCardStyles = () => {
+    let cardStyles = { ...styles.card };
+    if (type === "elevated") {
+      cardStyles = {
+        ...cardStyles,
+        backgroundColor: scheme.surfaceHex,
+        ...styles.boxShadow,
+      };
+    }
+    return cardStyles;
   };
 
   const renderHeader = () => {
@@ -115,7 +128,7 @@ export const Card: FunctionComponent<CardProps> = ({
     return (
       <>
         <View style={styles.body}>
-          <Text style={styles.bodyTitle}>{title}</Text>
+          <Text style={getBodyTitleStyles()}>{title}</Text>
           {subTitle && <Text style={styles.bodySubTitle}>{subTitle}</Text>}
         </View>
         <View style={{ ...styles.body, height: 72 }}>
@@ -123,6 +136,14 @@ export const Card: FunctionComponent<CardProps> = ({
         </View>
       </>
     );
+  };
+
+  const getBodyTitleStyles = () => {
+    let bodyTitleStyles = { ...styles.bodyTitle };
+    if (type === "elevated") {
+      return { ...bodyTitleStyles, color: scheme.onSurfaceHex };
+    }
+    return bodyTitleStyles;
   };
 
   const renderButtons = () => {
@@ -262,5 +283,23 @@ const createStyles = (scheme: SchemeAdapter) =>
     },
     button: {
       marginHorizontal: 8,
+    },
+    // https://ethercreative.github.io/react-native-shadow-generator/
+    boxShadow: {
+      ...Platform.select({
+        ios: {
+          shadowColor: scheme.shadowHex,
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: 2,
+        },
+        android: {
+          elevation: 3,
+          shadowColor: scheme.shadowHex,
+        },
+      }),
     },
   });
