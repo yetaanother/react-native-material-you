@@ -77,9 +77,11 @@ export const Card: FunctionComponent<CardProps> = ({
     if (type === "elevated") {
       cardStyles = {
         ...cardStyles,
-        backgroundColor: scheme.surfaceHex,
+        ...styles.cardTypeElevated,
         ...styles.boxShadow,
       };
+    } else if (type === "outlined") {
+      cardStyles = { ...cardStyles, ...styles.cardTypeOutlined };
     }
     return cardStyles;
   };
@@ -140,8 +142,8 @@ export const Card: FunctionComponent<CardProps> = ({
 
   const getBodyTitleStyles = () => {
     let bodyTitleStyles = { ...styles.bodyTitle };
-    if (type === "elevated") {
-      return { ...bodyTitleStyles, color: scheme.onSurfaceHex };
+    if (type === "elevated" || type === "outlined") {
+      return { ...bodyTitleStyles, ...styles.bodyTitleTypeElevatedOrOutlined };
     }
     return bodyTitleStyles;
   };
@@ -185,6 +187,15 @@ const createStyles = (scheme: SchemeAdapter) =>
       width: 360,
       backgroundColor: scheme.surfaceVariantHex,
       borderRadius: 12,
+    },
+    cardTypeElevated: {
+      backgroundColor: scheme.surfaceHex,
+    },
+    cardTypeOutlined: {
+      backgroundColor: scheme.surfaceHex,
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderColor: scheme.outlineHex,
     },
     header: {
       height: 72,
@@ -263,6 +274,9 @@ const createStyles = (scheme: SchemeAdapter) =>
       fontWeight: "normal",
       letterSpacing: 0.5,
       color: scheme.onSurfaceVariantHex,
+    },
+    bodyTitleTypeElevatedOrOutlined: {
+      color: scheme.onSurfaceHex,
     },
     bodySubTitle: {
       fontFamily: "Roboto",

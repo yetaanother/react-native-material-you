@@ -51,8 +51,6 @@ export default function App() {
               }}
             />
           </View>
-        </View>
-        <View style={{ flexDirection: "row" }}>
           <View style={{ margin: 4 }}>
             <NativeButton
               title={"Light buttons"}
@@ -61,6 +59,8 @@ export default function App() {
               }}
             />
           </View>
+        </View>
+        <View style={{ flexDirection: "row" }}>
           <View style={{ margin: 4 }}>
             <NativeButton
               title={"Dark buttons"}
@@ -69,8 +69,6 @@ export default function App() {
               }}
             />
           </View>
-        </View>
-        <View style={{ flexDirection: "row" }}>
           <View style={{ margin: 4 }}>
             <NativeButton
               title={"Light cards"}
@@ -88,6 +86,7 @@ export default function App() {
             />
           </View>
         </View>
+        <View style={{ flexDirection: "row" }}></View>
       </>
     );
   };
@@ -716,6 +715,23 @@ export default function App() {
             headerSubTitle={"Subhead"}
             closable={true}
             type={"elevated"}
+          />
+        </View>
+        <View style={childStyle}>
+          <Card
+            primaryAction={true}
+            secondaryAction={true}
+            title={"Title"}
+            content={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor"
+            }
+            subTitle={"Subhead"}
+            imageSrc={require("./assets/card-background.jpg")}
+            monogram={true}
+            headerTitle={"Header"}
+            headerSubTitle={"Subhead"}
+            closable={true}
+            type={"outlined"}
           />
         </View>
       </View>
