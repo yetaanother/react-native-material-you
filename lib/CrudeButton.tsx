@@ -17,8 +17,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { ThemeContext } from "./ThemeProvider";
 import { SchemeAdapter } from "./SchemeAdapter";
 import { rgbaWithOpacity } from "./utils";
-import { SettingsContext } from "./SettingsProvider";
-import { Settings } from "./Settings";
 
 interface CrudeButtonProps {
   type?: ButtonType;
@@ -46,8 +44,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   onBlur,
 }: CrudeButtonProps) => {
   const scheme = useContext(ThemeContext);
-  const settings = useContext(SettingsContext);
-  const styles = createStyles(scheme, settings);
+  const styles = createStyles(scheme);
 
   state = !state ? "enabled" : state;
   type = !type ? "filled" : type;
@@ -57,7 +54,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
     if (type === "elevated" && getGradientColors().length > 1) {
       return (
         <NativePressable
-          style={getButtonStyles()}
+          style={getContainerStyles()}
           onPress={onPress}
           onPressIn={onPressIn}
           onPressOut={onPressOut}
@@ -69,14 +66,14 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
             style={styles.linearGradient}
             colors={getGradientColors()}
           >
-            <View style={getInnerStyles()}>{renderContent()}</View>
+            <View style={getStateStyles()}>{renderContent()}</View>
           </LinearGradient>
         </NativePressable>
       );
     }
     return (
       <NativePressable
-        style={getButtonStyles()}
+        style={getContainerStyles()}
         onPress={onPress}
         onPressIn={onPressIn}
         onPressOut={onPressOut}
@@ -84,7 +81,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
         onBlur={onBlur}
         disabled={state === "disabled"}
       >
-        <View style={getInnerStyles()}>{renderContent()}</View>
+        <View style={getStateStyles()}>{renderContent()}</View>
       </NativePressable>
     );
   };
@@ -110,111 +107,111 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
     return [];
   };
 
-  const getButtonStyles = () => {
-    let buttonStyles: ViewStyle | TextStyle | ImageStyle = { ...styles.button };
+  const getContainerStyles = () => {
+    let containerStyles: ViewStyle | TextStyle | ImageStyle = { ...styles.button };
     if (type === "filled") {
       if (state === "disabled") {
-        buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
+        containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
       } else if (state === "hovered") {
-        buttonStyles = { ...buttonStyles, ...styles.boxShadow };
+        containerStyles = { ...containerStyles, ...styles.boxShadow };
       }
     } else if (type === "outlined") {
-      buttonStyles = { ...buttonStyles, ...styles.buttonTypeOutlined };
-      delete buttonStyles["backgroundColor"];
+      containerStyles = { ...containerStyles, ...styles.buttonTypeOutlined };
+      delete containerStyles["backgroundColor"];
       if (state === "focused") {
-        buttonStyles = {
-          ...buttonStyles,
+        containerStyles = {
+          ...containerStyles,
           ...styles.buttonTypeOutlinedStateFocused,
         };
       } else if (state === "disabled") {
-        buttonStyles = {
-          ...buttonStyles,
+        containerStyles = {
+          ...containerStyles,
           ...styles.buttonTypeOutlinedStateDisabled,
         };
       }
     } else if (type === "text") {
-      delete buttonStyles["backgroundColor"];
+      delete containerStyles["backgroundColor"];
       if (state === "hovered") {
-        buttonStyles = {
-          ...buttonStyles,
+        containerStyles = {
+          ...containerStyles,
           ...styles.buttonTypeTextStateHovered,
         };
       } else if (state === "focused" || state === "pressed") {
-        buttonStyles = {
-          ...buttonStyles,
+        containerStyles = {
+          ...containerStyles,
           ...styles.buttonTypeTextStateFocusedOrPressed,
         };
       }
     } else if (type === "elevated") {
-      buttonStyles = {
-        ...buttonStyles,
+      containerStyles = {
+        ...containerStyles,
         ...styles.buttonTypeElevated,
       };
       if (state == "disabled") {
-        buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
+        containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
       } else if (state === "hovered") {
-        buttonStyles = { ...buttonStyles, ...styles.boxShadowDouble };
+        containerStyles = { ...containerStyles, ...styles.boxShadowDouble };
       } else {
-        buttonStyles = { ...buttonStyles, ...styles.boxShadow };
+        containerStyles = { ...containerStyles, ...styles.boxShadow };
       }
     } else if (type === "tonal") {
-      buttonStyles = { ...buttonStyles, ...styles.buttonTypeTonal };
+      containerStyles = { ...containerStyles, ...styles.buttonTypeTonal };
       if (state === "disabled") {
-        buttonStyles = { ...buttonStyles, ...styles.buttonStateDisabled };
+        containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
       } else if (state === "hovered") {
-        buttonStyles = { ...buttonStyles, ...styles.boxShadow };
+        containerStyles = { ...containerStyles, ...styles.boxShadow };
       }
     }
-    return { ...buttonStyles, ...containerStyle };
+    return { ...containerStyles, ...containerStyle };
   };
 
-  const getInnerStyles = () => {
-    let innerStyles = { ...styles.inner };
+  const getStateStyles = () => {
+    let stateStyles = { ...styles.inner };
     if (type == "filled") {
       if (state === "hovered") {
-        innerStyles = { ...innerStyles, ...styles.innerStateHovered };
+        stateStyles = { ...stateStyles, ...styles.innerStateHovered };
       } else if (state === "focused" || state === "pressed") {
-        innerStyles = {
-          ...innerStyles,
+        stateStyles = {
+          ...stateStyles,
           ...styles.innerStateFocusedOrPressed,
         };
       }
     } else if (type === "outlined" || type === "elevated") {
       if (state === "hovered") {
-        innerStyles = {
-          ...innerStyles,
+        stateStyles = {
+          ...stateStyles,
           ...styles.innerTypeOutlinedOrElevatedStateHovered,
         };
       } else if (state === "focused" || state === "pressed") {
-        innerStyles = {
-          ...innerStyles,
+        stateStyles = {
+          ...stateStyles,
           ...styles.innerTypeOutlinedOrElevatedStateFocusedOrPressed,
         };
       }
     } else if (type === "text") {
-      innerStyles = { ...innerStyles, ...styles.innerTypeText };
+      stateStyles = { ...stateStyles, ...styles.innerTypeText };
     } else if (type === "tonal") {
       if (state === "hovered") {
-        innerStyles = {
-          ...innerStyles,
+        stateStyles = {
+          ...stateStyles,
           ...styles.innerTypeTonalStateHovered,
         };
       } else if (state === "focused" || state === "pressed") {
-        innerStyles = {
-          ...innerStyles,
+        stateStyles = {
+          ...stateStyles,
           ...styles.innerTypeTonalStateFocusedOrPressed,
         };
       }
     }
     if (icon) {
       if (type === "text") {
-        innerStyles = { ...innerStyles, ...styles.innerWithIconTypeText };
+        stateStyles = { ...stateStyles, ...styles.innerWithIconTypeText };
       } else {
-        innerStyles = { ...innerStyles, ...styles.innerWithIcon };
+        stateStyles = { ...stateStyles, ...styles.innerWithIcon };
       }
     }
 
-    return innerStyles;
+    return stateStyles;
   };
 
   const renderContent = () => {
@@ -257,6 +254,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       }
     }
 
+    // should not happen
     return "#FFFFFF";
   };
 
@@ -310,7 +308,7 @@ const defaultStatePressedOrFocusedOpacity = 0.12;
 const defaultStateDisabledOpacity = 0.12;
 const defaultContentStateDisabledOpacity = 0.38;
 
-const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
+const createStyles = (scheme: SchemeAdapter) =>
   StyleSheet.create({
     button: {
       borderRadius: defaultBorderRadius,
@@ -335,9 +333,11 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     buttonTypeOutlinedStateDisabled: {
       borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, defaultStateDisabledOpacity),
     },
+    // todo move as inner style
     buttonTypeTextStateHovered: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, defaultStateHoveredOpacity),
     },
+    // todo move as inner style
     buttonTypeTextStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.primaryRGB,
@@ -358,8 +358,8 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       justifyContent: "center",
       display: "flex",
       flexDirection: "row",
-      paddingVertical: settings.buttonInnerPaddingVertical,
-      paddingHorizontal: settings.buttonInnerPaddingHorizontal,
+      paddingVertical: 10,
+      paddingHorizontal: 24,
       borderRadius: defaultBorderRadius,
     },
     innerStateHovered: {
@@ -396,21 +396,18 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       ),
     },
     innerTypeText: {
-      paddingHorizontal: settings.buttonTypeTextInnerPaddingHorizontal,
+      paddingHorizontal: 12,
     },
     innerWithIcon: {
-      paddingLeft:
-        settings.buttonInnerPaddingHorizontal - settings.buttonIconMarginRight,
-      paddingRight: settings.buttonInnerPaddingHorizontal,
+      paddingLeft: 16,
+      paddingRight: 24,
     },
     innerWithIconTypeText: {
-      paddingLeft: settings.buttonTypeTextInnerPaddingHorizontal,
-      paddingRight:
-        settings.buttonTypeTextInnerPaddingHorizontal +
-        settings.buttonIconMarginRight / 2,
+      paddingLeft: 12,
+      paddingRight: 16,
     },
     text: {
-      fontFamily: settings.textFontFamily,
+      fontFamily: "Roboto",
       fontStyle: "normal",
       fontSize: 14,
       lineHeight: 20,
@@ -464,7 +461,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       }),
     },
     icon: {
-      marginRight: settings.buttonIconMarginRight,
+      marginRight: 8,
     },
     iconStateDisabled: {
       opacity: defaultContentStateDisabledOpacity,

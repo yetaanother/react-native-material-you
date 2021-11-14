@@ -8,3 +8,6 @@
 ## React Native
 * https://docs.expo.dev/ui-programming/react-native-styling-buttons/
 * https://mahyarmohammadi.medium.com/react-native-pressable-vs-touchable-5fec6b332f15
+
+## CSS
+* `justify-content` vs `align-items` - https://stackoverflow.com/questions/35049262/difference-between-justify-content-vs-align-items?lq=1

@@ -211,6 +211,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       width: 24,
       marginLeft: "auto",
       alignItems: "center",
+      justifyContent: "center",
     },
     monogram: {
       width: 40,
