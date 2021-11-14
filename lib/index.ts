@@ -13,6 +13,8 @@ import { ThemeContext } from "./ThemeProvider";
 import { Button } from "./Button";
 import { SettingsProvider } from "./SettingsProvider";
 import { SettingsContext } from "./SettingsProvider";
+import { Avatar } from "./Avatar";
+import { HorizontalCard } from "./HorizontalCard";
 
 export {
   CrudeButton,
@@ -30,4 +32,6 @@ export {
   Button,
   SettingsProvider,
   SettingsContext,
+  HorizontalCard,
+  Avatar,
 };

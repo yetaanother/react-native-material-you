@@ -85,7 +85,7 @@ export const Card: FunctionComponent<CardProps> = ({
   };
 
   const renderHeader = () => {
-    if (!avatar && !closable && !headerTitle && !headerSubTitle) {
+    if (!shouldDisplayHeader()) {
       return;
     }
     return (
@@ -112,10 +112,18 @@ export const Card: FunctionComponent<CardProps> = ({
   };
 
   const renderImage = () => {
+    let imageStyles = { ...styles.image };
+    if (!shouldDisplayHeader()) {
+      imageStyles = { ...imageStyles, ...styles.imageNoHeader };
+    }
     if (!imageSrc) {
       return;
     }
-    return <Image style={styles.image} source={imageSrc} />;
+    return <Image style={imageStyles} source={imageSrc} />;
+  };
+
+  const shouldDisplayHeader = () => {
+    return avatar || closable || headerTitle;
   };
 
   const renderContent = () => {
@@ -250,6 +258,10 @@ const createStyles = (scheme: SchemeAdapter) =>
     image: {
       width: "100%",
       height: 188,
+    },
+    imageNoHeader: {
+      borderTopLeftRadius: 12,
+      borderTopRightRadius: 12,
     },
     body: {
       display: "flex",

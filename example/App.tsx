@@ -14,6 +14,7 @@ import {
   Button,
   ThemeProvider,
   Card,
+  HorizontalCard,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
@@ -734,6 +735,33 @@ export default function App() {
             type={"outlined"}
           />
         </View>
+        <View style={childStyle}>
+          <HorizontalCard
+            imageSrc={require("./assets/card-background.jpg")}
+            avatar={true}
+            headerTitle={"Header"}
+            headerSubTitle={"Subhead"}
+            type={"filled"}
+          />
+        </View>
+        <View style={childStyle}>
+          <HorizontalCard
+            imageSrc={require("./assets/card-background.jpg")}
+            avatar={true}
+            headerTitle={"Header"}
+            headerSubTitle={"Subhead"}
+            type={"elevated"}
+          />
+        </View>
+        <View style={childStyle}>
+          <HorizontalCard
+            imageSrc={require("./assets/card-background.jpg")}
+            avatar={true}
+            headerTitle={"Header"}
+            headerSubTitle={"Subhead"}
+            type={"outlined"}
+          />
+        </View>
       </View>
     );
   };
@@ -753,7 +781,7 @@ const styles = StyleSheet.create({
   parentDark: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "#1F1F1F",
+    backgroundColor: "#000000",
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 8,
@@ -770,7 +798,7 @@ const styles = StyleSheet.create({
   childDark: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "#1F1F1F",
+    backgroundColor: "#000000",
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 4,

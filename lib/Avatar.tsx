@@ -46,6 +46,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       color: scheme.surfaceHex,
       textAlign: "center",
       textAlignVertical: "center",
+      // todo this should be passed from parent
       marginRight: 16,
       fontFamily: "Roboto",
       fontStyle: "normal",
