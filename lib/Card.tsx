@@ -133,7 +133,7 @@ export const Card: FunctionComponent<CardProps> = ({
           <Text style={getBodyTitleStyles()}>{title}</Text>
           {subTitle && <Text style={styles.bodySubTitle}>{subTitle}</Text>}
         </View>
-        <View style={{ ...styles.body, height: 72 }}>
+        <View style={styles.body}>
           <Text style={styles.bodySubTitle}>{content}</Text>
         </View>
       </>
@@ -198,7 +198,6 @@ const createStyles = (scheme: SchemeAdapter) =>
       borderColor: scheme.outlineHex,
     },
     header: {
-      height: 72,
       width: "100%",
       display: "flex",
       flexDirection: "row",
@@ -212,22 +211,6 @@ const createStyles = (scheme: SchemeAdapter) =>
       marginLeft: "auto",
       alignItems: "center",
       justifyContent: "center",
-    },
-    monogram: {
-      width: 40,
-      height: 40,
-      backgroundColor: scheme.primaryHex,
-      borderRadius: 100,
-      color: scheme.surfaceHex,
-      textAlign: "center",
-      textAlignVertical: "center",
-      marginRight: 16,
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 16,
-      lineHeight: 24,
-      fontWeight: "500",
-      letterSpacing: 0.1,
     },
     headerContent: {
       display: "flex",
@@ -268,7 +251,6 @@ const createStyles = (scheme: SchemeAdapter) =>
       flexDirection: "column",
       alignItems: "flex-start",
       padding: 16,
-      height: 76,
       width: "100%",
     },
     bodyTitle: {
@@ -297,7 +279,6 @@ const createStyles = (scheme: SchemeAdapter) =>
       flexDirection: "row",
       justifyContent: "flex-end",
       padding: 16,
-      height: 72,
       width: "100%",
     },
     button: {
