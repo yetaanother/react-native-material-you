@@ -11,14 +11,15 @@ import { ThemeContext } from "./ThemeProvider";
 import { SchemeAdapter } from "./SchemeAdapter";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "./Button";
+import { Avatar } from "./Avatar";
 
 interface CardProps {
   horizontal?: boolean;
   type?: CardType;
   headerTitle?: string;
   headerSubTitle?: string;
-  monogram?: boolean;
-  monogramLetter?: string;
+  avatar?: boolean;
+  avatarInitials?: string;
   closeIcon?: any;
   closable?: boolean;
   onClosePress?: () => void;
@@ -47,8 +48,8 @@ export const Card: FunctionComponent<CardProps> = ({
   content,
   subTitle,
   imageSrc,
-  monogram,
-  monogramLetter,
+  avatar,
+  avatarInitials,
   closable,
   closeIcon,
   onClosePress,
@@ -87,18 +88,12 @@ export const Card: FunctionComponent<CardProps> = ({
   };
 
   const renderHeader = () => {
-    if (!monogram && !closable && !headerTitle && !headerSubTitle) {
+    if (!avatar && !closable && !headerTitle && !headerSubTitle) {
       return;
     }
     return (
       <View style={styles.header}>
-        <View>
-          {monogram && (
-            <Text style={{ ...styles.monogram }}>
-              {!monogramLetter ? "A" : monogramLetter}
-            </Text>
-          )}
-        </View>
+        <View>{avatar && <Avatar initials={avatarInitials} />}</View>
         <View style={styles.headerContent}>
           {headerTitle && <Text style={styles.headerTitle}>{headerTitle}</Text>}
           {headerSubTitle && (

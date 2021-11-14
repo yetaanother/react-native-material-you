@@ -694,7 +694,7 @@ export default function App() {
             }
             subTitle={"Subhead"}
             imageSrc={require("./assets/card-background.jpg")}
-            monogram={true}
+            avatar={true}
             headerTitle={"Header"}
             headerSubTitle={"Subhead"}
             closable={true}
@@ -710,7 +710,7 @@ export default function App() {
             }
             subTitle={"Subhead"}
             imageSrc={require("./assets/card-background.jpg")}
-            monogram={true}
+            avatar={true}
             headerTitle={"Header"}
             headerSubTitle={"Subhead"}
             closable={true}
@@ -727,7 +727,7 @@ export default function App() {
             }
             subTitle={"Subhead"}
             imageSrc={require("./assets/card-background.jpg")}
-            monogram={true}
+            avatar={true}
             headerTitle={"Header"}
             headerSubTitle={"Subhead"}
             closable={true}
