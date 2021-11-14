@@ -14,7 +14,6 @@ import { Button } from "./Button";
 import { Avatar } from "./Avatar";
 
 interface CardProps {
-  horizontal?: boolean;
   type?: CardType;
   headerTitle?: string;
   headerSubTitle?: string;
@@ -36,7 +35,6 @@ interface CardProps {
 }
 
 export const Card: FunctionComponent<CardProps> = ({
-  horizontal,
   type,
   onPrimaryPress,
   onSecondaryPress,
@@ -59,7 +57,6 @@ export const Card: FunctionComponent<CardProps> = ({
   const scheme = useContext(ThemeContext);
   const styles = createStyles(scheme);
 
-  horizontal = !horizontal ? false : horizontal;
   type = !type ? "filled" : type;
 
   const render = () => {
