@@ -15,6 +15,7 @@ import {
   CrudeInputChip,
   HorizontalCard,
   ThemeProvider,
+  CrudeAssistiveChip,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
@@ -1020,6 +1021,166 @@ export default function App() {
             selected={true}
             leadingIcon={"checkmark-sharp"}
             trailingIcon={"close"}
+          />
+        </View>
+        <Text style={textStyle}>Assistive chips</Text>
+        <View style={childStyle}>
+          <CrudeAssistiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeAssistiveChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeAssistiveChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeAssistiveChip
+            label={"Pressed"}
+            state={"pressed"}
+            containerStyle={{ margin: 4 }}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeAssistiveChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeAssistiveChip
+            label={"Disabled"}
+            state={"disabled"}
+            containerStyle={{ margin: 4 }}
+          />
+        </View>
+        <Text style={textStyle}>Assistive elevated chips</Text>
+        <View style={childStyle}>
+          <CrudeAssistiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+          />
+          <CrudeAssistiveChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+          />
+          <CrudeAssistiveChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+          />
+          <CrudeAssistiveChip
+            label={"Pressed"}
+            state={"pressed"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeAssistiveChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+          />
+          <CrudeAssistiveChip
+            label={"Disabled"}
+            state={"disabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+          />
+        </View>
+        <Text style={textStyle}>Assistive chips with icons</Text>
+        <View style={childStyle}>
+          <CrudeAssistiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            icon={"car"}
+          />
+          <CrudeAssistiveChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            icon={"car"}
+          />
+          <CrudeAssistiveChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            icon={"car"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeAssistiveChip
+            label={"Pressed"}
+            state={"pressed"}
+            containerStyle={{ margin: 4 }}
+            icon={"car"}
+          />
+          <CrudeAssistiveChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            icon={"car"}
+          />
+          <CrudeAssistiveChip
+            label={"Disabled"}
+            state={"disabled"}
+            containerStyle={{ margin: 4 }}
+            icon={"car"}
+          />
+        </View>
+        <Text style={textStyle}>Assistive elevated chips with icons</Text>
+        <View style={childStyle}>
+          <CrudeAssistiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            icon={"car"}
+          />
+          <CrudeAssistiveChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            icon={"car"}
+          />
+          <CrudeAssistiveChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            icon={"car"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeAssistiveChip
+            label={"Pressed"}
+            state={"pressed"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            icon={"car"}
+          />
+          <CrudeAssistiveChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            icon={"car"}
+          />
+          <CrudeAssistiveChip
+            label={"Disabled"}
+            state={"disabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            icon={"car"}
           />
         </View>
       </View>

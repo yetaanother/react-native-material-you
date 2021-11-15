@@ -16,7 +16,7 @@ import { Ionicons } from "@expo/vector-icons";
 interface ChipProps {
   label: string;
   selected?: boolean;
-  state?: ChipState;
+  state?: InputChipState;
   containerStyle?: ViewStyle | TextStyle | ImageStyle;
   leadingIcon?: any;
   trailingIcon?: any;
