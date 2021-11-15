@@ -1343,6 +1343,198 @@ export default function App() {
             elevated={true}
           />
         </View>
+        <Text style={textStyle}>
+          Unselected dropdown filter chips without elevation
+        </Text>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Pressed"}
+            state={"pressed"}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Disabled"}
+            state={"disabled"}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+        </View>
+        <Text style={textStyle}>
+          Selected dropdown filter chips without elevation
+        </Text>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Enabled"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Hovered"}
+            state={"hovered"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Focused"}
+            state={"focused"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Pressed"}
+            state={"pressed"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Dragged"}
+            state={"dragged"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Disabled"}
+            state={"disabled"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+          />
+        </View>
+        <Text style={textStyle}>Unselected dropdown elevated filter chips</Text>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Pressed"}
+            state={"pressed"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Disabled"}
+            state={"disabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+        </View>
+        <Text style={textStyle}>Selected dropdown elevated filter chips</Text>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Enabled"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Hovered"}
+            state={"hovered"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Focused"}
+            state={"focused"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Pressed"}
+            state={"pressed"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Dragged"}
+            state={"dragged"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+          <CrudeFilterChip
+            label={"Disabled"}
+            state={"disabled"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+          />
+        </View>
       </View>
     );
   };

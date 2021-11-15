@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useContext } from "react";
 import {
   ImageStyle,
-  Platform,
   StyleSheet,
   Text,
   TextStyle,
@@ -44,126 +43,127 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
     );
   };
 
-  // NOTE: Because of three combinations: state, selected, and elevated keeping thing separated here instead of a 3 layer
-  // nested if-else chain
   const getContainerStyles = () => {
-    let containerStyles = selected
-      ? getSelectedContainerStyles()
-      : getUnselectedContainerStyles();
+    let containerStyles: ViewStyle = { ...styles.chip };
+    if (!selected) {
+      if (!elevated) {
+        if (state === "disabled") {
+          delete containerStyles["backgroundColor"];
+          containerStyles = { ...containerStyles, ...styles.chipStateDisabled };
+        } else if (state === "focused") {
+          containerStyles = { ...containerStyles, ...styles.chipStateFocused };
+        } else if (state === "dragged") {
+          containerStyles = {
+            ...containerStyles,
+            ...styles.boxShadowElevation4,
+          };
+        }
+      } else {
+        delete containerStyles["borderColor"];
+        delete containerStyles["borderWidth"];
+        delete containerStyles["borderStyle"];
+        containerStyles = getElevatedContainerStyles(containerStyles);
+      }
+    } else {
+      delete containerStyles["borderColor"];
+      delete containerStyles["borderWidth"];
+      delete containerStyles["borderStyle"];
+      containerStyles = { ...containerStyles, ...styles.chipSelected };
+      if (!elevated) {
+        if (state === "hovered") {
+          containerStyles = {
+            ...containerStyles,
+            ...styles.boxShadowElevation1,
+          };
+        } else if (state === "dragged") {
+          containerStyles = {
+            ...containerStyles,
+            ...styles.boxShadowElevation4,
+          };
+        } else if (state === "disabled") {
+          containerStyles = {
+            ...containerStyles,
+            ...styles.chipSelectedDisabled,
+          };
+        }
+      } else {
+        containerStyles = getElevatedContainerStyles(containerStyles);
+      }
+    }
     if (containerStyle) {
       return { ...containerStyles, ...containerStyle };
     }
     return containerStyles;
   };
 
-  const getSelectedContainerStyles = () => {
-    let containerStyles: ViewStyle = { ...styles.chipSelected };
-    if (!elevated) {
-      if (state === "hovered") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-      } else if (state === "dragged") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
-      } else if (state === "disabled") {
-        containerStyles = {
-          ...containerStyles,
-          ...styles.chipSelectedDisabled,
-        };
-      }
-    } else {
-      containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-      if (state === "hovered") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation2 };
-      } else if (state === "dragged") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
-      } else if (state === "disabled") {
-        containerStyles = {
-          ...containerStyles,
-          ...styles.chipSelectedDisabled,
-        };
-      }
-    }
-
-    return containerStyles;
-  };
-
-  const getUnselectedContainerStyles = () => {
-    let containerStyles: ViewStyle = { ...styles.chip };
-    if (!elevated) {
-      if (state === "disabled") {
-        delete containerStyles["backgroundColor"];
-        containerStyles = { ...containerStyles, ...styles.chipStateDisabled };
-      } else if (state === "focused") {
-        containerStyles = { ...containerStyles, ...styles.chipStateFocused };
-      } else if (state === "dragged") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
-      }
-    } else {
-      delete containerStyles["borderColor"];
-      delete containerStyles["borderWidth"];
-      delete containerStyles["borderStyle"];
-      containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-      if (state === "hovered") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation2 };
-      } else if (state === "dragged") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
-      } else if (state === "disabled") {
-        containerStyles = {
-          ...containerStyles,
-          ...styles.chipElevatedStateDisabled,
-        };
-      }
+  const getElevatedContainerStyles = (containerStyles: ViewStyle) => {
+    containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
+    if (state === "hovered") {
+      containerStyles = {
+        ...containerStyles,
+        ...styles.boxShadowElevation2,
+      };
+    } else if (state === "dragged") {
+      containerStyles = {
+        ...containerStyles,
+        ...styles.boxShadowElevation4,
+      };
+    } else if (state === "disabled") {
+      containerStyles = {
+        ...containerStyles,
+        ...styles.chipElevatedStateDisabled,
+      };
     }
     return containerStyles;
   };
 
   const getStateStyles = () => {
-    return selected ? getSelectedStateStyles() : getUnselectedStateStyles();
-  };
-
-  const getSelectedStateStyles = () => {
-    let stateStyles = { ...styles.innerSelected };
-    if (state === "hovered") {
-      stateStyles = { ...stateStyles, ...styles.innerSelectedStateHovered };
-    } else if (state === "pressed" || state === "focused") {
-      stateStyles = {
-        ...stateStyles,
-        ...styles.innerSelectedStateFocusedOrPressed,
-      };
-    } else if (state === "dragged") {
-      stateStyles = { ...stateStyles, ...styles.innerSelectedStateDragged };
-    }
-    return stateStyles;
-  };
-
-  const getUnselectedStateStyles = () => {
     let stateStyles = { ...styles.inner };
-    if (state === "hovered") {
-      stateStyles = { ...stateStyles, ...styles.innerStateHovered };
-    } else if (state === "pressed" || state === "focused") {
-      stateStyles = { ...stateStyles, ...styles.innerStateFocusedOrPressed };
-    } else if (state === "dragged") {
-      stateStyles = { ...stateStyles, ...styles.innerStateDragged };
+    if (!selected) {
+      if (state === "hovered") {
+        stateStyles = { ...stateStyles, ...styles.innerStateHovered };
+      } else if (state === "pressed" || state === "focused") {
+        stateStyles = { ...stateStyles, ...styles.innerStateFocusedOrPressed };
+      } else if (state === "dragged") {
+        stateStyles = { ...stateStyles, ...styles.innerStateDragged };
+      }
+    } else {
+      stateStyles = { ...stateStyles, ...styles.innerSelected };
+      if (state === "hovered") {
+        stateStyles = { ...stateStyles, ...styles.innerSelectedStateHovered };
+      } else if (state === "pressed" || state === "focused") {
+        stateStyles = {
+          ...stateStyles,
+          ...styles.innerSelectedStateFocusedOrPressed,
+        };
+      } else if (state === "dragged") {
+        stateStyles = { ...stateStyles, ...styles.innerSelectedStateDragged };
+      }
     }
     return stateStyles;
   };
 
   const renderContent = () => {
+    let textStyles = getTextStyles();
+    let iconColor = textStyles.color;
     return (
       <>
         {selected && (
           <View style={getLeadingIconStyles()}>
+            <Ionicons name={"checkmark-sharp"} size={18} color={iconColor} />
+          </View>
+        )}
+        <Text style={textStyles}>{label}</Text>
+
+        {dropdown && (
+          <View style={getTrailingIconStyles()}>
             <Ionicons
-              name={"checkmark-sharp"}
+              name={"caret-down-sharp"}
               size={18}
-              color={
-                state === "disabled"
-                  ? scheme.onSurfaceHex
-                  : scheme.onSecondaryContainerHex
-              }
+              color={state === "enabled" ? scheme.onSurfaceHex : iconColor}
             />
           </View>
         )}
-        <Text style={getTextStyles()}>{label}</Text>
       </>
     );
   };
@@ -171,37 +171,40 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   const getLeadingIconStyles = () => {
     let iconStyles = { ...styles.leadingIcon };
     if (state === "disabled") {
-      iconStyles = { ...iconStyles, ...styles.leadingIconStateDisabled };
+      iconStyles = { ...iconStyles, ...styles.iconStateDisabled };
+    }
+    return iconStyles;
+  };
+
+  const getTrailingIconStyles = () => {
+    let iconStyles = { ...styles.trailingIcon };
+    if (state === "disabled") {
+      iconStyles = { ...iconStyles, ...styles.iconStateDisabled };
     }
     return iconStyles;
   };
 
   const getTextStyles = () => {
-    return selected ? getSelectedTextStyles() : getUnselectedTextStyles();
-  };
-
-  const getSelectedTextStyles = () => {
-    let textStyles = { ...styles.textSelected };
-    if (state === "disabled") {
-      textStyles = { ...textStyles, ...styles.textSelectedStateDisabled };
-    }
-    return textStyles;
-  };
-
-  const getUnselectedTextStyles = () => {
     let textStyles = { ...styles.text };
-    if (
-      state === "hovered" ||
-      state === "pressed" ||
-      state === "dragged" ||
-      state === "focused"
-    ) {
-      textStyles = {
-        ...textStyles,
-        ...styles.textStateHoveredOrFocussedOrPressedOrDragged,
-      };
-    } else if (state === "disabled") {
-      textStyles = { ...textStyles, ...styles.textStateDisabled };
+    if (!selected) {
+      if (
+        state === "hovered" ||
+        state === "pressed" ||
+        state === "dragged" ||
+        state === "focused"
+      ) {
+        textStyles = {
+          ...textStyles,
+          ...styles.textStateHoveredOrFocussedOrPressedOrDragged,
+        };
+      } else if (state === "disabled") {
+        textStyles = { ...textStyles, ...styles.textStateDisabled };
+      }
+    } else {
+      textStyles = { ...textStyles, ...styles.textSelected };
+      if (state === "disabled") {
+        textStyles = { ...textStyles, ...styles.textStateDisabled };
+      }
     }
     return textStyles;
   };
@@ -229,7 +232,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     chipSelected: {
       backgroundColor: scheme.secondaryContainerHex,
-      borderRadius: 8,
     },
     chipSelectedDisabled: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
@@ -252,15 +254,17 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     innerStateDragged: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.16),
     },
+    innerDropDown: {
+      paddingRight: 8,
+      paddingLeft: 16,
+    },
     innerSelected: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      paddingVertical: 6,
       paddingRight: 16,
       paddingLeft: 8,
-      borderRadius: 8,
-      justifyContent: "center",
+    },
+    innerSelectedDropDown: {
+      paddingRight: 8,
+      paddingLeft: 8,
     },
     innerSelectedStateHovered: {
       backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.08),
@@ -292,22 +296,15 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       opacity: 0.38,
     },
     textSelected: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "500",
-      letterSpacing: 0.1,
       color: scheme.onSecondaryContainerHex,
-    },
-    textSelectedStateDisabled: {
-      color: scheme.onSurfaceHex,
-      opacity: 0.38,
     },
     leadingIcon: {
       marginRight: 8,
     },
-    leadingIconStateDisabled: {
+    trailingIcon: {
+      marginLeft: 8,
+    },
+    iconStateDisabled: {
       opacity: 0.38,
     },
   });
