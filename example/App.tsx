@@ -38,7 +38,7 @@ export default function App() {
         <View style={{ flexDirection: "row" }}>
           <View style={{ margin: 4 }}>
             <NativeButton
-              title={"Light states"}
+              title={"Btn states (L)"}
               onPress={() => {
                 setCurrScreen("light button states");
               }}
@@ -46,7 +46,7 @@ export default function App() {
           </View>
           <View style={{ margin: 4 }}>
             <NativeButton
-              title={"Dark states"}
+              title={"Btn states (D)"}
               onPress={() => {
                 setCurrScreen("dark button states");
               }}
@@ -54,7 +54,7 @@ export default function App() {
           </View>
           <View style={{ margin: 4 }}>
             <NativeButton
-              title={"Light buttons"}
+              title={"Btn (L)"}
               onPress={() => {
                 setCurrScreen("light buttons");
               }}
@@ -64,7 +64,7 @@ export default function App() {
         <View style={{ flexDirection: "row" }}>
           <View style={{ margin: 4 }}>
             <NativeButton
-              title={"Dark buttons"}
+              title={"Btn (D)"}
               onPress={() => {
                 setCurrScreen("dark buttons");
               }}
@@ -72,7 +72,7 @@ export default function App() {
           </View>
           <View style={{ margin: 4 }}>
             <NativeButton
-              title={"Light cards"}
+              title={"Card (L)"}
               onPress={() => {
                 setCurrScreen("light cards");
               }}
@@ -80,9 +80,17 @@ export default function App() {
           </View>
           <View style={{ margin: 4 }}>
             <NativeButton
-              title={"Dark cards"}
+              title={"Card (D)"}
               onPress={() => {
                 setCurrScreen("dark cards");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Chip states (L)"}
+              onPress={() => {
+                setCurrScreen("light chips");
               }}
             />
           </View>
@@ -90,15 +98,7 @@ export default function App() {
         <View style={{ flexDirection: "row" }}>
           <View style={{ margin: 4 }}>
             <NativeButton
-              title={"Light chips"}
-              onPress={() => {
-                setCurrScreen("light chips");
-              }}
-            />
-          </View>
-          <View style={{ margin: 4 }}>
-            <NativeButton
-              title={"Dark chips"}
+              title={"Chip states (D)"}
               onPress={() => {
                 setCurrScreen("dark chips");
               }}
