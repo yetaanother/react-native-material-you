@@ -16,6 +16,7 @@ import { SettingsContext } from "./providers/SettingsProvider";
 import { Avatar } from "./Avatar";
 import { HorizontalCard } from "./cards/HorizontalCard";
 import { CrudeAssistiveChip } from "./chips/CrudeAssistiveChip";
+import { CrudeFilterChip } from "./chips/CrudeFilterChip";
 
 export {
   CrudeButton,
@@ -36,4 +37,5 @@ export {
   HorizontalCard,
   Avatar,
   CrudeAssistiveChip,
+  CrudeFilterChip,
 };

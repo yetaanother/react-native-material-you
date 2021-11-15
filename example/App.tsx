@@ -16,6 +16,7 @@ import {
   HorizontalCard,
   ThemeProvider,
   CrudeAssistiveChip,
+  CrudeFilterChip,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
@@ -835,24 +836,24 @@ export default function App() {
             selected={true}
           />
         </View>
-        <Text style={textStyle}>Input unslected chips with trailing icon</Text>
+        <Text style={textStyle}>Input unslected closable chips</Text>
         <View style={childStyle}>
           <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
-            trailingIcon={"close"}
+            closeable={true}
           />
           <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
-            trailingIcon={"close"}
+            closeable={true}
           />
           <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
-            trailingIcon={"close"}
+            closeable={true}
           />
         </View>
         <View style={childStyle}>
@@ -860,90 +861,30 @@ export default function App() {
             label={"Dragged"}
             state={"dragged"}
             containerStyle={{ margin: 4 }}
-            trailingIcon={"close"}
+            closeable={true}
           />
         </View>
-        <Text style={textStyle}>Input selected chips with trailing icon</Text>
+        <Text style={textStyle}>Input selected closeable chips</Text>
         <View style={childStyle}>
           <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
-            trailingIcon={"close"}
+            closeable={true}
           />
           <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
             selected={true}
-            trailingIcon={"close"}
+            closeable={true}
           />
           <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
             selected={true}
-            trailingIcon={"close"}
-          />
-        </View>
-        <View style={childStyle}>
-          <CrudeInputChip
-            label={"Dragged"}
-            state={"dragged"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-            trailingIcon={"close"}
-          />
-        </View>
-        <Text style={textStyle}>Input unslected chips with leading icon</Text>
-        <View style={childStyle}>
-          <CrudeInputChip
-            label={"Enabled"}
-            containerStyle={{ margin: 4 }}
-            leadingIcon={"person-sharp"}
-          />
-          <CrudeInputChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            leadingIcon={"person-sharp"}
-          />
-          <CrudeInputChip
-            label={"Focused"}
-            state={"focused"}
-            containerStyle={{ margin: 4 }}
-            leadingIcon={"person-sharp"}
-          />
-        </View>
-        <View style={childStyle}>
-          <CrudeInputChip
-            label={"Dragged"}
-            state={"dragged"}
-            containerStyle={{ margin: 4 }}
-            leadingIcon={"person-sharp"}
-          />
-        </View>
-        <Text style={textStyle}>Input selected chips with leading icon</Text>
-        <View style={childStyle}>
-          <CrudeInputChip
-            label={"Enabled"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-            leadingIcon={"checkmark-sharp"}
-          />
-          <CrudeInputChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-            leadingIcon={"checkmark-sharp"}
-          />
-          <CrudeInputChip
-            label={"Focused"}
-            state={"focused"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-            leadingIcon={"checkmark-sharp"}
+            closeable={true}
           />
         </View>
         <View style={childStyle}>
@@ -952,30 +893,27 @@ export default function App() {
             state={"dragged"}
             containerStyle={{ margin: 4 }}
             selected={true}
-            leadingIcon={"checkmark-sharp"}
+            closeable={true}
           />
         </View>
-        <Text style={textStyle}>Input unslected chips with both icons</Text>
+        <Text style={textStyle}>Input unslected chips with avatar</Text>
         <View style={childStyle}>
           <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
-            leadingIcon={"person-sharp"}
-            trailingIcon={"close"}
+            avatar={true}
           />
           <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
-            leadingIcon={"person-sharp"}
-            trailingIcon={"close"}
+            avatar={true}
           />
           <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
-            leadingIcon={"person-sharp"}
-            trailingIcon={"close"}
+            avatar={true}
           />
         </View>
         <View style={childStyle}>
@@ -983,34 +921,30 @@ export default function App() {
             label={"Dragged"}
             state={"dragged"}
             containerStyle={{ margin: 4 }}
-            leadingIcon={"person-sharp"}
-            trailingIcon={"close"}
+            avatar={true}
           />
         </View>
-        <Text style={textStyle}>Input selected chips with both icons</Text>
+        <Text style={textStyle}>Input selected chips with avaar</Text>
         <View style={childStyle}>
           <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
-            leadingIcon={"checkmark-sharp"}
-            trailingIcon={"close"}
+            avatar={true}
           />
           <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
             selected={true}
-            leadingIcon={"checkmark-sharp"}
-            trailingIcon={"close"}
+            avatar={true}
           />
           <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
             selected={true}
-            leadingIcon={"checkmark-sharp"}
-            trailingIcon={"close"}
+            avatar={true}
           />
         </View>
         <View style={childStyle}>
@@ -1019,8 +953,77 @@ export default function App() {
             state={"dragged"}
             containerStyle={{ margin: 4 }}
             selected={true}
-            leadingIcon={"checkmark-sharp"}
-            trailingIcon={"close"}
+            avatar={true}
+          />
+        </View>
+        <Text style={textStyle}>
+          Input unslected closeable chips with avatar
+        </Text>
+        <View style={childStyle}>
+          <CrudeInputChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            avatar={true}
+            closeable={true}
+          />
+          <CrudeInputChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            avatar={true}
+            closeable={true}
+          />
+          <CrudeInputChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            avatar={true}
+            closeable={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeInputChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            avatar={true}
+            closeable={true}
+          />
+        </View>
+        <Text style={textStyle}>Input selected chips with avatar</Text>
+        <View style={childStyle}>
+          <CrudeInputChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            avatar={true}
+            closeable={true}
+          />
+          <CrudeInputChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            avatar={true}
+            closeable={true}
+          />
+          <CrudeInputChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            avatar={true}
+            closeable={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeInputChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            avatar={true}
+            closeable={true}
           />
         </View>
         <Text style={textStyle}>Assistive chips</Text>
@@ -1181,6 +1184,77 @@ export default function App() {
             containerStyle={{ margin: 4 }}
             elevated={true}
             icon={"car"}
+          />
+        </View>
+        <Text style={textStyle}>Unselected filter chips without elevation</Text>
+        <View style={childStyle}>
+          <CrudeFilterChip label={"Enabled"} containerStyle={{ margin: 4 }} />
+          <CrudeFilterChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeFilterChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeFilterChip
+            label={"Pressed"}
+            state={"pressed"}
+            containerStyle={{ margin: 4 }}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeFilterChip
+            label={"Disabled"}
+            state={"disabled"}
+            containerStyle={{ margin: 4 }}
+          />
+        </View>
+        <Text style={textStyle}>Selected filter chips without elevation</Text>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Enabled"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeFilterChip
+            label={"Hovered"}
+            state={"hovered"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeFilterChip
+            label={"Focused"}
+            state={"focused"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFilterChip
+            label={"Pressed"}
+            state={"pressed"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeFilterChip
+            label={"Dragged"}
+            state={"dragged"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeFilterChip
+            label={"Disabled"}
+            state={"disabled"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
           />
         </View>
       </View>

@@ -9,3 +9,10 @@ type AssistiveChipState =
   | "dragged"
   | "pressed"
   | "disabled";
+type FilterChipState =
+  | "enabled"
+  | "hovered"
+  | "focused"
+  | "dragged"
+  | "pressed"
+  | "disabled";
