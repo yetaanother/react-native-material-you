@@ -4,4 +4,6 @@ type ExampleScreen =
   | "light buttons"
   | "dark buttons"
   | "light cards"
-  | "dark cards";
+  | "dark cards"
+  | "light chips"
+  | "dark chips";

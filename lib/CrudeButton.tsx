@@ -219,22 +219,20 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   };
 
   const renderContent = () => {
-    let textStyles = getTextStyles();
     //https://icons.expo.fyi/
-    if (icon) {
-      return (
-        <>
+    return (
+      <>
+        {icon && (
           <Ionicons
             name={icon}
             size={18}
             color={getIconColor()}
             style={getIconStyles()}
           />
-          <Text style={textStyles}>{title}</Text>
-        </>
-      );
-    }
-    return <Text style={textStyles}>{title}</Text>;
+        )}
+        <Text style={getTextStyles()}>{title}</Text>
+      </>
+    );
   };
 
   const getIconColor = () => {

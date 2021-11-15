@@ -1,7 +1,7 @@
 import { AppBar } from "./AppBar";
 import { CrudeButton } from "./CrudeButton";
 import { Card } from "./Card";
-import { Chip } from "./Chip";
+import { CrudeChip } from "./CrudeChip";
 import { Dialog } from "./Dialog";
 import { FAB } from "./FAB";
 import { Menu } from "./Menu";
@@ -18,7 +18,7 @@ import { HorizontalCard } from "./HorizontalCard";
 
 export {
   CrudeButton,
-  Chip,
+  CrudeChip,
   Card,
   Dialog,
   FAB,

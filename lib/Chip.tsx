@@ -1,8 +1,0 @@
-import React, {FunctionComponent} from "react";
-import { Text} from "react-native";
-
-export const Chip: FunctionComponent = () => {
-    return <>
-        <Text>Chip</Text>
-    </>
-};

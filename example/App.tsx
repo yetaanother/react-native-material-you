@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Button as NativeButton,
-  ImageStyle,
   ScrollView,
   StyleSheet,
   Text,
@@ -10,16 +9,17 @@ import {
   ViewStyle,
 } from "react-native";
 import {
-  CrudeButton,
   Button,
-  ThemeProvider,
   Card,
+  CrudeButton,
+  CrudeChip,
   HorizontalCard,
+  ThemeProvider,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
 export default function App() {
-  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light cards");
+  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light chips");
 
   const render = () => {
     return (
@@ -87,7 +87,24 @@ export default function App() {
             />
           </View>
         </View>
-        <View style={{ flexDirection: "row" }}></View>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Light chips"}
+              onPress={() => {
+                setCurrScreen("light chips");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Dark chips"}
+              onPress={() => {
+                setCurrScreen("dark chips");
+              }}
+            />
+          </View>
+        </View>
       </>
     );
   };
@@ -126,12 +143,20 @@ export default function App() {
             {getCards(styles.parentDark, styles.childDark)}
           </ThemeProvider>
         );
+      case "light chips":
+        return <>{getChips(styles.parent, styles.child, styles.text)}</>;
+      case "dark chips":
+        return (
+          <ThemeProvider hexColor={"#6750A4"} dark={true}>
+            {getChips(styles.parentDark, styles.childDark, styles.textDark)}
+          </ThemeProvider>
+        );
     }
   };
   const getButtonStates = (
-    parentStyle: ViewStyle | TextStyle | ImageStyle,
-    childStyle: ViewStyle | TextStyle | ImageStyle,
-    textStyle: ViewStyle | TextStyle | ImageStyle
+    parentStyle: ViewStyle,
+    childStyle: ViewStyle,
+    textStyle: TextStyle
   ) => {
     return (
       <View style={parentStyle}>
@@ -145,8 +170,8 @@ export default function App() {
   };
 
   const getFilledButtonStates = (
-    childStyle: ViewStyle | TextStyle | ImageStyle,
-    textStyle: ViewStyle | TextStyle | ImageStyle
+    childStyle: ViewStyle,
+    textStyle: TextStyle
   ) => {
     return (
       <>
@@ -229,8 +254,8 @@ export default function App() {
   };
 
   const getOutlinedButtonStates = (
-    childStyle: ViewStyle | TextStyle | ImageStyle,
-    textStyle: ViewStyle | TextStyle | ImageStyle
+    childStyle: ViewStyle,
+    textStyle: TextStyle
   ) => {
     return (
       <>
@@ -322,10 +347,7 @@ export default function App() {
     );
   };
 
-  const getTextButtonStates = (
-    childStyle: ViewStyle | TextStyle | ImageStyle,
-    textStyle: ViewStyle | TextStyle | ImageStyle
-  ) => {
+  const getTextButtonStates = (childStyle: ViewStyle, textStyle: TextStyle) => {
     return (
       <>
         <Text style={textStyle}>Text buttons</Text>
@@ -417,8 +439,8 @@ export default function App() {
   };
 
   const getElevatedButtonStates = (
-    childStyle: ViewStyle | TextStyle | ImageStyle,
-    textStyle: ViewStyle | TextStyle | ImageStyle
+    childStyle: ViewStyle,
+    textStyle: TextStyle
   ) => {
     return (
       <>
@@ -511,8 +533,8 @@ export default function App() {
   };
 
   const getTonalButtonStates = (
-    childStyle: ViewStyle | TextStyle | ImageStyle,
-    textStyle: ViewStyle | TextStyle | ImageStyle
+    childStyle: ViewStyle,
+    textStyle: TextStyle
   ) => {
     return (
       <>
@@ -604,10 +626,7 @@ export default function App() {
     );
   };
 
-  const getButtons = (
-    parentStyle: ViewStyle | TextStyle | ImageStyle,
-    childStyle: ViewStyle | TextStyle | ImageStyle
-  ) => {
+  const getButtons = (parentStyle: ViewStyle, childStyle: ViewStyle) => {
     return (
       <View style={parentStyle}>
         <View style={childStyle}>
@@ -679,10 +698,7 @@ export default function App() {
     );
   };
 
-  const getCards = (
-    parentStyle: ViewStyle | TextStyle | ImageStyle,
-    childStyle: ViewStyle | TextStyle | ImageStyle
-  ) => {
+  const getCards = (parentStyle: ViewStyle, childStyle: ViewStyle) => {
     return (
       <View style={parentStyle}>
         <View style={childStyle}>
@@ -760,6 +776,250 @@ export default function App() {
             headerTitle={"Header"}
             headerSubTitle={"Subhead"}
             type={"outlined"}
+          />
+        </View>
+      </View>
+    );
+  };
+
+  const getChips = (
+    parentStyle: ViewStyle,
+    childStyle: ViewStyle,
+    textStyle: TextStyle
+  ) => {
+    return (
+      <View style={parentStyle}>
+        <Text style={textStyle}>Input unslected chips</Text>
+        <View style={childStyle}>
+          <CrudeChip label={"Enabled"} containerStyle={{ margin: 4 }} />
+          <CrudeChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+          />
+        </View>
+        <Text style={textStyle}>Input selected chips</Text>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+          />
+          <CrudeChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+          />
+          <CrudeChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+          />
+          <CrudeChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+          />
+        </View>
+        <Text style={textStyle}>Input unslected chips with trailing icon</Text>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            trailingIcon={"close"}
+          />
+          <CrudeChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            trailingIcon={"close"}
+          />
+          <CrudeChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            trailingIcon={"close"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            trailingIcon={"close"}
+          />
+        </View>
+        <Text style={textStyle}>Input selected chips with trailing icon</Text>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            trailingIcon={"close"}
+          />
+          <CrudeChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            trailingIcon={"close"}
+          />
+          <CrudeChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            trailingIcon={"close"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            trailingIcon={"close"}
+          />
+        </View>
+        <Text style={textStyle}>Input unslected chips with leading icon</Text>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            leadingIcon={"person-sharp"}
+          />
+          <CrudeChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            leadingIcon={"person-sharp"}
+          />
+          <CrudeChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            leadingIcon={"person-sharp"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            leadingIcon={"person-sharp"}
+          />
+        </View>
+        <Text style={textStyle}>Input selected chips with leading icon</Text>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            leadingIcon={"checkmark-sharp"}
+          />
+          <CrudeChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            leadingIcon={"checkmark-sharp"}
+          />
+          <CrudeChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            leadingIcon={"checkmark-sharp"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            leadingIcon={"checkmark-sharp"}
+          />
+        </View>
+        <Text style={textStyle}>Input unslected chips with both icons</Text>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            leadingIcon={"person-sharp"}
+            trailingIcon={"close"}
+          />
+          <CrudeChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            leadingIcon={"person-sharp"}
+            trailingIcon={"close"}
+          />
+          <CrudeChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            leadingIcon={"person-sharp"}
+            trailingIcon={"close"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            leadingIcon={"person-sharp"}
+            trailingIcon={"close"}
+          />
+        </View>
+        <Text style={textStyle}>Input selected chips with both icons</Text>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            leadingIcon={"checkmark-sharp"}
+            trailingIcon={"close"}
+          />
+          <CrudeChip
+            label={"Hovered"}
+            state={"hovered"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            leadingIcon={"checkmark-sharp"}
+            trailingIcon={"close"}
+          />
+          <CrudeChip
+            label={"Focused"}
+            state={"focused"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            leadingIcon={"checkmark-sharp"}
+            trailingIcon={"close"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeChip
+            label={"Dragged"}
+            state={"dragged"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            leadingIcon={"checkmark-sharp"}
+            trailingIcon={"close"}
           />
         </View>
       </View>
@@ -781,7 +1041,7 @@ const styles = StyleSheet.create({
   parentDark: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "#000000",
+    backgroundColor: "#1F1F1F",
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 8,
@@ -789,7 +1049,7 @@ const styles = StyleSheet.create({
   child: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "#FFF",
+    backgroundColor: "#FFFFFF",
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 4,
@@ -798,7 +1058,7 @@ const styles = StyleSheet.create({
   childDark: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "#000000",
+    backgroundColor: "#1F1F1F",
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 4,
