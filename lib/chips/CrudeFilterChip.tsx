@@ -57,25 +57,60 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
 
   const getSelectedContainerStyles = () => {
     let containerStyles: ViewStyle = { ...styles.chipSelected };
-    if (state === "hovered") {
+    if (!elevated) {
+      if (state === "hovered") {
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
+      } else if (state === "dragged") {
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
+      } else if (state === "disabled") {
+        containerStyles = {
+          ...containerStyles,
+          ...styles.chipSelectedDisabled,
+        };
+      }
+    } else {
       containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-    } else if (state === "dragged") {
-      containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
-    } else if (state === "disabled") {
-      containerStyles = { ...containerStyles, ...styles.chipSelectedDisabled };
+      if (state === "hovered") {
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation2 };
+      } else if (state === "dragged") {
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
+      } else if (state === "disabled") {
+        containerStyles = {
+          ...containerStyles,
+          ...styles.chipSelectedDisabled,
+        };
+      }
     }
+
     return containerStyles;
   };
 
   const getUnselectedContainerStyles = () => {
     let containerStyles: ViewStyle = { ...styles.chip };
-    if (state === "disabled") {
-      delete containerStyles["backgroundColor"];
-      containerStyles = { ...containerStyles, ...styles.chipStateDisabled };
-    } else if (state === "focused") {
-      containerStyles = { ...containerStyles, ...styles.chipStateFocused };
-    } else if (state === "dragged") {
-      containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
+    if (!elevated) {
+      if (state === "disabled") {
+        delete containerStyles["backgroundColor"];
+        containerStyles = { ...containerStyles, ...styles.chipStateDisabled };
+      } else if (state === "focused") {
+        containerStyles = { ...containerStyles, ...styles.chipStateFocused };
+      } else if (state === "dragged") {
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
+      }
+    } else {
+      delete containerStyles["borderColor"];
+      delete containerStyles["borderWidth"];
+      delete containerStyles["borderStyle"];
+      containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
+      if (state === "hovered") {
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation2 };
+      } else if (state === "dragged") {
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
+      } else if (state === "disabled") {
+        containerStyles = {
+          ...containerStyles,
+          ...styles.chipElevatedStateDisabled,
+        };
+      }
     }
     return containerStyles;
   };
@@ -188,6 +223,9 @@ const createStyles = (scheme: SchemeAdapter) =>
     chipStateDisabled: {
       borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
     },
+    chipElevatedStateDisabled: {
+      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+    },
     chipSelected: {
       backgroundColor: scheme.secondaryContainerHex,
       borderRadius: 8,
@@ -246,6 +284,23 @@ const createStyles = (scheme: SchemeAdapter) =>
         },
         android: {
           elevation: 1,
+          shadowColor: scheme.shadowHex,
+        },
+      }),
+    },
+    boxShadowElevation2: {
+      ...Platform.select({
+        ios: {
+          shadowColor: scheme.shadowHex,
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.2,
+          shadowRadius: 1.41,
+        },
+        android: {
+          elevation: 2,
           shadowColor: scheme.shadowHex,
         },
       }),
