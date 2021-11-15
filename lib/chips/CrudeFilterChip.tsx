@@ -12,6 +12,7 @@ import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
+import { Settings } from "../providers/Settings";
 
 interface CrudeFilterChipProps {
   label: string;
@@ -30,8 +31,8 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   containerStyle,
   dropdown,
 }) => {
-  const scheme = useContext(ThemeContext);
-  const styles = createStyles(scheme);
+  const { scheme, settings } = useContext(ThemeContext);
+  const styles = createStyles(scheme, settings);
 
   state = !state ? "enabled" : state;
 
@@ -208,7 +209,7 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   return render();
 };
 
-const createStyles = (scheme: SchemeAdapter) =>
+const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     chip: {
       backgroundColor: scheme.surfaceHex,
@@ -271,57 +272,9 @@ const createStyles = (scheme: SchemeAdapter) =>
       backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.16),
     },
     // https://ethercreative.github.io/react-native-shadow-generator/
-    boxShadowElevation1: {
-      ...Platform.select({
-        ios: {
-          shadowColor: scheme.shadowHex,
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.18,
-          shadowRadius: 1,
-        },
-        android: {
-          elevation: 1,
-          shadowColor: scheme.shadowHex,
-        },
-      }),
-    },
-    boxShadowElevation2: {
-      ...Platform.select({
-        ios: {
-          shadowColor: scheme.shadowHex,
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 1.41,
-        },
-        android: {
-          elevation: 2,
-          shadowColor: scheme.shadowHex,
-        },
-      }),
-    },
-    boxShadowElevation4: {
-      ...Platform.select({
-        ios: {
-          shadowColor: scheme.shadowHex,
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.23,
-          shadowRadius: 2.62,
-        },
-        android: {
-          elevation: 4,
-          shadowColor: scheme.shadowHex,
-        },
-      }),
-    },
+    boxShadowElevation1: settings.boxShadowElevation1,
+    boxShadowElevation2: settings.boxShadowElevation2,
+    boxShadowElevation4: settings.boxShadowElevation4,
     text: {
       fontFamily: "Roboto",
       fontStyle: "normal",

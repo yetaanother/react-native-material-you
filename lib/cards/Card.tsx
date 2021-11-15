@@ -2,16 +2,17 @@ import React, { FunctionComponent, useContext } from "react";
 import {
   Image,
   ImageSourcePropType,
-  Platform,
   StyleSheet,
   Text,
   View,
+  ViewStyle,
 } from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "../buttons/Button";
 import { Avatar } from "../Avatar";
+import { Settings } from "../providers/Settings";
 
 interface CardProps {
   type?: CardType;
@@ -54,8 +55,8 @@ export const Card: FunctionComponent<CardProps> = ({
   headerTitle,
   headerSubTitle,
 }) => {
-  const scheme = useContext(ThemeContext);
-  const styles = createStyles(scheme);
+  const { scheme, settings } = useContext(ThemeContext);
+  const styles = createStyles(scheme, settings);
 
   type = !type ? "filled" : type;
 
@@ -71,7 +72,7 @@ export const Card: FunctionComponent<CardProps> = ({
   };
 
   const getCardStyles = () => {
-    let cardStyles = { ...styles.card };
+    let cardStyles: ViewStyle = { ...styles.card };
     if (type === "elevated") {
       cardStyles = {
         ...cardStyles,
@@ -177,7 +178,7 @@ export const Card: FunctionComponent<CardProps> = ({
   return render();
 };
 
-const createStyles = (scheme: SchemeAdapter) =>
+const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     card: {
       display: "flex",
@@ -284,22 +285,5 @@ const createStyles = (scheme: SchemeAdapter) =>
     button: {
       marginHorizontal: 8,
     },
-    // https://ethercreative.github.io/react-native-shadow-generator/
-    boxShadowElevation2: {
-      ...Platform.select({
-        ios: {
-          shadowColor: scheme.shadowHex,
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 1.41,
-        },
-        android: {
-          elevation: 2,
-          shadowColor: scheme.shadowHex,
-        },
-      }),
-    },
+    boxShadowElevation2: settings.boxShadowElevation2,
   });

@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useContext } from "react";
 import {
   ImageStyle,
-  Platform,
   StyleSheet,
   Text,
   TextStyle,
@@ -12,6 +11,7 @@ import { ThemeContext } from "../providers/ThemeProvider";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
+import { Settings } from "../providers/Settings";
 
 interface CrudeAssistiveChipProps {
   label: string;
@@ -28,8 +28,8 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
   icon,
   elevated,
 }) => {
-  const scheme = useContext(ThemeContext);
-  const styles = createStyles(scheme);
+  const { scheme, settings } = useContext(ThemeContext);
+  const styles = createStyles(scheme, settings);
 
   state = !state ? "enabled" : state;
 
@@ -125,7 +125,7 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
   return render();
 };
 
-const createStyles = (scheme: SchemeAdapter) =>
+const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     chip: {
       backgroundColor: scheme.surfaceHex,
@@ -177,41 +177,8 @@ const createStyles = (scheme: SchemeAdapter) =>
     textStateDisabled: {
       opacity: 0.38,
     },
-    // https://ethercreative.github.io/react-native-shadow-generator/
-    boxShadowElevation1: {
-      ...Platform.select({
-        ios: {
-          shadowColor: scheme.shadowHex,
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.18,
-          shadowRadius: 1,
-        },
-        android: {
-          elevation: 1,
-          shadowColor: scheme.shadowHex,
-        },
-      }),
-    },
-    boxShadowElevation2: {
-      ...Platform.select({
-        ios: {
-          shadowColor: scheme.shadowHex,
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 1.41,
-        },
-        android: {
-          elevation: 2,
-          shadowColor: scheme.shadowHex,
-        },
-      }),
-    },
+    boxShadowElevation1: settings.boxShadowElevation1,
+    boxShadowElevation2: settings.boxShadowElevation2,
     icon: {
       marginRight: 8,
     },

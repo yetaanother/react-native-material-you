@@ -2,7 +2,6 @@ import React, { FunctionComponent, useContext } from "react";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
 import {
   ImageStyle,
-  Platform,
   StyleSheet,
   Text,
   TextStyle,
@@ -12,6 +11,7 @@ import {
 import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
+import { Settings } from "../providers/Settings";
 
 interface CrudeInputChipProps {
   label: string;
@@ -32,8 +32,8 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
   onClosePress,
   avatar,
 }) => {
-  const scheme = useContext(ThemeContext);
-  const styles = createStyles(scheme);
+  const { scheme, settings } = useContext(ThemeContext);
+  const styles = createStyles(scheme, settings);
 
   state = !state ? "enabled" : state;
 
@@ -149,7 +149,7 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
   return render();
 };
 
-const createStyles = (scheme: SchemeAdapter) =>
+const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     chip: {
       backgroundColor: scheme.surfaceHex,
@@ -215,24 +215,7 @@ const createStyles = (scheme: SchemeAdapter) =>
     textSelected: {
       color: scheme.onSecondaryContainerHex,
     },
-    // https://ethercreative.github.io/react-native-shadow-generator/
-    boxShadowElevation3: {
-      ...Platform.select({
-        ios: {
-          shadowColor: scheme.shadowHex,
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.22,
-          shadowRadius: 2.22,
-        },
-        android: {
-          elevation: 3,
-          shadowColor: scheme.shadowHex,
-        },
-      }),
-    },
+    boxShadowElevation3: settings.boxShadowElevation3,
     trailingIcon: {
       marginLeft: 8,
     },

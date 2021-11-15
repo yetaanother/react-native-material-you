@@ -12,7 +12,7 @@ export const Avatar: FunctionComponent<AvatarProps> = ({
   imageSrc,
   initials,
 }) => {
-  const scheme = useContext(ThemeContext);
+  const { scheme } = useContext(ThemeContext);
   const styles = createStyles(scheme);
 
   initials = !initials ? "A" : initials;

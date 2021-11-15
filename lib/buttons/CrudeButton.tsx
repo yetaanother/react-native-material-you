@@ -3,7 +3,6 @@ import {
   GestureResponderEvent,
   ImageStyle,
   NativeSyntheticEvent,
-  Platform,
   Pressable as NativePressable,
   StyleSheet,
   TargetedEvent,
@@ -17,6 +16,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { rgbaWithOpacity } from "../utils/colorUtils";
+import { Settings } from "../providers/Settings";
 
 interface CrudeButtonProps {
   type?: ButtonType;
@@ -43,8 +43,8 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   onFocus,
   onBlur,
 }: CrudeButtonProps) => {
-  const scheme = useContext(ThemeContext);
-  const styles = createStyles(scheme);
+  const { scheme, settings } = useContext(ThemeContext);
+  const styles = createStyles(scheme, settings);
 
   state = !state ? "enabled" : state;
   type = !type ? "filled" : type;
@@ -310,7 +310,7 @@ const defaultStatePressedOrFocusedOpacity = 0.12;
 const defaultStateDisabledOpacity = 0.12;
 const defaultContentStateDisabledOpacity = 0.38;
 
-const createStyles = (scheme: SchemeAdapter) =>
+const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     button: {
       borderRadius: defaultBorderRadius,
@@ -436,41 +436,8 @@ const createStyles = (scheme: SchemeAdapter) =>
     textTypeTonal: {
       color: scheme.onSecondaryContainerHex,
     },
-    // https://ethercreative.github.io/react-native-shadow-generator/
-    boxShadowElevation1: {
-      ...Platform.select({
-        ios: {
-          shadowColor: scheme.shadowHex,
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.18,
-          shadowRadius: 1,
-        },
-        android: {
-          elevation: 1,
-          shadowColor: scheme.shadowHex,
-        },
-      }),
-    },
-    boxShadowElevation2: {
-      ...Platform.select({
-        ios: {
-          shadowColor: scheme.shadowHex,
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 1.41,
-        },
-        android: {
-          elevation: 2,
-          shadowColor: scheme.shadowHex,
-        },
-      }),
-    },
+    boxShadowElevation1: settings.boxShadowElevation1,
+    boxShadowElevation2: settings.boxShadowElevation2,
     icon: {
       marginRight: 8,
     },
