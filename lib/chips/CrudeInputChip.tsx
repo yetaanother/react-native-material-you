@@ -13,22 +13,24 @@ import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 
-interface ChipProps {
+interface CrudeInputChipProps {
   label: string;
   selected?: boolean;
   state?: InputChipState;
   containerStyle?: ViewStyle | TextStyle | ImageStyle;
-  leadingIcon?: any;
-  trailingIcon?: any;
+  closeable?: boolean;
+  onClosePress?: () => void;
+  avatar?: boolean;
 }
 
-export const CrudeInputChip: FunctionComponent<ChipProps> = ({
+export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
   label,
   selected,
   state,
   containerStyle,
-  leadingIcon,
-  trailingIcon,
+  closeable,
+  onClosePress,
+  avatar,
 }) => {
   const scheme = useContext(ThemeContext);
   const styles = createStyles(scheme);
@@ -90,14 +92,14 @@ export const CrudeInputChip: FunctionComponent<ChipProps> = ({
       }
     }
 
-    if (trailingIcon && leadingIcon) {
+    if (closeable && avatar) {
       stateStyles = {
         ...stateStyles,
         ...styles.innerWithTrailingAndLeadingIcon,
       };
-    } else if (trailingIcon) {
+    } else if (closeable) {
       stateStyles = { ...stateStyles, ...styles.innerWithTrailingIcon };
-    } else if (leadingIcon) {
+    } else if (avatar) {
       stateStyles = { ...stateStyles, ...styles.innerWithLeadingIcon };
     }
     return stateStyles;
@@ -106,21 +108,26 @@ export const CrudeInputChip: FunctionComponent<ChipProps> = ({
   const renderContent = () => {
     return (
       <>
-        {leadingIcon && (
+        {avatar && (
           <View
             style={selected ? styles.leadingIconSelected : styles.leadingIcon}
           >
             <Ionicons
-              name={leadingIcon}
+              name={selected ? "checkmark-sharp" : "person-sharp"}
               size={18}
               color={scheme.onPrimaryHex}
             />
           </View>
         )}
         <Text style={getTextStyles()}>{label}</Text>
-        {trailingIcon && (
+        {closeable && (
           <View style={styles.trailingIcon}>
-            <Ionicons name={trailingIcon} size={18} color={getIconColor()} />
+            <Ionicons
+              name={"close"}
+              size={18}
+              color={getIconColor()}
+              onPress={onClosePress}
+            />
           </View>
         )}
       </>
