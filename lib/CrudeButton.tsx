@@ -48,7 +48,6 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
 
   state = !state ? "enabled" : state;
   type = !type ? "filled" : type;
-  containerStyle = !containerStyle ? {} : containerStyle;
 
   const render = () => {
     if (type === "elevated" && getGradientColors().length > 1) {
@@ -108,12 +107,14 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   };
 
   const getContainerStyles = () => {
-    let containerStyles: ViewStyle | TextStyle | ImageStyle = { ...styles.button };
+    let containerStyles: ViewStyle | TextStyle | ImageStyle = {
+      ...styles.button,
+    };
     if (type === "filled") {
       if (state === "disabled") {
         containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
       } else if (state === "hovered") {
-        containerStyles = { ...containerStyles, ...styles.boxShadow };
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       }
     } else if (type === "outlined") {
       containerStyles = { ...containerStyles, ...styles.buttonTypeOutlined };
@@ -150,19 +151,22 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       if (state == "disabled") {
         containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
       } else if (state === "hovered") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowDouble };
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation2 };
       } else {
-        containerStyles = { ...containerStyles, ...styles.boxShadow };
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       }
     } else if (type === "tonal") {
       containerStyles = { ...containerStyles, ...styles.buttonTypeTonal };
       if (state === "disabled") {
         containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
       } else if (state === "hovered") {
-        containerStyles = { ...containerStyles, ...styles.boxShadow };
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       }
     }
-    return { ...containerStyles, ...containerStyle };
+    if (containerStyle) {
+      return { ...containerStyles, ...containerStyle };
+    }
+    return containerStyles;
   };
 
   const getStateStyles = () => {
@@ -331,11 +335,17 @@ const createStyles = (scheme: SchemeAdapter) =>
       borderColor: scheme.primaryHex,
     },
     buttonTypeOutlinedStateDisabled: {
-      borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, defaultStateDisabledOpacity),
+      borderColor: rgbaWithOpacity(
+        scheme.onSurfaceRGB,
+        defaultStateDisabledOpacity
+      ),
     },
     // todo move as inner style
     buttonTypeTextStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, defaultStateHoveredOpacity),
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        defaultStateHoveredOpacity
+      ),
     },
     // todo move as inner style
     buttonTypeTextStateFocusedOrPressed: {
@@ -375,7 +385,10 @@ const createStyles = (scheme: SchemeAdapter) =>
       ),
     },
     innerTypeOutlinedOrElevatedStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, defaultStateHoveredOpacity),
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        defaultStateHoveredOpacity
+      ),
     },
     innerTypeOutlinedOrElevatedStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
@@ -426,7 +439,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       color: scheme.onSecondaryContainerHex,
     },
     // https://ethercreative.github.io/react-native-shadow-generator/
-    boxShadow: {
+    boxShadowElevation1: {
       ...Platform.select({
         ios: {
           shadowColor: scheme.shadowHex,
@@ -434,28 +447,28 @@ const createStyles = (scheme: SchemeAdapter) =>
             width: 0,
             height: 1,
           },
-          shadowOpacity: 0.3,
-          shadowRadius: 2,
+          shadowOpacity: 0.18,
+          shadowRadius: 1,
         },
         android: {
-          elevation: 3,
+          elevation: 1,
           shadowColor: scheme.shadowHex,
         },
       }),
     },
-    boxShadowDouble: {
+    boxShadowElevation2: {
       ...Platform.select({
         ios: {
           shadowColor: scheme.shadowHex,
           shadowOffset: {
             width: 0,
-            height: 3,
+            height: 1,
           },
-          shadowOpacity: 0.3,
-          shadowRadius: 5,
+          shadowOpacity: 0.2,
+          shadowRadius: 1.41,
         },
         android: {
-          elevation: 5,
+          elevation: 2,
           shadowColor: scheme.shadowHex,
         },
       }),

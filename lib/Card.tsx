@@ -76,7 +76,7 @@ export const Card: FunctionComponent<CardProps> = ({
       cardStyles = {
         ...cardStyles,
         ...styles.cardTypeElevated,
-        ...styles.boxShadow,
+        ...styles.boxShadowElevation2,
       };
     } else if (type === "outlined") {
       cardStyles = { ...cardStyles, ...styles.cardTypeOutlined };
@@ -285,7 +285,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       marginHorizontal: 8,
     },
     // https://ethercreative.github.io/react-native-shadow-generator/
-    boxShadow: {
+    boxShadowElevation2: {
       ...Platform.select({
         ios: {
           shadowColor: scheme.shadowHex,
@@ -293,11 +293,11 @@ const createStyles = (scheme: SchemeAdapter) =>
             width: 0,
             height: 1,
           },
-          shadowOpacity: 0.3,
-          shadowRadius: 2,
+          shadowOpacity: 0.2,
+          shadowRadius: 1.41,
         },
         android: {
-          elevation: 3,
+          elevation: 2,
           shadowColor: scheme.shadowHex,
         },
       }),
