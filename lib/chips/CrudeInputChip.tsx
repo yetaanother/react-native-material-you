@@ -134,6 +134,7 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
     );
   };
 
+  // Usually icon color follows text color but here it is not
   const getIconColor = () => {
     return selected ? scheme.onSecondaryContainerHex : scheme.onSurfaceHex;
   };

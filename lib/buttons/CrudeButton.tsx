@@ -219,6 +219,8 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   };
 
   const renderContent = () => {
+    let textStyles = getTextStyles();
+    const iconColor = textStyles.color;
     //https://icons.expo.fyi/
     return (
       <>
@@ -226,38 +228,13 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
           <Ionicons
             name={icon}
             size={18}
-            color={getIconColor()}
+            color={iconColor}
             style={getIconStyles()}
           />
         )}
-        <Text style={getTextStyles()}>{title}</Text>
+        <Text style={textStyles}>{title}</Text>
       </>
     );
-  };
-
-  const getIconColor = () => {
-    if (type === "filled") {
-      if (state === "disabled") {
-        return scheme.onSurfaceHex;
-      } else {
-        return scheme.onPrimaryHex;
-      }
-    } else if (type === "outlined" || type === "text" || type === "elevated") {
-      if (state === "disabled") {
-        return scheme.onSurfaceHex;
-      } else {
-        return scheme.primaryHex;
-      }
-    } else if (type === "tonal") {
-      if (state === "disabled") {
-        return scheme.onSurfaceHex;
-      } else {
-        return scheme.onSecondaryContainerHex;
-      }
-    }
-
-    // should not happen
-    return "#FFFFFF";
   };
 
   const getTextStyles = () => {
