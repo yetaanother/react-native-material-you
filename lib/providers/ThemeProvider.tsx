@@ -1,6 +1,6 @@
 import React, { createContext, FunctionComponent, ReactElement } from "react";
-import { Scheme } from "./material-color-utilities/scheme/scheme";
-import { intFromHex } from "./material-color-utilities/utils/color_utils";
+import { Scheme } from "../material-color-utilities/scheme/scheme";
+import { intFromHex } from "../material-color-utilities/utils/color_utils";
 import { SchemeAdapter } from "./SchemeAdapter";
 
 const coreLightScheme = SchemeAdapter.from(Scheme.light(intFromHex("#6650a4")));

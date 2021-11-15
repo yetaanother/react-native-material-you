@@ -1,6 +1,6 @@
-import { hexFromInt } from "./material-color-utilities/utils/color_utils";
-import { Scheme } from "./material-color-utilities/scheme/scheme";
-import { rgbArrayFromArgb } from "./utils";
+import { hexFromInt } from "../material-color-utilities/utils/color_utils";
+import { Scheme } from "../material-color-utilities/scheme/scheme";
+import { rgbArrayFromArgb } from "../utils/colorUtils";
 
 export class SchemeAdapter {
   get primaryHex(): string {

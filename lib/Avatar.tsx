@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useContext } from "react";
-import { SchemeAdapter } from "./SchemeAdapter";
+import { SchemeAdapter } from "./providers/SchemeAdapter";
 import { ImageSourcePropType, StyleSheet, Text } from "react-native";
-import { ThemeContext } from "./ThemeProvider";
+import { ThemeContext } from "./providers/ThemeProvider";
 
 interface AvatarProps {
   imageSrc?: ImageSourcePropType;

@@ -7,11 +7,11 @@ import {
   Text,
   View,
 } from "react-native";
-import { ThemeContext } from "./ThemeProvider";
-import { SchemeAdapter } from "./SchemeAdapter";
+import { ThemeContext } from "../providers/ThemeProvider";
+import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { Ionicons } from "@expo/vector-icons";
-import { Button } from "./Button";
-import { Avatar } from "./Avatar";
+import { Button } from "../buttons/Button";
+import { Avatar } from "../Avatar";
 
 interface CardProps {
   type?: CardType;

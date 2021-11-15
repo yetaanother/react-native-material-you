@@ -1,11 +1,11 @@
-import { Scheme } from "./material-color-utilities/scheme/scheme";
+import { Scheme } from "../material-color-utilities/scheme/scheme";
 import {
   blueFromInt,
   greenFromInt,
   hexFromInt,
   intFromHex,
   redFromInt,
-} from "./material-color-utilities/utils/color_utils";
+} from "../material-color-utilities/utils/color_utils";
 
 // RUN USING `npx ts-node themePrinterUtil.ts`
 

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useContext } from "react";
-import { SchemeAdapter } from "./SchemeAdapter";
+import { SchemeAdapter } from "../providers/SchemeAdapter";
 import {
   ImageStyle,
   Platform,
@@ -9,24 +9,22 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { ThemeContext } from "./ThemeProvider";
-import { rgbaWithOpacity } from "./utils";
+import { ThemeContext } from "../providers/ThemeProvider";
+import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 
 interface ChipProps {
   label: string;
   selected?: boolean;
-  type?: ChipType;
   state?: ChipState;
   containerStyle?: ViewStyle | TextStyle | ImageStyle;
   leadingIcon?: any;
   trailingIcon?: any;
 }
 
-export const CrudeChip: FunctionComponent<ChipProps> = ({
+export const CrudeInputChip: FunctionComponent<ChipProps> = ({
   label,
   selected,
-  type,
   state,
   containerStyle,
   leadingIcon,
@@ -35,7 +33,6 @@ export const CrudeChip: FunctionComponent<ChipProps> = ({
   const scheme = useContext(ThemeContext);
   const styles = createStyles(scheme);
 
-  type = !type ? "input" : "assistive";
   state = !state ? "enabled" : state;
 
   const render = () => {

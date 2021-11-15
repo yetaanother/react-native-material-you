@@ -12,7 +12,7 @@ import {
   Button,
   Card,
   CrudeButton,
-  CrudeChip,
+  CrudeInputChip,
   HorizontalCard,
   ThemeProvider,
 } from "@yetaanother/react-native-material-you";
@@ -791,18 +791,18 @@ export default function App() {
       <View style={parentStyle}>
         <Text style={textStyle}>Input unslected chips</Text>
         <View style={childStyle}>
-          <CrudeChip label={"Enabled"} containerStyle={{ margin: 4 }} />
-          <CrudeChip
+          <CrudeInputChip label={"Enabled"} containerStyle={{ margin: 4 }} />
+          <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Dragged"}
             state={"dragged"}
             containerStyle={{ margin: 4 }}
@@ -810,24 +810,24 @@ export default function App() {
         </View>
         <Text style={textStyle}>Input selected chips</Text>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
             selected={true}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
             selected={true}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Dragged"}
             state={"dragged"}
             containerStyle={{ margin: 4 }}
@@ -836,18 +836,18 @@ export default function App() {
         </View>
         <Text style={textStyle}>Input unslected chips with trailing icon</Text>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             trailingIcon={"close"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
             trailingIcon={"close"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -855,7 +855,7 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Dragged"}
             state={"dragged"}
             containerStyle={{ margin: 4 }}
@@ -864,20 +864,20 @@ export default function App() {
         </View>
         <Text style={textStyle}>Input selected chips with trailing icon</Text>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
             trailingIcon={"close"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
             selected={true}
             trailingIcon={"close"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -886,7 +886,7 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Dragged"}
             state={"dragged"}
             containerStyle={{ margin: 4 }}
@@ -896,18 +896,18 @@ export default function App() {
         </View>
         <Text style={textStyle}>Input unslected chips with leading icon</Text>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             leadingIcon={"person-sharp"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
             leadingIcon={"person-sharp"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -915,7 +915,7 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Dragged"}
             state={"dragged"}
             containerStyle={{ margin: 4 }}
@@ -924,20 +924,20 @@ export default function App() {
         </View>
         <Text style={textStyle}>Input selected chips with leading icon</Text>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
             leadingIcon={"checkmark-sharp"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
             selected={true}
             leadingIcon={"checkmark-sharp"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -946,7 +946,7 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Dragged"}
             state={"dragged"}
             containerStyle={{ margin: 4 }}
@@ -956,20 +956,20 @@ export default function App() {
         </View>
         <Text style={textStyle}>Input unslected chips with both icons</Text>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             leadingIcon={"person-sharp"}
             trailingIcon={"close"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
             leadingIcon={"person-sharp"}
             trailingIcon={"close"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -978,7 +978,7 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Dragged"}
             state={"dragged"}
             containerStyle={{ margin: 4 }}
@@ -988,14 +988,14 @@ export default function App() {
         </View>
         <Text style={textStyle}>Input selected chips with both icons</Text>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
             leadingIcon={"checkmark-sharp"}
             trailingIcon={"close"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Hovered"}
             state={"hovered"}
             containerStyle={{ margin: 4 }}
@@ -1003,7 +1003,7 @@ export default function App() {
             leadingIcon={"checkmark-sharp"}
             trailingIcon={"close"}
           />
-          <CrudeChip
+          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -1013,7 +1013,7 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeChip
+          <CrudeInputChip
             label={"Dragged"}
             state={"dragged"}
             containerStyle={{ margin: 4 }}

@@ -14,9 +14,9 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { ThemeContext } from "./ThemeProvider";
-import { SchemeAdapter } from "./SchemeAdapter";
-import { rgbaWithOpacity } from "./utils";
+import { ThemeContext } from "../providers/ThemeProvider";
+import { SchemeAdapter } from "../providers/SchemeAdapter";
+import { rgbaWithOpacity } from "../utils/colorUtils";
 
 interface CrudeButtonProps {
   type?: ButtonType;

@@ -2,7 +2,7 @@ import {
   blueFromInt,
   greenFromInt,
   redFromInt,
-} from "./material-color-utilities/utils/color_utils";
+} from "../material-color-utilities/utils/color_utils";
 
 export const rgbArrayFromArgb = (argb: number): number[] => {
   return [redFromInt(argb), greenFromInt(argb), blueFromInt(argb)];

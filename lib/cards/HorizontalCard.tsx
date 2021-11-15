@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useContext } from "react";
-import { SchemeAdapter } from "./SchemeAdapter";
+import { SchemeAdapter } from "../providers/SchemeAdapter";
 import {
   Image,
   ImageSourcePropType,
@@ -8,8 +8,8 @@ import {
   Text,
   View,
 } from "react-native";
-import { ThemeContext } from "./ThemeProvider";
-import { Avatar } from "./Avatar";
+import { ThemeContext } from "../providers/ThemeProvider";
+import { Avatar } from "../Avatar";
 
 interface HorizontalCardProps {
   type?: CardType;
