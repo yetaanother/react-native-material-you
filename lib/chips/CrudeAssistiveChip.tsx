@@ -6,6 +6,8 @@ import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Settings } from "../providers/Settings";
 
+// NOTE: Assistive chips don't have a selected version
+//todo check, trailing icon is implemented here: https://m3.material.io/components/chips/specs
 interface CrudeAssistiveChipProps {
   label: string;
   state?: AssistiveChipState;
@@ -34,6 +36,7 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
     );
   };
 
+  //todo check, disabled state is implemented here: https://m3.material.io/components/chips/specs
   const getContainerStyles = () => {
     let containerStyles: ViewStyle = { ...styles.chip };
     if (!elevated) {
@@ -47,6 +50,9 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
       delete containerStyles["borderColor"];
       delete containerStyles["borderWidth"];
       delete containerStyles["borderStyle"];
+      // todo check, hovered is elevation 2 here: https://m3.material.io/components/chips/specs
+      //todo check, pressed is elevation 1 here: https://m3.material.io/components/chips/specs
+      //todo check, dragged is elevation 4 here: https://m3.material.io/components/chips/specs
       if (state === "enabled" || state === "hovered" || state === "focused") {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       } else if (state === "pressed" || state === "dragged") {
