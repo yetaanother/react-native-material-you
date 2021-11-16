@@ -153,6 +153,7 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
             <Ionicons
               name={"caret-down-sharp"}
               size={18}
+              //todo check,icon color is surface variant here: https://m3.material.io/components/chips/specs
               color={state === "enabled" ? scheme.onSurfaceHex : iconColor}
             />
           </View>
@@ -214,6 +215,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderStyle: "solid",
       borderRadius: 8,
     },
+    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     chipStateFocused: {
       borderColor: scheme.onSurfaceHex,
     },
@@ -238,12 +240,15 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderRadius: 8,
       justifyContent: "center",
     },
+    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     innerStateHovered: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.08),
     },
+    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     innerStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
     },
+    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     innerStateDragged: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.16),
     },
@@ -281,6 +286,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       letterSpacing: 0.1,
       color: scheme.onSurfaceVariantHex,
     },
+    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     textStateHoveredOrFocussedOrPressedOrDragged: {
       color: scheme.onSurfaceHex,
     },
