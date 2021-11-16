@@ -320,6 +320,9 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingVertical: 10,
       paddingHorizontal: 24,
       borderRadius: defaultBorderRadius,
+      // Added this because even though after adding borderRadius the backgroundColor was overflowing
+      // https://stackoverflow.com/questions/35030758/react-native-border-radius-with-background-color
+      overflow: "hidden",
     },
     innerStateHovered: {
       backgroundColor: rgbaWithOpacity(
