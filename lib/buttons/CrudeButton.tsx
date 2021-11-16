@@ -10,7 +10,6 @@ import {
   ViewStyle,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { rgbaWithOpacity } from "../utils/colorUtils";
@@ -48,26 +47,6 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   type = !type ? "filled" : type;
 
   const render = () => {
-    if (type === "elevated" && getGradientColors().length > 1) {
-      return (
-        <NativePressable
-          style={getContainerStyles()}
-          onPress={onPress}
-          onPressIn={onPressIn}
-          onPressOut={onPressOut}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          disabled={state === "disabled"}
-        >
-          <LinearGradient
-            style={styles.linearGradient}
-            colors={getGradientColors()}
-          >
-            <View style={getStateStyles()}>{renderContent()}</View>
-          </LinearGradient>
-        </NativePressable>
-      );
-    }
     return (
       <NativePressable
         style={getContainerStyles()}
@@ -78,30 +57,11 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
         onBlur={onBlur}
         disabled={state === "disabled"}
       >
-        <View style={getStateStyles()}>{renderContent()}</View>
+        <View style={getElevatedBackgroundLayer2Styles()}>
+          <View style={getStateStyles()}>{renderContent()}</View>
+        </View>
       </NativePressable>
     );
-  };
-
-  const getGradientColors = () => {
-    if (type === "elevated") {
-      if (state === "hovered") {
-        return [
-          rgbaWithOpacity(scheme.primaryRGB, 0.08),
-          rgbaWithOpacity(scheme.primaryRGB, 0.08),
-        ];
-      } else if (
-        state === "enabled" ||
-        state == "pressed" ||
-        state === "focused"
-      ) {
-        return [
-          rgbaWithOpacity(scheme.primaryRGB, 0.05),
-          rgbaWithOpacity(scheme.primaryRGB, 0.05),
-        ];
-      }
-    }
-    return [];
   };
 
   const getContainerStyles = () => {
@@ -154,6 +114,29 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       return { ...containerStyles, ...containerStyle };
     }
     return containerStyles;
+  };
+
+  // NOTE: It is not part of the spec but used in the Figma design kit
+  const getElevatedBackgroundLayer2Styles = () => {
+    let layer2Styles = styles.buttonTypeElevatedBackgroundColorLayer2;
+    if (type === "elevated") {
+      if (state === "hovered") {
+        layer2Styles = {
+          ...layer2Styles,
+          ...styles.buttonTypeElevatedStateHoveredBackgroundColorLayer2,
+        };
+      } else if (
+        state === "enabled" ||
+        state == "pressed" ||
+        state === "focused"
+      ) {
+        layer2Styles = {
+          ...layer2Styles,
+          ...styles.buttonTypeElevatedStateEnabledOrPressedOrFocusedBackgroundColorLayer2,
+        };
+      }
+    }
+    return layer2Styles;
   };
 
   const getStateStyles = () => {
@@ -305,6 +288,16 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     buttonTypeElevated: {
       backgroundColor: scheme.surfaceHex,
+    },
+    buttonTypeElevatedBackgroundColorLayer2: {
+      overflow: "hidden",
+      borderRadius: defaultBorderRadius,
+    },
+    buttonTypeElevatedStateHoveredBackgroundColorLayer2: {
+      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
+    },
+    buttonTypeElevatedStateEnabledOrPressedOrFocusedBackgroundColorLayer2: {
+      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.05),
     },
     buttonTypeTonal: {
       backgroundColor: scheme.secondaryContainerHex,
