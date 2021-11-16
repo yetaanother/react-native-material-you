@@ -6,6 +6,11 @@ import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Settings } from "../providers/Settings";
 
+// NOTE: Input chips don't have an elevated version
+// NOTE: In the specs it is mentioned that we an also use an icon instead of avatar. If it is the case then paddingLeft
+// will change to 8 instead of 4. But right now I am not implementing it.
+// NOTE: Guidelines for 'selected' version are not given in specs
+//todo check, disabled state is implemented here: https://m3.material.io/components/chips/specs
 interface CrudeInputChipProps {
   label: string;
   selected?: boolean;
@@ -46,6 +51,7 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
       if (state === "focused") {
         containerStyles = { ...containerStyles, ...styles.chipStateFocused };
       } else if (state === "dragged") {
+        //todo check, elevation 4 is used here: https://m3.material.io/components/chips/specs
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation3 };
       }
     } else {
@@ -55,6 +61,7 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
       delete containerStyles["borderStyle"];
 
       if (state === "dragged") {
+        //todo check, elevation 4 is used here: https://m3.material.io/components/chips/specs
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation3 };
       }
     }
@@ -127,8 +134,9 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
     );
   };
 
-  // Usually icon color follows text color but here it is not
+  //todo check, icon color is surface variant here:https://m3.material.io/components/chips/specs
   const getIconColor = () => {
+    // Usually icon color follows text color but here it is not
     return selected ? scheme.onSecondaryContainerHex : scheme.onSurfaceHex;
   };
 
