@@ -6,6 +6,7 @@ import { Settings } from "../providers/Settings";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 
+// NOTE: Guidelines for 'selected' version are not given in specs
 interface CrudeSuggestiveChipProps {
   label: string;
   selected?: boolean;
@@ -46,11 +47,13 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
               ...styles.chipStateFocused,
             };
           } else if (state === "pressed") {
+            // todo check, no mention of elevation here: https://m3.material.io/components/chips/specs
             containerStyles = {
               ...containerStyles,
               ...styles.boxShadowElevation2,
             };
           } else if (state === "dragged") {
+            // todo check, no mention of elevation here: https://m3.material.io/components/chips/specs
             containerStyles = {
               ...containerStyles,
               ...styles.boxShadowElevation3,
@@ -91,6 +94,9 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
     };
 
     const getElevatedContainerStyles = (containerStyles: ViewStyle) => {
+      //todo check, pressed is elevation 1 here: https://m3.material.io/components/chips/specs
+      // todo check, hovered is elevation 2 here: https://m3.material.io/components/chips/specs
+      //todo check, dragged is elevation 4 here: https://m3.material.io/components/chips/specs
       if (state === "enabled" || state === "hovered" || state === "focused") {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       } else if (state === "pressed") {
@@ -197,6 +203,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderStyle: "solid",
       borderRadius: 8,
     },
+    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     chipStateFocused: {
       borderColor: scheme.onSurfaceHex,
     },

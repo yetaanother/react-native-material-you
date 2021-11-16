@@ -46,6 +46,7 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
         } else if (state === "focused") {
           containerStyles = { ...containerStyles, ...styles.chipStateFocused };
         } else if (state === "dragged") {
+          // todo check, no mention of elevation here: https://m3.material.io/components/chips/specs
           containerStyles = {
             ...containerStyles,
             ...styles.boxShadowElevation4,
