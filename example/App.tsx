@@ -17,6 +17,7 @@ import {
   ThemeProvider,
   CrudeAssistiveChip,
   CrudeFilterChip,
+  CrudeSuggestiveChip,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
@@ -1533,6 +1534,166 @@ export default function App() {
             containerStyle={{ margin: 4 }}
             elevated={true}
             dropdown={true}
+          />
+        </View>
+        <Text style={textStyle}>Unselected unelevated suggestive chips</Text>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+          />
+          <CrudeSuggestiveChip
+            label={"Hovered"}
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+          />
+          <CrudeSuggestiveChip
+            label={"Focused"}
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+          />
+          <CrudeSuggestiveChip
+            label={"Dragged"}
+            containerStyle={{ margin: 4 }}
+            state={"dragged"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Pressed"}
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+          />
+          <CrudeSuggestiveChip
+            label={"Disabled"}
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+          />
+        </View>
+        <Text style={textStyle}>Unselected elevated suggestive chips</Text>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Hovered"}
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            elevated={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Focused"}
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            elevated={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Dragged"}
+            containerStyle={{ margin: 4 }}
+            state={"dragged"}
+            elevated={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Pressed"}
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            elevated={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Disabled"}
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            elevated={true}
+          />
+        </View>
+        <Text style={textStyle}>Selected unelevated suggestive chips</Text>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Hovered"}
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            selected={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Focused"}
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            selected={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Dragged"}
+            containerStyle={{ margin: 4 }}
+            state={"dragged"}
+            selected={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Pressed"}
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            selected={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Disabled"}
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            selected={true}
+          />
+        </View>
+        <Text style={textStyle}>Selected elevated suggestive chips</Text>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            selected={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Hovered"}
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            elevated={true}
+            selected={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Focused"}
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            elevated={true}
+            selected={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Dragged"}
+            containerStyle={{ margin: 4 }}
+            state={"dragged"}
+            elevated={true}
+            selected={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Pressed"}
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            elevated={true}
+            selected={true}
+          />
+          <CrudeSuggestiveChip
+            label={"Disabled"}
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            elevated={true}
+            selected={true}
           />
         </View>
       </View>

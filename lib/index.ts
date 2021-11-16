@@ -15,6 +15,7 @@ import { Avatar } from "./Avatar";
 import { HorizontalCard } from "./cards/HorizontalCard";
 import { CrudeAssistiveChip } from "./chips/CrudeAssistiveChip";
 import { CrudeFilterChip } from "./chips/CrudeFilterChip";
+import { CrudeSuggestiveChip } from "./chips/CrudeSuggestiveChip";
 
 export {
   CrudeButton,
@@ -34,4 +35,5 @@ export {
   Avatar,
   CrudeAssistiveChip,
   CrudeFilterChip,
+  CrudeSuggestiveChip,
 };

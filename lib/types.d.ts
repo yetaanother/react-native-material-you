@@ -16,3 +16,10 @@ type FilterChipState =
   | "dragged"
   | "pressed"
   | "disabled";
+type SuggestiveChipState =
+  | "enabled"
+  | "hovered"
+  | "focused"
+  | "dragged"
+  | "pressed"
+  | "disabled";
