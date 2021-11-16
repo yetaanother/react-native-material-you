@@ -1,12 +1,5 @@
 import React, { FunctionComponent, useContext } from "react";
-import {
-  ImageStyle,
-  StyleSheet,
-  Text,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native";
+import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
@@ -18,7 +11,7 @@ interface CrudeFilterChipProps {
   selected?: boolean;
   elevated?: boolean;
   state?: FilterChipState;
-  containerStyle?: ViewStyle | TextStyle | ImageStyle;
+  containerStyle?: ViewStyle;
   dropdown?: boolean;
 }
 

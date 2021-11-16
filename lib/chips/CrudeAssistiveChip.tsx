@@ -1,12 +1,5 @@
 import React, { FunctionComponent, useContext } from "react";
-import {
-  ImageStyle,
-  StyleSheet,
-  Text,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native";
+import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { rgbaWithOpacity } from "../utils/colorUtils";
@@ -16,7 +9,7 @@ import { Settings } from "../providers/Settings";
 interface CrudeAssistiveChipProps {
   label: string;
   state?: AssistiveChipState;
-  containerStyle?: ViewStyle | TextStyle | ImageStyle;
+  containerStyle?: ViewStyle;
   icon?: any;
   elevated?: boolean;
 }

@@ -2,10 +2,8 @@ import React, { FunctionComponent, useState } from "react";
 import { CrudeButton } from "./CrudeButton";
 import {
   GestureResponderEvent,
-  ImageStyle,
   NativeSyntheticEvent,
   TargetedEvent,
-  TextStyle,
   ViewStyle,
 } from "react-native";
 
@@ -14,7 +12,7 @@ interface ButtonProps {
   type: ButtonType;
   onPress?: (event: GestureResponderEvent) => void;
   icon?: any;
-  containerStyle?: ViewStyle | TextStyle | ImageStyle;
+  containerStyle?: ViewStyle;
   disabled?: boolean;
   onPressIn?: (event: GestureResponderEvent) => void;
   onPressOut?: (event: GestureResponderEvent) => void;

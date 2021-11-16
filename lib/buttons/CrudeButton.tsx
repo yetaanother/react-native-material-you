@@ -1,13 +1,11 @@
 import React, { FunctionComponent, useContext } from "react";
 import {
   GestureResponderEvent,
-  ImageStyle,
   NativeSyntheticEvent,
   Pressable as NativePressable,
   StyleSheet,
   TargetedEvent,
   Text,
-  TextStyle,
   View,
   ViewStyle,
 } from "react-native";
@@ -24,7 +22,7 @@ interface CrudeButtonProps {
   state?: ButtonState;
   title: string;
   onPress: (event: GestureResponderEvent) => void;
-  containerStyle?: ViewStyle | TextStyle | ImageStyle;
+  containerStyle?: ViewStyle;
   onPressIn?: (event: GestureResponderEvent) => void;
   onPressOut?: (event: GestureResponderEvent) => void;
   onFocus?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
@@ -107,7 +105,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   };
 
   const getContainerStyles = () => {
-    let containerStyles: ViewStyle | TextStyle | ImageStyle = {
+    let containerStyles: ViewStyle = {
       ...styles.button,
     };
     if (type === "filled") {
@@ -132,17 +130,6 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       }
     } else if (type === "text") {
       delete containerStyles["backgroundColor"];
-      if (state === "hovered") {
-        containerStyles = {
-          ...containerStyles,
-          ...styles.buttonTypeTextStateHovered,
-        };
-      } else if (state === "focused" || state === "pressed") {
-        containerStyles = {
-          ...containerStyles,
-          ...styles.buttonTypeTextStateFocusedOrPressed,
-        };
-      }
     } else if (type === "elevated") {
       containerStyles = {
         ...containerStyles,
@@ -180,20 +167,21 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
           ...styles.innerStateFocusedOrPressed,
         };
       }
-    } else if (type === "outlined" || type === "elevated") {
+    } else if (type === "outlined" || type === "elevated" || type === "text") {
+      if (type === "text") {
+        stateStyles = { ...stateStyles, ...styles.innerTypeText };
+      }
       if (state === "hovered") {
         stateStyles = {
           ...stateStyles,
-          ...styles.innerTypeOutlinedOrElevatedStateHovered,
+          ...styles.innerTypeOutlinedOrElevatedOrTextStateHovered,
         };
       } else if (state === "focused" || state === "pressed") {
         stateStyles = {
           ...stateStyles,
-          ...styles.innerTypeOutlinedOrElevatedStateFocusedOrPressed,
+          ...styles.innerTypeOutlinedOrElevatedOrTextStateFocusedOrPressed,
         };
       }
-    } else if (type === "text") {
-      stateStyles = { ...stateStyles, ...styles.innerTypeText };
     } else if (type === "tonal") {
       if (state === "hovered") {
         stateStyles = {
@@ -315,20 +303,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
         defaultStateDisabledOpacity
       ),
     },
-    // todo move as inner style
-    buttonTypeTextStateHovered: {
-      backgroundColor: rgbaWithOpacity(
-        scheme.primaryRGB,
-        defaultStateHoveredOpacity
-      ),
-    },
-    // todo move as inner style
-    buttonTypeTextStateFocusedOrPressed: {
-      backgroundColor: rgbaWithOpacity(
-        scheme.primaryRGB,
-        defaultStatePressedOrFocusedOpacity
-      ),
-    },
     buttonTypeElevated: {
       backgroundColor: scheme.surfaceHex,
     },
@@ -359,13 +333,13 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
         defaultStatePressedOrFocusedOpacity
       ),
     },
-    innerTypeOutlinedOrElevatedStateHovered: {
+    innerTypeOutlinedOrElevatedOrTextStateHovered: {
       backgroundColor: rgbaWithOpacity(
         scheme.primaryRGB,
         defaultStateHoveredOpacity
       ),
     },
-    innerTypeOutlinedOrElevatedStateFocusedOrPressed: {
+    innerTypeOutlinedOrElevatedOrTextStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.primaryRGB,
         defaultStatePressedOrFocusedOpacity

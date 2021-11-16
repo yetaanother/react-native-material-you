@@ -1,13 +1,6 @@
 import React, { FunctionComponent, useContext } from "react";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
-import {
-  ImageStyle,
-  StyleSheet,
-  Text,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native";
+import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
@@ -17,7 +10,7 @@ interface CrudeInputChipProps {
   label: string;
   selected?: boolean;
   state?: InputChipState;
-  containerStyle?: ViewStyle | TextStyle | ImageStyle;
+  containerStyle?: ViewStyle;
   closeable?: boolean;
   onClosePress?: () => void;
   avatar?: boolean;
