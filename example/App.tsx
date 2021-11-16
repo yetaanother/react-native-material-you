@@ -1696,6 +1696,198 @@ export default function App() {
             selected={true}
           />
         </View>
+        <Text style={textStyle}>
+          Unselected unelevated suggestive chips with icon
+        </Text>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Hovered"}
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Focused"}
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            icon={"car"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Dragged"}
+            containerStyle={{ margin: 4 }}
+            state={"dragged"}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Pressed"}
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Disabled"}
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            icon={"car"}
+          />
+        </View>
+        <Text style={textStyle}>
+          Unselected elevated suggestive chips with icons
+        </Text>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Hovered"}
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            elevated={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Focused"}
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            elevated={true}
+            icon={"car"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Dragged"}
+            containerStyle={{ margin: 4 }}
+            state={"dragged"}
+            elevated={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Pressed"}
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            elevated={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Disabled"}
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            elevated={true}
+            icon={"car"}
+          />
+        </View>
+        <Text style={textStyle}>
+          Selected unelevated suggestive chips with icons
+        </Text>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Hovered"}
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            selected={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Focused"}
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            selected={true}
+            icon={"car"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Dragged"}
+            containerStyle={{ margin: 4 }}
+            state={"dragged"}
+            selected={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Pressed"}
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            selected={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Disabled"}
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            selected={true}
+            icon={"car"}
+          />
+        </View>
+        <Text style={textStyle}>
+          Selected elevated suggestive chips with icons
+        </Text>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            selected={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Hovered"}
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            elevated={true}
+            selected={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Focused"}
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            elevated={true}
+            selected={true}
+            icon={"car"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeSuggestiveChip
+            label={"Dragged"}
+            containerStyle={{ margin: 4 }}
+            state={"dragged"}
+            elevated={true}
+            selected={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Pressed"}
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            elevated={true}
+            selected={true}
+            icon={"car"}
+          />
+          <CrudeSuggestiveChip
+            label={"Disabled"}
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            elevated={true}
+            selected={true}
+            icon={"car"}
+          />
+        </View>
       </View>
     );
   };
