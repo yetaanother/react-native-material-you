@@ -90,8 +90,9 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   };
 
   const getElevatedContainerStyles = (containerStyles: ViewStyle) => {
-    containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-    if (state === "hovered") {
+    if (state === "enabled" || state === "focused" || state === "pressed") {
+      containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
+    } else if (state === "hovered") {
       containerStyles = {
         ...containerStyles,
         ...styles.boxShadowElevation2,
@@ -131,6 +132,13 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
         };
       } else if (state === "dragged") {
         stateStyles = { ...stateStyles, ...styles.innerSelectedStateDragged };
+      }
+    }
+    if (dropdown) {
+      if (selected) {
+        stateStyles = { ...stateStyles, ...styles.innerSelectedDropDown };
+      } else {
+        stateStyles = { ...stateStyles, ...styles.innerDropDown };
       }
     }
     return stateStyles;
