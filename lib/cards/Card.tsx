@@ -71,8 +71,10 @@ export const Card: FunctionComponent<CardProps> = ({
     );
   };
 
+  // todo check, states are used here: https://m3.material.io/components/cards/specs
   const getCardStyles = () => {
     let cardStyles: ViewStyle = { ...styles.card };
+    // todo check. elevation 1 is used here:https://m3.material.io/components/cards/specs
     if (type === "elevated") {
       cardStyles = {
         ...cardStyles,
