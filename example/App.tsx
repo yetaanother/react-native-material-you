@@ -1932,6 +1932,16 @@ export default function App() {
             heroIcon={"logo-android"}
           />
         </View>
+        <View style={childStyle}>
+          <Dialog
+            title={"Basic dialog title"}
+            content={
+              "A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made. "
+            }
+            primaryAction={true}
+            secondaryAction={true}
+          />
+        </View>
       </View>
     );
   };

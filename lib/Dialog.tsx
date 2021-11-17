@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useContext } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TextStyle, View } from "react-native";
 import { ThemeContext } from "./providers/ThemeProvider";
 import { SchemeAdapter } from "./providers/SchemeAdapter";
 import { rgbaWithOpacity } from "./utils/colorUtils";
@@ -29,7 +29,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
   onPrimaryPress,
   onSecondaryPress,
 }) => {
-  const { scheme} = useContext(ThemeContext);
+  const { scheme } = useContext(ThemeContext);
   const styles = createStyles(scheme);
 
   const render = () => {
@@ -61,8 +61,13 @@ export const Dialog: FunctionComponent<DialogProps> = ({
     if (heroIcon) {
       return styles.title;
     }
-
-    return { ...styles.title, marginTop: 0, marginBottom: 16 };
+    let titleStyles: TextStyle = {
+      ...styles.title,
+      marginTop: 0,
+      marginBottom: 16,
+    };
+    delete titleStyles["textAlign"];
+    return titleStyles;
   };
 
   const getContentStyles = () => {
