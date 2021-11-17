@@ -19,6 +19,7 @@ import {
   CrudeFilterChip,
   CrudeSuggestiveChip,
   Dialog,
+  Avatar,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
@@ -1941,6 +1942,23 @@ export default function App() {
             primaryAction={true}
             secondaryAction={true}
           />
+        </View>
+        <View style={childStyle}>
+          <Dialog
+            title={"Basic dialog title"}
+            content={
+              "A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made. "
+            }
+            primaryAction={true}
+            secondaryAction={true}
+          >
+            <View>
+              <Avatar initials={"PC"} />
+              <Text style={{ color: "#49454f" }}>
+                I am a children component
+              </Text>
+            </View>
+          </Dialog>
         </View>
       </View>
     );

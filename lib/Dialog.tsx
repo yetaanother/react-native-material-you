@@ -28,6 +28,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
   secondaryActionLabel,
   onPrimaryPress,
   onSecondaryPress,
+  children,
 }) => {
   const { scheme } = useContext(ThemeContext);
   const styles = createStyles(scheme);
@@ -37,6 +38,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
       <View style={styles.dialog}>
         <View style={styles.dialogBackgroundLayer2}>
           {renderContent()}
+          <View style={styles.children}>{children}</View>
           {renderActions()}
         </View>
       </View>
@@ -71,7 +73,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
   };
 
   const getContentStyles = () => {
-    if (!primaryAction && !secondaryAction) {
+    if ((!primaryAction && !secondaryAction) || children) {
       return { ...styles.content, paddingBottom: 24 };
     }
     return styles.content;
@@ -165,8 +167,10 @@ const createStyles = (scheme: SchemeAdapter) =>
       alignItems: "center",
       justifyContent: "flex-end",
       width: "100%",
+      padding: 24,
+    },
+    children: {
       paddingHorizontal: 24,
-      paddingBottom: 24,
-      paddingTop: 8,
+      width: "100%",
     },
   });
