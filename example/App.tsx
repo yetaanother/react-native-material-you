@@ -2232,7 +2232,7 @@ export default function App() {
             label={"Disabled"}
           />
         </View>
-        <Text style={textStyle}>Primary large FAB</Text>
+        <Text style={textStyle}>Primary FAB with label</Text>
         <View style={childStyle}>
           <CrudeFAB
             containerStyle={{ margin: 4 }}
@@ -2266,7 +2266,7 @@ export default function App() {
             label={"Disabled"}
           />
         </View>
-        <Text style={textStyle}>Secondary large FAB</Text>
+        <Text style={textStyle}>Secondary FAB with label</Text>
         <View style={childStyle}>
           <CrudeFAB
             containerStyle={{ margin: 4 }}
@@ -2300,7 +2300,7 @@ export default function App() {
             label={"Disabled"}
           />
         </View>
-        <Text style={textStyle}>Tertiary large FAB</Text>
+        <Text style={textStyle}>Tertiary FAB with label</Text>
         <View style={childStyle}>
           <CrudeFAB
             containerStyle={{ margin: 4 }}
