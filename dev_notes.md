@@ -11,3 +11,4 @@
 
 ## CSS
 * `justify-content` vs `align-items` - https://stackoverflow.com/questions/35049262/difference-between-justify-content-vs-align-items?lq=1
+* Multiple colors in background using linear-gradients - https://stackoverflow.com/questions/28592053/multiple-background-color-layers

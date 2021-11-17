@@ -6,4 +6,6 @@ type ExampleScreen =
   | "light cards"
   | "dark cards"
   | "light chips"
-  | "dark chips";
+  | "dark chips"
+  | "light dialogs"
+  | "dark dialogs";

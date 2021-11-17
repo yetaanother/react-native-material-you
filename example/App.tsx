@@ -18,11 +18,12 @@ import {
   CrudeAssistiveChip,
   CrudeFilterChip,
   CrudeSuggestiveChip,
+  Dialog,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
 export default function App() {
-  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light chips");
+  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light dialogs");
 
   const render = () => {
     return (
@@ -107,6 +108,22 @@ export default function App() {
               }}
             />
           </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Dialog (L)"}
+              onPress={() => {
+                setCurrScreen("light dialogs");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Dialog (D)"}
+              onPress={() => {
+                setCurrScreen("dark dialogs");
+              }}
+            />
+          </View>
         </View>
       </>
     );
@@ -154,8 +171,17 @@ export default function App() {
             {getChips(styles.parentDark, styles.childDark, styles.textDark)}
           </ThemeProvider>
         );
+      case "light dialogs":
+        return <>{getDialogs(styles.parent, styles.child)}</>;
+      case "dark dialogs":
+        return (
+          <ThemeProvider hexColor={"#6750A4"} dark={true}>
+            {getDialogs(styles.parentDark, styles.childDark)}
+          </ThemeProvider>
+        );
     }
   };
+
   const getButtonStates = (
     parentStyle: ViewStyle,
     childStyle: ViewStyle,
@@ -1886,6 +1912,24 @@ export default function App() {
             elevated={true}
             selected={true}
             icon={"car"}
+          />
+        </View>
+      </View>
+    );
+  };
+
+  const getDialogs = (parentStyle: ViewStyle, childStyle: ViewStyle) => {
+    return (
+      <View style={parentStyle}>
+        <View style={childStyle}>
+          <Dialog
+            title={"Dialog with hero icon"}
+            content={
+              "A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made. "
+            }
+            primaryAction={true}
+            secondaryAction={true}
+            heroIcon={"logo-android"}
           />
         </View>
       </View>
