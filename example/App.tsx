@@ -2349,6 +2349,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 8,
+    marginBottom: 400,
   },
   parentDark: {
     flex: 1,
@@ -2357,6 +2358,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 8,
+    marginBottom: 400,
   },
   child: {
     flex: 1,
