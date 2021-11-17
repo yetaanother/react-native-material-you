@@ -48,7 +48,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
       <View style={getContentStyles()}>
         {heroIcon && (
           <View style={styles.icon}>
-            <Ionicons name={heroIcon} size={24} />
+            <Ionicons name={heroIcon} size={24} color={scheme.secondaryHex} />
           </View>
         )}
         <Text style={getTitleStyles()}>{title}</Text>
