@@ -252,12 +252,14 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   return render();
 };
 
+// todo check, radius is 20 here: https://m3.material.io/components/buttons/specs
 const defaultBorderRadius = 100;
 const defaultStateHoveredOpacity = 0.08;
 const defaultStatePressedOrFocusedOpacity = 0.12;
 const defaultStateDisabledOpacity = 0.12;
 const defaultContentStateDisabledOpacity = 0.38;
 
+// todo check, min width for text button is 48 here: https://m3.material.io/components/buttons/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     button: {
