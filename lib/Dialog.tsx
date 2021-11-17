@@ -109,9 +109,11 @@ export const Dialog: FunctionComponent<DialogProps> = ({
   return render();
 };
 
+// todo check, minimum width is 280 and max width is 560 here: https://m3.material.io/components/dialogs/specs#bbf1acde-f8d2-4ae1-9d51-343e96c4ac20
 const createStyles = (scheme: SchemeAdapter) =>
   StyleSheet.create({
     dialog: {
+      // todo remove this it is default
       padding: 0,
       borderRadius: 28,
       backgroundColor: scheme.surfaceHex,
