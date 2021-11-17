@@ -37,6 +37,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
   const render = () => {
     return (
       <View style={styles.dialog}>
+        {/*// NOTE: Another layer of color is not part of the spec but used in the Figma design kit*/}
         <View style={styles.dialogLayer2}>
           {renderContent()}
           <View style={styles.children}>{children}</View>

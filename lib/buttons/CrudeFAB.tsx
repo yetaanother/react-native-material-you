@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useContext } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { StyleSheet, View, ViewStyle, Text } from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { Settings } from "../providers/Settings";
@@ -29,6 +29,11 @@ export const CrudeFAB: FunctionComponent<FABProps> = ({
   type = !type ? "surface" : type;
   state = !state ? "enabled" : state;
 
+  if (large && label) {
+    console.warn("We can't have a large FAB with a label");
+    large = false;
+  }
+
   const render = () => {
     return (
       <View style={getContainerStyles()}>
@@ -40,6 +45,7 @@ export const CrudeFAB: FunctionComponent<FABProps> = ({
               color={getIconColor()}
               style={state === "disabled" ? { opacity: 0.38 } : {}}
             />
+            {label && <Text style={getTextStyles()}>{label}</Text>}
           </View>
         </View>
       </View>
@@ -100,6 +106,8 @@ export const CrudeFAB: FunctionComponent<FABProps> = ({
     let stateStyles = { ...styles.inner };
     if (large) {
       stateStyles = { ...stateStyles, ...styles.innerLarge };
+    } else if (label) {
+      stateStyles = { ...stateStyles, ...styles.innerWithText };
     }
 
     if (type === "surface") {
@@ -162,6 +170,20 @@ export const CrudeFAB: FunctionComponent<FABProps> = ({
     }
   };
 
+  const getTextStyles = () => {
+    let textStyles = { ...styles.text };
+    if (state === "disabled") {
+      textStyles = { ...textStyles, ...styles.textDisabled };
+    } else if (type === "primary") {
+      textStyles = { ...textStyles, ...styles.textPrimary };
+    } else if (type === "secondary") {
+      textStyles = { ...textStyles, ...styles.textSecondary };
+    } else if (type === "tertiary") {
+      textStyles = { ...textStyles, ...styles.textTertiary };
+    }
+    return textStyles;
+  };
+
   return render();
 };
 
@@ -202,8 +224,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.12),
     },
     inner: {
-      height: "100%",
-      width: "100%",
       alignItems: "center",
       justifyContent: "center",
       overflow: "hidden",
@@ -213,6 +233,35 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     innerLarge: {
       borderRadius: 28,
       padding: 30,
+    },
+    innerWithText: {
+      paddingVertical: 16,
+      paddingLeft: 16,
+      paddingRight: 20,
+      display: "flex",
+      flexDirection: "row",
+    },
+    text: {
+      fontFamily: "Roboto",
+      fontStyle: "normal",
+      fontSize: 14,
+      lineHeight: 20,
+      fontWeight: "500",
+      letterSpacing: 0.1,
+      color: scheme.primaryHex,
+      marginLeft: 12,
+    },
+    textPrimary: {
+      color: scheme.onPrimaryContainerHex,
+    },
+    textSecondary: {
+      color: scheme.onSecondaryContainerHex,
+    },
+    textTertiary: {
+      color: scheme.onTertiaryContainerHex,
+    },
+    textDisabled: {
+      color: rgbaWithOpacity(scheme.onSurfaceRGB, 0.38),
     },
     innerStateHovered: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),

@@ -2206,6 +2206,134 @@ export default function App() {
             large={true}
           />
         </View>
+        <Text style={textStyle}>Surface FAB with label</Text>
+        <View style={childStyle}>
+          <CrudeFAB containerStyle={{ margin: 4 }} label={"Enabled"} />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            label={"Hovered"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            label={"Focused"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            label={"Pressed"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            label={"Disabled"}
+          />
+        </View>
+        <Text style={textStyle}>Primary large FAB</Text>
+        <View style={childStyle}>
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            type={"primary"}
+            label={"Enabled"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            type={"primary"}
+            label={"Hovered"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            type={"primary"}
+            label={"Focused"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            type={"primary"}
+            label={"Pressed"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            type={"primary"}
+            label={"Disabled"}
+          />
+        </View>
+        <Text style={textStyle}>Secondary large FAB</Text>
+        <View style={childStyle}>
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            type={"secondary"}
+            label={"Enabled"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            type={"secondary"}
+            label={"Hovered"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            type={"secondary"}
+            label={"Focused"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            type={"secondary"}
+            label={"Pressed"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            type={"secondary"}
+            label={"Disabled"}
+          />
+        </View>
+        <Text style={textStyle}>Tertiary large FAB</Text>
+        <View style={childStyle}>
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            type={"tertiary"}
+            label={"Enabled"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"hovered"}
+            type={"tertiary"}
+            label={"Hovered"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"focused"}
+            type={"tertiary"}
+            label={"Focused"}
+          />
+        </View>
+        <View style={childStyle}>
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"pressed"}
+            type={"tertiary"}
+            label={"Pressed"}
+          />
+          <CrudeFAB
+            containerStyle={{ margin: 4 }}
+            state={"disabled"}
+            type={"tertiary"}
+            label={"Disabled"}
+          />
+        </View>
       </View>
     );
   };
