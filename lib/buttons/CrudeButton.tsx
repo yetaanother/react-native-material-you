@@ -259,6 +259,7 @@ const defaultStatePressedOrFocusedOpacity = 0.12;
 const defaultStateDisabledOpacity = 0.12;
 const defaultContentStateDisabledOpacity = 0.38;
 
+// Note: Container height will be 40 = paddingTop(10) + paddingBottom(10) + lineHeight(20)
 // todo check, min width for text button is 48 here: https://m3.material.io/components/buttons/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
