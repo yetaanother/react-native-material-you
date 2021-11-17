@@ -8,4 +8,6 @@ type ExampleScreen =
   | "light chips"
   | "dark chips"
   | "light dialogs"
-  | "dark dialogs";
+  | "dark dialogs"
+  | "light fabs"
+  | "dark fabs";

@@ -3,7 +3,7 @@ import { CrudeButton } from "./buttons/CrudeButton";
 import { Card } from "./cards/Card";
 import { CrudeInputChip } from "./chips/CrudeInputChip";
 import { Dialog } from "./Dialog";
-import { FAB } from "./buttons/FAB";
+import { CrudeFAB } from "./buttons/CrudeFAB";
 import { Menu } from "./Menu";
 import { NavBar } from "./nav/NavBar";
 import { NavDrawer } from "./nav/NavDrawer";
@@ -22,7 +22,7 @@ export {
   CrudeInputChip,
   Card,
   Dialog,
-  FAB,
+  CrudeFAB,
   Menu,
   NavRail,
   NavDrawer,
