@@ -20,9 +20,9 @@ from [Google Material 3 Design Kit](https://www.figma.com/community/file/1035203
 #### Buttons
 
 <p float="left">
-  <img src="screenshots/button-1.png" width="200" height="400" style="margin:4px"/>
-  <img src="screenshots/button-2.png" width="200" height="400" style="margin:4px"/>
-  <img src="screenshots/button-3.png" width="200" height="400" style="margin:4px"/>
+  <img src="screenshots/button-1.png" width="300" height="600" style="margin:4px"/>
+  <img src="screenshots/button-2.png" width="300" height="600" style="margin:4px"/>
+  <img src="screenshots/button-3.png" width="300" height="600" style="margin:4px"/>
 </p>
 
 #### Cards
