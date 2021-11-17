@@ -33,10 +33,11 @@ export const Dialog: FunctionComponent<DialogProps> = ({
   const { scheme } = useContext(ThemeContext);
   const styles = createStyles(scheme);
 
+  // todo check, elevation 3 is used here: https://m3.material.io/components/dialogs/specs
   const render = () => {
     return (
       <View style={styles.dialog}>
-        <View style={styles.dialogBackgroundLayer2}>
+        <View style={styles.dialogLayer2}>
           {renderContent()}
           <View style={styles.children}>{children}</View>
           {renderActions()}
@@ -115,7 +116,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       backgroundColor: scheme.surfaceHex,
       width: 312,
     },
-    dialogBackgroundLayer2: {
+    dialogLayer2: {
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-end",

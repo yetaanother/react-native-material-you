@@ -57,7 +57,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
         onBlur={onBlur}
         disabled={state === "disabled"}
       >
-        <View style={getElevatedBackgroundLayer2Styles()}>
+        <View style={getElevatedLayer2Styles()}>
           <View style={getStateStyles()}>{renderContent()}</View>
         </View>
       </NativePressable>
@@ -117,13 +117,13 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   };
 
   // NOTE: It is not part of the spec but used in the Figma design kit
-  const getElevatedBackgroundLayer2Styles = () => {
-    let layer2Styles = styles.buttonTypeElevatedBackgroundColorLayer2;
+  const getElevatedLayer2Styles = () => {
+    let layer2Styles = styles.buttonTypeElevatedLayer2;
     if (type === "elevated") {
       if (state === "hovered") {
         layer2Styles = {
           ...layer2Styles,
-          ...styles.buttonTypeElevatedStateHoveredBackgroundColorLayer2,
+          ...styles.buttonTypeElevatedStateHoveredLayer2,
         };
       } else if (
         state === "enabled" ||
@@ -132,7 +132,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       ) {
         layer2Styles = {
           ...layer2Styles,
-          ...styles.buttonTypeElevatedStateEnabledOrPressedOrFocusedBackgroundColorLayer2,
+          ...styles.buttonTypeElevatedStateEnabledOrPressedOrFocusedLayer2,
         };
       }
     }
@@ -289,14 +289,14 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     buttonTypeElevated: {
       backgroundColor: scheme.surfaceHex,
     },
-    buttonTypeElevatedBackgroundColorLayer2: {
+    buttonTypeElevatedLayer2: {
       overflow: "hidden",
       borderRadius: defaultBorderRadius,
     },
-    buttonTypeElevatedStateHoveredBackgroundColorLayer2: {
+    buttonTypeElevatedStateHoveredLayer2: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
     },
-    buttonTypeElevatedStateEnabledOrPressedOrFocusedBackgroundColorLayer2: {
+    buttonTypeElevatedStateEnabledOrPressedOrFocusedLayer2: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.05),
     },
     buttonTypeTonal: {
