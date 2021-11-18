@@ -118,7 +118,7 @@ export const Select: FunctionComponent<SelectProps> = ({
     if (icon) {
       layer2Styles = { ...layer2Styles, ...styles.contentLayer2WithIcon };
     }
-    if (mandatory && somethingIsSelected()) {
+    if (mandatory && somethingIsSelected() && type != "outlined") {
       layer2Styles = {
         ...layer2Styles,
         ...styles.contentLayer2WithFloatingLabel,
@@ -149,7 +149,9 @@ export const Select: FunctionComponent<SelectProps> = ({
     return (
       <View style={styles.labelContainer}>
         {mandatory && somethingIsSelected() && (
-          <Text style={styles.floatingLabel}>{providedLabel}</Text>
+          <View style={getFloatingLabelContainerStyles()}>
+            <Text style={styles.floatingLabel}>{providedLabel}</Text>
+          </View>
         )}
         <Text
           style={getLabelTextStyles()}
@@ -164,6 +166,17 @@ export const Select: FunctionComponent<SelectProps> = ({
         </Text>
       </View>
     );
+  };
+
+  const getFloatingLabelContainerStyles = () => {
+    if (type === "outlined") {
+      if (!icon) {
+        return styles.floatingLabelOutlined;
+      } else {
+        return styles.floatingLabelOutlinedWithIcon;
+      }
+    }
+    return {};
   };
 
   const getLabelTextStyles = () => {
@@ -355,6 +368,24 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       letterSpacing: 0.5,
       color: scheme.primaryHex,
     },
+    floatingLabelOutlined: {
+      backgroundColor: scheme.onPrimaryHex,
+      // 16(padding top) + 8 (1/2 line height of floating label)
+      top: -24,
+      position: "absolute",
+      // todo fix: this is not working, after it left should be adjusted to -4
+      // paddingHorizontal: 4,
+    },
+    floatingLabelOutlinedWithIcon: {
+      backgroundColor: scheme.onPrimaryHex,
+      // 16(padding top) + 8 (1/2 line height of floating label)
+      top: -24,
+      // 12(padding left) + 24(icon size) + 16(icon padding right) = 52. We want to be left: 16 from the main container
+      left: -36,
+      position: "absolute",
+      // todo fix: this is not working, after it left should be adjusted to -4
+      // paddingHorizontal: 4,
+    },
     text: {
       fontFamily: "Roboto",
       fontStyle: "normal",
@@ -376,6 +407,10 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     icon: {
       marginRight: 16,
+      textAlign: "center",
+      textAlignVertical: "center",
+      width: 24,
+      height: 24,
     },
     stroke: {
       borderBottomWidth: 1,

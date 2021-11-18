@@ -2432,14 +2432,14 @@ export default function App() {
         <Text style={textStyle}>Outlined mandatory select</Text>
         <Select
           choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
-          containerStyle={{ margin: 4 }}
+          containerStyle={{ margin: 8 }}
           mandatory={true}
           type={"outlined"}
         />
         <Select
           choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
           icon={"person-sharp"}
-          containerStyle={{ margin: 4 }}
+          containerStyle={{ margin: 8 }}
           mandatory={true}
           type={"outlined"}
         />
@@ -2460,7 +2460,7 @@ export default function App() {
         <Text style={textStyle}>Outlined mandatory searchable select</Text>
         <Select
           choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
-          containerStyle={{ margin: 4 }}
+          containerStyle={{ margin: 8 }}
           searchable={true}
           mandatory={true}
           type={"outlined"}
@@ -2468,7 +2468,7 @@ export default function App() {
         <Select
           choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
           icon={"person-sharp"}
-          containerStyle={{ margin: 4 }}
+          containerStyle={{ margin: 8 }}
           searchable={true}
           mandatory={true}
           type={"outlined"}

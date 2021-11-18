@@ -1,3 +1,4 @@
+
 ## Setting up example app
 * NPM link doesn't work with react-native - https://github.com/facebook/metro/issues/68
 * Workaround for NPM linking - https://www.npmjs.com/package/wml
@@ -12,3 +13,4 @@
 ## CSS
 * `justify-content` vs `align-items` - https://stackoverflow.com/questions/35049262/difference-between-justify-content-vs-align-items?lq=1
 * Multiple colors in background using linear-gradients - https://stackoverflow.com/questions/28592053/multiple-background-color-layers
+* https://stackoverflow.com/questions/27539262/whats-the-difference-between-align-content-and-align-items
