@@ -41,13 +41,17 @@ export const Select: FunctionComponent<SelectProps> = ({
     "caret-down-sharp" | "caret-up-sharp"
   >("caret-down-sharp");
   const [selectable, setSelectable] = useState(false);
-  // We are using index to keep track of the curr label because choices can have duplicates
-  const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
   const providedLabel: string = label ? label : "Select...";
   const [currLabel, setCurrLabel] = useState(providedLabel);
   const [userInputEnabled, setUserInputEnabled] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [searchedChoices, setSearchedChoices] = useState(choices);
+
+  if (new Set(choices).size !== choices.length) {
+    console.warn(
+      "choices contain duplicate values, component will not work properly"
+    );
+  }
 
   const render = () => {
     return (
@@ -199,15 +203,14 @@ export const Select: FunctionComponent<SelectProps> = ({
   };
 
   const somethingIsSelected = () => {
-    return selectedItemIndex != -1;
+    return currLabel !== providedLabel;
   };
 
   const renderChoice = (choice: string, index: number) => {
     return (
       <Pressable
-        style={getChoiceStyles(index)}
+        style={getChoiceStyles(choice)}
         onPress={() => {
-          setSelectedItemIndex(index);
           setCurrLabel(choice);
           turnSelectableOff();
           onSelect && onSelect(choice, index);
@@ -219,8 +222,8 @@ export const Select: FunctionComponent<SelectProps> = ({
     );
   };
 
-  const getChoiceStyles = (index: number) => {
-    if (index !== selectedItemIndex) {
+  const getChoiceStyles = (choice: string) => {
+    if (choice !== currLabel) {
       return styles.choice;
     } else {
       return { ...styles.choice, ...styles.choiceSelected };
