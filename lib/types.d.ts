@@ -25,3 +25,4 @@ type SuggestiveChipState =
   | "disabled";
 type FABType = "surface" | "primary" | "secondary" | "tertiary";
 type FABState = "enabled" | "hovered" | "focused" | "pressed" | "disabled";
+type SelectType = "filled" | "outlined";

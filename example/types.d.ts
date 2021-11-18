@@ -10,4 +10,6 @@ type ExampleScreen =
   | "light dialogs"
   | "dark dialogs"
   | "light fabs"
-  | "dark fabs";
+  | "dark fabs"
+  | "light select"
+  | "dark select";

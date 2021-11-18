@@ -6,7 +6,7 @@ import { Settings } from "../providers/Settings";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 
-interface FABProps {
+interface CrudeFABProps {
   type?: FABType;
   icon?: any;
   large?: boolean;
@@ -15,7 +15,7 @@ interface FABProps {
   state?: FABState;
 }
 
-export const CrudeFAB: FunctionComponent<FABProps> = ({
+export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
   type,
   icon,
   large,

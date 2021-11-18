@@ -4,7 +4,7 @@ import { Card } from "./cards/Card";
 import { CrudeInputChip } from "./chips/CrudeInputChip";
 import { Dialog } from "./Dialog";
 import { CrudeFAB } from "./buttons/CrudeFAB";
-import { Menu } from "./Menu";
+import { Select } from "./Select";
 import { NavBar } from "./nav/NavBar";
 import { NavDrawer } from "./nav/NavDrawer";
 import { NavRail } from "./nav/NavRail";
@@ -23,7 +23,7 @@ export {
   Card,
   Dialog,
   CrudeFAB,
-  Menu,
+  Select,
   NavRail,
   NavDrawer,
   NavBar,

@@ -21,11 +21,12 @@ import {
   Dialog,
   Avatar,
   CrudeFAB,
+  Select,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
 export default function App() {
-  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light fabs");
+  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light select");
 
   const render = () => {
     return (
@@ -144,6 +145,22 @@ export default function App() {
               }}
             />
           </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Select (L)"}
+              onPress={() => {
+                setCurrScreen("light select");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Select (D)"}
+              onPress={() => {
+                setCurrScreen("dark select");
+              }}
+            />
+          </View>
         </View>
       </>
     );
@@ -205,6 +222,14 @@ export default function App() {
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
             {getFabs(styles.parentDark, styles.childDark, styles.textDark)}
+          </ThemeProvider>
+        );
+      case "light select":
+        return <>{getSelects(styles.parent, styles.child, styles.text)}</>;
+      case "dark select":
+        return (
+          <ThemeProvider hexColor={"#6750A4"} dark={true}>
+            {getSelects(styles.parentDark, styles.childDark, styles.textDark)}
           </ThemeProvider>
         );
     }
@@ -2337,6 +2362,20 @@ export default function App() {
       </View>
     );
   };
+  const getSelects = (
+    parentStyle: ViewStyle,
+    childStyle: ViewStyle,
+    textStyle: TextStyle
+  ) => {
+    return (
+      <View style={parentStyle}>
+        <Text style={textStyle}>Filled Select</Text>
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+        />
+      </View>
+    );
+  };
 
   return render();
 }
@@ -2349,7 +2388,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 8,
-    marginBottom: 400,
   },
   parentDark: {
     flex: 1,
@@ -2358,7 +2396,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 8,
-    marginBottom: 400,
   },
   child: {
     flex: 1,
