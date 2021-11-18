@@ -21,6 +21,8 @@ interface SelectProps {
   choices: string[];
   searchable?: boolean;
   containerStyle?: ViewStyle;
+  mandatory?: boolean;
+  onSelect?: (choice: string, index?: number) => void;
 }
 
 export const Select: FunctionComponent<SelectProps> = ({
@@ -30,6 +32,8 @@ export const Select: FunctionComponent<SelectProps> = ({
   choices,
   searchable,
   containerStyle,
+  mandatory,
+  onSelect,
 }) => {
   const { scheme, settings } = useContext(ThemeContext);
   const styles = createStyles(scheme, settings);
@@ -83,9 +87,17 @@ export const Select: FunctionComponent<SelectProps> = ({
   };
 
   const getLayer2Styles = () => {
-    return icon
-      ? { ...styles.selectLayer2, ...styles.selectLayer2WithIcon }
-      : styles.selectLayer2;
+    let layer2Styles = { ...styles.selectLayer2 };
+    if (icon) {
+      layer2Styles = { ...layer2Styles, ...styles.selectLayer2WithIcon };
+    }
+    if (mandatory && somethingIsSelected()) {
+      layer2Styles = {
+        ...layer2Styles,
+        ...styles.selectLayer2WithFloatingLabel,
+      };
+    }
+    return layer2Styles;
   };
 
   const renderLabel = () => {
@@ -104,17 +116,22 @@ export const Select: FunctionComponent<SelectProps> = ({
       );
     }
     return (
-      <Text
-        style={styles.text}
-        onPress={() => {
-          if (searchable) {
-            enableUserInput();
-            turnSelectableOn();
-          }
-        }}
-      >
-        {currLabel}
-      </Text>
+      <View style={styles.labelContainer}>
+        {mandatory && somethingIsSelected() && (
+          <Text style={styles.floatingLabel}>{providedLabel}</Text>
+        )}
+        <Text
+          style={styles.text}
+          onPress={() => {
+            if (searchable) {
+              enableUserInput();
+              turnSelectableOn();
+            }
+          }}
+        >
+          {currLabel}
+        </Text>
+      </View>
     );
   };
 
@@ -162,8 +179,9 @@ export const Select: FunctionComponent<SelectProps> = ({
     return (
       <View style={{ ...styles.choices, ...styles.boxShadowElevation3 }}>
         <ScrollView style={styles.choicesLayer2}>
-          {currChoices.length != 0 &&
-            selectedItemIndex !== -1 &&
+          {!mandatory &&
+            currChoices.length != 0 &&
+            somethingIsSelected() &&
             renderChoice(providedLabel, -1)}
           {currChoices.map((choice, index) => renderChoice(choice, index))}
           {currChoices.length == 0 && searchable && (
@@ -176,6 +194,10 @@ export const Select: FunctionComponent<SelectProps> = ({
     );
   };
 
+  const somethingIsSelected = () => {
+    return selectedItemIndex != -1;
+  };
+
   const renderChoice = (choice: string, index: number) => {
     return (
       <Pressable
@@ -184,6 +206,7 @@ export const Select: FunctionComponent<SelectProps> = ({
           setSelectedItemIndex(index);
           setCurrLabel(choice);
           turnSelectableOff();
+          onSelect && onSelect(choice, index);
         }}
         key={index}
       >
@@ -238,7 +261,25 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       alignItems: "center",
     },
     selectLayer2WithIcon: {
-      padding: 12,
+      paddingLeft: 12,
+    },
+    selectLayer2WithFloatingLabel: {
+      paddingVertical: 12,
+    },
+    labelContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      justifyContent: "center",
+    },
+    floatingLabel: {
+      fontFamily: "Roboto",
+      fontStyle: "normal",
+      fontSize: 12,
+      lineHeight: 16,
+      fontWeight: "500",
+      letterSpacing: 0.5,
+      color: scheme.primaryHex,
     },
     text: {
       fontFamily: "Roboto",

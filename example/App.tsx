@@ -2369,7 +2369,7 @@ export default function App() {
   ) => {
     return (
       <View style={parentStyle}>
-        <Text style={textStyle}>Filled Select</Text>
+        <Text style={textStyle}>Filled select</Text>
         <Select
           choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
           containerStyle={{ margin: 4 }}
@@ -2379,6 +2379,19 @@ export default function App() {
           icon={"person-sharp"}
           containerStyle={{ margin: 4 }}
         />
+        <Text style={textStyle}>Filled mandatory select</Text>
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          containerStyle={{ margin: 4 }}
+          mandatory={true}
+        />
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          icon={"person-sharp"}
+          containerStyle={{ margin: 4 }}
+          mandatory={true}
+        />
+        <Text style={textStyle}>Filled searchable select</Text>
         <Select
           choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
           containerStyle={{ margin: 4 }}
