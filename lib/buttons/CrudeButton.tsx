@@ -116,7 +116,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
     return containerStyles;
   };
 
-  // NOTE: It is not part of the spec but used in the Figma design kit
+  // It is not part of the spec but used in the Figma design kit
   const getElevatedLayer2Styles = () => {
     let layer2Styles = styles.buttonTypeElevatedLayer2;
     if (type === "elevated") {
@@ -259,7 +259,7 @@ const defaultStatePressedOrFocusedOpacity = 0.12;
 const defaultStateDisabledOpacity = 0.12;
 const defaultContentStateDisabledOpacity = 0.38;
 
-// NOTE: Container height will be 40 = paddingTop(10) + paddingBottom(10) + lineHeight(20)
+// Container height will be 40 = paddingTop(10) + paddingBottom(10) + lineHeight(20)
 // todo check, min width for text button is 48 here: https://m3.material.io/components/buttons/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({

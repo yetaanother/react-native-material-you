@@ -6,10 +6,10 @@ import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Settings } from "../providers/Settings";
 
-// NOTE: Input chips don't have an elevated version
-// NOTE: In the specs it is mentioned that we an also use an icon instead of avatar. If it is the case then paddingLeft
+// Input chips don't have an elevated version
+// In the specs it is mentioned that we an also use an icon instead of avatar. If it is the case then paddingLeft
 // will change to 8 instead of 4. But right now I am not implementing it.
-// NOTE: Guidelines for 'selected' version are not given in specs
+// Guidelines for 'selected' version are not given in specs
 //todo check, disabled state is implemented here: https://m3.material.io/components/chips/specs
 interface CrudeInputChipProps {
   label: string;
@@ -151,7 +151,7 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
   return render();
 };
 
-// NOTE: Container height will be 32 = paddingTop(6) + paddingBottom(6) + lineHeight(20)
+// Container height will be 32 = paddingTop(6) + paddingBottom(6) + lineHeight(20)
 // todo check: text is start aligned horizontally here: https://m3.material.io/components/chips/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({

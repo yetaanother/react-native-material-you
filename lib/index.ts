@@ -6,8 +6,6 @@ import { Dialog } from "./Dialog";
 import { CrudeFAB } from "./buttons/CrudeFAB";
 import { Select } from "./Select";
 import { NavBar } from "./nav/NavBar";
-import { NavDrawer } from "./nav/NavDrawer";
-import { NavRail } from "./nav/NavRail";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import { ThemeContext } from "./providers/ThemeProvider";
 import { Button } from "./buttons/Button";
@@ -24,8 +22,6 @@ export {
   Dialog,
   CrudeFAB,
   Select,
-  NavRail,
-  NavDrawer,
   NavBar,
   AppBar,
   ThemeContext,

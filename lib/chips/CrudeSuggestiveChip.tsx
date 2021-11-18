@@ -6,7 +6,7 @@ import { Settings } from "../providers/Settings";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 
-// NOTE: Guidelines for 'selected' version are not given in specs
+// Guidelines for 'selected' version are not given in specs
 interface CrudeSuggestiveChipProps {
   label: string;
   selected?: boolean;
@@ -194,7 +194,7 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
     return render();
   };
 
-// NOTE: Container height will be 32 = paddingTop(6) + paddingBottom(6) + lineHeight(20)
+// Container height will be 32 = paddingTop(6) + paddingBottom(6) + lineHeight(20)
 // todo check: text is start aligned horizontally here: https://m3.material.io/components/chips/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({

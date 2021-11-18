@@ -6,7 +6,7 @@ import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Settings } from "../providers/Settings";
 
-// NOTE: Assistive chips don't have a selected version
+// Assistive chips don't have a selected version
 //todo check, trailing icon is implemented here: https://m3.material.io/components/chips/specs
 interface CrudeAssistiveChipProps {
   label: string;
@@ -124,7 +124,7 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
   return render();
 };
 
-// NOTE: Container height will be 32 = paddingTop(6) + paddingBottom(6) + lineHeight(20)
+// Container height will be 32 = paddingTop(6) + paddingBottom(6) + lineHeight(20)
 // todo check: text is start aligned horizontally here: https://m3.material.io/components/chips/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
