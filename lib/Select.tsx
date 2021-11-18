@@ -63,15 +63,19 @@ export const Select: FunctionComponent<SelectProps> = ({
               />
             )}
             {renderLabel()}
-            <Ionicons
-              name={dropdownIcon}
-              size={14}
-              color={scheme.outlineHex}
-              style={styles.dropdown}
-              onPress={() => {
-                toggleSelectable();
+            {/*  Wrapping inside a pressable to give bigger surface for touch to work*/}
+            <Pressable
+              style={{
+                ...styles.dropdown,
               }}
-            />
+              onPress={() => toggleSelectable()}
+            >
+              <Ionicons
+                name={dropdownIcon}
+                size={14}
+                color={scheme.outlineHex}
+              />
+            </Pressable>
           </View>
           <View style={getStrokeStyles()} />
           {renderChoices()}
@@ -178,7 +182,7 @@ export const Select: FunctionComponent<SelectProps> = ({
     let currChoices = searchable ? searchedChoices : choices;
     return (
       <View style={{ ...styles.choices, ...styles.boxShadowElevation3 }}>
-        <ScrollView style={styles.choicesLayer2}>
+        <ScrollView nestedScrollEnabled={true} style={styles.choicesLayer2}>
           {!mandatory &&
             currChoices.length != 0 &&
             somethingIsSelected() &&
@@ -292,6 +296,10 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     dropdown: {
       marginLeft: "auto",
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      height: "100%",
     },
     icon: {
       marginRight: 16,
