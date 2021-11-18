@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   View,
   ViewStyle,
 } from "react-native";
@@ -36,9 +37,13 @@ export const Select: FunctionComponent<SelectProps> = ({
     "caret-down-sharp" | "caret-up-sharp"
   >("caret-down-sharp");
   const [selectable, setSelectable] = useState(false);
+  // We are using index to keep track of the curr label because choices can have duplicates
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
   const providedLabel: string = label ? label : "Select...";
   const [currLabel, setCurrLabel] = useState(providedLabel);
+  const [userInputEnabled, setUserInputEnabled] = useState(false);
+  const [userInput, setUserInput] = useState("");
+  const [searchedChoices, setSearchedChoices] = useState(choices);
 
   const render = () => {
     return (
@@ -51,12 +56,9 @@ export const Select: FunctionComponent<SelectProps> = ({
                 size={18}
                 color={scheme.outlineHex}
                 style={styles.icon}
-                onPress={() => {
-                  toggleSelectable();
-                }}
               />
             )}
-            <Text style={styles.text}>{currLabel}</Text>
+            {renderLabel()}
             <Ionicons
               name={dropdownIcon}
               size={14}
@@ -86,6 +88,64 @@ export const Select: FunctionComponent<SelectProps> = ({
       : styles.selectLayer2;
   };
 
+  const renderLabel = () => {
+    if (userInputEnabled) {
+      return (
+        <TextInput
+          selectionColor={scheme.primaryHex}
+          value={userInput}
+          onChangeText={(text) => {
+            setUserInput(text);
+            search(text);
+          }}
+          style={styles.text}
+          autoFocus={true}
+        />
+      );
+    }
+    return (
+      <Text
+        style={styles.text}
+        onPress={() => {
+          if (searchable) {
+            enableUserInput();
+            turnSelectableOn();
+          }
+        }}
+      >
+        {currLabel}
+      </Text>
+    );
+  };
+
+  const toggleSelectable = () => {
+    if (selectable) {
+      turnSelectableOff();
+    } else {
+      turnSelectableOn();
+    }
+  };
+
+  const turnSelectableOn = () => {
+    if (selectable) {
+      return;
+    }
+    setDropdownIcon("caret-up-sharp");
+    setSelectable(true);
+  };
+
+  const search = (text: string) => {
+    setSearchedChoices(
+      choices.filter((choice) =>
+        choice.toLowerCase().includes(text.toLowerCase())
+      )
+    );
+  };
+
+  const enableUserInput = () => {
+    setUserInputEnabled(true);
+  };
+
   const getStrokeStyles = () => {
     let strokeStyles = { ...styles.stroke };
     if (selectable) {
@@ -98,11 +158,19 @@ export const Select: FunctionComponent<SelectProps> = ({
     if (!selectable) {
       return <></>;
     }
+    let currChoices = searchable ? searchedChoices : choices;
     return (
       <View style={{ ...styles.choices, ...styles.boxShadowElevation3 }}>
         <ScrollView style={styles.choicesLayer2}>
-          {selectedItemIndex !== -1 && renderChoice(providedLabel, -1)}
-          {choices.map((choice, index) => renderChoice(choice, index))}
+          {currChoices.length != 0 &&
+            selectedItemIndex !== -1 &&
+            renderChoice(providedLabel, -1)}
+          {currChoices.map((choice, index) => renderChoice(choice, index))}
+          {currChoices.length == 0 && searchable && (
+            <View style={styles.choice}>
+              <Text style={styles.text}>No results</Text>
+            </View>
+          )}
         </ScrollView>
       </View>
     );
@@ -115,7 +183,7 @@ export const Select: FunctionComponent<SelectProps> = ({
         onPress={() => {
           setSelectedItemIndex(index);
           setCurrLabel(choice);
-          toggleSelectable();
+          turnSelectableOff();
         }}
         key={index}
       >
@@ -124,22 +192,29 @@ export const Select: FunctionComponent<SelectProps> = ({
     );
   };
 
-  const toggleSelectable = () => {
-    if (selectable) {
-      setDropdownIcon("caret-down-sharp");
-      setSelectable(false);
-    } else {
-      setDropdownIcon("caret-up-sharp");
-      setSelectable(true);
-    }
-  };
-
   const getChoiceStyles = (index: number) => {
     if (index !== selectedItemIndex) {
       return styles.choice;
     } else {
       return { ...styles.choice, ...styles.choiceSelected };
     }
+  };
+
+  const turnSelectableOff = () => {
+    if (!selectable) {
+      return;
+    }
+    setDropdownIcon("caret-down-sharp");
+    setSelectable(false);
+    if (searchable && userInputEnabled) {
+      disableUserInput();
+    }
+  };
+
+  const disableUserInput = () => {
+    setUserInputEnabled(false);
+    setUserInput("");
+    setSearchedChoices(choices);
   };
 
   return render();
