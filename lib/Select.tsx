@@ -1,5 +1,12 @@
 import React, { FunctionComponent, useContext, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from "react-native";
 import { SchemeAdapter } from "./providers/SchemeAdapter";
 import { ThemeContext } from "./providers/ThemeProvider";
 import { rgbaWithOpacity } from "./utils/colorUtils";
@@ -12,6 +19,7 @@ interface SelectProps {
   icon?: any;
   choices: string[];
   searchable?: boolean;
+  containerStyle?: ViewStyle;
 }
 
 export const Select: FunctionComponent<SelectProps> = ({
@@ -20,6 +28,7 @@ export const Select: FunctionComponent<SelectProps> = ({
   icon,
   choices,
   searchable,
+  containerStyle,
 }) => {
   const { scheme, settings } = useContext(ThemeContext);
   const styles = createStyles(scheme, settings);
@@ -34,14 +43,25 @@ export const Select: FunctionComponent<SelectProps> = ({
   const render = () => {
     return (
       <>
-        <View style={styles.select}>
-          <View style={styles.selectLayer2}>
+        <View style={getContainerStyles()}>
+          <View style={getLayer2Styles()}>
+            {icon && (
+              <Ionicons
+                name={icon}
+                size={18}
+                color={scheme.outlineHex}
+                style={styles.icon}
+                onPress={() => {
+                  toggleSelectable();
+                }}
+              />
+            )}
             <Text style={styles.text}>{currLabel}</Text>
             <Ionicons
               name={dropdownIcon}
               size={14}
               color={scheme.outlineHex}
-              style={styles.icon}
+              style={styles.dropdown}
               onPress={() => {
                 toggleSelectable();
               }}
@@ -52,6 +72,18 @@ export const Select: FunctionComponent<SelectProps> = ({
         </View>
       </>
     );
+  };
+
+  const getContainerStyles = () => {
+    return containerStyle
+      ? { ...styles.select, ...containerStyle }
+      : styles.select;
+  };
+
+  const getLayer2Styles = () => {
+    return icon
+      ? { ...styles.selectLayer2, ...styles.selectLayer2WithIcon }
+      : styles.selectLayer2;
   };
 
   const getStrokeStyles = () => {
@@ -85,10 +117,9 @@ export const Select: FunctionComponent<SelectProps> = ({
           setCurrLabel(choice);
           toggleSelectable();
         }}
+        key={index}
       >
-        <Text style={styles.text} key={index}>
-          {choice}
-        </Text>
+        <Text style={styles.text}>{choice}</Text>
       </Pressable>
     );
   };
@@ -124,10 +155,15 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     selectLayer2: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.05),
-      padding: 16,
+      paddingLeft: 16,
+      paddingRight: 12,
+      paddingVertical: 16,
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
+    },
+    selectLayer2WithIcon: {
+      padding: 12,
     },
     text: {
       fontFamily: "Roboto",
@@ -138,8 +174,11 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       letterSpacing: 0.5,
       color: scheme.onSurfaceHex,
     },
-    icon: {
+    dropdown: {
       marginLeft: "auto",
+    },
+    icon: {
+      marginRight: 16,
     },
     stroke: {
       borderBottomWidth: 1,

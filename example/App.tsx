@@ -2372,6 +2372,12 @@ export default function App() {
         <Text style={textStyle}>Filled Select</Text>
         <Select
           choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          containerStyle={{ margin: 4 }}
+        />
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          icon={"person-sharp"}
+          containerStyle={{ margin: 4 }}
         />
       </View>
     );
