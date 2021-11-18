@@ -2403,6 +2403,76 @@ export default function App() {
           containerStyle={{ margin: 4 }}
           searchable={true}
         />
+        <Text style={textStyle}>Filled mandatory searchable select</Text>
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          containerStyle={{ margin: 4 }}
+          searchable={true}
+          mandatory={true}
+        />
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          icon={"person-sharp"}
+          containerStyle={{ margin: 4 }}
+          searchable={true}
+          mandatory={true}
+        />
+        <Text style={textStyle}>Outlined select</Text>
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          containerStyle={{ margin: 4 }}
+          type={"outlined"}
+        />
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          icon={"person-sharp"}
+          containerStyle={{ margin: 4 }}
+          type={"outlined"}
+        />
+        <Text style={textStyle}>Outlined mandatory select</Text>
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          containerStyle={{ margin: 4 }}
+          mandatory={true}
+          type={"outlined"}
+        />
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          icon={"person-sharp"}
+          containerStyle={{ margin: 4 }}
+          mandatory={true}
+          type={"outlined"}
+        />
+        <Text style={textStyle}>Outlined searchable select</Text>
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          containerStyle={{ margin: 4 }}
+          searchable={true}
+          type={"outlined"}
+        />
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          icon={"person-sharp"}
+          containerStyle={{ margin: 4 }}
+          searchable={true}
+          type={"outlined"}
+        />
+        <Text style={textStyle}>Outlined mandatory searchable select</Text>
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          containerStyle={{ margin: 4 }}
+          searchable={true}
+          mandatory={true}
+          type={"outlined"}
+        />
+        <Select
+          choices={["item 1", "item 2", "item 3", "item 4", "item 5", "item 6"]}
+          icon={"person-sharp"}
+          containerStyle={{ margin: 4 }}
+          searchable={true}
+          mandatory={true}
+          type={"outlined"}
+        />
       </View>
     );
   };
