@@ -44,6 +44,7 @@ export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
     if (itemsMap.size === 0) {
       return <></>;
     }
+    //todo check, elevation level 2 is mentioned here: https://m3.material.io/components/navigation-bar/specs
     return (
       <View style={styles.navBar}>
         <View style={styles.navBarLayer2}>{getPressables()}</View>
@@ -102,6 +103,8 @@ export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
   return render();
 };
 
+// todo check, height is 80 mentioned here: https://m3.material.io/components/navigation-bar/specs
+// todo check, top padding is 12 and bottom padding is 16 mentioned here: https://m3.material.io/components/navigation-bar/specs
 const deviceWidth = Dimensions.get("window").width;
 const createStyles = (scheme: SchemeAdapter) =>
   StyleSheet.create({

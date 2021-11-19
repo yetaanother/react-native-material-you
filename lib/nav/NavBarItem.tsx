@@ -16,6 +16,7 @@ export interface NavBarItemProps {
   onSuccessClearBadge?: () => boolean;
 }
 
+// todo check, states are implemented here: https://m3.material.io/components/navigation-bar/specs
 export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
   inactiveIcon,
   label,
@@ -41,7 +42,11 @@ export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
           <View style={styles.iconContainer}>
             <Ionicons
               name={getIconName()}
-              color={scheme.onSurfaceVariantHex}
+              color={
+                active
+                  ? scheme.onSecondaryContainerHex
+                  : scheme.onSurfaceVariantHex
+              }
               size={18}
             />
           </View>
@@ -84,6 +89,7 @@ export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
   return render();
 };
 
+// todo check, padding between activity indicator and label is 4 mentioned here: https://m3.material.io/components/navigation-bar/specs
 const createStyles = (scheme: SchemeAdapter) =>
   StyleSheet.create({
     navBarItem: {
@@ -94,6 +100,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       paddingVertical: 16,
     },
     badge: {
+      // todo check, radius is 3 here: https://m3.material.io/components/navigation-bar/specs
       borderRadius: 100,
       backgroundColor: scheme.errorHex,
       width: 6,
@@ -103,6 +110,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       position: "absolute",
     },
     badgeNumbered: {
+      // todo check, radius is 8 here: https://m3.material.io/components/navigation-bar/specs
       borderRadius: 100,
       backgroundColor: scheme.errorHex,
       width: 16,
@@ -119,6 +127,7 @@ const createStyles = (scheme: SchemeAdapter) =>
     activityIndicator: {
       width: 64,
       height: 32,
+      // todo check, radius is 16 here: https://m3.material.io/components/navigation-bar/specs
       borderRadius: 20,
       backgroundColor: scheme.secondaryContainerHex,
       justifyContent: "center",
@@ -140,6 +149,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       letterSpacing: 0.5,
       color: scheme.onSurfaceVariantHex,
     },
+    // todo check, surface is mentioned here: https://m3.material.io/components/navigation-bar/specs
     labelActive: {
       color: scheme.onSecondaryContainerHex,
     },
@@ -150,6 +160,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       lineHeight: 16,
       fontWeight: "normal",
       letterSpacing: 0.1,
+      // todo check, on error is mentioned here: https://m3.material.io/components/navigation-bar/specs
       color: scheme.onPrimaryHex,
     },
   });

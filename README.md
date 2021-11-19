@@ -10,6 +10,8 @@ from [Google Material 3 Design Kit](https://www.figma.com/community/file/1035203
 * 4 chip types
 * 1 dialog
 * 4 FAB types
+* 2 Select types
+* 1 Navigation bar
 
 ## How to install
 
@@ -83,6 +85,14 @@ from [Google Material 3 Design Kit](https://www.figma.com/community/file/1035203
 ![](screenshots/d-fab-2.PNG)
 ![](screenshots/d-fab-3.PNG)
 ![](screenshots/d-fab-4.PNG)
+
+#### Select
+
+???
+
+#### Navbar
+
+???
 
 ## Show me the code
 
