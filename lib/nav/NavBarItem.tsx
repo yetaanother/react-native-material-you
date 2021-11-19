@@ -4,7 +4,7 @@ import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-interface NavBarItemProps {
+export interface NavBarItemProps {
   inactiveIcon?: any;
   label?: any;
   badge?: boolean;
@@ -12,6 +12,8 @@ interface NavBarItemProps {
   containerStyle?: ViewStyle;
   badgeCount?: number;
   activeIcon?: any;
+  onPress?: () => void;
+  onSuccessClearBadge?: () => boolean;
 }
 
 export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
@@ -89,7 +91,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      padding: 16,
+      paddingVertical: 16,
     },
     badge: {
       borderRadius: 100,
@@ -121,6 +123,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       backgroundColor: scheme.secondaryContainerHex,
       justifyContent: "center",
       alignItems: "center",
+      overflow: "hidden",
     },
     iconContainer: {
       width: 24,

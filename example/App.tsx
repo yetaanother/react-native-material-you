@@ -22,11 +22,13 @@ import {
   Avatar,
   CrudeFAB,
   Select,
+  NavBarItem,
+  NavBar,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
 export default function App() {
-  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light select");
+  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light nav bar");
 
   const render = () => {
     return (
@@ -162,6 +164,42 @@ export default function App() {
             />
           </View>
         </View>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Nav bar (L)"}
+              onPress={() => {
+                setCurrScreen("light nav bar");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Nav bar (D)"}
+              onPress={() => {
+                setCurrScreen("dark nav bar");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"App bar (L)"}
+              onPress={() => {
+                setCurrScreen("light app bar");
+              }}
+            />
+          </View>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"App bar (D)"}
+              onPress={() => {
+                setCurrScreen("dark app bar");
+              }}
+            />
+          </View>
+        </View>
       </>
     );
   };
@@ -179,13 +217,9 @@ export default function App() {
           </ThemeProvider>
         );
       case "light button states":
-        return (
-          <ThemeProvider hexColor={"#6750A4"}>
-            {getButtonStates(styles.parent, styles.child, styles.text)}
-          </ThemeProvider>
-        );
+        return getButtonStates(styles.parent, styles.child, styles.text);
       case "light buttons":
-        return <>{getButtons(styles.parent, styles.child)}</>;
+        return getButtons(styles.parent, styles.child);
       case "dark buttons":
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
@@ -193,7 +227,7 @@ export default function App() {
           </ThemeProvider>
         );
       case "light cards":
-        return <>{getCards(styles.parent, styles.child)}</>;
+        return getCards(styles.parent, styles.child);
       case "dark cards":
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
@@ -201,7 +235,7 @@ export default function App() {
           </ThemeProvider>
         );
       case "light chips":
-        return <>{getChips(styles.parent, styles.child, styles.text)}</>;
+        return getChips(styles.parent, styles.child, styles.text);
       case "dark chips":
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
@@ -209,7 +243,7 @@ export default function App() {
           </ThemeProvider>
         );
       case "light dialogs":
-        return <>{getDialogs(styles.parent, styles.child)}</>;
+        return getDialogs(styles.parent, styles.child);
       case "dark dialogs":
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
@@ -217,7 +251,7 @@ export default function App() {
           </ThemeProvider>
         );
       case "light fabs":
-        return <>{getFabs(styles.parent, styles.child, styles.text)}</>;
+        return getFabs(styles.parent, styles.child, styles.text);
       case "dark fabs":
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
@@ -225,11 +259,27 @@ export default function App() {
           </ThemeProvider>
         );
       case "light select":
-        return <>{getSelects(styles.parent, styles.child, styles.text)}</>;
+        return getSelects(styles.parent, styles.child, styles.text);
       case "dark select":
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
             {getSelects(styles.parentDark, styles.childDark, styles.textDark)}
+          </ThemeProvider>
+        );
+      case "light nav bar":
+        return getNavBars(styles.parent, styles.child, styles.text);
+      case "dark nav bar":
+        return (
+          <ThemeProvider hexColor={"#6750A4"} dark={true}>
+            {getNavBars(styles.parentDark, styles.childDark, styles.textDark)}
+          </ThemeProvider>
+        );
+      case "light app bar":
+        return getAppBars(styles.parent, styles.child, styles.text);
+      case "dark app bar":
+        return (
+          <ThemeProvider hexColor={"#6750A4"} dark={true}>
+            {getAppBars(styles.parentDark, styles.childDark, styles.textDark)}
           </ThemeProvider>
         );
     }
@@ -2475,6 +2525,129 @@ export default function App() {
         />
       </View>
     );
+  };
+
+  const getNavBars = (
+    parentStyle: ViewStyle,
+    childStyle: ViewStyle,
+    textStyle: TextStyle
+  ) => {
+    return (
+      <View style={parentStyle}>
+        <Text style={textStyle}>Inactive items with label</Text>
+        <View style={childStyle}>
+          <NavBarItem
+            label={"Label"}
+            active={false}
+            containerStyle={{ margin: 4 }}
+          />
+          <NavBarItem
+            label={"Label"}
+            active={false}
+            containerStyle={{ margin: 4 }}
+            badge={true}
+          />
+          <NavBarItem
+            label={"Label"}
+            active={false}
+            containerStyle={{ margin: 4 }}
+            badge={true}
+            // inactiveIcon={"american-football"}
+            badgeCount={3}
+          />
+        </View>
+        <Text style={textStyle}>Inactive items without label</Text>
+        <View style={childStyle}>
+          <NavBarItem active={false} containerStyle={{ margin: 4 }} />
+          <NavBarItem
+            active={false}
+            containerStyle={{ margin: 4 }}
+            badge={true}
+          />
+          <NavBarItem
+            active={false}
+            containerStyle={{ margin: 4 }}
+            badge={true}
+            inactiveIcon={"american-football"}
+            badgeCount={3}
+          />
+        </View>
+        <Text style={textStyle}>Active items with label</Text>
+        <View style={childStyle}>
+          <NavBarItem
+            label={"Label"}
+            active={true}
+            containerStyle={{ margin: 4 }}
+          />
+          <NavBarItem
+            label={"Label"}
+            active={true}
+            containerStyle={{ margin: 4 }}
+            badge={true}
+          />
+          <NavBarItem
+            label={"Label"}
+            active={true}
+            containerStyle={{ margin: 4 }}
+            badge={true}
+            inactiveIcon={"american-football"}
+            badgeCount={3}
+          />
+        </View>
+        <Text style={textStyle}>Active items without label</Text>
+        <View style={childStyle}>
+          <NavBarItem active={true} containerStyle={{ margin: 4 }} />
+          <NavBarItem
+            active={true}
+            containerStyle={{ margin: 4 }}
+            badge={true}
+          />
+          <NavBarItem
+            active={true}
+            containerStyle={{ margin: 4 }}
+            badge={true}
+            activeIcon={"american-football"}
+            badgeCount={3}
+          />
+        </View>
+        <View style={childStyle}>
+          <NavBar>
+            <NavBarItem />
+            <NavBarItem />
+            <NavBarItem />
+          </NavBar>
+        </View>
+        <View style={childStyle}>
+          <NavBar>
+            <NavBarItem />
+            <NavBarItem />
+            <NavBarItem />
+            <NavBarItem />
+          </NavBar>
+        </View>
+        <View style={childStyle}>
+          <NavBar>
+            <NavBarItem badge={true} onSuccessClearBadge={() => true} />
+            <NavBarItem badge={true} onSuccessClearBadge={() => false} />
+            <NavBarItem
+              badge={true}
+              badgeCount={50}
+              onSuccessClearBadge={() => false}
+            />
+            <NavBarItem badge={true} onSuccessClearBadge={() => true} />
+            <NavBarItem badge={true} onSuccessClearBadge={() => true} />
+          </NavBar>
+        </View>
+      </View>
+    );
+  };
+
+  const getAppBars = (
+    parentStyle: ViewStyle,
+    childStyle: ViewStyle,
+    textStyle: TextStyle
+  ) => {
+    return <View style={parentStyle}></View>;
   };
 
   return render();

@@ -12,4 +12,8 @@ type ExampleScreen =
   | "light fabs"
   | "dark fabs"
   | "light select"
-  | "dark select";
+  | "dark select"
+  | "light nav bar"
+  | "dark nav bar"
+  | "light app bar"
+  | "dark app bar";
