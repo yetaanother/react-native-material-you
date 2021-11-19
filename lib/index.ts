@@ -14,6 +14,7 @@ import { HorizontalCard } from "./cards/HorizontalCard";
 import { CrudeAssistiveChip } from "./chips/CrudeAssistiveChip";
 import { CrudeFilterChip } from "./chips/CrudeFilterChip";
 import { CrudeSuggestiveChip } from "./chips/CrudeSuggestiveChip";
+import { NavBarItem } from "./nav/NavBarItem";
 
 export {
   CrudeButton,
@@ -32,4 +33,5 @@ export {
   CrudeAssistiveChip,
   CrudeFilterChip,
   CrudeSuggestiveChip,
+  NavBarItem,
 };
