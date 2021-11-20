@@ -225,6 +225,14 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
   return render();
 };
 
+// todo check, container height is 64 here: https://m3.material.io/components/top-app-bar/specs
+// todo check, elements look center align for small here: https://m3.material.io/components/top-app-bar/specs
+// todo check, elements look flex-start and flex-end for medium and large here: https://m3.material.io/components/top-app-bar/specs
+// todo check, container height is 112 for medium here: https://m3.material.io/components/top-app-bar/specs
+// todo check, container height is 152 for large here: https://m3.material.io/components/top-app-bar/specs
+// todo check, top padding is 20 and bottom padding is 24 for medium here: https://m3.material.io/components/top-app-bar/specs
+// todo check, top padding is 20 and bottom padding is 28 for large here: https://m3.material.io/components/top-app-bar/specs
+// todo check, avatar size is 30 here: https://m3.material.io/components/top-app-bar/specs
 const deviceWidth = Dimensions.get("window").width;
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
@@ -297,7 +305,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       marginRight: "auto",
     },
     titleSizeMedium: {
-      fontSize: 22,
+      fontSize: 24,
       lineHeight: 32,
       marginLeft: 0,
     },
