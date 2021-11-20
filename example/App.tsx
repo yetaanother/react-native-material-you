@@ -24,11 +24,12 @@ import {
   Select,
   NavBarItem,
   NavBar,
+  AppBar,
 } from "@yetaanother/react-native-material-you";
 
 // noinspection JSUnusedGlobalSymbols
 export default function App() {
-  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light nav bar");
+  const [currScreen, setCurrScreen] = useState<ExampleScreen>("light app bar");
 
   const render = () => {
     return (
@@ -2647,7 +2648,26 @@ export default function App() {
     childStyle: ViewStyle,
     textStyle: TextStyle
   ) => {
-    return <View style={parentStyle}></View>;
+    return (
+      <View style={parentStyle}>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"list"}
+            trailingIcon={"person-sharp"}
+            containerStyle={{ margin: 4 }}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"arrow-back"}
+            trailingIcon={["attach", "calendar", "ellipsis-vertical"]}
+            containerStyle={{ margin: 4 }}
+          />
+        </View>
+      </View>
+    );
   };
 
   return render();
