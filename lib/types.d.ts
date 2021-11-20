@@ -27,3 +27,4 @@ type FABType = "surface" | "primary" | "secondary" | "tertiary";
 type FABState = "enabled" | "hovered" | "focused" | "pressed" | "disabled";
 type SelectType = "filled" | "outlined";
 type AppBarSize = "small" | "medium" | "large";
+type AppBarType = "flat" | "on-scroll";

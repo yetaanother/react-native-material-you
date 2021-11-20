@@ -19,8 +19,10 @@ interface AppBarProps {
   trailingIcon?: any | any[];
   onTrailingPress?: any | any[];
   title: string;
+  titleCentered?: boolean;
   containerStyle?: ViewStyle;
   size?: AppBarSize;
+  type?: AppBarType;
 }
 
 export const AppBar: FunctionComponent<AppBarProps> = ({
@@ -31,10 +33,19 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
   onLeadingPress,
   onTrailingPress,
   size,
+  type,
+  titleCentered,
 }) => {
   const { scheme, settings } = useContext(ThemeContext);
   const styles = createStyles(scheme, settings);
   size = !size ? "small" : size;
+  type = !type ? "on-scroll" : type;
+  if (size === "small" && titleCentered && Array.isArray(trailingIcon)) {
+    console.log(
+      "Can't have centered title with multiple trailing icons for small size"
+    );
+    titleCentered = false;
+  }
 
   const render = () => {
     return (
@@ -56,29 +67,62 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
               />
             </View>
           )}
-          <Text style={getTitleStyles()}>{title}</Text>
+          {size === "small" && <Text style={getTitleStyles()}>{title}</Text>}
           {renderTrailingIcons()}
         </View>
+        {size !== "small" && (
+          <View style={styles.appBarLayer2Line2}>
+            <Text style={getTitleStyles()}>{title}</Text>
+          </View>
+        )}
       </View>
     );
   };
 
   const getAppBarLayer2Styles = () => {
-    let appBarLayer2Styles = { ...styles.appBarLayer2 };
-    if (Array.isArray(trailingIcon)) {
+    let appBarLayer2Styles: ViewStyle = { ...styles.appBarLayer2 };
+    if (size === "small") {
+      if (Array.isArray(trailingIcon)) {
+        appBarLayer2Styles = {
+          ...appBarLayer2Styles,
+          ...styles.appBarLayer2MultipleTrailingIcons,
+        };
+      }
+    } else if (size === "medium") {
       appBarLayer2Styles = {
         ...appBarLayer2Styles,
-        ...styles.appBarLayer2MultipleTrailingIcons,
+        ...styles.appBarLayer2TypeMedium,
       };
+      if (Array.isArray(trailingIcon)) {
+        appBarLayer2Styles = {
+          ...appBarLayer2Styles,
+          ...styles.appBarLayer2TypeMediumMultipleTrailingIcons,
+        };
+      }
+    } else if (size === "large") {
+      appBarLayer2Styles = {
+        ...appBarLayer2Styles,
+        ...styles.appBarLayer2TypeLarge,
+      };
+      if (Array.isArray(trailingIcon)) {
+        appBarLayer2Styles = {
+          ...appBarLayer2Styles,
+          ...styles.appBarLayer2TypeLargeMultipleTrailingIcons,
+        };
+      }
     }
     return appBarLayer2Styles;
   };
 
   const getTitleStyles = () => {
     let titleStyles: TextStyle = { ...styles.title };
-    if (Array.isArray(trailingIcon)) {
-      delete titleStyles["marginRight"];
-      titleStyles = { ...titleStyles, ...styles.titleMultipleTrailingIcons };
+    if (size === "medium") {
+      titleStyles = { ...titleStyles, ...styles.titleTypeMedium };
+    } else if (size === "large") {
+      titleStyles = { ...titleStyles, ...styles.titleTypeLarge };
+    }
+    if (titleCentered) {
+      titleStyles = { ...titleStyles, ...styles.titleCentered };
     }
     return titleStyles;
   };
@@ -89,35 +133,34 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
     }
     if (!Array.isArray(trailingIcon)) {
       return (
-        <View style={getTrailingIconStyles()}>
-          <Ionicons name={trailingIcon} size={24} color={scheme.onSurfaceHex} />
+        <View
+          style={
+            size === "small" && titleCentered // The center title will push the trailing icon to the right
+              ? {}
+              : styles.trailingIconMultipleContainer
+          }
+        >
+          <View style={getTrailingIconStyles()}>
+            <Ionicons
+              name={trailingIcon}
+              size={24}
+              color={scheme.onSurfaceVariantHex}
+            />
+          </View>
         </View>
       );
     }
-    let attachListeners = true;
-    if (!onTrailingPress) {
-      attachListeners = false;
-    } else if (!Array.isArray(onTrailingPress)) {
-      console.warn(
-        "Array is expected for multiple training icons for onTrailingPress"
-      );
-      attachListeners = false;
-    } else if (trailingIcon.length !== onTrailingPress.length) {
-      console.warn(
-        "Length of listeners is expected to be equal to the number of trailing icons"
-      );
-      attachListeners = false;
-    }
+    let attachListeners = shouldAttachListeners();
     return (
       <View style={styles.trailingIconMultipleContainer}>
         {trailingIcon.map((icon, index) => (
-          <View style={getTrailingIconStyles()}>
+          //  todo check better way to do this
+          <View style={getTrailingIconStyles()} key={index}>
             {attachListeners && (
               <Ionicons
-                key={index}
                 name={icon}
                 size={18}
-                color={scheme.onSurfaceHex}
+                color={scheme.onSurfaceVariantHex}
                 onPress={onTrailingPress[index]}
               />
             )}
@@ -126,7 +169,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
                 key={index}
                 name={icon}
                 size={18}
-                color={scheme.onSurfaceHex}
+                color={scheme.onSurfaceVariantHex}
               />
             )}
           </View>
@@ -135,11 +178,30 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
     );
   };
 
+  const shouldAttachListeners = () => {
+    if (!onTrailingPress) {
+      return false;
+    }
+    if (!Array.isArray(onTrailingPress)) {
+      console.warn(
+        "Array is expected for multiple training icons for onTrailingPress"
+      );
+      return false;
+    }
+    if (trailingIcon.length !== onTrailingPress.length) {
+      console.warn(
+        "Length of listeners is expected to be equal to the number of trailing icons"
+      );
+      return false;
+    }
+    return true;
+  };
+
   const getTrailingIconStyles = () => {
     if (!trailingIcon) {
       return {};
     }
-    let trailingIconStyles = { ...styles.trailingIcon };
+    let trailingIconStyles: ViewStyle = { ...styles.trailingIcon };
     if (Array.isArray(trailingIcon)) {
       trailingIconStyles = {
         ...trailingIconStyles,
@@ -165,10 +227,36 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingHorizontal: 16,
       paddingVertical: 14,
       flexDirection: "row",
-      borderWidth: 1,
     },
     appBarLayer2MultipleTrailingIcons: {
       paddingVertical: 18,
+    },
+    appBarLayer2TypeMedium: {
+      paddingTop: 14,
+      paddingBottom: 10,
+      paddingVertical: undefined,
+    },
+    appBarLayer2TypeMediumMultipleTrailingIcons: {
+      paddingTop: 20,
+      paddingBottom: 16,
+      paddingVertical: undefined,
+    },
+    appBarLayer2TypeLarge: {
+      paddingTop: 14,
+      paddingBottom: 46,
+      paddingVertical: undefined,
+    },
+    appBarLayer2TypeLargeMultipleTrailingIcons: {
+      paddingTop: 20,
+      paddingBottom: 52,
+      paddingVertical: undefined,
+    },
+    appBarLayer2Line2: {
+      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
+      alignItems: "center",
+      paddingHorizontal: 16,
+      paddingBottom: 20,
+      flexDirection: "row",
     },
     boxShadowElevation2: settings.boxShadowElevation2,
     leadingIcon: {
@@ -176,7 +264,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       width: 24,
       alignItems: "center",
       justifyContent: "center",
-      borderWidth: 1,
     },
     title: {
       fontFamily: "Roboto",
@@ -185,20 +272,28 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       lineHeight: 28,
       fontWeight: "normal",
       color: scheme.onSurfaceHex,
-      borderWidth: 1,
+      textAlign: "center",
+      marginLeft: 16,
+    },
+    titleCentered: {
       marginLeft: "auto",
       marginRight: "auto",
-      textAlign: "center",
     },
-    titleMultipleTrailingIcons: {
-      marginLeft: 16,
+    titleTypeMedium: {
+      fontSize: 22,
+      lineHeight: 32,
+      marginLeft: 0,
+    },
+    titleTypeLarge: {
+      fontSize: 28,
+      lineHeight: 36,
+      marginLeft: 0,
     },
     trailingIcon: {
       height: 36,
       width: 36,
       alignItems: "center",
       justifyContent: "center",
-      borderWidth: 1,
     },
     trailingIconMultipleContainer: {
       flexDirection: "row",

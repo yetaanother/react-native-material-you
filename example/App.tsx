@@ -2661,9 +2661,56 @@ export default function App() {
         <View style={childStyle}>
           <AppBar
             title={"Product"}
+            leadingIcon={"list"}
+            trailingIcon={"person-sharp"}
+            containerStyle={{ margin: 4 }}
+            titleCentered={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
             leadingIcon={"arrow-back"}
             trailingIcon={["attach", "calendar", "ellipsis-vertical"]}
             containerStyle={{ margin: 4 }}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"list"}
+            trailingIcon={"person-sharp"}
+            containerStyle={{ margin: 4 }}
+            size={"medium"}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"arrow-back"}
+            trailingIcon={["attach", "calendar", "ellipsis-vertical"]}
+            containerStyle={{ margin: 4 }}
+            size={"medium"}
+            titleCentered={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"list"}
+            trailingIcon={"person-sharp"}
+            containerStyle={{ margin: 4 }}
+            size={"large"}
+            titleCentered={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"arrow-back"}
+            trailingIcon={["attach", "calendar", "ellipsis-vertical"]}
+            containerStyle={{ margin: 4 }}
+            size={"large"}
           />
         </View>
       </View>
