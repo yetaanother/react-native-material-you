@@ -2650,6 +2650,7 @@ export default function App() {
   ) => {
     return (
       <View style={parentStyle}>
+        <Text style={textStyle}>Onscroll app bars</Text>
         <View style={childStyle}>
           <AppBar
             title={"Product"}
@@ -2711,6 +2712,77 @@ export default function App() {
             trailingIcon={["attach", "calendar", "ellipsis-vertical"]}
             containerStyle={{ margin: 4 }}
             size={"large"}
+          />
+        </View>
+        <Text style={textStyle}>Flat app bars</Text>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"list"}
+            trailingIcon={"person-sharp"}
+            containerStyle={{ margin: 4 }}
+            type={"flat"}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"list"}
+            trailingIcon={"person-sharp"}
+            containerStyle={{ margin: 4 }}
+            titleCentered={true}
+            type={"flat"}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"arrow-back"}
+            trailingIcon={["attach", "calendar", "ellipsis-vertical"]}
+            containerStyle={{ margin: 4 }}
+            type={"flat"}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"list"}
+            trailingIcon={"person-sharp"}
+            containerStyle={{ margin: 4 }}
+            size={"medium"}
+            type={"flat"}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"arrow-back"}
+            trailingIcon={["attach", "calendar", "ellipsis-vertical"]}
+            containerStyle={{ margin: 4 }}
+            size={"medium"}
+            titleCentered={true}
+            type={"flat"}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"list"}
+            trailingIcon={"person-sharp"}
+            containerStyle={{ margin: 4 }}
+            size={"large"}
+            titleCentered={true}
+            type={"flat"}
+          />
+        </View>
+        <View style={childStyle}>
+          <AppBar
+            title={"Product"}
+            leadingIcon={"arrow-back"}
+            trailingIcon={["attach", "calendar", "ellipsis-vertical"]}
+            containerStyle={{ margin: 4 }}
+            size={"large"}
+            type={"flat"}
           />
         </View>
       </View>

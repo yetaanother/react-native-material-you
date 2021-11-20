@@ -12,6 +12,7 @@ from [Google Material 3 Design Kit](https://www.figma.com/community/file/1035203
 * 4 FAB types
 * 2 Select types
 * 1 Navigation bar
+* 2 App bar types
 
 ## How to install
 
@@ -91,6 +92,10 @@ from [Google Material 3 Design Kit](https://www.figma.com/community/file/1035203
 ???
 
 #### Navbar
+
+???
+
+#### Appbar
 
 ???
 

@@ -71,7 +71,12 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
           {renderTrailingIcons()}
         </View>
         {size !== "small" && (
-          <View style={styles.appBarLayer2Line2}>
+          <View
+            style={{
+              ...styles.appBarLayer2Line2,
+              ...(type === "flat" ? styles.appBarLayer2Line2TypeFlat : {}),
+            }}
+          >
             <Text style={getTitleStyles()}>{title}</Text>
           </View>
         )}
@@ -91,25 +96,31 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
     } else if (size === "medium") {
       appBarLayer2Styles = {
         ...appBarLayer2Styles,
-        ...styles.appBarLayer2TypeMedium,
+        ...styles.appBarLayer2SizeMedium,
       };
       if (Array.isArray(trailingIcon)) {
         appBarLayer2Styles = {
           ...appBarLayer2Styles,
-          ...styles.appBarLayer2TypeMediumMultipleTrailingIcons,
+          ...styles.appBarLayer2SizeMediumMultipleTrailingIcons,
         };
       }
     } else if (size === "large") {
       appBarLayer2Styles = {
         ...appBarLayer2Styles,
-        ...styles.appBarLayer2TypeLarge,
+        ...styles.appBarLayer2SizeLarge,
       };
       if (Array.isArray(trailingIcon)) {
         appBarLayer2Styles = {
           ...appBarLayer2Styles,
-          ...styles.appBarLayer2TypeLargeMultipleTrailingIcons,
+          ...styles.appBarLayer2SizeLargeMultipleTrailingIcons,
         };
       }
+    }
+    if (type === "flat") {
+      appBarLayer2Styles = {
+        ...appBarLayer2Styles,
+        ...styles.appBarLayer2Line2TypeFlat,
+      };
     }
     return appBarLayer2Styles;
   };
@@ -117,9 +128,9 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
   const getTitleStyles = () => {
     let titleStyles: TextStyle = { ...styles.title };
     if (size === "medium") {
-      titleStyles = { ...titleStyles, ...styles.titleTypeMedium };
+      titleStyles = { ...titleStyles, ...styles.titleSizeMedium };
     } else if (size === "large") {
-      titleStyles = { ...titleStyles, ...styles.titleTypeLarge };
+      titleStyles = { ...titleStyles, ...styles.titleSizeLarge };
     }
     if (titleCentered) {
       titleStyles = { ...titleStyles, ...styles.titleCentered };
@@ -137,7 +148,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
           style={
             size === "small" && titleCentered // The center title will push the trailing icon to the right
               ? {}
-              : styles.trailingIconMultipleContainer
+              : styles.trailingIconContainer
           }
         >
           <View style={getTrailingIconStyles()}>
@@ -152,7 +163,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
     }
     let attachListeners = shouldAttachListeners();
     return (
-      <View style={styles.trailingIconMultipleContainer}>
+      <View style={styles.trailingIconContainer}>
         {trailingIcon.map((icon, index) => (
           //  todo check better way to do this
           <View style={getTrailingIconStyles()} key={index}>
@@ -231,25 +242,28 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     appBarLayer2MultipleTrailingIcons: {
       paddingVertical: 18,
     },
-    appBarLayer2TypeMedium: {
+    appBarLayer2SizeMedium: {
       paddingTop: 14,
       paddingBottom: 10,
       paddingVertical: undefined,
     },
-    appBarLayer2TypeMediumMultipleTrailingIcons: {
+    appBarLayer2SizeMediumMultipleTrailingIcons: {
       paddingTop: 20,
       paddingBottom: 16,
       paddingVertical: undefined,
     },
-    appBarLayer2TypeLarge: {
+    appBarLayer2SizeLarge: {
       paddingTop: 14,
       paddingBottom: 46,
       paddingVertical: undefined,
     },
-    appBarLayer2TypeLargeMultipleTrailingIcons: {
+    appBarLayer2SizeLargeMultipleTrailingIcons: {
       paddingTop: 20,
       paddingBottom: 52,
       paddingVertical: undefined,
+    },
+    appBarLayer2TypeFlat: {
+      backgroundColor: undefined,
     },
     appBarLayer2Line2: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
@@ -257,6 +271,9 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingHorizontal: 16,
       paddingBottom: 20,
       flexDirection: "row",
+    },
+    appBarLayer2Line2TypeFlat: {
+      backgroundColor: undefined,
     },
     boxShadowElevation2: settings.boxShadowElevation2,
     leadingIcon: {
@@ -279,25 +296,25 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       marginLeft: "auto",
       marginRight: "auto",
     },
-    titleTypeMedium: {
+    titleSizeMedium: {
       fontSize: 22,
       lineHeight: 32,
       marginLeft: 0,
     },
-    titleTypeLarge: {
+    titleSizeLarge: {
       fontSize: 28,
       lineHeight: 36,
       marginLeft: 0,
+    },
+    trailingIconContainer: {
+      flexDirection: "row",
+      marginLeft: "auto",
     },
     trailingIcon: {
       height: 36,
       width: 36,
       alignItems: "center",
       justifyContent: "center",
-    },
-    trailingIconMultipleContainer: {
-      flexDirection: "row",
-      marginLeft: "auto",
     },
     trailingIconMultiple: {
       height: 24,
