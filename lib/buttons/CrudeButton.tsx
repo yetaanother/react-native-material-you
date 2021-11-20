@@ -375,6 +375,8 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       fontWeight: "500",
       letterSpacing: 0.1,
       color: scheme.onPrimaryHex,
+      textAlign: "center",
+      textAlignVertical: "center",
     },
     textStateDisabled: {
       color: scheme.onSurfaceHex,

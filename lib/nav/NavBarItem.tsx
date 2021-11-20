@@ -148,6 +148,8 @@ const createStyles = (scheme: SchemeAdapter) =>
       fontWeight: "500",
       letterSpacing: 0.5,
       color: scheme.onSurfaceVariantHex,
+      textAlign: "center",
+      textAlignVertical: "center",
     },
     // todo check, surface is mentioned here: https://m3.material.io/components/navigation-bar/specs
     labelActive: {
@@ -162,5 +164,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       letterSpacing: 0.1,
       // todo check, on error is mentioned here: https://m3.material.io/components/navigation-bar/specs
       color: scheme.onPrimaryHex,
+      textAlign: "center",
+      textAlignVertical: "center",
     },
   });

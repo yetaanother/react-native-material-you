@@ -253,6 +253,8 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       letterSpacing: 0.1,
       color: scheme.primaryHex,
       marginLeft: 12,
+      textAlign: "center",
+      textAlignVertical: "center",
     },
     textPrimary: {
       color: scheme.onPrimaryContainerHex,

@@ -296,6 +296,8 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       fontWeight: "500",
       letterSpacing: 0.1,
       color: scheme.onSurfaceVariantHex,
+      textAlign: "center",
+      textAlignVertical: "center",
     },
     //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     textStateHoveredOrFocussedOrPressedOrDragged: {

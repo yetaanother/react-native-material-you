@@ -215,6 +215,8 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       fontWeight: "500",
       letterSpacing: 0.1,
       color: scheme.onSurfaceVariantHex,
+      textAlign: "center",
+      textAlignVertical: "center",
     },
     textSelected: {
       color: scheme.onSecondaryContainerHex,
