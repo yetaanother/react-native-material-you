@@ -132,9 +132,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
-      paddingHorizontal: 24,
-      paddingTop: 24,
-      paddingBottom: 0,
+      padding: 24,
       width: "100%",
     },
     icon: {
@@ -171,7 +169,8 @@ const createStyles = (scheme: SchemeAdapter) =>
       alignItems: "center",
       justifyContent: "flex-end",
       width: "100%",
-      padding: 24,
+      paddingHorizontal: 24,
+      paddingBottom: 24,
     },
     children: {
       paddingHorizontal: 24,
