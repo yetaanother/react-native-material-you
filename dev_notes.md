@@ -9,13 +9,11 @@
 ## React Native
 * https://docs.expo.dev/ui-programming/react-native-styling-buttons/
 * https://mahyarmohammadi.medium.com/react-native-pressable-vs-touchable-5fec6b332f15
-* View supports flex box so we don't need `dispaly: flex`.
+* `View` supports flex box so we don't need `dispaly: flex`.
+* The default flex direction for react-native is `column`
 
 ## CSS
 * `justify-content` vs `align-items` - https://stackoverflow.com/questions/35049262/difference-between-justify-content-vs-align-items?lq=1
 * Multiple colors in background using linear-gradients - https://stackoverflow.com/questions/28592053/multiple-background-color-layers
 * https://stackoverflow.com/questions/27539262/whats-the-difference-between-align-content-and-align-items
 * Flex only applies to the immediate children
-
-## To check
-* Check how `alignItems` and `justifyContent` are working on icons without flexbox. It looks like the have a `flexDirection` of column.

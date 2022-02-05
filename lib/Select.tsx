@@ -337,7 +337,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingLeft: 16,
       paddingRight: 12,
       paddingVertical: 16,
-      display: "flex",
       flexDirection: "row",
       alignItems: "center",
       borderTopLeftRadius: 4,
@@ -354,8 +353,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderBottomLeftRadius: 4,
     },
     labelContainer: {
-      display: "flex",
-      flexDirection: "column",
       alignItems: "flex-start",
       justifyContent: "center",
     },
@@ -400,7 +397,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     dropdown: {
       marginLeft: "auto",
-      display: "flex",
       flexDirection: "row",
       alignItems: "center",
       height: "100%",
@@ -434,7 +430,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     boxShadowElevation2: settings.boxShadowElevation2,
     choice: {
       minHeight: 32,
-      display: "flex",
       flexDirection: "row",
       alignItems: "center",
       paddingHorizontal: 16,

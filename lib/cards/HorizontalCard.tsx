@@ -83,9 +83,7 @@ export const HorizontalCard: FunctionComponent<HorizontalCardProps> = ({
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     card: {
-      display: "flex",
       flexDirection: "row",
-      padding: 0,
       alignItems: "flex-start",
       width: 352,
       height: 80,
@@ -104,7 +102,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     boxShadowElevation2: settings.boxShadowElevation2,
     header: {
       height: "100%",
-      display: "flex",
       flexDirection: "row",
       alignItems: "center",
       padding: 16,
@@ -117,10 +114,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderBottomRightRadius: 12,
     },
     headerContent: {
-      display: "flex",
-      flexDirection: "column",
       alignItems: "flex-start",
-      padding: 0,
     },
     headerTitle: {
       fontFamily: "Roboto",

@@ -114,7 +114,6 @@ const createStyles = (scheme: SchemeAdapter) =>
     },
     navBarLayer2: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
-      display: "flex",
       flexDirection: "row",
     },
   });

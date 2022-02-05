@@ -310,7 +310,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     inner: {
       alignItems: "center",
       justifyContent: "center",
-      display: "flex",
       flexDirection: "row",
       height: 40,
       paddingHorizontal: 24,
