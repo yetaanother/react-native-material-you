@@ -259,7 +259,6 @@ const defaultStatePressedOrFocusedOpacity = 0.12;
 const defaultStateDisabledOpacity = 0.12;
 const defaultContentStateDisabledOpacity = 0.38;
 
-// Container height will be 40 = paddingTop(10) + paddingBottom(10) + lineHeight(20)
 // todo check, min width for text button is 48 here: https://m3.material.io/components/buttons/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
@@ -313,7 +312,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       justifyContent: "center",
       display: "flex",
       flexDirection: "row",
-      paddingVertical: 10,
+      height: 40,
       paddingHorizontal: 24,
       borderRadius: defaultBorderRadius,
       // Added this because even though after adding borderRadius the backgroundColor was overflowing

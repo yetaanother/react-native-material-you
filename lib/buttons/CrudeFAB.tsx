@@ -187,8 +187,6 @@ export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
   return render();
 };
 
-// Container height and width will be 56 = paddingTop(16) + paddingBottom(16) + iconSize(24)
-// Container height and width for large FAB will be 96 = paddingTop(30) + paddingBottom(30) + iconSize(36)
 // todo check, minimum width of the extended fab is 80 here: https://m3.material.io/components/extended-fab/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
@@ -231,14 +229,15 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       justifyContent: "center",
       overflow: "hidden",
       borderRadius: 16,
-      padding: 16,
+      paddingHorizontal: 16,
+      height: 56,
     },
     innerLarge: {
       borderRadius: 28,
-      padding: 30,
+      paddingHorizontal: 30,
+      height: 96,
     },
     innerWithText: {
-      paddingVertical: 16,
       paddingLeft: 16,
       paddingRight: 20,
       display: "flex",

@@ -124,7 +124,6 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
   return render();
 };
 
-// Container height will be 32 = paddingTop(6) + paddingBottom(6) + lineHeight(20)
 // todo check: text is start aligned horizontally here: https://m3.material.io/components/chips/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
@@ -148,7 +147,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      paddingVertical: 6,
+      height: 32,
       paddingHorizontal: 16,
       borderRadius: 8,
       justifyContent: "center",
