@@ -62,15 +62,13 @@ export const HorizontalCard: FunctionComponent<HorizontalCardProps> = ({
     return <Image style={styles.image} source={imageSrc} />;
   };
 
-  // todo check, states are used here: https://m3.material.io/components/cards/specs
   const getCardStyles = () => {
     let cardStyles: ViewStyle = { ...styles.card };
-    // todo check, elevation 1 is used here: https://m3.material.io/components/cards/specs
     if (type === "elevated") {
       cardStyles = {
         ...cardStyles,
         ...styles.cardTypeElevated,
-        ...styles.boxShadowElevation2,
+        ...styles.boxShadowElevation1,
       };
     } else if (type === "outlined") {
       cardStyles = { ...cardStyles, ...styles.cardTypeOutlined };
@@ -99,7 +97,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderStyle: "solid",
       borderColor: scheme.outlineHex,
     },
-    boxShadowElevation2: settings.boxShadowElevation2,
+    boxShadowElevation1: settings.boxShadowElevation1,
     header: {
       height: "100%",
       flexDirection: "row",
