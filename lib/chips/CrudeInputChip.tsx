@@ -168,7 +168,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       backgroundColor: scheme.secondaryContainerHex,
     },
     inner: {
-      display: "flex",
       flexDirection: "row",
       alignItems: "center",
       height: 32,

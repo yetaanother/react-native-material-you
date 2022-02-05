@@ -119,16 +119,12 @@ const createStyles = (scheme: SchemeAdapter) =>
       width: 312,
     },
     dialogLayer2: {
-      display: "flex",
-      flexDirection: "column",
       alignItems: "flex-end",
       borderRadius: 28,
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.11),
       width: "100%",
     },
     content: {
-      display: "flex",
-      flexDirection: "column",
       alignItems: "flex-start",
       padding: 24,
       width: "100%",
@@ -162,7 +158,6 @@ const createStyles = (scheme: SchemeAdapter) =>
       width: "100%",
     },
     actions: {
-      display: "flex",
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "flex-end",

@@ -240,7 +240,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     innerWithText: {
       paddingLeft: 16,
       paddingRight: 20,
-      display: "flex",
       flexDirection: "row",
     },
     text: {

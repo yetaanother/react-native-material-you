@@ -183,8 +183,6 @@ export const Card: FunctionComponent<CardProps> = ({
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     card: {
-      display: "flex",
-      flexDirection: "column",
       alignItems: "flex-start",
       width: 360,
       backgroundColor: scheme.surfaceVariantHex,
@@ -201,7 +199,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     header: {
       width: "100%",
-      display: "flex",
       flexDirection: "row",
       alignItems: "center",
       paddingHorizontal: 16,
@@ -215,8 +212,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       justifyContent: "center",
     },
     headerContent: {
-      display: "flex",
-      flexDirection: "column",
       alignItems: "flex-start",
     },
     headerTitle: {
@@ -248,8 +243,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderTopRightRadius: 12,
     },
     body: {
-      display: "flex",
-      flexDirection: "column",
       alignItems: "flex-start",
       padding: 16,
       width: "100%",
@@ -276,7 +269,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       color: scheme.onSurfaceVariantHex,
     },
     buttons: {
-      display: "flex",
       flexDirection: "row",
       justifyContent: "flex-end",
       padding: 16,

@@ -94,8 +94,6 @@ export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
 const createStyles = (scheme: SchemeAdapter) =>
   StyleSheet.create({
     navBarItem: {
-      display: "flex",
-      flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
       height: 80,
@@ -121,7 +119,6 @@ const createStyles = (scheme: SchemeAdapter) =>
       top: 1, // Calculated manually; Have to adjust according to dimensions of activity indicator
       left: 31, // Calculated manually; Have to adjust according to dimensions of activity indicator
       position: "absolute",
-      display: "flex",
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
