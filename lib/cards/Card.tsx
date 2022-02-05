@@ -206,7 +206,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       flexDirection: "row",
       alignItems: "center",
       paddingHorizontal: 16,
-      paddingVertical: 13,
+      paddingVertical: 12,
     },
     icon: {
       height: 24,
@@ -243,7 +243,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     image: {
       width: "100%",
-      height: 188,
+      height: 192,
     },
     imageNoHeader: {
       borderTopLeftRadius: 12,

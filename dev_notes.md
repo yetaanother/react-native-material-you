@@ -18,5 +18,4 @@
 * Flex only applies to the immediate children
 
 ## To check
-
 * Check how `alignItems` and `justifyContent` are working on icons without flexbox. It looks like the have a `flexDirection` of column.
