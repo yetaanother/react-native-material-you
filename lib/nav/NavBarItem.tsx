@@ -47,6 +47,7 @@ export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
                   ? scheme.onSecondaryContainerHex
                   : scheme.onSurfaceVariantHex
               }
+              // In m3 specs the size is 24px but that is not looking good
               size={18}
             />
           </View>
@@ -97,7 +98,9 @@ const createStyles = (scheme: SchemeAdapter) =>
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      paddingVertical: 16,
+      height: 80,
+      paddingTop: 12,
+      paddingBottom: 16,
     },
     badge: {
       // todo check, radius is 3 here: https://m3.material.io/components/navigation-bar/specs
