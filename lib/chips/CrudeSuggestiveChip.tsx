@@ -47,17 +47,7 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
               ...styles.chipStateFocused,
             };
           } else if (state === "pressed") {
-            // todo check, no mention of elevation here: https://m3.material.io/components/chips/specs
-            containerStyles = {
-              ...containerStyles,
-              ...styles.boxShadowElevation2,
-            };
           } else if (state === "dragged") {
-            // todo check, no mention of elevation here: https://m3.material.io/components/chips/specs
-            containerStyles = {
-              ...containerStyles,
-              ...styles.boxShadowElevation3,
-            };
           }
         } else {
           delete containerStyles["borderColor"];
@@ -94,12 +84,9 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
     };
 
     const getElevatedContainerStyles = (containerStyles: ViewStyle) => {
-      //todo check, pressed is elevation 1 here: https://m3.material.io/components/chips/specs
-      // todo check, hovered is elevation 2 here: https://m3.material.io/components/chips/specs
-      //todo check, dragged is elevation 4 here: https://m3.material.io/components/chips/specs
-      if (state === "enabled" || state === "hovered" || state === "focused") {
+      if (state === "enabled" || state === "pressed" || state === "focused") {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-      } else if (state === "pressed") {
+      } else if (state === "hovered") {
         containerStyles = {
           ...containerStyles,
           ...styles.boxShadowElevation2,
@@ -107,7 +94,7 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
       } else if (state === "dragged") {
         containerStyles = {
           ...containerStyles,
-          ...styles.boxShadowElevation3,
+          ...styles.boxShadowElevation4,
         };
       } else if (state === "disabled") {
         containerStyles = {
@@ -194,7 +181,6 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
     return render();
   };
 
-// todo check: text is start aligned horizontally here: https://m3.material.io/components/chips/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     chip: {
@@ -204,9 +190,8 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderStyle: "solid",
       borderRadius: 8,
     },
-    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     chipStateFocused: {
-      borderColor: scheme.onSurfaceHex,
+      borderColor: scheme.onSurfaceVariantHex,
     },
     chipStateDisabled: {
       borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
@@ -271,6 +256,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     boxShadowElevation1: settings.boxShadowElevation1,
     boxShadowElevation2: settings.boxShadowElevation2,
     boxShadowElevation3: settings.boxShadowElevation3,
+    boxShadowElevation4: settings.boxShadowElevation4,
     icon: {
       marginRight: 8,
     },

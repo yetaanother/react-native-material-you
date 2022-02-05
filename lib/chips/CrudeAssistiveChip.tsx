@@ -7,7 +7,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { Settings } from "../providers/Settings";
 
 // Assistive chips don't have a selected version
-//todo check, trailing icon is implemented here: https://m3.material.io/components/chips/specs
 interface CrudeAssistiveChipProps {
   label: string;
   state?: AssistiveChipState;
@@ -36,7 +35,6 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
     );
   };
 
-  //todo check, disabled state is implemented here: https://m3.material.io/components/chips/specs
   const getContainerStyles = () => {
     let containerStyles: ViewStyle = { ...styles.chip };
     if (!elevated) {
@@ -50,13 +48,12 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
       delete containerStyles["borderColor"];
       delete containerStyles["borderWidth"];
       delete containerStyles["borderStyle"];
-      // todo check, hovered is elevation 2 here: https://m3.material.io/components/chips/specs
-      //todo check, pressed is elevation 1 here: https://m3.material.io/components/chips/specs
-      //todo check, dragged is elevation 4 here: https://m3.material.io/components/chips/specs
-      if (state === "enabled" || state === "hovered" || state === "focused") {
+      if (state === "enabled" || state === "pressed" || state === "focused") {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-      } else if (state === "pressed" || state === "dragged") {
+      } else if (state === "hovered") {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation2 };
+      } else if (state === "dragged") {
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
       } else if (state === "disabled") {
         containerStyles = {
           ...containerStyles,
@@ -124,7 +121,6 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
   return render();
 };
 
-// todo check: text is start aligned horizontally here: https://m3.material.io/components/chips/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     chip: {
@@ -180,6 +176,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     boxShadowElevation1: settings.boxShadowElevation1,
     boxShadowElevation2: settings.boxShadowElevation2,
+    boxShadowElevation4: settings.boxShadowElevation4,
     icon: {
       marginRight: 8,
     },

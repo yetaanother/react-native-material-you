@@ -46,11 +46,6 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
         } else if (state === "focused") {
           containerStyles = { ...containerStyles, ...styles.chipStateFocused };
         } else if (state === "dragged") {
-          // todo check, no mention of elevation here: https://m3.material.io/components/chips/specs
-          containerStyles = {
-            ...containerStyles,
-            ...styles.boxShadowElevation4,
-          };
         }
       } else {
         delete containerStyles["borderColor"];
@@ -162,8 +157,9 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
             <Ionicons
               name={"caret-down-sharp"}
               size={18}
-              //todo check,icon color is surface variant here: https://m3.material.io/components/chips/specs
-              color={state === "enabled" ? scheme.onSurfaceHex : iconColor}
+              color={
+                state === "enabled" ? scheme.onSurfaceVariantHex : iconColor
+              }
             />
           </View>
         )}
@@ -215,7 +211,6 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   return render();
 };
 
-// todo check: text is start aligned horizontally here: https://m3.material.io/components/chips/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     chip: {
@@ -225,9 +220,8 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderStyle: "solid",
       borderRadius: 8,
     },
-    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     chipStateFocused: {
-      borderColor: scheme.onSurfaceHex,
+      borderColor: scheme.onSurfaceVariantHex,
     },
     chipStateDisabled: {
       borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
@@ -249,17 +243,14 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderRadius: 8,
       justifyContent: "center",
     },
-    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     innerStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.08),
+      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.08),
     },
-    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     innerStateFocusedOrPressed: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.12),
     },
-    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     innerStateDragged: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.16),
+      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.16),
     },
     innerDropDown: {
       paddingRight: 8,
@@ -297,9 +288,8 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       textAlign: "center",
       textAlignVertical: "center",
     },
-    //todo check, it is onSurfaceVariant here: https://m3.material.io/components/chips/specs
     textStateHoveredOrFocussedOrPressedOrDragged: {
-      color: scheme.onSurfaceHex,
+      color: scheme.onSurfaceVariantHex,
     },
     textStateDisabled: {
       color: scheme.onSurfaceHex,
