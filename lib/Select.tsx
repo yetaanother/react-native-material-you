@@ -63,7 +63,7 @@ export const Select: FunctionComponent<SelectProps> = ({
               {icon && (
                 <Ionicons
                   name={icon}
-                  size={18}
+                  size={24}
                   color={scheme.outlineHex}
                   style={styles.icon}
                 />
@@ -78,7 +78,7 @@ export const Select: FunctionComponent<SelectProps> = ({
               >
                 <Ionicons
                   name={dropdownIcon}
-                  size={14}
+                  size={18}
                   color={getIconColor()}
                 />
               </Pressable>
@@ -314,7 +314,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     select: {
       borderTopLeftRadius: 4,
       borderTopRightRadius: 4,
-      width: 245,
+      width: 248,
     },
     content: {
       backgroundColor: scheme.surfaceHex,
@@ -424,7 +424,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     choices: {
       borderRadius: 4,
       backgroundColor: scheme.surfaceHex,
-      width: 245,
+      width: 248,
     },
     choicesLayer2: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
