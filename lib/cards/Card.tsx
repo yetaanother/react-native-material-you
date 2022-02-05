@@ -185,7 +185,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     card: {
       display: "flex",
       flexDirection: "column",
-      padding: 0,
       alignItems: "flex-start",
       width: 360,
       backgroundColor: scheme.surfaceVariantHex,
@@ -219,7 +218,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
-      padding: 0,
     },
     headerTitle: {
       fontFamily: "Roboto",

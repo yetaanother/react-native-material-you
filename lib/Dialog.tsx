@@ -114,7 +114,6 @@ const createStyles = (scheme: SchemeAdapter) =>
   StyleSheet.create({
     dialog: {
       // todo remove this it is default
-      padding: 0,
       borderRadius: 28,
       backgroundColor: scheme.surfaceHex,
       width: 312,
@@ -123,7 +122,6 @@ const createStyles = (scheme: SchemeAdapter) =>
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-end",
-      padding: 0,
       borderRadius: 28,
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.11),
       width: "100%",

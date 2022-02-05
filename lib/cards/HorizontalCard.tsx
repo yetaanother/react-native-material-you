@@ -85,7 +85,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     card: {
       display: "flex",
       flexDirection: "row",
-      padding: 0,
       alignItems: "flex-start",
       width: 352,
       height: 80,
@@ -120,7 +119,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
-      padding: 0,
     },
     headerTitle: {
       fontFamily: "Roboto",
