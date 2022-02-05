@@ -61,7 +61,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
             <View style={styles.leadingIcon}>
               <Ionicons
                 name={leadingIcon}
-                size={18}
+                size={24}
                 color={scheme.onSurfaceHex}
                 onPress={onLeadingPress}
               />
@@ -154,7 +154,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
           <View style={getTrailingIconStyles()}>
             <Ionicons
               name={trailingIcon}
-              size={24}
+              size={30}
               color={scheme.onSurfaceVariantHex}
             />
           </View>
@@ -170,7 +170,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
             {attachListeners && (
               <Ionicons
                 name={icon}
-                size={18}
+                size={24}
                 color={scheme.onSurfaceVariantHex}
                 onPress={onTrailingPress[index]}
               />
@@ -179,7 +179,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
               <Ionicons
                 key={index}
                 name={icon}
-                size={18}
+                size={24}
                 color={scheme.onSurfaceVariantHex}
               />
             )}
@@ -244,32 +244,18 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
       alignItems: "center",
       paddingHorizontal: 16,
-      paddingVertical: 14,
+      height: 64,
       flexDirection: "row",
     },
-    appBarLayer2MultipleTrailingIcons: {
-      paddingVertical: 18,
-    },
+    appBarLayer2MultipleTrailingIcons: {},
     appBarLayer2SizeMedium: {
-      paddingTop: 14,
-      paddingBottom: 10,
-      paddingVertical: undefined,
+      height: 112,
     },
-    appBarLayer2SizeMediumMultipleTrailingIcons: {
-      paddingTop: 20,
-      paddingBottom: 16,
-      paddingVertical: undefined,
-    },
+    appBarLayer2SizeMediumMultipleTrailingIcons: {},
     appBarLayer2SizeLarge: {
-      paddingTop: 14,
-      paddingBottom: 46,
-      paddingVertical: undefined,
+      height: 152,
     },
-    appBarLayer2SizeLargeMultipleTrailingIcons: {
-      paddingTop: 20,
-      paddingBottom: 52,
-      paddingVertical: undefined,
-    },
+    appBarLayer2SizeLargeMultipleTrailingIcons: {},
     appBarLayer2TypeFlat: {
       backgroundColor: undefined,
     },
@@ -277,7 +263,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
       alignItems: "center",
       paddingHorizontal: 16,
-      paddingBottom: 20,
       flexDirection: "row",
     },
     appBarLayer2Line2TypeFlat: {
@@ -319,8 +304,8 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       marginLeft: "auto",
     },
     trailingIcon: {
-      height: 36,
-      width: 36,
+      height: 30,
+      width: 30,
       alignItems: "center",
       justifyContent: "center",
     },
