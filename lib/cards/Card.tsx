@@ -104,7 +104,7 @@ export const Card: FunctionComponent<CardProps> = ({
           <View style={styles.icon}>
             <Ionicons
               name={!closeIcon ? "close" : closeIcon}
-              size={18}
+              size={24}
               color={scheme.outlineHex}
               onPress={onClosePress}
             />
