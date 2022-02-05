@@ -187,7 +187,6 @@ export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
   return render();
 };
 
-// todo check, minimum width of the extended fab is 80 here: https://m3.material.io/components/extended-fab/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     fab: {
