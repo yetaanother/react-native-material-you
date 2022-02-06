@@ -14,6 +14,7 @@ import { ThemeContext } from "../providers/ThemeProvider";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Settings } from "../providers/Settings";
+import { M3Constants } from "../utils/M3Constants";
 
 interface CrudeButtonProps {
   type?: ButtonType;
@@ -58,8 +59,8 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
         onBlur={onBlur}
         disabled={state === "disabled"}
       >
-        <View style={getElevatedLayer2Styles()}>
-          <View style={getStateStyles()}>{renderContent()}</View>
+        <View style={getSurfaceOverlayStyles()}>
+          <View style={getStateOverlayStyles()}>{renderContent()}</View>
         </View>
       </NativePressable>
     );
@@ -67,44 +68,53 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
 
   const getContainerStyles = () => {
     let containerStyles: ViewStyle = {
-      ...styles.button,
+      ...styles.container,
     };
     if (type === "filled") {
       if (state === "disabled") {
-        containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
+        containerStyles = {
+          ...containerStyles,
+          ...styles.containerStateDisabled,
+        };
       }
     } else if (type === "outlined") {
-      containerStyles = { ...containerStyles, ...styles.buttonTypeOutlined };
+      containerStyles = { ...containerStyles, ...styles.containerTypeOutlined };
       if (state === "focused") {
         containerStyles = {
           ...containerStyles,
-          ...styles.buttonTypeOutlinedStateFocused,
+          ...styles.containerTypeOutlinedStateFocused,
         };
       } else if (state === "disabled") {
         containerStyles = {
           ...containerStyles,
-          ...styles.buttonTypeOutlinedStateDisabled,
+          ...styles.containerStateDisabled,
         };
       }
     } else if (type === "text") {
       containerStyles = {
         ...containerStyles,
-        ...styles.buttonTypeText,
+        ...styles.containerTypeText,
       };
     } else if (type === "elevated") {
       containerStyles = {
         ...containerStyles,
-        ...styles.buttonTypeElevated,
+        ...styles.containerTypeElevated,
       };
       if (state == "disabled") {
-        containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
+        containerStyles = {
+          ...containerStyles,
+          ...styles.containerStateDisabled,
+        };
       } else {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       }
     } else if (type === "tonal") {
-      containerStyles = { ...containerStyles, ...styles.buttonTypeTonal };
+      containerStyles = { ...containerStyles, ...styles.containerTypeTonal };
       if (state === "disabled") {
-        containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
+        containerStyles = {
+          ...containerStyles,
+          ...styles.containerStateDisabled,
+        };
       }
     }
     if (containerStyle) {
@@ -114,68 +124,75 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   };
 
   // It is not part of the spec but used in the Figma design kit
-  const getElevatedLayer2Styles = () => {
-    let layer2Styles = styles.buttonTypeElevatedLayer2;
+  const getSurfaceOverlayStyles = () => {
+    let surfaceOverlayStyles = styles.surfaceOverlayTypeElevated;
     if (type === "elevated") {
       if (state === "enabled" || state == "pressed" || state === "focused") {
-        layer2Styles = {
-          ...layer2Styles,
-          ...styles.buttonTypeElevatedStateEnabledOrPressedOrFocusedLayer2,
+        surfaceOverlayStyles = {
+          ...surfaceOverlayStyles,
+          ...styles.surfaceOverlayTypeElevatedStateEnabledOrPressedOrFocused,
         };
       }
     }
-    return layer2Styles;
+    return surfaceOverlayStyles;
   };
 
-  const getStateStyles = () => {
-    let stateStyles = { ...styles.inner };
+  const getStateOverlayStyles = () => {
+    let stateOverlayStyles = { ...styles.stateOverlay };
     if (type == "filled") {
       if (state === "focused" || state === "pressed") {
-        stateStyles = {
-          ...stateStyles,
-          ...styles.innerStateFocusedOrPressed,
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlayStateFocusedOrPressed,
         };
       }
     } else if (type === "outlined" || type === "elevated" || type === "text") {
       if (type === "text") {
-        stateStyles = { ...stateStyles, ...styles.innerTypeText };
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlayTypeText,
+        };
       }
       if (state === "focused" || state === "pressed") {
-        stateStyles = {
-          ...stateStyles,
-          ...styles.innerTypeOutlinedOrElevatedOrTextStateFocusedOrPressed,
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlayTypeOutlinedOrElevatedOrTextStateFocusedOrPressed,
         };
       }
     } else if (type === "tonal") {
       if (state === "focused" || state === "pressed") {
-        stateStyles = {
-          ...stateStyles,
-          ...styles.innerTypeTonalStateFocusedOrPressed,
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlayTypeTonalStateFocusedOrPressed,
         };
       }
     }
     if (icon) {
       if (type === "text") {
-        stateStyles = { ...stateStyles, ...styles.innerWithIconTypeText };
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlayWithIconTypeText,
+        };
       } else {
-        stateStyles = { ...stateStyles, ...styles.innerWithIcon };
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlayWithIcon,
+        };
       }
     }
 
-    return stateStyles;
+    return stateOverlayStyles;
   };
 
   const renderContent = () => {
     let textStyles = getTextStyles();
-    const iconColor = textStyles.color;
-    //https://icons.expo.fyi/
     return (
       <>
         {icon && (
           <Ionicons
             name={icon}
-            size={18}
-            color={iconColor}
+            size={iconSize}
+            color={textStyles.color}
             style={getIconStyles()}
           />
         )}
@@ -228,91 +245,88 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   return render();
 };
 
-const defaultBorderRadius = 20;
-const defaultStatePressedOrFocusedOpacity = 0.12;
-const defaultStateDisabledOpacity = 0.12;
-const defaultContentStateDisabledOpacity = 0.38;
+const borderRadius = 20;
+const iconSize = 18;
 
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    button: {
-      borderRadius: defaultBorderRadius,
+    container: {
+      borderRadius: borderRadius,
       backgroundColor: scheme.primaryHex,
     },
-    buttonStateDisabled: {
+    containerStateDisabled: {
       backgroundColor: rgbaWithOpacity(
         scheme.onSurfaceRGB,
-        defaultStateDisabledOpacity
+        M3Constants.disabledContainerOpacity
       ),
     },
-    buttonTypeOutlined: {
+    containerTypeOutlined: {
       borderStyle: "solid",
       borderColor: scheme.outlineHex,
       borderWidth: 1,
       backgroundColor: undefined,
     },
-    buttonTypeOutlinedStateFocused: {
+    containerTypeOutlinedStateFocused: {
       borderColor: scheme.primaryHex,
     },
-    buttonTypeOutlinedStateDisabled: {
-      borderColor: rgbaWithOpacity(
-        scheme.onSurfaceRGB,
-        defaultStateDisabledOpacity
-      ),
-    },
-    buttonTypeText: {
+    containerTypeText: {
       backgroundColor: undefined,
     },
-    buttonTypeElevated: {
+    containerTypeElevated: {
       backgroundColor: scheme.surfaceHex,
     },
-    buttonTypeElevatedLayer2: {
+    surfaceOverlayTypeElevated: {
+      // Added this because even though after adding borderRadius the backgroundColor was overflowing
+      // https://stackoverflow.com/questions/35030758/react-native-border-radius-with-background-color
       overflow: "hidden",
-      borderRadius: defaultBorderRadius,
+      borderRadius: borderRadius,
     },
-    buttonTypeElevatedStateEnabledOrPressedOrFocusedLayer2: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.05),
+    surfaceOverlayTypeElevatedStateEnabledOrPressedOrFocused: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        M3Constants.surface1ContainerOpacity
+      ),
     },
-    buttonTypeTonal: {
+    containerTypeTonal: {
       backgroundColor: scheme.secondaryContainerHex,
     },
-    inner: {
+    stateOverlay: {
       alignItems: "center",
       justifyContent: "center",
       flexDirection: "row",
       height: 40,
       paddingHorizontal: 24,
-      borderRadius: defaultBorderRadius,
+      borderRadius: borderRadius,
       // Added this because even though after adding borderRadius the backgroundColor was overflowing
       // https://stackoverflow.com/questions/35030758/react-native-border-radius-with-background-color
       overflow: "hidden",
     },
-    innerStateFocusedOrPressed: {
+    stateOverlayStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.onPrimaryRGB,
-        defaultStatePressedOrFocusedOpacity
+        M3Constants.focusedOrPressedContainerOpacity
       ),
     },
-    innerTypeOutlinedOrElevatedOrTextStateFocusedOrPressed: {
+    stateOverlayTypeOutlinedOrElevatedOrTextStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.primaryRGB,
-        defaultStatePressedOrFocusedOpacity
+        M3Constants.focusedOrPressedContainerOpacity
       ),
     },
-    innerTypeTonalStateFocusedOrPressed: {
+    stateOverlayTypeTonalStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.onSecondaryContainerRGB,
-        defaultStatePressedOrFocusedOpacity
+        M3Constants.focusedOrPressedContainerOpacity
       ),
     },
-    innerTypeText: {
+    stateOverlayTypeText: {
       paddingHorizontal: 12,
     },
-    innerWithIcon: {
+    stateOverlayWithIcon: {
       paddingLeft: 16,
       paddingRight: 24,
     },
-    innerWithIconTypeText: {
+    stateOverlayWithIconTypeText: {
       paddingLeft: 12,
       paddingRight: 16,
     },
@@ -329,7 +343,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     textStateDisabled: {
       color: scheme.onSurfaceHex,
-      opacity: defaultContentStateDisabledOpacity,
+      opacity: M3Constants.disabledContentOpacity,
     },
     textTypeOutlinedOrTextOrElevated: {
       color: scheme.primaryHex,
@@ -343,6 +357,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       marginRight: 8,
     },
     iconStateDisabled: {
-      opacity: defaultContentStateDisabledOpacity,
+      opacity: M3Constants.disabledContentOpacity,
     },
   });
