@@ -49,10 +49,6 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
       delete containerStyles["borderStyle"];
       if (state === "enabled" || state === "pressed" || state === "focused") {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-      } else if (state === "hovered") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation2 };
-      } else if (state === "dragged") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
       } else if (state === "disabled") {
         containerStyles = {
           ...containerStyles,
@@ -69,12 +65,8 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
 
   const getStateStyles = () => {
     let stateStyles = { ...styles.inner };
-    if (state === "hovered") {
-      stateStyles = { ...stateStyles, ...styles.innerStateHovered };
-    } else if (state === "pressed" || state === "focused") {
+    if (state === "pressed" || state === "focused") {
       stateStyles = { ...stateStyles, ...styles.innerStateFocusedOrPressed };
-    } else if (state === "dragged") {
-      stateStyles = { ...stateStyles, ...styles.innerStateDragged };
     }
     if (icon) {
       stateStyles = { ...stateStyles, ...styles.innerWithIcon };
@@ -146,9 +138,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingHorizontal: 16,
       borderRadius: 8,
       justifyContent: "center",
-    },
-    innerStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.08),
     },
     innerStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),

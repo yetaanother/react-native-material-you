@@ -46,8 +46,6 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
               ...containerStyles,
               ...styles.chipStateFocused,
             };
-          } else if (state === "pressed") {
-          } else if (state === "dragged") {
           }
         } else {
           delete containerStyles["borderColor"];
@@ -61,12 +59,7 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
         delete containerStyles["borderStyle"];
         containerStyles = { ...containerStyles, ...styles.chipSelected };
         if (!elevated) {
-          if (state === "dragged") {
-            containerStyles = {
-              ...containerStyles,
-              ...styles.boxShadowElevation3,
-            };
-          } else if (state === "disabled") {
+          if (state === "disabled") {
             containerStyles = {
               ...containerStyles,
               ...styles.chipSelectedDisabled,
@@ -86,16 +79,6 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
     const getElevatedContainerStyles = (containerStyles: ViewStyle) => {
       if (state === "enabled" || state === "pressed" || state === "focused") {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-      } else if (state === "hovered") {
-        containerStyles = {
-          ...containerStyles,
-          ...styles.boxShadowElevation2,
-        };
-      } else if (state === "dragged") {
-        containerStyles = {
-          ...containerStyles,
-          ...styles.boxShadowElevation4,
-        };
       } else if (state === "disabled") {
         containerStyles = {
           ...containerStyles,
@@ -108,26 +91,18 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
     const getStateStyles = () => {
       let stateStyles = { ...styles.inner };
       if (!selected) {
-        if (state === "hovered") {
-          stateStyles = { ...stateStyles, ...styles.innerStateHovered };
-        } else if (state === "pressed" || state === "focused") {
+        if (state === "pressed" || state === "focused") {
           stateStyles = {
             ...stateStyles,
             ...styles.innerStateFocusedOrPressed,
           };
-        } else if (state === "dragged") {
-          stateStyles = { ...stateStyles, ...styles.innerStateDragged };
         }
       } else {
-        if (state === "hovered") {
-          stateStyles = { ...stateStyles, ...styles.innerSelectedStateHovered };
-        } else if (state === "pressed" || state === "focused") {
+        if (state === "pressed" || state === "focused") {
           stateStyles = {
             ...stateStyles,
             ...styles.innerSelectedStateFocusedOrPressed,
           };
-        } else if (state === "dragged") {
-          stateStyles = { ...stateStyles, ...styles.innerSelectedStateDragged };
         }
       }
       if (icon) {
@@ -214,23 +189,11 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderRadius: 8,
       justifyContent: "center",
     },
-    innerStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.08),
-    },
     innerStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.12),
     },
-    innerStateDragged: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.16),
-    },
-    innerSelectedStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.08),
-    },
     innerSelectedStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.12),
-    },
-    innerSelectedStateDragged: {
-      backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.16),
     },
     innerWithIcon: {
       paddingLeft: 8,

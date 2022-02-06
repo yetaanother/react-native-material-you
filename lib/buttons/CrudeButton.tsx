@@ -72,8 +72,6 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
     if (type === "filled") {
       if (state === "disabled") {
         containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
-      } else if (state === "hovered") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       }
     } else if (type === "outlined") {
       containerStyles = { ...containerStyles, ...styles.buttonTypeOutlined };
@@ -100,8 +98,6 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       };
       if (state == "disabled") {
         containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
-      } else if (state === "hovered") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation2 };
       } else {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       }
@@ -109,8 +105,6 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       containerStyles = { ...containerStyles, ...styles.buttonTypeTonal };
       if (state === "disabled") {
         containerStyles = { ...containerStyles, ...styles.buttonStateDisabled };
-      } else if (state === "hovered") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       }
     }
     if (containerStyle) {
@@ -123,16 +117,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   const getElevatedLayer2Styles = () => {
     let layer2Styles = styles.buttonTypeElevatedLayer2;
     if (type === "elevated") {
-      if (state === "hovered") {
-        layer2Styles = {
-          ...layer2Styles,
-          ...styles.buttonTypeElevatedStateHoveredLayer2,
-        };
-      } else if (
-        state === "enabled" ||
-        state == "pressed" ||
-        state === "focused"
-      ) {
+      if (state === "enabled" || state == "pressed" || state === "focused") {
         layer2Styles = {
           ...layer2Styles,
           ...styles.buttonTypeElevatedStateEnabledOrPressedOrFocusedLayer2,
@@ -145,9 +130,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   const getStateStyles = () => {
     let stateStyles = { ...styles.inner };
     if (type == "filled") {
-      if (state === "hovered") {
-        stateStyles = { ...stateStyles, ...styles.innerStateHovered };
-      } else if (state === "focused" || state === "pressed") {
+      if (state === "focused" || state === "pressed") {
         stateStyles = {
           ...stateStyles,
           ...styles.innerStateFocusedOrPressed,
@@ -157,24 +140,14 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       if (type === "text") {
         stateStyles = { ...stateStyles, ...styles.innerTypeText };
       }
-      if (state === "hovered") {
-        stateStyles = {
-          ...stateStyles,
-          ...styles.innerTypeOutlinedOrElevatedOrTextStateHovered,
-        };
-      } else if (state === "focused" || state === "pressed") {
+      if (state === "focused" || state === "pressed") {
         stateStyles = {
           ...stateStyles,
           ...styles.innerTypeOutlinedOrElevatedOrTextStateFocusedOrPressed,
         };
       }
     } else if (type === "tonal") {
-      if (state === "hovered") {
-        stateStyles = {
-          ...stateStyles,
-          ...styles.innerTypeTonalStateHovered,
-        };
-      } else if (state === "focused" || state === "pressed") {
+      if (state === "focused" || state === "pressed") {
         stateStyles = {
           ...stateStyles,
           ...styles.innerTypeTonalStateFocusedOrPressed,
@@ -256,7 +229,6 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
 };
 
 const defaultBorderRadius = 20;
-const defaultStateHoveredOpacity = 0.08;
 const defaultStatePressedOrFocusedOpacity = 0.12;
 const defaultStateDisabledOpacity = 0.12;
 const defaultContentStateDisabledOpacity = 0.38;
@@ -274,8 +246,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       ),
     },
     buttonTypeOutlined: {
-      // This field is optional. Right now not including it to be in sync with Figma design kit
-      // backgroundColor: scheme.surfaceHex,
       borderStyle: "solid",
       borderColor: scheme.outlineHex,
       borderWidth: 1,
@@ -300,17 +270,11 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       overflow: "hidden",
       borderRadius: defaultBorderRadius,
     },
-    buttonTypeElevatedStateHoveredLayer2: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
-    },
     buttonTypeElevatedStateEnabledOrPressedOrFocusedLayer2: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.05),
     },
     buttonTypeTonal: {
       backgroundColor: scheme.secondaryContainerHex,
-    },
-    linearGradient: {
-      borderRadius: defaultBorderRadius,
     },
     inner: {
       alignItems: "center",
@@ -323,34 +287,16 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       // https://stackoverflow.com/questions/35030758/react-native-border-radius-with-background-color
       overflow: "hidden",
     },
-    innerStateHovered: {
-      backgroundColor: rgbaWithOpacity(
-        scheme.onPrimaryRGB,
-        defaultStateHoveredOpacity
-      ),
-    },
     innerStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.onPrimaryRGB,
         defaultStatePressedOrFocusedOpacity
       ),
     },
-    innerTypeOutlinedOrElevatedOrTextStateHovered: {
-      backgroundColor: rgbaWithOpacity(
-        scheme.primaryRGB,
-        defaultStateHoveredOpacity
-      ),
-    },
     innerTypeOutlinedOrElevatedOrTextStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.primaryRGB,
         defaultStatePressedOrFocusedOpacity
-      ),
-    },
-    innerTypeTonalStateHovered: {
-      backgroundColor: rgbaWithOpacity(
-        scheme.onSecondaryContainerRGB,
-        defaultStateHoveredOpacity
       ),
     },
     innerTypeTonalStateFocusedOrPressed: {

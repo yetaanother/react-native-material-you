@@ -316,12 +316,6 @@ export default function App() {
             containerStyle={{ margin: 4 }}
           />
           <CrudeButton
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-          />
-          <CrudeButton
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
@@ -346,13 +340,6 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            containerStyle={{ margin: 4 }}
-            icon={"add"}
-          />
-          <CrudeButton
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
           />
@@ -401,13 +388,6 @@ export default function App() {
             type={"outlined"}
           />
           <CrudeButton
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            type={"outlined"}
-          />
-          <CrudeButton
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
@@ -435,14 +415,6 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            containerStyle={{ margin: 4 }}
-            icon={"add"}
-            type={"outlined"}
-          />
-          <CrudeButton
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"outlined"}
@@ -492,13 +464,6 @@ export default function App() {
             type={"text"}
           />
           <CrudeButton
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            type={"text"}
-          />
-          <CrudeButton
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
@@ -526,14 +491,6 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            containerStyle={{ margin: 4 }}
-            icon={"add"}
-            type={"text"}
-          />
-          <CrudeButton
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"text"}
@@ -586,13 +543,6 @@ export default function App() {
             type={"elevated"}
           />
           <CrudeButton
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            type={"elevated"}
-          />
-          <CrudeButton
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
@@ -620,14 +570,6 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            containerStyle={{ margin: 4 }}
-            icon={"add"}
-            type={"elevated"}
-          />
-          <CrudeButton
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"elevated"}
@@ -680,13 +622,6 @@ export default function App() {
             type={"tonal"}
           />
           <CrudeButton
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            type={"tonal"}
-          />
-          <CrudeButton
             title={"Focused"}
             onPress={() => {}}
             state={"focused"}
@@ -714,14 +649,6 @@ export default function App() {
           <CrudeButton
             title={"Enabled"}
             onPress={() => {}}
-            containerStyle={{ margin: 4 }}
-            icon={"add"}
-            type={"tonal"}
-          />
-          <CrudeButton
-            title={"Hovered"}
-            onPress={() => {}}
-            state={"hovered"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}
@@ -926,18 +853,8 @@ export default function App() {
         <View style={childStyle}>
           <CrudeInputChip label={"Enabled"} containerStyle={{ margin: 4 }} />
           <CrudeInputChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-          />
-          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
-            containerStyle={{ margin: 4 }}
-          />
-          <CrudeInputChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
           />
         </View>
@@ -949,20 +866,8 @@ export default function App() {
             selected={true}
           />
           <CrudeInputChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-          />
-          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-          />
-          <CrudeInputChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             selected={true}
           />
@@ -975,22 +880,8 @@ export default function App() {
             closeable={true}
           />
           <CrudeInputChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            closeable={true}
-          />
-          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
-            containerStyle={{ margin: 4 }}
-            closeable={true}
-          />
-        </View>
-        <View style={childStyle}>
-          <CrudeInputChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             closeable={true}
           />
@@ -1004,24 +895,8 @@ export default function App() {
             closeable={true}
           />
           <CrudeInputChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-            closeable={true}
-          />
-          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-            closeable={true}
-          />
-        </View>
-        <View style={childStyle}>
-          <CrudeInputChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             selected={true}
             closeable={true}
@@ -1035,22 +910,8 @@ export default function App() {
             avatar={true}
           />
           <CrudeInputChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            avatar={true}
-          />
-          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
-            containerStyle={{ margin: 4 }}
-            avatar={true}
-          />
-        </View>
-        <View style={childStyle}>
-          <CrudeInputChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             avatar={true}
           />
@@ -1064,24 +925,8 @@ export default function App() {
             avatar={true}
           />
           <CrudeInputChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-            avatar={true}
-          />
-          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-            avatar={true}
-          />
-        </View>
-        <View style={childStyle}>
-          <CrudeInputChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             selected={true}
             avatar={true}
@@ -1098,24 +943,8 @@ export default function App() {
             closeable={true}
           />
           <CrudeInputChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            avatar={true}
-            closeable={true}
-          />
-          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
-            containerStyle={{ margin: 4 }}
-            avatar={true}
-            closeable={true}
-          />
-        </View>
-        <View style={childStyle}>
-          <CrudeInputChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             avatar={true}
             closeable={true}
@@ -1131,26 +960,8 @@ export default function App() {
             closeable={true}
           />
           <CrudeInputChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-            avatar={true}
-            closeable={true}
-          />
-          <CrudeInputChip
             label={"Focused"}
             state={"focused"}
-            containerStyle={{ margin: 4 }}
-            selected={true}
-            avatar={true}
-            closeable={true}
-          />
-        </View>
-        <View style={childStyle}>
-          <CrudeInputChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             selected={true}
             avatar={true}
@@ -1161,11 +972,6 @@ export default function App() {
         <View style={childStyle}>
           <CrudeAssistiveChip
             label={"Enabled"}
-            containerStyle={{ margin: 4 }}
-          />
-          <CrudeAssistiveChip
-            label={"Hovered"}
-            state={"hovered"}
             containerStyle={{ margin: 4 }}
           />
           <CrudeAssistiveChip
@@ -1180,11 +986,6 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeAssistiveChip
-            label={"Dragged"}
-            state={"dragged"}
-            containerStyle={{ margin: 4 }}
-          />
           <CrudeAssistiveChip
             label={"Disabled"}
             state={"disabled"}
@@ -1199,12 +1000,6 @@ export default function App() {
             elevated={true}
           />
           <CrudeAssistiveChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-          />
-          <CrudeAssistiveChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -1218,12 +1013,6 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeAssistiveChip
-            label={"Dragged"}
-            state={"dragged"}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-          />
           <CrudeAssistiveChip
             label={"Disabled"}
             state={"disabled"}
@@ -1239,12 +1028,6 @@ export default function App() {
             icon={"car"}
           />
           <CrudeAssistiveChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            icon={"car"}
-          />
-          <CrudeAssistiveChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -1255,12 +1038,6 @@ export default function App() {
           <CrudeAssistiveChip
             label={"Pressed"}
             state={"pressed"}
-            containerStyle={{ margin: 4 }}
-            icon={"car"}
-          />
-          <CrudeAssistiveChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             icon={"car"}
           />
@@ -1280,13 +1057,6 @@ export default function App() {
             icon={"car"}
           />
           <CrudeAssistiveChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-            icon={"car"}
-          />
-          <CrudeAssistiveChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -1298,13 +1068,6 @@ export default function App() {
           <CrudeAssistiveChip
             label={"Pressed"}
             state={"pressed"}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-            icon={"car"}
-          />
-          <CrudeAssistiveChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             icon={"car"}
@@ -1321,11 +1084,6 @@ export default function App() {
         <View style={childStyle}>
           <CrudeFilterChip label={"Enabled"} containerStyle={{ margin: 4 }} />
           <CrudeFilterChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-          />
-          <CrudeFilterChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -1337,11 +1095,6 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
-            label={"Dragged"}
-            state={"dragged"}
-            containerStyle={{ margin: 4 }}
-          />
           <CrudeFilterChip
             label={"Disabled"}
             state={"disabled"}
@@ -1356,12 +1109,6 @@ export default function App() {
             containerStyle={{ margin: 4 }}
           />
           <CrudeFilterChip
-            label={"Hovered"}
-            state={"hovered"}
-            selected={true}
-            containerStyle={{ margin: 4 }}
-          />
-          <CrudeFilterChip
             label={"Focused"}
             state={"focused"}
             selected={true}
@@ -1372,12 +1119,6 @@ export default function App() {
           <CrudeFilterChip
             label={"Pressed"}
             state={"pressed"}
-            selected={true}
-            containerStyle={{ margin: 4 }}
-          />
-          <CrudeFilterChip
-            label={"Dragged"}
-            state={"dragged"}
             selected={true}
             containerStyle={{ margin: 4 }}
           />
@@ -1396,12 +1137,6 @@ export default function App() {
             elevated={true}
           />
           <CrudeFilterChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-          />
-          <CrudeFilterChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -1415,12 +1150,6 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
-            label={"Dragged"}
-            state={"dragged"}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-          />
           <CrudeFilterChip
             label={"Disabled"}
             state={"disabled"}
@@ -1437,13 +1166,6 @@ export default function App() {
             elevated={true}
           />
           <CrudeFilterChip
-            label={"Hovered"}
-            state={"hovered"}
-            selected={true}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-          />
-          <CrudeFilterChip
             label={"Focused"}
             state={"focused"}
             selected={true}
@@ -1455,13 +1177,6 @@ export default function App() {
           <CrudeFilterChip
             label={"Pressed"}
             state={"pressed"}
-            selected={true}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-          />
-          <CrudeFilterChip
-            label={"Dragged"}
-            state={"dragged"}
             selected={true}
             containerStyle={{ margin: 4 }}
             elevated={true}
@@ -1484,12 +1199,6 @@ export default function App() {
             dropdown={true}
           />
           <CrudeFilterChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            dropdown={true}
-          />
-          <CrudeFilterChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -1500,12 +1209,6 @@ export default function App() {
           <CrudeFilterChip
             label={"Pressed"}
             state={"pressed"}
-            containerStyle={{ margin: 4 }}
-            dropdown={true}
-          />
-          <CrudeFilterChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             dropdown={true}
           />
@@ -1526,13 +1229,6 @@ export default function App() {
             containerStyle={{ margin: 4 }}
             dropdown={true}
           />
-          <CrudeFilterChip
-            label={"Hovered"}
-            state={"hovered"}
-            selected={true}
-            containerStyle={{ margin: 4 }}
-            dropdown={true}
-          />
         </View>
         <View style={childStyle}>
           <CrudeFilterChip
@@ -1551,13 +1247,6 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
-            label={"Dragged"}
-            state={"dragged"}
-            selected={true}
-            containerStyle={{ margin: 4 }}
-            dropdown={true}
-          />
           <CrudeFilterChip
             label={"Disabled"}
             state={"disabled"}
@@ -1575,13 +1264,6 @@ export default function App() {
             dropdown={true}
           />
           <CrudeFilterChip
-            label={"Hovered"}
-            state={"hovered"}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-            dropdown={true}
-          />
-          <CrudeFilterChip
             label={"Focused"}
             state={"focused"}
             containerStyle={{ margin: 4 }}
@@ -1593,13 +1275,6 @@ export default function App() {
           <CrudeFilterChip
             label={"Pressed"}
             state={"pressed"}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-            dropdown={true}
-          />
-          <CrudeFilterChip
-            label={"Dragged"}
-            state={"dragged"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             dropdown={true}
@@ -1621,14 +1296,6 @@ export default function App() {
             elevated={true}
             dropdown={true}
           />
-          <CrudeFilterChip
-            label={"Hovered"}
-            state={"hovered"}
-            selected={true}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-            dropdown={true}
-          />
         </View>
         <View style={childStyle}>
           <CrudeFilterChip
@@ -1650,14 +1317,6 @@ export default function App() {
         </View>
         <View style={childStyle}>
           <CrudeFilterChip
-            label={"Dragged"}
-            state={"dragged"}
-            selected={true}
-            containerStyle={{ margin: 4 }}
-            elevated={true}
-            dropdown={true}
-          />
-          <CrudeFilterChip
             label={"Disabled"}
             state={"disabled"}
             selected={true}
@@ -1673,19 +1332,9 @@ export default function App() {
             containerStyle={{ margin: 4 }}
           />
           <CrudeSuggestiveChip
-            label={"Hovered"}
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-          />
-          <CrudeSuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
             state={"focused"}
-          />
-          <CrudeSuggestiveChip
-            label={"Dragged"}
-            containerStyle={{ margin: 4 }}
-            state={"dragged"}
           />
         </View>
         <View style={childStyle}>
@@ -1708,21 +1357,9 @@ export default function App() {
             elevated={true}
           />
           <CrudeSuggestiveChip
-            label={"Hovered"}
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            elevated={true}
-          />
-          <CrudeSuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
             state={"focused"}
-            elevated={true}
-          />
-          <CrudeSuggestiveChip
-            label={"Dragged"}
-            containerStyle={{ margin: 4 }}
-            state={"dragged"}
             elevated={true}
           />
         </View>
@@ -1748,21 +1385,9 @@ export default function App() {
             selected={true}
           />
           <CrudeSuggestiveChip
-            label={"Hovered"}
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            selected={true}
-          />
-          <CrudeSuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
             state={"focused"}
-            selected={true}
-          />
-          <CrudeSuggestiveChip
-            label={"Dragged"}
-            containerStyle={{ margin: 4 }}
-            state={"dragged"}
             selected={true}
           />
         </View>
@@ -1789,23 +1414,9 @@ export default function App() {
             selected={true}
           />
           <CrudeSuggestiveChip
-            label={"Hovered"}
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            elevated={true}
-            selected={true}
-          />
-          <CrudeSuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
             state={"focused"}
-            elevated={true}
-            selected={true}
-          />
-          <CrudeSuggestiveChip
-            label={"Dragged"}
-            containerStyle={{ margin: 4 }}
-            state={"dragged"}
             elevated={true}
             selected={true}
           />
@@ -1836,12 +1447,6 @@ export default function App() {
             icon={"car"}
           />
           <CrudeSuggestiveChip
-            label={"Hovered"}
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            icon={"car"}
-          />
-          <CrudeSuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
             state={"focused"}
@@ -1849,12 +1454,6 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
-            label={"Dragged"}
-            containerStyle={{ margin: 4 }}
-            state={"dragged"}
-            icon={"car"}
-          />
           <CrudeSuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
@@ -1879,13 +1478,6 @@ export default function App() {
             icon={"car"}
           />
           <CrudeSuggestiveChip
-            label={"Hovered"}
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            elevated={true}
-            icon={"car"}
-          />
-          <CrudeSuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
             state={"focused"}
@@ -1894,13 +1486,6 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
-            label={"Dragged"}
-            containerStyle={{ margin: 4 }}
-            state={"dragged"}
-            elevated={true}
-            icon={"car"}
-          />
           <CrudeSuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
@@ -1927,13 +1512,6 @@ export default function App() {
             icon={"car"}
           />
           <CrudeSuggestiveChip
-            label={"Hovered"}
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            selected={true}
-            icon={"car"}
-          />
-          <CrudeSuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
             state={"focused"}
@@ -1942,13 +1520,6 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
-            label={"Dragged"}
-            containerStyle={{ margin: 4 }}
-            state={"dragged"}
-            selected={true}
-            icon={"car"}
-          />
           <CrudeSuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
@@ -1976,14 +1547,6 @@ export default function App() {
             icon={"car"}
           />
           <CrudeSuggestiveChip
-            label={"Hovered"}
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            elevated={true}
-            selected={true}
-            icon={"car"}
-          />
-          <CrudeSuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
             state={"focused"}
@@ -1993,14 +1556,6 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
-            label={"Dragged"}
-            containerStyle={{ margin: 4 }}
-            state={"dragged"}
-            elevated={true}
-            selected={true}
-            icon={"car"}
-          />
           <CrudeSuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
@@ -2077,7 +1632,6 @@ export default function App() {
         <Text style={textStyle}>Surface FAB</Text>
         <View style={childStyle}>
           <CrudeFAB containerStyle={{ margin: 4 }} />
-          <CrudeFAB containerStyle={{ margin: 4 }} state={"hovered"} />
           <CrudeFAB containerStyle={{ margin: 4 }} state={"focused"} />
           <CrudeFAB containerStyle={{ margin: 4 }} state={"pressed"} />
           <CrudeFAB containerStyle={{ margin: 4 }} state={"disabled"} />
@@ -2085,11 +1639,6 @@ export default function App() {
         <Text style={textStyle}>Primary FAB</Text>
         <View style={childStyle}>
           <CrudeFAB containerStyle={{ margin: 4 }} type={"primary"} />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            type={"primary"}
-          />
           <CrudeFAB
             containerStyle={{ margin: 4 }}
             state={"focused"}
@@ -2111,11 +1660,6 @@ export default function App() {
           <CrudeFAB containerStyle={{ margin: 4 }} type={"secondary"} />
           <CrudeFAB
             containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            type={"secondary"}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
             state={"focused"}
             type={"secondary"}
           />
@@ -2135,11 +1679,6 @@ export default function App() {
           <CrudeFAB containerStyle={{ margin: 4 }} type={"tertiary"} />
           <CrudeFAB
             containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            type={"tertiary"}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
             state={"focused"}
             type={"tertiary"}
           />
@@ -2157,11 +1696,6 @@ export default function App() {
         <Text style={textStyle}>Surface large FAB</Text>
         <View style={childStyle}>
           <CrudeFAB containerStyle={{ margin: 4 }} large={true} />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            large={true}
-          />
           <CrudeFAB
             containerStyle={{ margin: 4 }}
             state={"focused"}
@@ -2184,12 +1718,6 @@ export default function App() {
         <View style={childStyle}>
           <CrudeFAB
             containerStyle={{ margin: 4 }}
-            type={"primary"}
-            large={true}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
             type={"primary"}
             large={true}
           />
@@ -2223,12 +1751,6 @@ export default function App() {
           />
           <CrudeFAB
             containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            type={"secondary"}
-            large={true}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
             state={"focused"}
             type={"secondary"}
             large={true}
@@ -2252,12 +1774,6 @@ export default function App() {
         <View style={childStyle}>
           <CrudeFAB
             containerStyle={{ margin: 4 }}
-            type={"tertiary"}
-            large={true}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
             type={"tertiary"}
             large={true}
           />
@@ -2287,11 +1803,6 @@ export default function App() {
           <CrudeFAB containerStyle={{ margin: 4 }} label={"Enabled"} />
           <CrudeFAB
             containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            label={"Hovered"}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
             state={"focused"}
             label={"Focused"}
           />
@@ -2314,12 +1825,6 @@ export default function App() {
             containerStyle={{ margin: 4 }}
             type={"primary"}
             label={"Enabled"}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            type={"primary"}
-            label={"Hovered"}
           />
           <CrudeFAB
             containerStyle={{ margin: 4 }}
@@ -2351,12 +1856,6 @@ export default function App() {
           />
           <CrudeFAB
             containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            type={"secondary"}
-            label={"Hovered"}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
             state={"focused"}
             type={"secondary"}
             label={"Focused"}
@@ -2382,12 +1881,6 @@ export default function App() {
             containerStyle={{ margin: 4 }}
             type={"tertiary"}
             label={"Enabled"}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
-            state={"hovered"}
-            type={"tertiary"}
-            label={"Hovered"}
           />
           <CrudeFAB
             containerStyle={{ margin: 4 }}
