@@ -11,6 +11,7 @@ import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { NavBarItemProps } from "./NavBarItem";
 import { Settings } from "../providers/Settings";
+import { M3Constants } from "../utils/M3Constants";
 
 interface NavBarItemComp extends ReactElement<NavBarItemProps, any> {}
 
@@ -47,8 +48,8 @@ export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
       return <></>;
     }
     return (
-      <View style={{ ...styles.navBar, ...styles.boxShadowElevation2 }}>
-        <View style={styles.navBarLayer2}>{getPressables()}</View>
+      <View style={{ ...styles.container, ...styles.boxShadowElevation2 }}>
+        <View style={styles.surfaceOverlay}>{getPressables()}</View>
       </View>
     );
   };
@@ -107,13 +108,16 @@ export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
 const deviceWidth = Dimensions.get("window").width;
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    navBar: {
+    container: {
       backgroundColor: scheme.surfaceHex,
       width: deviceWidth,
     },
     boxShadowElevation2: settings.boxShadowElevation2,
-    navBarLayer2: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
+    surfaceOverlay: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        M3Constants.surface2ContainerOpacity
+      ),
       flexDirection: "row",
     },
   });
