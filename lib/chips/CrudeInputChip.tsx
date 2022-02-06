@@ -10,7 +10,6 @@ import { Settings } from "../providers/Settings";
 // In the specs it is mentioned that we an also use an icon instead of avatar. If it is the case then paddingLeft
 // will change to 8 instead of 4. But right now I am not implementing it.
 // Guidelines for 'selected' version are not given in specs
-//todo check, disabled state is implemented here: https://m3.material.io/components/chips/specs
 interface CrudeInputChipProps {
   label: string;
   selected?: boolean;
@@ -51,8 +50,7 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
       if (state === "focused") {
         containerStyles = { ...containerStyles, ...styles.chipStateFocused };
       } else if (state === "dragged") {
-        //todo check, elevation 4 is used here: https://m3.material.io/components/chips/specs
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation3 };
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
       }
     } else {
       containerStyles = { ...containerStyles, ...styles.chipSelected };
@@ -61,8 +59,7 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
       delete containerStyles["borderStyle"];
 
       if (state === "dragged") {
-        //todo check, elevation 4 is used here: https://m3.material.io/components/chips/specs
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation3 };
+        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
       }
     }
 
@@ -134,10 +131,11 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
     );
   };
 
-  //todo check, icon color is surface variant here:https://m3.material.io/components/chips/specs
   const getIconColor = () => {
     // Usually icon color follows text color but here it is not
-    return selected ? scheme.onSecondaryContainerHex : scheme.onSurfaceHex;
+    return selected
+      ? scheme.onSecondaryContainerHex
+      : scheme.onSurfaceVariantHex;
   };
 
   const getTextStyles = () => {
@@ -151,7 +149,6 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
   return render();
 };
 
-// todo check: text is start aligned horizontally here: https://m3.material.io/components/chips/specs
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     chip: {
@@ -219,7 +216,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     textSelected: {
       color: scheme.onSecondaryContainerHex,
     },
-    boxShadowElevation3: settings.boxShadowElevation3,
+    boxShadowElevation4: settings.boxShadowElevation4,
     trailingIcon: {
       marginLeft: 8,
     },

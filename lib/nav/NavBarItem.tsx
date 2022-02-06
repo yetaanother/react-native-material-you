@@ -16,7 +16,6 @@ export interface NavBarItemProps {
   onSuccessClearBadge?: () => boolean;
 }
 
-// todo check, states are implemented here: https://m3.material.io/components/navigation-bar/specs
 export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
   inactiveIcon,
   label,
@@ -90,7 +89,6 @@ export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
   return render();
 };
 
-// todo check, padding between activity indicator and label is 4 mentioned here: https://m3.material.io/components/navigation-bar/specs
 const createStyles = (scheme: SchemeAdapter) =>
   StyleSheet.create({
     navBarItem: {
@@ -101,8 +99,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       paddingBottom: 16,
     },
     badge: {
-      // todo check, radius is 3 here: https://m3.material.io/components/navigation-bar/specs
-      borderRadius: 100,
+      borderRadius: 3,
       backgroundColor: scheme.errorHex,
       width: 6,
       height: 6,
@@ -111,8 +108,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       position: "absolute",
     },
     badgeNumbered: {
-      // todo check, radius is 8 here: https://m3.material.io/components/navigation-bar/specs
-      borderRadius: 100,
+      borderRadius: 8,
       backgroundColor: scheme.errorHex,
       width: 16,
       height: 16,
@@ -127,8 +123,7 @@ const createStyles = (scheme: SchemeAdapter) =>
     activityIndicator: {
       width: 64,
       height: 32,
-      // todo check, radius is 16 here: https://m3.material.io/components/navigation-bar/specs
-      borderRadius: 20,
+      borderRadius: 16,
       backgroundColor: scheme.secondaryContainerHex,
       justifyContent: "center",
       alignItems: "center",
@@ -150,10 +145,10 @@ const createStyles = (scheme: SchemeAdapter) =>
       color: scheme.onSurfaceVariantHex,
       textAlign: "center",
       textAlignVertical: "center",
+      marginTop: 4,
     },
-    // todo check, surface is mentioned here: https://m3.material.io/components/navigation-bar/specs
     labelActive: {
-      color: scheme.onSecondaryContainerHex,
+      color: scheme.onSurfaceHex,
     },
     badgeLabel: {
       fontFamily: "Roboto",
@@ -162,8 +157,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       lineHeight: 16,
       fontWeight: "normal",
       letterSpacing: 0.1,
-      // todo check, on error is mentioned here: https://m3.material.io/components/navigation-bar/specs
-      color: scheme.onPrimaryHex,
+      color: scheme.onErrorHex,
       textAlign: "center",
       textAlignVertical: "center",
     },

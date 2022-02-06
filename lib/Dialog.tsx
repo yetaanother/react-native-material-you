@@ -5,6 +5,7 @@ import { SchemeAdapter } from "./providers/SchemeAdapter";
 import { rgbaWithOpacity } from "./utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "./buttons/Button";
+import { Settings } from "./providers/Settings";
 
 interface DialogProps {
   title: string;
@@ -30,13 +31,12 @@ export const Dialog: FunctionComponent<DialogProps> = ({
   onSecondaryPress,
   children,
 }) => {
-  const { scheme } = useContext(ThemeContext);
-  const styles = createStyles(scheme);
+  const { scheme, settings } = useContext(ThemeContext);
+  const styles = createStyles(scheme, settings);
 
-  // todo check, elevation 3 is used here: https://m3.material.io/components/dialogs/specs
   const render = () => {
     return (
-      <View style={styles.dialog}>
+      <View style={{ ...styles.dialog, ...styles.boxShadowElevation3 }}>
         {/*// Another layer of color is not part of the spec but used in the Figma design kit*/}
         <View style={styles.dialogLayer2}>
           {renderContent()}
@@ -109,15 +109,14 @@ export const Dialog: FunctionComponent<DialogProps> = ({
   return render();
 };
 
-// todo check, minimum width is 280 and max width is 560 here: https://m3.material.io/components/dialogs/specs#bbf1acde-f8d2-4ae1-9d51-343e96c4ac20
-const createStyles = (scheme: SchemeAdapter) =>
+const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     dialog: {
-      // todo remove this it is default
       borderRadius: 28,
       backgroundColor: scheme.surfaceHex,
       width: 312,
     },
+    boxShadowElevation3: settings.boxShadowElevation3,
     dialogLayer2: {
       alignItems: "flex-end",
       borderRadius: 28,

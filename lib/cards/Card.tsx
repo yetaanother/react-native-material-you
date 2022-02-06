@@ -71,15 +71,13 @@ export const Card: FunctionComponent<CardProps> = ({
     );
   };
 
-  // todo check, states are used here: https://m3.material.io/components/cards/specs
   const getCardStyles = () => {
     let cardStyles: ViewStyle = { ...styles.card };
-    // todo check, elevation 1 is used here: https://m3.material.io/components/cards/specs
     if (type === "elevated") {
       cardStyles = {
         ...cardStyles,
         ...styles.cardTypeElevated,
-        ...styles.boxShadowElevation2,
+        ...styles.boxShadowElevation1,
       };
     } else if (type === "outlined") {
       cardStyles = { ...cardStyles, ...styles.cardTypeOutlined };
@@ -93,7 +91,14 @@ export const Card: FunctionComponent<CardProps> = ({
     }
     return (
       <View style={styles.header}>
-        <View>{avatar && <Avatar initials={avatarInitials} />}</View>
+        <View>
+          {avatar && (
+            <Avatar
+              containerStyle={{ marginRight: 16 }}
+              initials={avatarInitials}
+            />
+          )}
+        </View>
         <View style={styles.headerContent}>
           {headerTitle && <Text style={styles.headerTitle}>{headerTitle}</Text>}
           {headerSubTitle && (
@@ -277,5 +282,5 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     button: {
       marginHorizontal: 8,
     },
-    boxShadowElevation2: settings.boxShadowElevation2,
+    boxShadowElevation1: settings.boxShadowElevation1,
   });

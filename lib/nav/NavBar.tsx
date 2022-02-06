@@ -10,6 +10,7 @@ import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { NavBarItemProps } from "./NavBarItem";
+import { Settings } from "../providers/Settings";
 
 interface NavBarItemComp extends ReactElement<NavBarItemProps, any> {}
 
@@ -18,8 +19,8 @@ interface NavBarProps {
 }
 
 export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
-  const { scheme } = useContext(ThemeContext);
-  const styles = createStyles(scheme);
+  const { scheme, settings } = useContext(ThemeContext);
+  const styles = createStyles(scheme, settings);
   const [itemsMap, setItemsMap] = useState(new Map<number, NavBarItemComp>());
 
   useEffect(() => {
@@ -44,9 +45,8 @@ export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
     if (itemsMap.size === 0) {
       return <></>;
     }
-    //todo check, elevation level 2 is mentioned here: https://m3.material.io/components/navigation-bar/specs
     return (
-      <View style={styles.navBar}>
+      <View style={{ ...styles.navBar, ...styles.boxShadowElevation2 }}>
         <View style={styles.navBarLayer2}>{getPressables()}</View>
       </View>
     );
@@ -103,15 +103,14 @@ export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
   return render();
 };
 
-// todo check, height is 80 mentioned here: https://m3.material.io/components/navigation-bar/specs
-// todo check, top padding is 12 and bottom padding is 16 mentioned here: https://m3.material.io/components/navigation-bar/specs
 const deviceWidth = Dimensions.get("window").width;
-const createStyles = (scheme: SchemeAdapter) =>
+const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     navBar: {
       backgroundColor: scheme.surfaceHex,
       width: deviceWidth,
     },
+    boxShadowElevation2: settings.boxShadowElevation2,
     navBarLayer2: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
       flexDirection: "row",
