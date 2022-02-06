@@ -25,6 +25,7 @@ interface AppBarProps {
   type?: AppBarType;
 }
 
+// M3 docs: https://m3.material.io/components/top-app-bar/specs
 export const AppBar: FunctionComponent<AppBarProps> = ({
   leadingIcon,
   trailingIcon,

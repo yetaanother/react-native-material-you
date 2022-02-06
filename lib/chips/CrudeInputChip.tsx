@@ -20,6 +20,7 @@ interface CrudeInputChipProps {
   avatar?: boolean;
 }
 
+// M3 docs: https://m3.material.io/components/chips/specs
 export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
   label,
   selected,

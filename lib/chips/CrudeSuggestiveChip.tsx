@@ -16,6 +16,7 @@ interface CrudeSuggestiveChipProps {
   containerStyle?: ViewStyle;
 }
 
+// M3 docs: https://m3.material.io/components/chips/specs
 export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
   ({ label, selected, elevated, state, icon, containerStyle }) => {
     const { scheme, settings } = useContext(ThemeContext);

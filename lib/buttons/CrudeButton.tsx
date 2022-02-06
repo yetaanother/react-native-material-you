@@ -28,6 +28,7 @@ interface CrudeButtonProps {
   onBlur?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
 }
 
+// M3 docs: https://m3.material.io/components/buttons/specs
 export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
   type,
   icon,

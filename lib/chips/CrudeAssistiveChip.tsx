@@ -14,7 +14,7 @@ interface CrudeAssistiveChipProps {
   icon?: any;
   elevated?: boolean;
 }
-
+// M3 docs: https://m3.material.io/components/chips/specs
 export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
   label,
   state,

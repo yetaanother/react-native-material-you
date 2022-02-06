@@ -15,6 +15,8 @@ interface CrudeFABProps {
   state?: FABState;
 }
 
+// M3 docs: https://m3.material.io/components/floating-action-button/specs
+// M3 docs: https://m3.material.io/components/extended-fab/specs
 export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
   type,
   icon,
