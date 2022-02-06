@@ -37,7 +37,6 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
       if (!selected) {
         if (!elevated) {
           if (state === "disabled") {
-            delete containerStyles["backgroundColor"];
             containerStyles = {
               ...containerStyles,
               ...styles.chipStateDisabled,
@@ -196,6 +195,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     chipStateDisabled: {
       borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+      backgroundColor: undefined,
     },
     chipElevatedStateDisabled: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),

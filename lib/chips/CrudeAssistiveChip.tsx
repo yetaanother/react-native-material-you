@@ -39,7 +39,6 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
     let containerStyles: ViewStyle = { ...styles.chip };
     if (!elevated) {
       if (state === "disabled") {
-        delete containerStyles["backgroundColor"];
         containerStyles = { ...containerStyles, ...styles.chipStateDisabled };
       } else if (state === "focused") {
         containerStyles = { ...containerStyles, ...styles.chipStateFocused };
@@ -135,6 +134,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     chipStateDisabled: {
       borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+      backgroundColor: undefined,
     },
     chipElevatedStateDisabled: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
