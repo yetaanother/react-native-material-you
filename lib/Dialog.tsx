@@ -6,6 +6,7 @@ import { rgbaWithOpacity } from "./utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "./buttons/Button";
 import { Settings } from "./providers/Settings";
+import { M3Constants } from "./utils/M3Constants";
 
 interface DialogProps {
   title: string;
@@ -37,23 +38,32 @@ export const Dialog: FunctionComponent<DialogProps> = ({
 
   const render = () => {
     return (
-      <View style={{ ...styles.dialog, ...styles.boxShadowElevation3 }}>
-        {/*// Another layer of color is not part of the spec but used in the Figma design kit*/}
-        <View style={styles.dialogLayer2}>
-          {renderContent()}
-          <View style={styles.children}>{children}</View>
-          {renderActions()}
-        </View>
+      <View style={{ ...styles.container, ...styles.boxShadowElevation3 }}>
+        <View style={styles.surfaceOverlay}>{renderContent()}</View>
       </View>
     );
   };
 
   const renderContent = () => {
     return (
-      <View style={getContentStyles()}>
+      <>
+        {renderBody()}
+        <View style={styles.children}>{children}</View>
+        {renderActions()}
+      </>
+    );
+  };
+
+  const renderBody = () => {
+    return (
+      <View style={styles.bodyContainer}>
         {heroIcon && (
           <View style={styles.icon}>
-            <Ionicons name={heroIcon} size={24} color={scheme.secondaryHex} />
+            <Ionicons
+              name={heroIcon}
+              size={iconSize}
+              color={scheme.secondaryHex}
+            />
           </View>
         )}
         <Text style={getTitleStyles()}>{title}</Text>
@@ -63,23 +73,11 @@ export const Dialog: FunctionComponent<DialogProps> = ({
   };
 
   const getTitleStyles = () => {
-    if (heroIcon) {
-      return styles.title;
+    let titleStyles: TextStyle = { ...styles.title };
+    if (!heroIcon) {
+      titleStyles = { ...titleStyles, ...styles.titleWithoutHeroIcon };
     }
-    let titleStyles: TextStyle = {
-      ...styles.title,
-      marginTop: 0,
-      marginBottom: 16,
-      textAlign: undefined,
-    };
     return titleStyles;
-  };
-
-  const getContentStyles = () => {
-    if ((!primaryAction && !secondaryAction) || children) {
-      return { ...styles.content, paddingBottom: 24 };
-    }
-    return styles.content;
   };
 
   const renderActions = () => {
@@ -110,21 +108,26 @@ export const Dialog: FunctionComponent<DialogProps> = ({
   return render();
 };
 
+const iconSize = 24;
+
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    dialog: {
+    container: {
       borderRadius: 28,
       backgroundColor: scheme.surfaceHex,
       width: 312,
     },
     boxShadowElevation3: settings.boxShadowElevation3,
-    dialogLayer2: {
+    surfaceOverlay: {
       alignItems: "flex-end",
       borderRadius: 28,
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.11),
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        M3Constants.surface3ContainerOpacity
+      ),
       width: "100%",
     },
-    content: {
+    bodyContainer: {
       alignItems: "flex-start",
       padding: 24,
       width: "100%",
@@ -145,6 +148,11 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       textAlign: "center",
       width: "100%",
       marginVertical: 16,
+    },
+    titleWithoutHeroIcon: {
+      marginTop: 0,
+      marginBottom: 16,
+      textAlign: undefined,
     },
     body: {
       fontFamily: "Roboto",

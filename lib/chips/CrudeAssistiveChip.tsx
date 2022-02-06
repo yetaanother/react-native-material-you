@@ -5,6 +5,7 @@ import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Settings } from "../providers/Settings";
+import { M3Constants } from "../utils/M3Constants";
 
 // Assistive chips don't have a selected version
 interface CrudeAssistiveChipProps {
@@ -30,27 +31,33 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
   const render = () => {
     return (
       <View style={getContainerStyles()}>
-        <View style={getStateStyles()}>{renderContent()}</View>
+        <View style={getStateOverlayStyles()}>{renderContent()}</View>
       </View>
     );
   };
 
   const getContainerStyles = () => {
-    let containerStyles: ViewStyle = { ...styles.chip };
+    let containerStyles: ViewStyle = { ...styles.container };
     if (!elevated) {
       if (state === "disabled") {
-        containerStyles = { ...containerStyles, ...styles.chipStateDisabled };
+        containerStyles = {
+          ...containerStyles,
+          ...styles.containerStateDisabled,
+        };
       } else if (state === "focused") {
-        containerStyles = { ...containerStyles, ...styles.chipStateFocused };
+        containerStyles = {
+          ...containerStyles,
+          ...styles.containerStateFocused,
+        };
       }
     } else {
-      containerStyles = { ...containerStyles, ...styles.chipTypeElevated };
+      containerStyles = { ...containerStyles, ...styles.containerTypeElevated };
       if (state === "enabled" || state === "pressed" || state === "focused") {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       } else if (state === "disabled") {
         containerStyles = {
           ...containerStyles,
-          ...styles.chipElevatedStateDisabled,
+          ...styles.containerStateDisabled,
         };
       }
     }
@@ -61,15 +68,21 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
     return containerStyles;
   };
 
-  const getStateStyles = () => {
-    let stateStyles = { ...styles.inner };
+  const getStateOverlayStyles = () => {
+    let stateOverlayStyles = { ...styles.stateOverlay };
     if (state === "pressed" || state === "focused") {
-      stateStyles = { ...stateStyles, ...styles.innerStateFocusedOrPressed };
+      stateOverlayStyles = {
+        ...stateOverlayStyles,
+        ...styles.stateOverlayStateFocusedOrPressed,
+      };
     }
     if (icon) {
-      stateStyles = { ...stateStyles, ...styles.innerWithIcon };
+      stateOverlayStyles = {
+        ...stateOverlayStyles,
+        ...styles.stateOverlayWithIcon,
+      };
     }
-    return stateStyles;
+    return stateOverlayStyles;
   };
 
   const renderContent = () => {
@@ -79,7 +92,7 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
           <View style={getIconStyles()}>
             <Ionicons
               name={icon}
-              size={18}
+              size={iconSize}
               color={
                 state === "disabled" ? scheme.onSurfaceHex : scheme.primaryHex
               }
@@ -110,31 +123,33 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
   return render();
 };
 
+const iconSize = 18;
+
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    chip: {
+    container: {
       backgroundColor: scheme.surfaceHex,
       borderColor: scheme.outlineHex,
       borderWidth: 1,
       borderStyle: "solid",
       borderRadius: 8,
     },
-    chipStateFocused: {
+    containerStateFocused: {
       borderColor: scheme.onSurfaceHex,
     },
-    chipStateDisabled: {
-      borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+    containerStateDisabled: {
+      borderColor: rgbaWithOpacity(
+        scheme.onSurfaceRGB,
+        M3Constants.disabledContainerOpacity
+      ),
       backgroundColor: undefined,
     },
-    chipTypeElevated: {
+    containerTypeElevated: {
       borderColor: undefined,
       borderWidth: undefined,
       borderStyle: undefined,
     },
-    chipElevatedStateDisabled: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
-    },
-    inner: {
+    stateOverlay: {
       flexDirection: "row",
       alignItems: "center",
       height: 32,
@@ -142,13 +157,13 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderRadius: 8,
       justifyContent: "center",
     },
-    innerStateFocusedOrPressed: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+    stateOverlayStateFocusedOrPressed: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onSurfaceRGB,
+        M3Constants.focusedOrPressedContainerOpacity
+      ),
     },
-    innerStateDragged: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.16),
-    },
-    innerWithIcon: {
+    stateOverlayWithIcon: {
       paddingLeft: 8,
       paddingRight: 16,
     },
@@ -173,6 +188,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       marginRight: 8,
     },
     iconStateDisabled: {
-      opacity: 0.38,
+      opacity: M3Constants.disabledContentOpacity,
     },
   });

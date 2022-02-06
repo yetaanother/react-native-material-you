@@ -5,6 +5,7 @@ import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Settings } from "../providers/Settings";
+import { M3Constants } from "../utils/M3Constants";
 
 // Input chips don't have an elevated version
 // In the specs it is mentioned that we an also use an icon instead of avatar. If it is the case then paddingLeft
@@ -38,21 +39,24 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
   const render = () => {
     return (
       <View style={getContainerStyles()}>
-        <View style={getStateStyles()}>{renderContent()}</View>
+        <View style={getStateOverlayStyles()}>{renderContent()}</View>
       </View>
     );
   };
 
   const getContainerStyles = () => {
     let containerStyles: ViewStyle = {
-      ...styles.chip,
+      ...styles.container,
     };
     if (!selected) {
       if (state === "focused") {
-        containerStyles = { ...containerStyles, ...styles.chipStateFocused };
+        containerStyles = {
+          ...containerStyles,
+          ...styles.containerStateFocused,
+        };
       }
     } else {
-      containerStyles = { ...containerStyles, ...styles.chipSelected };
+      containerStyles = { ...containerStyles, ...styles.containerSelected };
     }
 
     if (containerStyle) {
@@ -61,29 +65,41 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
     return containerStyles;
   };
 
-  const getStateStyles = () => {
-    let stateStyles = { ...styles.inner };
+  const getStateOverlayStyles = () => {
+    let stateOverlayStyles = { ...styles.stateOverlay };
     if (!selected) {
       if (state === "focused") {
-        stateStyles = { ...stateStyles, ...styles.innerStateFocused };
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlayStateFocused,
+        };
       }
     } else {
       if (state === "focused") {
-        stateStyles = { ...stateStyles, ...styles.innerSelectedStateFocused };
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlaySelectedStateFocused,
+        };
       }
     }
 
     if (closeable && avatar) {
-      stateStyles = {
-        ...stateStyles,
-        ...styles.innerWithTrailingAndLeadingIcon,
+      stateOverlayStyles = {
+        ...stateOverlayStyles,
+        ...styles.stateOverlayWithTrailingAndLeadingIcon,
       };
     } else if (closeable) {
-      stateStyles = { ...stateStyles, ...styles.innerWithTrailingIcon };
+      stateOverlayStyles = {
+        ...stateOverlayStyles,
+        ...styles.stateOverlayWithTrailingIcon,
+      };
     } else if (avatar) {
-      stateStyles = { ...stateStyles, ...styles.innerWithLeadingIcon };
+      stateOverlayStyles = {
+        ...stateOverlayStyles,
+        ...styles.stateOverlayWithLeadingIcon,
+      };
     }
-    return stateStyles;
+    return stateOverlayStyles;
   };
 
   const renderContent = () => {
@@ -95,7 +111,7 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
           >
             <Ionicons
               name={selected ? "checkmark-sharp" : "person-sharp"}
-              size={18}
+              size={iconSize}
               color={scheme.onPrimaryHex}
             />
           </View>
@@ -105,7 +121,7 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
           <View style={styles.trailingIcon}>
             <Ionicons
               name={"close"}
-              size={18}
+              size={iconSize}
               color={getIconColor()}
               onPress={onClosePress}
             />
@@ -133,25 +149,27 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
   return render();
 };
 
+const iconSize = 18;
+
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    chip: {
+    container: {
       backgroundColor: scheme.surfaceHex,
       borderColor: scheme.outlineHex,
       borderWidth: 1,
       borderStyle: "solid",
       borderRadius: 8,
     },
-    chipStateFocused: {
+    containerStateFocused: {
       borderColor: scheme.onSurfaceVariantHex,
     },
-    chipSelected: {
+    containerSelected: {
       backgroundColor: scheme.secondaryContainerHex,
       borderColor: undefined,
       borderWidth: undefined,
       borderStyle: undefined,
     },
-    inner: {
+    stateOverlay: {
       flexDirection: "row",
       alignItems: "center",
       height: 32,
@@ -159,21 +177,27 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderRadius: 8,
       justifyContent: "center",
     },
-    innerStateFocused: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.12),
+    stateOverlayStateFocused: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onSurfaceVariantRGB,
+        M3Constants.focusedOrPressedContainerOpacity
+      ),
     },
-    innerSelectedStateFocused: {
-      backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.12),
+    stateOverlaySelectedStateFocused: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onSecondaryContainerRGB,
+        M3Constants.focusedOrPressedContainerOpacity
+      ),
     },
-    innerWithTrailingIcon: {
+    stateOverlayWithTrailingIcon: {
       paddingLeft: 12,
       paddingRight: 8,
     },
-    innerWithLeadingIcon: {
+    stateOverlayWithLeadingIcon: {
       paddingLeft: 4,
       paddingRight: 12,
     },
-    innerWithTrailingAndLeadingIcon: {
+    stateOverlayWithTrailingAndLeadingIcon: {
       paddingLeft: 4,
       paddingRight: 8,
     },

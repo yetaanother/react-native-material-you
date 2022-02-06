@@ -29,8 +29,18 @@ export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
   const styles = createStyles(scheme);
 
   const render = () => {
+    return <View style={getContainerStyles()}>{renderContent()}</View>;
+  };
+
+  const getContainerStyles = () => {
+    return containerStyle
+      ? { ...styles.container, ...containerStyle }
+      : styles.container;
+  };
+
+  const renderContent = () => {
     return (
-      <View style={getContainerStyles()}>
+      <>
         <View style={getActivityIndicatorStyles()}>
           {badge && !badgeCount && <View style={styles.badge} />}
           {badge && badgeCount && (
@@ -46,20 +56,13 @@ export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
                   ? scheme.onSecondaryContainerHex
                   : scheme.onSurfaceVariantHex
               }
-              // In m3 specs the size is 24px but that is not looking good
-              size={18}
+              size={iconSize}
             />
           </View>
         </View>
         {label && <Text style={getLabelStyles()}>{label}</Text>}
-      </View>
+      </>
     );
-  };
-
-  const getContainerStyles = () => {
-    return containerStyle
-      ? { ...styles.navBarItem, ...containerStyle }
-      : styles.navBarItem;
   };
 
   const getActivityIndicatorStyles = () => {
@@ -92,9 +95,12 @@ export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
   return render();
 };
 
+// In m3 specs the size is 24px but that is not looking good
+const iconSize = 18;
+
 const createStyles = (scheme: SchemeAdapter) =>
   StyleSheet.create({
-    navBarItem: {
+    container: {
       alignItems: "center",
       justifyContent: "center",
       height: 80,

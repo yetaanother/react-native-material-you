@@ -17,3 +17,10 @@
 * Multiple colors in background using linear-gradients - https://stackoverflow.com/questions/28592053/multiple-background-color-layers
 * https://stackoverflow.com/questions/27539262/whats-the-difference-between-align-content-and-align-items
 * Flex only applies to the immediate children
+
+## M3
+* Every container has 4 layers 
+  * Container 
+  * Surface overlay - https://m3.material.io/styles/color/the-color-system/color-roles
+  * State overlay - https://m3.material.io/foundations/interaction-states
+  * Content
