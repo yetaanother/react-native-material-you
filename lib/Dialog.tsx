@@ -19,6 +19,7 @@ interface DialogProps {
   secondaryActionLabel?: string;
 }
 
+// M3 docs: https://m3.material.io/components/dialogs/specs
 export const Dialog: FunctionComponent<DialogProps> = ({
   title,
   content,

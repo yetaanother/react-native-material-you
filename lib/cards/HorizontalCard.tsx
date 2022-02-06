@@ -21,6 +21,7 @@ interface HorizontalCardProps {
   imageSrc?: ImageSourcePropType;
 }
 
+// M3 docs: https://m3.material.io/components/cards/specs
 export const HorizontalCard: FunctionComponent<HorizontalCardProps> = ({
   type,
   headerTitle,

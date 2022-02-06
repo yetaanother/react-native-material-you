@@ -18,6 +18,7 @@ interface NavBarProps {
   children: NavBarItemComp | NavBarItemComp[];
 }
 
+// M3 docs: https://m3.material.io/components/navigation-bar/specs
 export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
   const { scheme, settings } = useContext(ThemeContext);
   const styles = createStyles(scheme, settings);

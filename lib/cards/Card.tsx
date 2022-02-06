@@ -35,6 +35,7 @@ interface CardProps {
   secondaryActionLabel?: string;
 }
 
+// M3 docs: https://m3.material.io/components/cards/specs
 export const Card: FunctionComponent<CardProps> = ({
   type,
   onPrimaryPress,

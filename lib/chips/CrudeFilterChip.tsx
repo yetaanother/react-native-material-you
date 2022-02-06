@@ -15,6 +15,7 @@ interface CrudeFilterChipProps {
   dropdown?: boolean;
 }
 
+// M3 docs: https://m3.material.io/components/chips/specs
 export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   label,
   selected,
