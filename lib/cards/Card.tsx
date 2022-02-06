@@ -33,6 +33,7 @@ interface CardProps {
   primaryActionLabel?: string;
   onSecondaryPress?: () => void;
   secondaryActionLabel?: string;
+  containerStyle?: ViewStyle;
 }
 
 // M3 docs: https://m3.material.io/components/cards/specs
@@ -55,6 +56,7 @@ export const Card: FunctionComponent<CardProps> = ({
   onClosePress,
   headerTitle,
   headerSubTitle,
+  containerStyle,
 }) => {
   const { scheme, settings } = useContext(ThemeContext);
   const styles = createStyles(scheme, settings);
@@ -62,28 +64,35 @@ export const Card: FunctionComponent<CardProps> = ({
   type = !type ? "filled" : type;
 
   const render = () => {
-    return (
-      <View style={getCardStyles()}>
-        {renderHeader()}
-        {renderImage()}
-        {renderContent()}
-        {renderButtons()}
-      </View>
-    );
+    return <View style={getContainerStyles()}>{renderContent()}</View>;
   };
 
-  const getCardStyles = () => {
-    let cardStyles: ViewStyle = { ...styles.card };
+  const getContainerStyles = () => {
+    let containerStyles: ViewStyle = { ...styles.container };
     if (type === "elevated") {
-      cardStyles = {
-        ...cardStyles,
-        ...styles.cardTypeElevated,
+      containerStyles = {
+        ...containerStyles,
+        ...styles.containerTypeElevated,
         ...styles.boxShadowElevation1,
       };
     } else if (type === "outlined") {
-      cardStyles = { ...cardStyles, ...styles.cardTypeOutlined };
+      containerStyles = { ...containerStyles, ...styles.containerTypeOutlined };
     }
-    return cardStyles;
+    if (containerStyle) {
+      return { ...containerStyles, ...containerStyle };
+    }
+    return containerStyles;
+  };
+
+  const renderContent = () => {
+    return (
+      <>
+        {renderHeader()}
+        {renderImage()}
+        {renderBody()}
+        {renderButtons()}
+      </>
+    );
   };
 
   const renderHeader = () => {
@@ -110,7 +119,7 @@ export const Card: FunctionComponent<CardProps> = ({
           <View style={styles.icon}>
             <Ionicons
               name={!closeIcon ? "close" : closeIcon}
-              size={24}
+              size={iconSize}
               color={scheme.outlineHex}
               onPress={onClosePress}
             />
@@ -121,12 +130,12 @@ export const Card: FunctionComponent<CardProps> = ({
   };
 
   const renderImage = () => {
+    if (!imageSrc) {
+      return;
+    }
     let imageStyles = { ...styles.image };
     if (!shouldDisplayHeader()) {
       imageStyles = { ...imageStyles, ...styles.imageNoHeader };
-    }
-    if (!imageSrc) {
-      return;
     }
     return <Image style={imageStyles} source={imageSrc} />;
   };
@@ -135,7 +144,7 @@ export const Card: FunctionComponent<CardProps> = ({
     return avatar || closable || headerTitle;
   };
 
-  const renderContent = () => {
+  const renderBody = () => {
     return (
       <>
         <View style={styles.body}>
@@ -186,18 +195,20 @@ export const Card: FunctionComponent<CardProps> = ({
   return render();
 };
 
+const iconSize = 24;
+
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    card: {
+    container: {
       alignItems: "flex-start",
       width: 360,
       backgroundColor: scheme.surfaceVariantHex,
       borderRadius: 12,
     },
-    cardTypeElevated: {
+    containerTypeElevated: {
       backgroundColor: scheme.surfaceHex,
     },
-    cardTypeOutlined: {
+    containerTypeOutlined: {
       backgroundColor: scheme.surfaceHex,
       borderWidth: 1,
       borderStyle: "solid",

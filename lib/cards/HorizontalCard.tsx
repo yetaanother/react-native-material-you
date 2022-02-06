@@ -19,6 +19,7 @@ interface HorizontalCardProps {
   avatar?: boolean;
   avatarInitials?: string;
   imageSrc?: ImageSourcePropType;
+  containerStyle?: ViewStyle;
 }
 
 // M3 docs: https://m3.material.io/components/cards/specs
@@ -29,16 +30,38 @@ export const HorizontalCard: FunctionComponent<HorizontalCardProps> = ({
   avatar,
   avatarInitials,
   imageSrc,
+  containerStyle,
 }) => {
   const { scheme, settings } = useContext(ThemeContext);
   const styles = createStyles(scheme, settings);
 
   const render = () => {
+    return <View style={getContainerStyles()}>{renderContent()}</View>;
+  };
+
+  const getContainerStyles = () => {
+    let containerStyles: ViewStyle = { ...styles.container };
+    if (type === "elevated") {
+      containerStyles = {
+        ...containerStyles,
+        ...styles.containerTypeElevated,
+        ...styles.boxShadowElevation1,
+      };
+    } else if (type === "outlined") {
+      containerStyles = { ...containerStyles, ...styles.containerTypeOutlined };
+    }
+    if (containerStyle) {
+      return { ...containerStyles, ...containerStyle };
+    }
+    return containerStyles;
+  };
+
+  const renderContent = () => {
     return (
-      <View style={getCardStyles()}>
+      <>
         {renderHeader()}
         {renderImage()}
-      </View>
+      </>
     );
   };
 
@@ -70,25 +93,12 @@ export const HorizontalCard: FunctionComponent<HorizontalCardProps> = ({
     return <Image style={styles.image} source={imageSrc} />;
   };
 
-  const getCardStyles = () => {
-    let cardStyles: ViewStyle = { ...styles.card };
-    if (type === "elevated") {
-      cardStyles = {
-        ...cardStyles,
-        ...styles.cardTypeElevated,
-        ...styles.boxShadowElevation1,
-      };
-    } else if (type === "outlined") {
-      cardStyles = { ...cardStyles, ...styles.cardTypeOutlined };
-    }
-    return cardStyles;
-  };
   return render();
 };
 
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    card: {
+    container: {
       flexDirection: "row",
       alignItems: "flex-start",
       width: 352,
@@ -96,10 +106,10 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       backgroundColor: scheme.surfaceVariantHex,
       borderRadius: 12,
     },
-    cardTypeElevated: {
+    containerTypeElevated: {
       backgroundColor: scheme.surfaceHex,
     },
-    cardTypeOutlined: {
+    containerTypeOutlined: {
       backgroundColor: scheme.surfaceHex,
       borderWidth: 1,
       borderStyle: "solid",
