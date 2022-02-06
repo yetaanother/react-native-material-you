@@ -46,7 +46,6 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
           containerStyles = { ...containerStyles, ...styles.chipStateDisabled };
         } else if (state === "focused") {
           containerStyles = { ...containerStyles, ...styles.chipStateFocused };
-        } else if (state === "dragged") {
         }
       } else {
         delete containerStyles["borderColor"];
@@ -60,17 +59,7 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
       delete containerStyles["borderStyle"];
       containerStyles = { ...containerStyles, ...styles.chipSelected };
       if (!elevated) {
-        if (state === "hovered") {
-          containerStyles = {
-            ...containerStyles,
-            ...styles.boxShadowElevation1,
-          };
-        } else if (state === "dragged") {
-          containerStyles = {
-            ...containerStyles,
-            ...styles.boxShadowElevation4,
-          };
-        } else if (state === "disabled") {
+        if (state === "disabled") {
           containerStyles = {
             ...containerStyles,
             ...styles.chipSelectedDisabled,
@@ -89,16 +78,6 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   const getElevatedContainerStyles = (containerStyles: ViewStyle) => {
     if (state === "enabled" || state === "focused" || state === "pressed") {
       containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-    } else if (state === "hovered") {
-      containerStyles = {
-        ...containerStyles,
-        ...styles.boxShadowElevation2,
-      };
-    } else if (state === "dragged") {
-      containerStyles = {
-        ...containerStyles,
-        ...styles.boxShadowElevation4,
-      };
     } else if (state === "disabled") {
       containerStyles = {
         ...containerStyles,
@@ -111,24 +90,16 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   const getStateStyles = () => {
     let stateStyles = { ...styles.inner };
     if (!selected) {
-      if (state === "hovered") {
-        stateStyles = { ...stateStyles, ...styles.innerStateHovered };
-      } else if (state === "pressed" || state === "focused") {
+      if (state === "pressed" || state === "focused") {
         stateStyles = { ...stateStyles, ...styles.innerStateFocusedOrPressed };
-      } else if (state === "dragged") {
-        stateStyles = { ...stateStyles, ...styles.innerStateDragged };
       }
     } else {
       stateStyles = { ...stateStyles, ...styles.innerSelected };
-      if (state === "hovered") {
-        stateStyles = { ...stateStyles, ...styles.innerSelectedStateHovered };
-      } else if (state === "pressed" || state === "focused") {
+      if (state === "pressed" || state === "focused") {
         stateStyles = {
           ...stateStyles,
           ...styles.innerSelectedStateFocusedOrPressed,
         };
-      } else if (state === "dragged") {
-        stateStyles = { ...stateStyles, ...styles.innerSelectedStateDragged };
       }
     }
     if (dropdown) {
@@ -187,15 +158,10 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   const getTextStyles = () => {
     let textStyles = { ...styles.text };
     if (!selected) {
-      if (
-        state === "hovered" ||
-        state === "pressed" ||
-        state === "dragged" ||
-        state === "focused"
-      ) {
+      if (state === "pressed" || state === "focused") {
         textStyles = {
           ...textStyles,
-          ...styles.textStateHoveredOrFocussedOrPressedOrDragged,
+          ...styles.textStateFocussedOrPressed,
         };
       } else if (state === "disabled") {
         textStyles = { ...textStyles, ...styles.textStateDisabled };
@@ -244,14 +210,8 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderRadius: 8,
       justifyContent: "center",
     },
-    innerStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.08),
-    },
     innerStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.12),
-    },
-    innerStateDragged: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.16),
     },
     innerDropDown: {
       paddingRight: 8,
@@ -265,16 +225,9 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingRight: 8,
       paddingLeft: 8,
     },
-    innerSelectedStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.08),
-    },
     innerSelectedStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.12),
     },
-    innerSelectedStateDragged: {
-      backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.16),
-    },
-    // https://ethercreative.github.io/react-native-shadow-generator/
     boxShadowElevation1: settings.boxShadowElevation1,
     boxShadowElevation2: settings.boxShadowElevation2,
     boxShadowElevation4: settings.boxShadowElevation4,
@@ -289,7 +242,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       textAlign: "center",
       textAlignVertical: "center",
     },
-    textStateHoveredOrFocussedOrPressedOrDragged: {
+    textStateFocussedOrPressed: {
       color: scheme.onSurfaceVariantHex,
     },
     textStateDisabled: {

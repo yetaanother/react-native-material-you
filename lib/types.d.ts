@@ -1,30 +1,12 @@
-type ButtonState = "enabled" | "hovered" | "focused" | "pressed" | "disabled";
+type ButtonState = "enabled" | "focused" | "pressed" | "disabled";
 type ButtonType = "filled" | "outlined" | "text" | "elevated" | "tonal";
 type CardType = "filled" | "elevated" | "outlined";
-type InputChipState = "enabled" | "hovered" | "focused" | "dragged";
-type AssistiveChipState =
-  | "enabled"
-  | "hovered"
-  | "focused"
-  | "dragged"
-  | "pressed"
-  | "disabled";
-type FilterChipState =
-  | "enabled"
-  | "hovered"
-  | "focused"
-  | "dragged"
-  | "pressed"
-  | "disabled";
-type SuggestiveChipState =
-  | "enabled"
-  | "hovered"
-  | "focused"
-  | "dragged"
-  | "pressed"
-  | "disabled";
+type InputChipState = "enabled" | "focused";
+type AssistiveChipState = "enabled" | "focused" | "pressed" | "disabled";
+type FilterChipState = "enabled" | "focused" | "pressed" | "disabled";
+type SuggestiveChipState = "enabled" | "focused" | "pressed" | "disabled";
 type FABType = "surface" | "primary" | "secondary" | "tertiary";
-type FABState = "enabled" | "hovered" | "focused" | "pressed" | "disabled";
+type FABState = "enabled" | "focused" | "pressed" | "disabled";
 type SelectType = "filled" | "outlined";
 type AppBarSize = "small" | "medium" | "large";
 type AppBarType = "flat" | "on-scroll";

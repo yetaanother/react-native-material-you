@@ -50,18 +50,12 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
     if (!selected) {
       if (state === "focused") {
         containerStyles = { ...containerStyles, ...styles.chipStateFocused };
-      } else if (state === "dragged") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
       }
     } else {
       containerStyles = { ...containerStyles, ...styles.chipSelected };
       delete containerStyles["borderColor"];
       delete containerStyles["borderWidth"];
       delete containerStyles["borderStyle"];
-
-      if (state === "dragged") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
-      }
     }
 
     if (containerStyle) {
@@ -73,20 +67,12 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
   const getStateStyles = () => {
     let stateStyles = { ...styles.inner };
     if (!selected) {
-      if (state === "hovered") {
-        stateStyles = { ...stateStyles, ...styles.innerStateHovered };
-      } else if (state === "focused") {
+      if (state === "focused") {
         stateStyles = { ...stateStyles, ...styles.innerStateFocused };
-      } else if (state === "dragged") {
-        stateStyles = { ...stateStyles, ...styles.innerStateDragged };
       }
     } else {
-      if (state === "hovered") {
-        stateStyles = { ...stateStyles, ...styles.innerSelectedStateHovered };
-      } else if (state === "focused") {
+      if (state === "focused") {
         stateStyles = { ...stateStyles, ...styles.innerSelectedStateFocused };
-      } else if (state === "dragged") {
-        stateStyles = { ...stateStyles, ...styles.innerSelectedStateDragged };
       }
     }
 
@@ -173,23 +159,11 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderRadius: 8,
       justifyContent: "center",
     },
-    innerStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.08),
-    },
     innerStateFocused: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.12),
     },
-    innerStateDragged: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.16),
-    },
-    innerSelectedStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.08),
-    },
     innerSelectedStateFocused: {
       backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.12),
-    },
-    innerSelectedStateDragged: {
-      backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.16),
     },
     innerWithTrailingIcon: {
       paddingLeft: 12,

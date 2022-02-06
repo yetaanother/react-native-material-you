@@ -97,8 +97,6 @@ export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
           ...layer2Styles,
           ...styles.fabLayer2TypeEnabledOrPressedOrFocused,
         };
-      } else if (state === "hovered") {
-        layer2Styles = { ...layer2Styles, ...styles.fabLayer2TypeHovered };
       }
     }
     return layer2Styles;
@@ -113,42 +111,25 @@ export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
     }
 
     if (type === "surface") {
-      if (state === "hovered") {
-        stateStyles = { ...stateStyles, ...styles.innerStateHovered };
-      } else if (state === "focused" || state === "pressed") {
+      if (state === "focused" || state === "pressed") {
         stateStyles = { ...stateStyles, ...styles.innerStateFocusedOrPressed };
       }
     } else if (type === "primary") {
-      if (state === "hovered") {
-        stateStyles = {
-          ...stateStyles,
-          ...styles.innerTypePrimaryStateHovered,
-        };
-      } else if (state === "focused" || state === "pressed") {
+      if (state === "focused" || state === "pressed") {
         stateStyles = {
           ...stateStyles,
           ...styles.innerTypePrimaryStateFocusedOrPressed,
         };
       }
     } else if (type === "secondary") {
-      if (state === "hovered") {
-        stateStyles = {
-          ...stateStyles,
-          ...styles.innerTypeSecondaryStateHovered,
-        };
-      } else if (state === "focused" || state === "pressed") {
+      if (state === "focused" || state === "pressed") {
         stateStyles = {
           ...stateStyles,
           ...styles.innerTypeSecondaryStateFocusedOrPressed,
         };
       }
     } else if (type === "tertiary") {
-      if (state === "hovered") {
-        stateStyles = {
-          ...stateStyles,
-          ...styles.innerTypeTertiaryStateHovered,
-        };
-      } else if (state === "focused" || state === "pressed") {
+      if (state === "focused" || state === "pressed") {
         stateStyles = {
           ...stateStyles,
           ...styles.innerTypeTertiaryStateFocusedOrPressed,
@@ -222,9 +203,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     fabLayer2TypeEnabledOrPressedOrFocused: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.11),
     },
-    fabLayer2TypeHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.12),
-    },
     inner: {
       alignItems: "center",
       justifyContent: "center",
@@ -267,26 +245,14 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     textDisabled: {
       color: rgbaWithOpacity(scheme.onSurfaceRGB, 0.38),
     },
-    innerStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
-    },
     innerStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.12),
-    },
-    innerTypePrimaryStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onPrimaryContainerRGB, 0.08),
     },
     innerTypePrimaryStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(scheme.onPrimaryContainerRGB, 0.12),
     },
-    innerTypeSecondaryStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.08),
-    },
     innerTypeSecondaryStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.12),
-    },
-    innerTypeTertiaryStateHovered: {
-      backgroundColor: rgbaWithOpacity(scheme.onTertiaryContainerRGB, 0.08),
     },
     innerTypeTertiaryStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(scheme.onTertiaryContainerRGB, 0.12),
