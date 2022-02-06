@@ -44,7 +44,14 @@ export const HorizontalCard: FunctionComponent<HorizontalCardProps> = ({
   const renderHeader = () => {
     return (
       <View style={styles.header}>
-        <View>{avatar && <Avatar initials={avatarInitials} />}</View>
+        <View>
+          {avatar && (
+            <Avatar
+              containerStyle={{ marginRight: 16 }}
+              initials={avatarInitials}
+            />
+          )}
+        </View>
         <View style={styles.headerContent}>
           {headerTitle && <Text style={styles.headerTitle}>{headerTitle}</Text>}
           {headerSubTitle && (

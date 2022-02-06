@@ -1,16 +1,16 @@
 import React, { FunctionComponent, useContext } from "react";
 import { SchemeAdapter } from "./providers/SchemeAdapter";
-import { ImageSourcePropType, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, ViewStyle } from "react-native";
 import { ThemeContext } from "./providers/ThemeProvider";
 
 interface AvatarProps {
-  imageSrc?: ImageSourcePropType;
   initials?: string;
+  containerStyle?: ViewStyle;
 }
 
 export const Avatar: FunctionComponent<AvatarProps> = ({
-  imageSrc,
   initials,
+  containerStyle,
 }) => {
   const { scheme } = useContext(ThemeContext);
   const styles = createStyles(scheme);
@@ -18,19 +18,13 @@ export const Avatar: FunctionComponent<AvatarProps> = ({
   initials = !initials ? "A" : initials;
 
   const render = () => {
-    if (imageSrc) {
-      return renderImageAvatar();
-    }
     return renderTextAvatar();
   };
 
   const renderTextAvatar = () => {
-    return <Text style={{ ...styles.avatar }}>{initials}</Text>;
-  };
-
-  const renderImageAvatar = () => {
-    // todo implement
-    return <></>;
+    return (
+      <Text style={{ ...styles.avatar, ...containerStyle }}>{initials}</Text>
+    );
   };
 
   return render();
@@ -46,8 +40,6 @@ const createStyles = (scheme: SchemeAdapter) =>
       color: scheme.surfaceHex,
       textAlign: "center",
       textAlignVertical: "center",
-      // todo this should be passed from parent
-      marginRight: 16,
       fontFamily: "Roboto",
       fontStyle: "normal",
       fontSize: 16,
