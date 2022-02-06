@@ -49,77 +49,64 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
 
   const render = () => {
     return (
-      <View
-        style={{
-          ...styles.appBar,
-          ...containerStyle,
-          ...styles.boxShadowElevation2,
-        }}
-      >
+      <View style={getAppBarStyles()}>
         <View style={getAppBarLayer2Styles()}>
-          {leadingIcon && (
-            <View style={styles.leadingIcon}>
-              <Ionicons
-                name={leadingIcon}
-                size={24}
-                color={scheme.onSurfaceHex}
-                onPress={onLeadingPress}
-              />
-            </View>
-          )}
-          {size === "small" && <Text style={getTitleStyles()}>{title}</Text>}
-          {renderTrailingIcons()}
-        </View>
-        {size !== "small" && (
           <View
             style={{
-              ...styles.appBarLayer2Line2,
-              ...(type === "flat" ? styles.appBarLayer2Line2TypeFlat : {}),
+              flexDirection: "row",
+              width: "100%",
+              flex: 1,
+              alignItems: "center",
             }}
           >
-            <Text style={getTitleStyles()}>{title}</Text>
+            {leadingIcon && (
+              <View style={styles.leadingIcon}>
+                <Ionicons
+                  name={leadingIcon}
+                  size={24}
+                  color={scheme.onSurfaceHex}
+                  onPress={onLeadingPress}
+                />
+              </View>
+            )}
+            {size === "small" && <Text style={getTitleStyles()}>{title}</Text>}
+            {renderTrailingIcons()}
           </View>
-        )}
+          {size !== "small" && (
+            <View
+              style={{
+                ...{ width: "100%", flex: 1 },
+                ...getLine2Styles(),
+              }}
+            >
+              <Text style={getTitleStyles()}>{title}</Text>
+            </View>
+          )}
+        </View>
       </View>
     );
   };
 
+  const getAppBarStyles = () => {
+    let appBarStyles = {
+      ...styles.appBar,
+      ...containerStyle,
+      ...styles.boxShadowElevation2,
+    };
+    if (size == "medium") {
+      appBarStyles = { ...appBarStyles, ...styles.appBarMedium };
+    } else if (size == "large") {
+      appBarStyles = { ...appBarStyles, ...styles.appBarLarge };
+    }
+    return appBarStyles;
+  };
+
   const getAppBarLayer2Styles = () => {
     let appBarLayer2Styles: ViewStyle = { ...styles.appBarLayer2 };
-    if (size === "small") {
-      if (Array.isArray(trailingIcon)) {
-        appBarLayer2Styles = {
-          ...appBarLayer2Styles,
-          ...styles.appBarLayer2MultipleTrailingIcons,
-        };
-      }
-    } else if (size === "medium") {
-      appBarLayer2Styles = {
-        ...appBarLayer2Styles,
-        ...styles.appBarLayer2SizeMedium,
-      };
-      if (Array.isArray(trailingIcon)) {
-        appBarLayer2Styles = {
-          ...appBarLayer2Styles,
-          ...styles.appBarLayer2SizeMediumMultipleTrailingIcons,
-        };
-      }
-    } else if (size === "large") {
-      appBarLayer2Styles = {
-        ...appBarLayer2Styles,
-        ...styles.appBarLayer2SizeLarge,
-      };
-      if (Array.isArray(trailingIcon)) {
-        appBarLayer2Styles = {
-          ...appBarLayer2Styles,
-          ...styles.appBarLayer2SizeLargeMultipleTrailingIcons,
-        };
-      }
-    }
     if (type === "flat") {
       appBarLayer2Styles = {
         ...appBarLayer2Styles,
-        ...styles.appBarLayer2Line2TypeFlat,
+        ...styles.appBarLayer2TypeFlat,
       };
     }
     return appBarLayer2Styles;
@@ -165,24 +152,13 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
     return (
       <View style={styles.trailingIconContainer}>
         {trailingIcon.map((icon, index) => (
-          //  todo check better way to do this
           <View style={getTrailingIconStyles()} key={index}>
-            {attachListeners && (
-              <Ionicons
-                name={icon}
-                size={24}
-                color={scheme.onSurfaceVariantHex}
-                onPress={onTrailingPress[index]}
-              />
-            )}
-            {!attachListeners && (
-              <Ionicons
-                key={index}
-                name={icon}
-                size={24}
-                color={scheme.onSurfaceVariantHex}
-              />
-            )}
+            <Ionicons
+              name={icon}
+              size={24}
+              color={scheme.onSurfaceVariantHex}
+              onPress={attachListeners ? onTrailingPress[index] : undefined}
+            />
           </View>
         ))}
       </View>
@@ -222,52 +198,40 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
     return trailingIconStyles;
   };
 
+  const getLine2Styles = () => {
+    if (size == "large") {
+      return { paddingTop: 24 };
+    }
+    return {};
+  };
+
   return render();
 };
 
-// todo check, container height is 64 here: https://m3.material.io/components/top-app-bar/specs
-// todo check, elements look center align for small here: https://m3.material.io/components/top-app-bar/specs
-// todo check, elements look flex-start and flex-end for medium and large here: https://m3.material.io/components/top-app-bar/specs
-// todo check, container height is 112 for medium here: https://m3.material.io/components/top-app-bar/specs
-// todo check, container height is 152 for large here: https://m3.material.io/components/top-app-bar/specs
-// todo check, top padding is 20 and bottom padding is 24 for medium here: https://m3.material.io/components/top-app-bar/specs
-// todo check, top padding is 20 and bottom padding is 28 for large here: https://m3.material.io/components/top-app-bar/specs
-// todo check, avatar size is 30 here: https://m3.material.io/components/top-app-bar/specs
+// Because of fixed height required padding is set automatically
 const deviceWidth = Dimensions.get("window").width;
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
     appBar: {
       backgroundColor: scheme.surfaceHex,
       width: deviceWidth,
+      height: 64,
+    },
+    appBarMedium: {
+      height: 112,
+    },
+    appBarLarge: {
+      height: 152,
     },
     appBarLayer2: {
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
-      alignItems: "center",
       paddingHorizontal: 16,
-      height: 64,
-      flexDirection: "row",
+      height: "100%",
     },
-    appBarLayer2MultipleTrailingIcons: {},
-    appBarLayer2SizeMedium: {
-      height: 112,
-    },
-    appBarLayer2SizeMediumMultipleTrailingIcons: {},
-    appBarLayer2SizeLarge: {
-      height: 152,
-    },
-    appBarLayer2SizeLargeMultipleTrailingIcons: {},
     appBarLayer2TypeFlat: {
       backgroundColor: undefined,
     },
-    appBarLayer2Line2: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
-      alignItems: "center",
-      paddingHorizontal: 16,
-      flexDirection: "row",
-    },
-    appBarLayer2Line2TypeFlat: {
-      backgroundColor: undefined,
-    },
+    appBarLine2: {},
     boxShadowElevation2: settings.boxShadowElevation2,
     leadingIcon: {
       height: 24,
@@ -293,11 +257,15 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       fontSize: 24,
       lineHeight: 32,
       marginLeft: 0,
+      width: "100%",
+      textAlign: "left",
     },
     titleSizeLarge: {
       fontSize: 28,
       lineHeight: 36,
       marginLeft: 0,
+      width: "100%",
+      textAlign: "left",
     },
     trailingIconContainer: {
       flexDirection: "row",
