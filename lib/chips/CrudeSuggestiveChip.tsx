@@ -48,15 +48,9 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
             };
           }
         } else {
-          delete containerStyles["borderColor"];
-          delete containerStyles["borderWidth"];
-          delete containerStyles["borderStyle"];
           containerStyles = getElevatedContainerStyles(containerStyles);
         }
       } else {
-        delete containerStyles["borderColor"];
-        delete containerStyles["borderWidth"];
-        delete containerStyles["borderStyle"];
         containerStyles = { ...containerStyles, ...styles.chipSelected };
         if (!elevated) {
           if (state === "disabled") {
@@ -77,6 +71,7 @@ export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
     };
 
     const getElevatedContainerStyles = (containerStyles: ViewStyle) => {
+      containerStyles = { ...containerStyles, ...styles.chipTypeElevated };
       if (state === "enabled" || state === "pressed" || state === "focused") {
         containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
       } else if (state === "disabled") {
@@ -172,11 +167,19 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
       backgroundColor: undefined,
     },
+    chipTypeElevated: {
+      borderColor: undefined,
+      borderWidth: undefined,
+      borderStyle: undefined,
+    },
     chipElevatedStateDisabled: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
     },
     chipSelected: {
       backgroundColor: scheme.secondaryContainerHex,
+      borderColor: undefined,
+      borderWidth: undefined,
+      borderStyle: undefined,
     },
     chipSelectedDisabled: {
       backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),

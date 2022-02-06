@@ -124,7 +124,6 @@ export const Select: FunctionComponent<SelectProps> = ({
       };
     }
     if (type === "outlined") {
-      delete layer2Styles["backgroundColor"];
       layer2Styles = { ...layer2Styles, ...styles.contentLayer2Outlined };
     }
     return layer2Styles;
@@ -351,6 +350,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     contentLayer2Outlined: {
       borderBottomRightRadius: 4,
       borderBottomLeftRadius: 4,
+      backgroundColor: undefined,
     },
     labelContainer: {
       alignItems: "flex-start",
