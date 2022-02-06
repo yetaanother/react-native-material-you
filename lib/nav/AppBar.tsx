@@ -12,6 +12,7 @@ import { ThemeContext } from "../providers/ThemeProvider";
 import { Settings } from "../providers/Settings";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
+import { M3Constants } from "../utils/M3Constants";
 
 interface AppBarProps {
   leadingIcon?: any;
@@ -50,67 +51,64 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
 
   const render = () => {
     return (
-      <View style={getAppBarStyles()}>
-        <View style={getAppBarLayer2Styles()}>
-          <View
-            style={{
-              flexDirection: "row",
-              width: "100%",
-              flex: 1,
-              alignItems: "center",
-            }}
-          >
-            {leadingIcon && (
-              <View style={styles.leadingIcon}>
-                <Ionicons
-                  name={leadingIcon}
-                  size={24}
-                  color={scheme.onSurfaceHex}
-                  onPress={onLeadingPress}
-                />
-              </View>
-            )}
-            {size === "small" && <Text style={getTitleStyles()}>{title}</Text>}
-            {renderTrailingIcons()}
-          </View>
-          {size !== "small" && (
-            <View
-              style={{
-                ...{ width: "100%", flex: 1 },
-                ...getLine2Styles(),
-              }}
-            >
-              <Text style={getTitleStyles()}>{title}</Text>
-            </View>
-          )}
-        </View>
+      <View style={getContainerStyles()}>
+        <View style={getSurfaceOverlayStyles()}>{renderContent()}</View>
       </View>
     );
   };
 
-  const getAppBarStyles = () => {
-    let appBarStyles = {
-      ...styles.appBar,
-      ...containerStyle,
+  const getContainerStyles = () => {
+    let containerStyles = {
+      ...styles.container,
       ...styles.boxShadowElevation2,
     };
     if (size == "medium") {
-      appBarStyles = { ...appBarStyles, ...styles.appBarMedium };
+      containerStyles = { ...containerStyles, ...styles.containerMedium };
     } else if (size == "large") {
-      appBarStyles = { ...appBarStyles, ...styles.appBarLarge };
+      containerStyles = { ...containerStyles, ...styles.containerLarge };
     }
-    return appBarStyles;
+
+    if (containerStyle) {
+      return { ...containerStyles, ...containerStyle };
+    }
+    return containerStyles;
   };
 
-  const getAppBarLayer2Styles = () => {
-    let appBarLayer2Styles: ViewStyle = { ...styles.appBarLayer2 };
+  const getSurfaceOverlayStyles = () => {
+    let getSrufaceOverlayStyles: ViewStyle = { ...styles.surfaceOverlay };
     if (type === "flat") {
-      appBarLayer2Styles = {
-        ...appBarLayer2Styles,
-        ...styles.appBarLayer2TypeFlat,
+      getSrufaceOverlayStyles = {
+        ...getSrufaceOverlayStyles,
+        ...styles.surfaceOverlayTypeFlat,
       };
     }
-    return appBarLayer2Styles;
+    return getSrufaceOverlayStyles;
+  };
+
+  const renderContent = () => {
+    return (
+      <>
+        <View style={styles.content}>
+          {leadingIcon && (
+            <View style={styles.leadingIcon}>
+              <Ionicons
+                name={leadingIcon}
+                size={iconSize}
+                color={scheme.onSurfaceHex}
+                onPress={onLeadingPress}
+              />
+            </View>
+          )}
+          {size === "small" && <Text style={getTitleStyles()}>{title}</Text>}
+          {renderTrailingIcons()}
+        </View>
+        {size !== "small" && (
+          <View style={getLine2Styles()}>
+            <Text style={getTitleStyles()}>{title}</Text>
+          </View>
+        )}
+      </>
+    );
   };
 
   const getTitleStyles = () => {
@@ -142,7 +140,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
           <View style={getTrailingIconStyles()}>
             <Ionicons
               name={trailingIcon}
-              size={30}
+              size={iconSizeLarge}
               color={scheme.onSurfaceVariantHex}
             />
           </View>
@@ -156,7 +154,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
           <View style={getTrailingIconStyles()} key={index}>
             <Ionicons
               name={icon}
-              size={24}
+              size={iconSize}
               color={scheme.onSurfaceVariantHex}
               onPress={attachListeners ? onTrailingPress[index] : undefined}
             />
@@ -200,40 +198,59 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
   };
 
   const getLine2Styles = () => {
+    let line2Styles = { ...styles.contentLine2 };
     if (size == "large") {
-      return { paddingTop: 24 };
+      line2Styles = { ...line2Styles, ...styles.contentLine2Large };
     }
-    return {};
+    return line2Styles;
   };
 
   return render();
 };
 
+const iconSize = 24;
+const iconSizeLarge = 30;
+
 // Because of fixed height required padding is set automatically
 const deviceWidth = Dimensions.get("window").width;
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    appBar: {
+    container: {
       backgroundColor: scheme.surfaceHex,
       width: deviceWidth,
       height: 64,
     },
-    appBarMedium: {
+    containerMedium: {
       height: 112,
     },
-    appBarLarge: {
+    containerLarge: {
       height: 152,
     },
-    appBarLayer2: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
+    surfaceOverlay: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        M3Constants.surface2ContainerOpacity
+      ),
       paddingHorizontal: 16,
       height: "100%",
     },
-    appBarLayer2TypeFlat: {
+    surfaceOverlayTypeFlat: {
       backgroundColor: undefined,
     },
-    appBarLine2: {},
     boxShadowElevation2: settings.boxShadowElevation2,
+    content: {
+      flexDirection: "row",
+      width: "100%",
+      flex: 1,
+      alignItems: "center",
+    },
+    contentLine2: {
+      width: "100%",
+      flex: 1,
+    },
+    contentLine2Large: {
+      paddingTop: 24,
+    },
     leadingIcon: {
       height: 24,
       width: 24,
