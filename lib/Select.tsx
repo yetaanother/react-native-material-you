@@ -13,6 +13,7 @@ import { ThemeContext } from "./providers/ThemeProvider";
 import { rgbaWithOpacity } from "./utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Settings } from "./providers/Settings";
+import { M3Constants } from "./utils/M3Constants";
 
 interface SelectProps {
   type?: SelectType;
@@ -57,76 +58,95 @@ export const Select: FunctionComponent<SelectProps> = ({
   const render = () => {
     return (
       <>
-        <View style={getContainerStyles()}>
-          <View style={getContentStyles()}>
-            <View style={getContentLayer2Styles()}>
-              {icon && (
-                <Ionicons
-                  name={icon}
-                  size={24}
-                  color={scheme.outlineHex}
-                  style={styles.icon}
-                />
-              )}
-              {renderLabel()}
-              {/*  Wrapping inside a pressable to give bigger surface for touch to work*/}
-              <Pressable
-                style={{
-                  ...styles.dropdown,
-                }}
-                onPress={() => toggleSelectable()}
-              >
-                <Ionicons
-                  name={dropdownIcon}
-                  size={18}
-                  color={getIconColor()}
-                />
-              </Pressable>
-            </View>
-          </View>
-          {type === "filled" && <View style={getStrokeStyles()} />}
-          {renderChoices()}
-        </View>
+        <View style={getContainerStyles()}>{renderContent()}</View>
       </>
     );
   };
 
   const getContainerStyles = () => {
-    let containerStyles: ViewStyle = { ...styles.select };
-    return containerStyle
-      ? { ...containerStyles, ...containerStyle }
-      : containerStyles;
+    let containerStyles: ViewStyle = { ...styles.container };
+    if (containerStyle) {
+      return { ...containerStyles, ...containerStyle };
+    }
+    return containerStyles;
   };
 
-  const getContentStyles = () => {
-    let contentStyles: ViewStyle = { ...styles.content };
+  const renderContent = () => {
+    return (
+      <>
+        {renderInput()}
+        {type === "filled" && <View style={getStrokeStyles()} />}
+        {renderChoices()}
+      </>
+    );
+  };
+
+  const renderInput = () => {
+    return (
+      <View style={getInputStyles()}>
+        <View style={getInputSurfaceOverlayStyles()}>
+          {icon && (
+            <Ionicons
+              name={icon}
+              size={iconSize}
+              color={scheme.outlineHex}
+              style={styles.icon}
+            />
+          )}
+          {renderLabel()}
+          {/*  Wrapping inside a pressable to give bigger surface for touch to work*/}
+          <Pressable
+            style={{
+              ...styles.dropdown,
+            }}
+            onPress={() => toggleSelectable()}
+          >
+            <Ionicons
+              name={dropdownIcon}
+              size={dropDownIconSize}
+              color={getDropDownIconColor()}
+            />
+          </Pressable>
+        </View>
+      </View>
+    );
+  };
+
+  const getInputStyles = () => {
+    let contentStyles: ViewStyle = { ...styles.input };
     if (type === "outlined") {
-      contentStyles = { ...contentStyles, ...styles.contentTypeOutlined };
+      contentStyles = { ...contentStyles, ...styles.inputTypeOutlined };
       if (selectable) {
         contentStyles = {
           ...contentStyles,
-          ...styles.contentTypeOutlinedSelectable,
+          ...styles.inputTypeOutlinedSelectable,
         };
       }
     }
     return contentStyles;
   };
 
-  const getContentLayer2Styles = () => {
-    let layer2Styles: ViewStyle = { ...styles.contentLayer2 };
+  const getInputSurfaceOverlayStyles = () => {
+    let contentSurfaceOverlay: ViewStyle = { ...styles.inputSurfaceOverlay };
     if (icon) {
-      layer2Styles = { ...layer2Styles, ...styles.contentLayer2WithIcon };
+      contentSurfaceOverlay = {
+        ...contentSurfaceOverlay,
+        ...styles.inputSurfaceOverlayWithIcon,
+      };
     }
     if (mandatory && somethingIsSelected() && type != "outlined") {
-      layer2Styles = {
-        ...layer2Styles,
-        ...styles.contentLayer2WithFloatingLabel,
+      contentSurfaceOverlay = {
+        ...contentSurfaceOverlay,
+        ...styles.inputSurfaceOverlayWithFloatingLabel,
       };
     }
     if (type === "outlined") {
-      layer2Styles = { ...layer2Styles, ...styles.contentLayer2Outlined };
+      contentSurfaceOverlay = {
+        ...contentSurfaceOverlay,
+        ...styles.inputSurfaceOverlayOutlined,
+      };
     }
-    return layer2Styles;
+    return contentSurfaceOverlay;
   };
 
   const renderLabel = () => {
@@ -216,7 +236,7 @@ export const Select: FunctionComponent<SelectProps> = ({
     setUserInputEnabled(true);
   };
 
-  const getIconColor = () => {
+  const getDropDownIconColor = () => {
     if (type === "outlined" && selectable) {
       return scheme.primaryHex;
     }
@@ -243,7 +263,10 @@ export const Select: FunctionComponent<SelectProps> = ({
           ...styles.boxShadowElevation2,
         }}
       >
-        <ScrollView nestedScrollEnabled={true} style={styles.choicesLayer2}>
+        <ScrollView
+          nestedScrollEnabled={true}
+          style={styles.choicesSurfaceOverlay}
+        >
           {!mandatory &&
             currChoices.length != 0 &&
             somethingIsSelected() &&
@@ -307,19 +330,22 @@ export const Select: FunctionComponent<SelectProps> = ({
   return render();
 };
 
+const iconSize = 24;
+const dropDownIconSize = 18;
+
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    select: {
+    container: {
       borderTopLeftRadius: 4,
       borderTopRightRadius: 4,
       width: 248,
     },
-    content: {
+    input: {
       backgroundColor: scheme.surfaceHex,
       borderTopLeftRadius: 4,
       borderTopRightRadius: 4,
     },
-    contentTypeOutlined: {
+    inputTypeOutlined: {
       borderWidth: 1,
       borderStyle: "solid",
       borderColor: scheme.outlineHex,
@@ -327,12 +353,15 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderBottomLeftRadius: 4,
       backgroundColor: undefined,
     },
-    contentTypeOutlinedSelectable: {
+    inputTypeOutlinedSelectable: {
       borderWidth: 2,
       borderColor: scheme.primaryHex,
     },
-    contentLayer2: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.05),
+    inputSurfaceOverlay: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        M3Constants.surface1ContainerOpacity
+      ),
       paddingLeft: 16,
       paddingRight: 12,
       paddingVertical: 16,
@@ -341,13 +370,13 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderTopLeftRadius: 4,
       borderTopRightRadius: 4,
     },
-    contentLayer2WithIcon: {
+    inputSurfaceOverlayWithIcon: {
       paddingLeft: 12,
     },
-    contentLayer2WithFloatingLabel: {
+    inputSurfaceOverlayWithFloatingLabel: {
       paddingVertical: 8,
     },
-    contentLayer2Outlined: {
+    inputSurfaceOverlayOutlined: {
       borderBottomRightRadius: 4,
       borderBottomLeftRadius: 4,
       backgroundColor: undefined,
@@ -418,8 +447,11 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       backgroundColor: scheme.surfaceHex,
       width: 248,
     },
-    choicesLayer2: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.08),
+    choicesSurfaceOverlay: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        M3Constants.surface2ContainerOpacity
+      ),
       maxHeight: 96,
       borderRadius: 4,
     },
