@@ -70,8 +70,8 @@ export const Dialog: FunctionComponent<DialogProps> = ({
       ...styles.title,
       marginTop: 0,
       marginBottom: 16,
+      textAlign: undefined,
     };
-    delete titleStyles["textAlign"];
     return titleStyles;
   };
 

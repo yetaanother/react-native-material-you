@@ -53,9 +53,6 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
       }
     } else {
       containerStyles = { ...containerStyles, ...styles.chipSelected };
-      delete containerStyles["borderColor"];
-      delete containerStyles["borderWidth"];
-      delete containerStyles["borderStyle"];
     }
 
     if (containerStyle) {
@@ -150,6 +147,9 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     chipSelected: {
       backgroundColor: scheme.secondaryContainerHex,
+      borderColor: undefined,
+      borderWidth: undefined,
+      borderStyle: undefined,
     },
     inner: {
       flexDirection: "row",

@@ -65,7 +65,10 @@ export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
   const getActivityIndicatorStyles = () => {
     let activityIndicatorStyles: ViewStyle = { ...styles.activityIndicator };
     if (!active) {
-      delete activityIndicatorStyles["backgroundColor"];
+      activityIndicatorStyles = {
+        ...activityIndicatorStyles,
+        ...styles.activityIndicatorInactive,
+      };
     }
     return activityIndicatorStyles;
   };
@@ -128,6 +131,9 @@ const createStyles = (scheme: SchemeAdapter) =>
       justifyContent: "center",
       alignItems: "center",
       overflow: "hidden",
+    },
+    activityIndicatorInactive: {
+      backgroundColor: undefined,
     },
     iconContainer: {
       width: 24,
