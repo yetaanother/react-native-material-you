@@ -101,7 +101,6 @@ export const Select: FunctionComponent<SelectProps> = ({
   const getContentStyles = () => {
     let contentStyles: ViewStyle = { ...styles.content };
     if (type === "outlined") {
-      delete contentStyles["backgroundColor"];
       contentStyles = { ...contentStyles, ...styles.contentTypeOutlined };
       if (selectable) {
         contentStyles = {
@@ -327,6 +326,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderColor: scheme.outlineHex,
       borderBottomRightRadius: 4,
       borderBottomLeftRadius: 4,
+      backgroundColor: undefined,
     },
     contentTypeOutlinedSelectable: {
       borderWidth: 2,

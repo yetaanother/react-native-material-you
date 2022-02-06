@@ -77,7 +77,6 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       }
     } else if (type === "outlined") {
       containerStyles = { ...containerStyles, ...styles.buttonTypeOutlined };
-      delete containerStyles["backgroundColor"];
       if (state === "focused") {
         containerStyles = {
           ...containerStyles,
@@ -90,7 +89,10 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
         };
       }
     } else if (type === "text") {
-      delete containerStyles["backgroundColor"];
+      containerStyles = {
+        ...containerStyles,
+        ...styles.buttonTypeText,
+      };
     } else if (type === "elevated") {
       containerStyles = {
         ...containerStyles,
@@ -277,6 +279,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderStyle: "solid",
       borderColor: scheme.outlineHex,
       borderWidth: 1,
+      backgroundColor: undefined,
     },
     buttonTypeOutlinedStateFocused: {
       borderColor: scheme.primaryHex,
@@ -286,6 +289,9 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
         scheme.onSurfaceRGB,
         defaultStateDisabledOpacity
       ),
+    },
+    buttonTypeText: {
+      backgroundColor: undefined,
     },
     buttonTypeElevated: {
       backgroundColor: scheme.surfaceHex,
