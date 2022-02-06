@@ -5,6 +5,7 @@ import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { Settings } from "../providers/Settings";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
+import { M3Constants } from "../utils/M3Constants";
 
 interface CrudeFABProps {
   type?: FABType;
@@ -39,37 +40,35 @@ export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
   const render = () => {
     return (
       <View style={getContainerStyles()}>
-        <View style={getLayer2Styles()}>
-          <View style={getStateStyles()}>
-            <Ionicons
-              name={!icon ? "pencil-sharp" : icon}
-              size={large ? 36 : 24}
-              color={getIconColor()}
-              style={state === "disabled" ? { opacity: 0.38 } : {}}
-            />
-            {label && <Text style={getTextStyles()}>{label}</Text>}
-          </View>
+        <View style={getSurfaceOverlayStyles()}>
+          <View style={getStateOverlayStyles()}>{renderContent()}</View>
         </View>
       </View>
     );
   };
 
   const getContainerStyles = () => {
-    let containerStyles: ViewStyle = { ...styles.fab };
+    let containerStyles: ViewStyle = { ...styles.container };
     if (large) {
-      containerStyles = { ...containerStyles, ...styles.fabLarge };
+      containerStyles = { ...containerStyles, ...styles.containerLarge };
     }
 
     if (type === "primary") {
-      containerStyles = { ...containerStyles, ...styles.fabTypePrimary };
+      containerStyles = { ...containerStyles, ...styles.containerTypePrimary };
     } else if (type === "secondary") {
-      containerStyles = { ...containerStyles, ...styles.fabTypeSecondary };
+      containerStyles = {
+        ...containerStyles,
+        ...styles.containerTypeSecondary,
+      };
     } else if (type === "tertiary") {
-      containerStyles = { ...containerStyles, ...styles.fabTypeTertiary };
+      containerStyles = { ...containerStyles, ...styles.containerTypeTertiary };
     }
 
     if (state === "disabled") {
-      containerStyles = { ...containerStyles, ...styles.fabStateDisabled };
+      containerStyles = {
+        ...containerStyles,
+        ...styles.containerStateDisabled,
+      };
     } else if (
       state === "enabled" ||
       state === "focused" ||
@@ -80,63 +79,88 @@ export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
       containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
     }
 
-    return containerStyle
-      ? { ...containerStyles, ...containerStyle }
-      : containerStyles;
+    if (containerStyle) {
+      return { ...containerStyles, ...containerStyle };
+    }
+    return containerStyles;
   };
 
-  const getLayer2Styles = () => {
-    let layer2Styles = { ...styles.fabLayer2 };
+  const getSurfaceOverlayStyles = () => {
+    let surfaceOverlayStyles = { ...styles.surfaceOverlay };
     if (large) {
-      layer2Styles = { ...layer2Styles, ...styles.fabLayer2Large };
+      surfaceOverlayStyles = {
+        ...surfaceOverlayStyles,
+        ...styles.surfaceOverlayLarge,
+      };
     }
 
     if (type === "surface") {
       if (state == "enabled" || state === "pressed" || state === "focused") {
-        layer2Styles = {
-          ...layer2Styles,
-          ...styles.fabLayer2TypeEnabledOrPressedOrFocused,
+        surfaceOverlayStyles = {
+          ...surfaceOverlayStyles,
+          ...styles.surfaceOverlayTypeEnabledOrPressedOrFocused,
         };
       }
     }
-    return layer2Styles;
+    return surfaceOverlayStyles;
   };
 
-  const getStateStyles = () => {
-    let stateStyles = { ...styles.inner };
+  const getStateOverlayStyles = () => {
+    let stateStyles = { ...styles.stateOverlay };
     if (large) {
-      stateStyles = { ...stateStyles, ...styles.innerLarge };
+      stateStyles = { ...stateStyles, ...styles.stateOverlayLarge };
     } else if (label) {
-      stateStyles = { ...stateStyles, ...styles.innerWithText };
+      stateStyles = { ...stateStyles, ...styles.stateOverlayWithText };
     }
 
     if (type === "surface") {
       if (state === "focused" || state === "pressed") {
-        stateStyles = { ...stateStyles, ...styles.innerStateFocusedOrPressed };
+        stateStyles = {
+          ...stateStyles,
+          ...styles.stateOverlayStateFocusedOrPressed,
+        };
       }
     } else if (type === "primary") {
       if (state === "focused" || state === "pressed") {
         stateStyles = {
           ...stateStyles,
-          ...styles.innerTypePrimaryStateFocusedOrPressed,
+          ...styles.stateOverlayTypePrimaryStateFocusedOrPressed,
         };
       }
     } else if (type === "secondary") {
       if (state === "focused" || state === "pressed") {
         stateStyles = {
           ...stateStyles,
-          ...styles.innerTypeSecondaryStateFocusedOrPressed,
+          ...styles.stateOverlayTypeSecondaryStateFocusedOrPressed,
         };
       }
     } else if (type === "tertiary") {
       if (state === "focused" || state === "pressed") {
         stateStyles = {
           ...stateStyles,
-          ...styles.innerTypeTertiaryStateFocusedOrPressed,
+          ...styles.stateOverlayTypeTertiaryStateFocusedOrPressed,
         };
       }
     }
     return stateStyles;
+  };
+
+  const renderContent = () => {
+    return (
+      <>
+        <Ionicons
+          name={!icon ? "pencil-sharp" : icon}
+          size={large ? iconSizeLarge : iconSize}
+          color={getIconColor()}
+          style={
+            state === "disabled"
+              ? { opacity: M3Constants.disabledContentOpacity }
+              : {}
+          }
+        />
+        {label && <Text style={getTextStyles()}>{label}</Text>}
+      </>
+    );
   };
 
   const getIconColor = () => {
@@ -170,40 +194,49 @@ export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
   return render();
 };
 
+const iconSize = 24;
+const iconSizeLarge = 36;
+
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    fab: {
+    container: {
       borderRadius: 16,
       backgroundColor: scheme.surfaceHex,
     },
-    fabLarge: {
+    containerLarge: {
       borderRadius: 28,
     },
-    fabStateDisabled: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+    containerStateDisabled: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onSurfaceRGB,
+        M3Constants.disabledContainerOpacity
+      ),
     },
-    fabTypePrimary: {
+    containerTypePrimary: {
       backgroundColor: scheme.primaryContainerHex,
     },
-    fabTypeSecondary: {
+    containerTypeSecondary: {
       backgroundColor: scheme.secondaryContainerHex,
     },
-    fabTypeTertiary: {
+    containerTypeTertiary: {
       backgroundColor: scheme.tertiaryContainerHex,
     },
     boxShadowElevation3: settings.boxShadowElevation3,
     boxShadowElevation4: settings.boxShadowElevation4,
-    fabLayer2: {
+    surfaceOverlay: {
       borderRadius: 16,
       overflow: "hidden",
     },
-    fabLayer2Large: {
+    surfaceOverlayLarge: {
       borderRadius: 28,
     },
-    fabLayer2TypeEnabledOrPressedOrFocused: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.11),
+    surfaceOverlayTypeEnabledOrPressedOrFocused: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        M3Constants.surface3ContainerOpacity
+      ),
     },
-    inner: {
+    stateOverlay: {
       alignItems: "center",
       justifyContent: "center",
       overflow: "hidden",
@@ -211,12 +244,12 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingHorizontal: 16,
       height: 56,
     },
-    innerLarge: {
+    stateOverlayLarge: {
       borderRadius: 28,
       paddingHorizontal: 30,
       height: 96,
     },
-    innerWithText: {
+    stateOverlayWithText: {
       paddingLeft: 16,
       paddingRight: 20,
       flexDirection: "row",
@@ -243,18 +276,33 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       color: scheme.onTertiaryContainerHex,
     },
     textDisabled: {
-      color: rgbaWithOpacity(scheme.onSurfaceRGB, 0.38),
+      color: rgbaWithOpacity(
+        scheme.onSurfaceRGB,
+        M3Constants.disabledContentOpacity
+      ),
     },
-    innerStateFocusedOrPressed: {
-      backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.12),
+    stateOverlayStateFocusedOrPressed: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.primaryRGB,
+        M3Constants.focusedOrPressedContainerOpacity
+      ),
     },
-    innerTypePrimaryStateFocusedOrPressed: {
-      backgroundColor: rgbaWithOpacity(scheme.onPrimaryContainerRGB, 0.12),
+    stateOverlayTypePrimaryStateFocusedOrPressed: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onPrimaryContainerRGB,
+        M3Constants.focusedOrPressedContainerOpacity
+      ),
     },
-    innerTypeSecondaryStateFocusedOrPressed: {
-      backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.12),
+    stateOverlayTypeSecondaryStateFocusedOrPressed: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onSecondaryContainerRGB,
+        M3Constants.focusedOrPressedContainerOpacity
+      ),
     },
-    innerTypeTertiaryStateFocusedOrPressed: {
-      backgroundColor: rgbaWithOpacity(scheme.onTertiaryContainerRGB, 0.12),
+    stateOverlayTypeTertiaryStateFocusedOrPressed: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onTertiaryContainerRGB,
+        M3Constants.focusedOrPressedContainerOpacity
+      ),
     },
   });
