@@ -5,6 +5,7 @@ import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Settings } from "../providers/Settings";
+import { M3Constants } from "../utils/M3Constants";
 
 interface CrudeFilterChipProps {
   label: string;
@@ -32,30 +33,36 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   const render = () => {
     return (
       <View style={getContainerStyles()}>
-        <View style={getStateStyles()}>{renderContent()}</View>
+        <View style={getStateOverlayStyles()}>{renderContent()}</View>
       </View>
     );
   };
 
   const getContainerStyles = () => {
-    let containerStyles: ViewStyle = { ...styles.chip };
+    let containerStyles: ViewStyle = { ...styles.container };
     if (!selected) {
       if (!elevated) {
         if (state === "disabled") {
-          containerStyles = { ...containerStyles, ...styles.chipStateDisabled };
+          containerStyles = {
+            ...containerStyles,
+            ...styles.containerStateDisabled,
+          };
         } else if (state === "focused") {
-          containerStyles = { ...containerStyles, ...styles.chipStateFocused };
+          containerStyles = {
+            ...containerStyles,
+            ...styles.containerStateFocused,
+          };
         }
       } else {
         containerStyles = getElevatedContainerStyles(containerStyles);
       }
     } else {
-      containerStyles = { ...containerStyles, ...styles.chipSelected };
+      containerStyles = { ...containerStyles, ...styles.containerSelected };
       if (!elevated) {
         if (state === "disabled") {
           containerStyles = {
             ...containerStyles,
-            ...styles.chipSelectedDisabled,
+            ...styles.containerStateDisabled,
           };
         }
       } else {
@@ -69,41 +76,52 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   };
 
   const getElevatedContainerStyles = (containerStyles: ViewStyle) => {
-    containerStyles = { ...containerStyles, ...styles.chipTypeElevated };
+    containerStyles = { ...containerStyles, ...styles.containerTypeElevated };
     if (state === "enabled" || state === "focused" || state === "pressed") {
       containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
     } else if (state === "disabled") {
       containerStyles = {
         ...containerStyles,
-        ...styles.chipElevatedStateDisabled,
       };
     }
     return containerStyles;
   };
 
-  const getStateStyles = () => {
-    let stateStyles = { ...styles.inner };
+  const getStateOverlayStyles = () => {
+    let stateOverlayStyles = { ...styles.stateOverlay };
     if (!selected) {
       if (state === "pressed" || state === "focused") {
-        stateStyles = { ...stateStyles, ...styles.innerStateFocusedOrPressed };
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlayStateFocusedOrPressed,
+        };
       }
     } else {
-      stateStyles = { ...stateStyles, ...styles.innerSelected };
+      stateOverlayStyles = {
+        ...stateOverlayStyles,
+        ...styles.stateOverlaySelected,
+      };
       if (state === "pressed" || state === "focused") {
-        stateStyles = {
-          ...stateStyles,
-          ...styles.innerSelectedStateFocusedOrPressed,
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlaySelectedStateFocusedOrPressed,
         };
       }
     }
     if (dropdown) {
       if (selected) {
-        stateStyles = { ...stateStyles, ...styles.innerSelectedDropDown };
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlaySelectedDropDown,
+        };
       } else {
-        stateStyles = { ...stateStyles, ...styles.innerDropDown };
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlayDropDown,
+        };
       }
     }
-    return stateStyles;
+    return stateOverlayStyles;
   };
 
   const renderContent = () => {
@@ -113,7 +131,11 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
       <>
         {selected && (
           <View style={getLeadingIconStyles()}>
-            <Ionicons name={"checkmark-sharp"} size={18} color={iconColor} />
+            <Ionicons
+              name={"checkmark-sharp"}
+              size={iconSize}
+              color={iconColor}
+            />
           </View>
         )}
         <Text style={textStyles}>{label}</Text>
@@ -122,7 +144,7 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
           <View style={getTrailingIconStyles()}>
             <Ionicons
               name={"caret-down-sharp"}
-              size={18}
+              size={iconSize}
               color={
                 state === "enabled" ? scheme.onSurfaceVariantHex : iconColor
               }
@@ -172,40 +194,39 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
   return render();
 };
 
+const iconSize = 18;
+
 const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
   StyleSheet.create({
-    chip: {
+    container: {
       backgroundColor: scheme.surfaceHex,
       borderColor: scheme.outlineHex,
       borderWidth: 1,
       borderStyle: "solid",
       borderRadius: 8,
     },
-    chipStateFocused: {
+    containerStateFocused: {
       borderColor: scheme.onSurfaceVariantHex,
     },
-    chipStateDisabled: {
-      borderColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
+    containerStateDisabled: {
+      borderColor: rgbaWithOpacity(
+        scheme.onSurfaceRGB,
+        M3Constants.disabledContainerOpacity
+      ),
       backgroundColor: undefined,
     },
-    chipTypeElevated: {
+    containerTypeElevated: {
       borderColor: undefined,
       borderWidth: undefined,
       borderStyle: undefined,
     },
-    chipElevatedStateDisabled: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
-    },
-    chipSelected: {
+    containerSelected: {
       backgroundColor: scheme.secondaryContainerHex,
       borderColor: undefined,
       borderWidth: undefined,
       borderStyle: undefined,
     },
-    chipSelectedDisabled: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceRGB, 0.12),
-    },
-    inner: {
+    stateOverlay: {
       flexDirection: "row",
       alignItems: "center",
       height: 32,
@@ -213,23 +234,29 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       borderRadius: 8,
       justifyContent: "center",
     },
-    innerStateFocusedOrPressed: {
-      backgroundColor: rgbaWithOpacity(scheme.onSurfaceVariantRGB, 0.12),
+    stateOverlayStateFocusedOrPressed: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onSurfaceVariantRGB,
+        M3Constants.focusedOrPressedContainerOpacity
+      ),
     },
-    innerDropDown: {
+    stateOverlayDropDown: {
       paddingRight: 8,
       paddingLeft: 16,
     },
-    innerSelected: {
+    stateOverlaySelected: {
       paddingRight: 16,
       paddingLeft: 8,
     },
-    innerSelectedDropDown: {
+    stateOverlaySelectedDropDown: {
       paddingRight: 8,
       paddingLeft: 8,
     },
-    innerSelectedStateFocusedOrPressed: {
-      backgroundColor: rgbaWithOpacity(scheme.onSecondaryContainerRGB, 0.12),
+    stateOverlaySelectedStateFocusedOrPressed: {
+      backgroundColor: rgbaWithOpacity(
+        scheme.onSecondaryContainerRGB,
+        M3Constants.focusedOrPressedContainerOpacity
+      ),
     },
     boxShadowElevation1: settings.boxShadowElevation1,
     boxShadowElevation2: settings.boxShadowElevation2,
@@ -250,7 +277,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     },
     textStateDisabled: {
       color: scheme.onSurfaceHex,
-      opacity: 0.38,
+      opacity: M3Constants.disabledContentOpacity,
     },
     textSelected: {
       color: scheme.onSecondaryContainerHex,
@@ -262,6 +289,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       marginLeft: 8,
     },
     iconStateDisabled: {
-      opacity: 0.38,
+      opacity: M3Constants.disabledContentOpacity,
     },
   });
