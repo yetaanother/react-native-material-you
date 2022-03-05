@@ -5,6 +5,7 @@
 * https://www.bram.us/2018/03/10/working-with-symlinked-packages-in-react-native/
 * We can install watchman on windows using - `choco install watchman`
 * Setup WML- https://github.com/wix/wml/issues/38#issuecomment-683534388
+* Source folder is deleted because of `wml` - https://github.com/wix/wml/issues/37#issuecomment-681199998
 
 ## React Native
 * https://docs.expo.dev/ui-programming/react-native-styling-buttons/
