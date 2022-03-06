@@ -82,6 +82,7 @@ export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
     } else if (state === "disabled") {
       containerStyles = {
         ...containerStyles,
+        ...styles.containerStateDisabled,
       };
     }
     return containerStyles;
@@ -262,12 +263,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     boxShadowElevation2: settings.boxShadowElevation2,
     boxShadowElevation4: settings.boxShadowElevation4,
     text: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "500",
-      letterSpacing: 0.1,
+      ...M3Constants.labelLargeText,
       color: scheme.onSurfaceVariantHex,
       textAlign: "center",
       textAlignVertical: "center",
