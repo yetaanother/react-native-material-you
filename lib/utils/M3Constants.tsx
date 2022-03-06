@@ -49,4 +49,25 @@ export class M3Constants {
     fontWeight: "500",
     letterSpacing: 0.15,
   };
+  static titleLargeText: TextStyle = {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontSize: 22,
+    lineHeight: 28,
+    fontWeight: "normal",
+  };
+  static headlineSmallText: TextStyle = {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontSize: 24,
+    lineHeight: 32,
+    fontWeight: "normal",
+  };
+  static headlineMediumText: TextStyle = {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontSize: 28,
+    lineHeight: 36,
+    fontWeight: "normal",
+  };
 }

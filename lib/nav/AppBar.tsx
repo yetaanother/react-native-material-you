@@ -43,7 +43,7 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
   size = !size ? "small" : size;
   type = !type ? "on-scroll" : type;
   if (size === "small" && titleCentered && Array.isArray(trailingIcon)) {
-    console.log(
+    console.warn(
       "Can't have centered title with multiple trailing icons for small size"
     );
     titleCentered = false;
@@ -58,10 +58,12 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
   };
 
   const getContainerStyles = () => {
-    let containerStyles = {
+    let containerStyles: ViewStyle = {
       ...styles.container,
-      ...styles.boxShadowElevation2,
     };
+    if (type == "on-scroll") {
+      containerStyles = { ...containerStyles, ...styles.boxShadowElevation2 };
+    }
     if (size == "medium") {
       containerStyles = { ...containerStyles, ...styles.containerMedium };
     } else if (size == "large") {
@@ -75,17 +77,18 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
   };
 
   const getSurfaceOverlayStyles = () => {
-    let getSrufaceOverlayStyles: ViewStyle = { ...styles.surfaceOverlay };
+    let getSurfaceOverlayStyles: ViewStyle = { ...styles.surfaceOverlay };
     if (type === "flat") {
-      getSrufaceOverlayStyles = {
-        ...getSrufaceOverlayStyles,
+      getSurfaceOverlayStyles = {
+        ...getSurfaceOverlayStyles,
         ...styles.surfaceOverlayTypeFlat,
       };
     }
-    return getSrufaceOverlayStyles;
+    return getSurfaceOverlayStyles;
   };
 
   const renderContent = () => {
+    let titleStyles = getTitleStyles();
     return (
       <>
         <View style={styles.content}>
@@ -99,12 +102,12 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
               />
             </View>
           )}
-          {size === "small" && <Text style={getTitleStyles()}>{title}</Text>}
+          {size === "small" && <Text style={titleStyles}>{title}</Text>}
           {renderTrailingIcons()}
         </View>
         {size !== "small" && (
           <View style={getLine2Styles()}>
-            <Text style={getTitleStyles()}>{title}</Text>
+            <Text style={titleStyles}>{title}</Text>
           </View>
         )}
       </>
@@ -258,11 +261,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       justifyContent: "center",
     },
     title: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 22,
-      lineHeight: 28,
-      fontWeight: "normal",
+      ...M3Constants.titleLargeText,
       color: scheme.onSurfaceHex,
       textAlign: "center",
       marginLeft: 16,
@@ -272,15 +271,13 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       marginRight: "auto",
     },
     titleSizeMedium: {
-      fontSize: 24,
-      lineHeight: 32,
+      ...M3Constants.headlineSmallText,
       marginLeft: 0,
       width: "100%",
       textAlign: "left",
     },
     titleSizeLarge: {
-      fontSize: 28,
-      lineHeight: 36,
+      ...M3Constants.headlineMediumText,
       marginLeft: 0,
       width: "100%",
       textAlign: "left",
