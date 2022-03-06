@@ -202,12 +202,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingRight: 8,
     },
     text: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "500",
-      letterSpacing: 0.1,
+      ...M3Constants.labelLargeText,
       color: scheme.onSurfaceVariantHex,
       textAlign: "center",
       textAlignVertical: "center",
@@ -222,7 +217,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
     leadingIcon: {
       marginRight: 8,
       backgroundColor: scheme.onSurfaceVariantHex,
-      borderRadius: 100,
+      borderRadius: 12,
       height: 24,
       width: 24,
       alignItems: "center",

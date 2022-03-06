@@ -2,6 +2,7 @@ import React, { FunctionComponent, useContext } from "react";
 import { SchemeAdapter } from "./providers/SchemeAdapter";
 import { StyleSheet, Text, ViewStyle } from "react-native";
 import { ThemeContext } from "./providers/ThemeProvider";
+import { M3Constants } from "./utils/M3Constants";
 
 interface AvatarProps {
   initials?: string;
@@ -40,11 +41,6 @@ const createStyles = (scheme: SchemeAdapter) =>
       color: scheme.surfaceHex,
       textAlign: "center",
       textAlignVertical: "center",
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 16,
-      lineHeight: 24,
-      fontWeight: "500",
-      letterSpacing: 0.1,
+      ...M3Constants.titleMediumText,
     },
   });
