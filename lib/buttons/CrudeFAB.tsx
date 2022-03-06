@@ -75,8 +75,6 @@ export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
       state === "pressed"
     ) {
       containerStyles = { ...containerStyles, ...styles.boxShadowElevation3 };
-    } else if (state === "hovered") {
-      containerStyles = { ...containerStyles, ...styles.boxShadowElevation4 };
     }
 
     if (containerStyle) {
@@ -255,12 +253,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       flexDirection: "row",
     },
     text: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "500",
-      letterSpacing: 0.1,
+      ...M3Constants.labelLargeText,
       color: scheme.primaryHex,
       marginLeft: 12,
       textAlign: "center",
