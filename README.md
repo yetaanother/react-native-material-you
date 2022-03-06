@@ -16,20 +16,13 @@ from [Google Material 3 Design Kit](https://www.figma.com/community/file/1035203
 
 ## How to install
 
-???
+Coming soon...
 
 ## Show me the components
 
 #### Buttons
-![](screenshots/l-filled-outlined.PNG)
-![](screenshots/l-text-elevated.PNG)
-![](screenshots/l-tonal.PNG)
 
-<hr/>
-
-![](screenshots/d-filled-outlined.PNG)
-![](screenshots/d-text-elevated.PNG)
-![](screenshots/d-tonal.PNG)
+Coming soon...
 
 #### Cards
 
@@ -47,21 +40,7 @@ from [Google Material 3 Design Kit](https://www.figma.com/community/file/1035203
 
 #### Chips
 
-![](screenshots/l-chips-1.PNG)
-![](screenshots/l-chips-2.PNG)
-![](screenshots/l-chips-3.PNG)
-![](screenshots/l-chips-4.PNG)
-![](screenshots/l-chips-5.PNG)
-![](screenshots/l-chips-6.PNG)
-
-<hr/>
-
-![](screenshots/d-chips-1.PNG)
-![](screenshots/d-chips-2.PNG)
-![](screenshots/d-chips-3.PNG)
-![](screenshots/d-chips-4.PNG)
-![](screenshots/d-chips-5.PNG)
-![](screenshots/d-chips-6.PNG)
+Coming soon...
 
 #### Dialog
 
@@ -75,34 +54,24 @@ from [Google Material 3 Design Kit](https://www.figma.com/community/file/1035203
 
 #### FAB
 
-![](screenshots/l-fab-1.PNG)
-![](screenshots/l-fab-2.PNG)
-![](screenshots/l-fab-3.PNG)
-![](screenshots/l-fab-4.PNG)
-
-<hr/>
-
-![](screenshots/d-fab-1.PNG)
-![](screenshots/d-fab-2.PNG)
-![](screenshots/d-fab-3.PNG)
-![](screenshots/d-fab-4.PNG)
+Coming soon...
 
 #### Select
 
-???
+Coming soon...
 
 #### Navbar
 
-???
+Coming soon...
 
 #### Appbar
 
-???
+Coming soon...
 
 ## Show me the code
 
-???
+Coming soon...
 
 ## Contributing
 
-???
+Coming soon...
