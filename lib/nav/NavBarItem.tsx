@@ -3,6 +3,7 @@ import { ThemeContext } from "../providers/ThemeProvider";
 import { SchemeAdapter } from "../providers/SchemeAdapter";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { M3Constants } from "../utils/M3Constants";
 
 export interface NavBarItemProps {
   inactiveIcon?: any;
@@ -148,12 +149,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       alignItems: "center",
     },
     label: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: "500",
-      letterSpacing: 0.5,
+      ...M3Constants.labelMediumText,
       color: scheme.onSurfaceVariantHex,
       textAlign: "center",
       textAlignVertical: "center",
@@ -163,12 +159,7 @@ const createStyles = (scheme: SchemeAdapter) =>
       color: scheme.onSurfaceHex,
     },
     badgeLabel: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 11,
-      lineHeight: 16,
-      fontWeight: "normal",
-      letterSpacing: 0.1,
+      ...M3Constants.labelSmallText,
       color: scheme.onErrorHex,
       textAlign: "center",
       textAlignVertical: "center",

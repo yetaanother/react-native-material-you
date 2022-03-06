@@ -25,6 +25,14 @@ export class M3Constants {
     fontWeight: "500",
     letterSpacing: 0.5,
   };
+  static labelSmallText: TextStyle = {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontSize: 11,
+    lineHeight: 16,
+    fontWeight: "500",
+    letterSpacing: 0.5,
+  };
   static bodyMediumText: TextStyle = {
     fontFamily: "Roboto",
     fontStyle: "normal",
