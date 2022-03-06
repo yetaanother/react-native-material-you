@@ -386,12 +386,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       justifyContent: "center",
     },
     floatingLabel: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: "500",
-      letterSpacing: 0.5,
+      ...M3Constants.labelMediumText,
       color: scheme.primaryHex,
     },
     floatingLabelOutlined: {
@@ -409,12 +404,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       position: "absolute",
     },
     text: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 16,
-      lineHeight: 24,
-      fontWeight: "normal",
-      letterSpacing: 0.5,
+      ...M3Constants.bodyLargeText,
       color: scheme.onSurfaceHex,
     },
     textUnselectedLabelTypeOutlined: {
@@ -466,12 +456,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       backgroundColor: rgbaWithOpacity(scheme.primaryRGB, 0.12),
     },
     choiceText: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "normal",
-      letterSpacing: 0.25,
+      ...M3Constants.bodyMediumText,
       color: scheme.onSurfaceHex,
     },
   });
