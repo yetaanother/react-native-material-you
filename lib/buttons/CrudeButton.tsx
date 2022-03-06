@@ -143,7 +143,7 @@ export const CrudeButton: FunctionComponent<CrudeButtonProps> = ({
       if (state === "focused" || state === "pressed") {
         stateOverlayStyles = {
           ...stateOverlayStyles,
-          ...styles.stateOverlayStateFocusedOrPressed,
+          ...styles.stateOverlayTypeFilledStateFocusedOrPressed,
         };
       }
     } else if (type === "outlined" || type === "elevated" || type === "text") {
@@ -301,7 +301,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       // https://stackoverflow.com/questions/35030758/react-native-border-radius-with-background-color
       overflow: "hidden",
     },
-    stateOverlayStateFocusedOrPressed: {
+    stateOverlayTypeFilledStateFocusedOrPressed: {
       backgroundColor: rgbaWithOpacity(
         scheme.onPrimaryRGB,
         M3Constants.focusedOrPressedContainerOpacity
@@ -331,12 +331,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingRight: 16,
     },
     text: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "500",
-      letterSpacing: 0.1,
+      ...M3Constants.labelLargeText,
       color: scheme.onPrimaryHex,
       textAlign: "center",
       textAlignVertical: "center",

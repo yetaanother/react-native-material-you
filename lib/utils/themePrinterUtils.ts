@@ -1,28 +1,30 @@
-import { Scheme } from "../material-color-utilities/scheme/scheme";
 import {
-  blueFromInt,
-  greenFromInt,
-  hexFromInt,
-  intFromHex,
-  redFromInt,
-} from "../material-color-utilities/utils/color_utils";
+  argbFromHex,
+  blueFromArgb,
+  greenFromArgb,
+  hexFromArgb,
+  redFromArgb,
+  Scheme
+} from "@material/material-color-utilities/dist";
+import {
+} from "@material/material-color-utilities";
 
 // RUN USING `npx ts-node themePrinterUtil.ts`
 
 const getDescription = (argbValue: number) => {
   return (
-    hexFromInt(argbValue) +
+    hexFromArgb(argbValue) +
     " [" +
-    redFromInt(argbValue) +
+    redFromArgb(argbValue) +
     " ," +
-    greenFromInt(argbValue) +
+    greenFromArgb(argbValue) +
     " ," +
-    blueFromInt(argbValue) +
+    blueFromArgb(argbValue) +
     "]"
   );
 };
 
-export const scheme = Scheme.dark(intFromHex("#6750a4"));
+export const scheme = Scheme.dark(argbFromHex("#6750a4"));
 
 console.log("Primary:", getDescription(scheme.primary));
 console.log("On primary:", getDescription(scheme.onPrimary));
