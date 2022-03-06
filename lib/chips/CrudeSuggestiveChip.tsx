@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useContext } from "react";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
-import { SchemeAdapter } from "../providers/SchemeAdapter";
-import { Settings } from "../providers/Settings";
+import { ColorScheme } from "../providers/ColorScheme";
+import { Shadows } from "../providers/Shadows";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { M3Constants } from "../utils/M3Constants";
@@ -158,7 +158,7 @@ export const CrudeSuggestiveChip: FunctionComponent<
 
 const iconSize = 18;
 
-const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
+const createStyles = (scheme: ColorScheme, settings: Shadows) =>
   StyleSheet.create({
     container: {
       backgroundColor: scheme.surfaceHex,

@@ -6,11 +6,11 @@ import React, {
   useState,
 } from "react";
 import { Dimensions, Pressable, StyleSheet, View } from "react-native";
-import { SchemeAdapter } from "../providers/SchemeAdapter";
+import { ColorScheme } from "../providers/ColorScheme";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { NavBarItemProps } from "./NavBarItem";
-import { Settings } from "../providers/Settings";
+import { Shadows } from "../providers/Shadows";
 import { M3Constants } from "../utils/M3Constants";
 
 interface NavBarItemComp extends ReactElement<NavBarItemProps, any> {}
@@ -106,7 +106,7 @@ export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
 };
 
 const deviceWidth = Dimensions.get("window").width;
-const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
+const createStyles = (scheme: ColorScheme, settings: Shadows) =>
   StyleSheet.create({
     container: {
       backgroundColor: scheme.surfaceHex,

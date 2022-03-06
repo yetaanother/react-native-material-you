@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useContext } from "react";
-import { SchemeAdapter } from "./providers/SchemeAdapter";
+import { ColorScheme } from "./providers/ColorScheme";
 import { StyleSheet, Text, ViewStyle } from "react-native";
 import { ThemeContext } from "./providers/ThemeProvider";
 import { M3Constants } from "./utils/M3Constants";
@@ -31,7 +31,7 @@ export const Avatar: FunctionComponent<AvatarProps> = ({
   return render();
 };
 
-const createStyles = (scheme: SchemeAdapter) =>
+const createStyles = (scheme: ColorScheme) =>
   StyleSheet.create({
     avatar: {
       width: 40,

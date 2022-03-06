@@ -7,9 +7,9 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { SchemeAdapter } from "../providers/SchemeAdapter";
+import { ColorScheme } from "../providers/ColorScheme";
 import { ThemeContext } from "../providers/ThemeProvider";
-import { Settings } from "../providers/Settings";
+import { Shadows } from "../providers/Shadows";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { M3Constants } from "../utils/M3Constants";
@@ -216,7 +216,7 @@ const iconSizeLarge = 30;
 
 // Because of fixed height required padding is set automatically
 const deviceWidth = Dimensions.get("window").width;
-const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
+const createStyles = (scheme: ColorScheme, settings: Shadows) =>
   StyleSheet.create({
     container: {
       backgroundColor: scheme.surfaceHex,

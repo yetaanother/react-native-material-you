@@ -8,11 +8,11 @@ import {
   ViewStyle,
 } from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
-import { SchemeAdapter } from "../providers/SchemeAdapter";
+import { ColorScheme } from "../providers/ColorScheme";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "../buttons/Button";
 import { Avatar } from "../Avatar";
-import { Settings } from "../providers/Settings";
+import { Shadows } from "../providers/Shadows";
 import { M3Constants } from "../utils/M3Constants";
 
 interface CardProps {
@@ -198,7 +198,7 @@ export const Card: FunctionComponent<CardProps> = ({
 
 const iconSize = 24;
 
-const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
+const createStyles = (scheme: ColorScheme, settings: Shadows) =>
   StyleSheet.create({
     container: {
       alignItems: "flex-start",

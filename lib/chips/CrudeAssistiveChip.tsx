@@ -1,10 +1,10 @@
 import React, { FunctionComponent, useContext } from "react";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
-import { SchemeAdapter } from "../providers/SchemeAdapter";
+import { ColorScheme } from "../providers/ColorScheme";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
-import { Settings } from "../providers/Settings";
+import { Shadows } from "../providers/Shadows";
 import { M3Constants } from "../utils/M3Constants";
 
 // Assistive chips don't have a selected version
@@ -126,7 +126,7 @@ export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
 
 const iconSize = 18;
 
-const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
+const createStyles = (scheme: ColorScheme, settings: Shadows) =>
   StyleSheet.create({
     container: {
       backgroundColor: scheme.surfaceHex,

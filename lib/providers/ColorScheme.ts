@@ -1,7 +1,7 @@
-import {hexFromArgb, Scheme} from "@material/material-color-utilities/dist";
+import { hexFromArgb, Scheme } from "@material/material-color-utilities/dist";
 import { rgbArrayFromArgb } from "../utils/colorUtils";
 
-export class SchemeAdapter {
+export class ColorScheme {
   get primaryHex(): string {
     return this.props.primaryHex;
   }
@@ -216,8 +216,8 @@ export class SchemeAdapter {
     return this.props.inversePrimaryRGB;
   }
 
-  static from(scheme: Scheme): SchemeAdapter {
-    return new SchemeAdapter({
+  static from(scheme: Scheme): ColorScheme {
+    return new ColorScheme({
       primaryHex: hexFromArgb(scheme.primary),
       onPrimaryHex: hexFromArgb(scheme.onPrimary),
       primaryContainerHex: hexFromArgb(scheme.primaryContainer),

@@ -1,10 +1,10 @@
 import React, { FunctionComponent, useContext } from "react";
-import { SchemeAdapter } from "../providers/SchemeAdapter";
+import { ColorScheme } from "../providers/ColorScheme";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
-import { Settings } from "../providers/Settings";
+import { Shadows } from "../providers/Shadows";
 import { M3Constants } from "../utils/M3Constants";
 
 // Input chips don't have an elevated version
@@ -151,7 +151,7 @@ export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
 
 const iconSize = 18;
 
-const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
+const createStyles = (scheme: ColorScheme, settings: Shadows) =>
   StyleSheet.create({
     container: {
       backgroundColor: scheme.surfaceHex,

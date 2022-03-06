@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useContext } from "react";
 import { StyleSheet, Text, TextStyle, View } from "react-native";
 import { ThemeContext } from "./providers/ThemeProvider";
-import { SchemeAdapter } from "./providers/SchemeAdapter";
+import { ColorScheme } from "./providers/ColorScheme";
 import { rgbaWithOpacity } from "./utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "./buttons/Button";
-import { Settings } from "./providers/Settings";
+import { Shadows } from "./providers/Shadows";
 import { M3Constants } from "./utils/M3Constants";
 
 interface DialogProps {
@@ -110,7 +110,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({
 
 const iconSize = 24;
 
-const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
+const createStyles = (scheme: ColorScheme, settings: Shadows) =>
   StyleSheet.create({
     container: {
       borderRadius: 28,

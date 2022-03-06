@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useContext } from "react";
-import { SchemeAdapter } from "../providers/SchemeAdapter";
+import { ColorScheme } from "../providers/ColorScheme";
 import {
   Image,
   ImageSourcePropType,
@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { Avatar } from "../Avatar";
-import { Settings } from "../providers/Settings";
+import { Shadows } from "../providers/Shadows";
 import { M3Constants } from "../utils/M3Constants";
 
 interface HorizontalCardProps {
@@ -97,7 +97,7 @@ export const HorizontalCard: FunctionComponent<HorizontalCardProps> = ({
   return render();
 };
 
-const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
+const createStyles = (scheme: ColorScheme, settings: Shadows) =>
   StyleSheet.create({
     container: {
       flexDirection: "row",

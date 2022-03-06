@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useContext } from "react";
 import { ThemeContext } from "../providers/ThemeProvider";
-import { SchemeAdapter } from "../providers/SchemeAdapter";
+import { ColorScheme } from "../providers/ColorScheme";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { M3Constants } from "../utils/M3Constants";
@@ -99,7 +99,7 @@ export const NavBarItem: FunctionComponent<NavBarItemProps> = ({
 // In m3 specs the size is 24px but that is not looking good
 const iconSize = 18;
 
-const createStyles = (scheme: SchemeAdapter) =>
+const createStyles = (scheme: ColorScheme) =>
   StyleSheet.create({
     container: {
       alignItems: "center",

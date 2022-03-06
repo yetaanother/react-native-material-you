@@ -1,7 +1,7 @@
 import { Platform, ViewStyle } from "react-native";
-import { SchemeAdapter } from "./SchemeAdapter";
+import { ColorScheme } from "./ColorScheme";
 
-export class Settings {
+export class Shadows {
   get boxShadowElevation1() {
     return this.props.boxShadowElevation1;
   }
@@ -19,8 +19,8 @@ export class Settings {
   }
 
   // https://ethercreative.github.io/react-native-shadow-generator/
-  static default(scheme: SchemeAdapter): Settings {
-    return new Settings({
+  static default(scheme: ColorScheme): Shadows {
+    return new Shadows({
       boxShadowElevation1: {
         ...Platform.select({
           ios: {
