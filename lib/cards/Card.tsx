@@ -13,6 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Button } from "../buttons/Button";
 import { Avatar } from "../Avatar";
 import { Settings } from "../providers/Settings";
+import { M3Constants } from "../utils/M3Constants";
 
 interface CardProps {
   type?: CardType;
@@ -232,23 +233,13 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       alignItems: "flex-start",
     },
     headerTitle: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 16,
-      lineHeight: 24,
-      fontWeight: "500",
-      letterSpacing: 0.1,
+      ...M3Constants.titleMediumText,
       marginVertical: 4,
       color: scheme.onSurfaceHex,
     },
     headerSubTitle: {
+      ...M3Constants.bodyMediumText,
       marginVertical: 4,
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "normal",
-      letterSpacing: 0.25,
       color: scheme.onSurfaceHex,
     },
     image: {
@@ -265,24 +256,14 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       width: "100%",
     },
     bodyTitle: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 16,
-      lineHeight: 24,
-      fontWeight: "normal",
-      letterSpacing: 0.5,
+      ...M3Constants.bodyLargeText,
       color: scheme.onSurfaceVariantHex,
     },
     bodyTitleTypeElevatedOrOutlined: {
       color: scheme.onSurfaceHex,
     },
     bodySubTitle: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "normal",
-      letterSpacing: 0.25,
+      ...M3Constants.bodyMediumText,
       color: scheme.onSurfaceVariantHex,
     },
     buttons: {

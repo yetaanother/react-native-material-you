@@ -17,4 +17,28 @@ export class M3Constants {
     fontWeight: "500",
     letterSpacing: 0.1,
   };
+  static bodyMediumText: TextStyle = {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: "normal",
+    letterSpacing: 0.25,
+  };
+  static bodyLargeText: TextStyle = {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: "normal",
+    letterSpacing: 0.15,
+  };
+  static titleMediumText: TextStyle = {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: "500",
+    letterSpacing: 0.15,
+  };
 }

@@ -11,6 +11,7 @@ import {
 import { ThemeContext } from "../providers/ThemeProvider";
 import { Avatar } from "../Avatar";
 import { Settings } from "../providers/Settings";
+import { M3Constants } from "../utils/M3Constants";
 
 interface HorizontalCardProps {
   type?: CardType;
@@ -133,23 +134,13 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       alignItems: "flex-start",
     },
     headerTitle: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 16,
-      lineHeight: 24,
-      fontWeight: "500",
-      letterSpacing: 0.1,
+      ...M3Constants.titleMediumText,
       marginVertical: 4,
       color: scheme.onSurfaceHex,
     },
     headerSubTitle: {
+      ...M3Constants.bodyMediumText,
       marginVertical: 4,
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "normal",
-      letterSpacing: 0.25,
       color: scheme.onSurfaceHex,
     },
   });
