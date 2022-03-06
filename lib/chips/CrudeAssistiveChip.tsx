@@ -15,6 +15,7 @@ interface CrudeAssistiveChipProps {
   icon?: any;
   elevated?: boolean;
 }
+
 // M3 docs: https://m3.material.io/components/chips/specs
 export const CrudeAssistiveChip: FunctionComponent<CrudeAssistiveChipProps> = ({
   label,
@@ -168,13 +169,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingRight: 16,
     },
     text: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "500",
-      letterSpacing: 0.1,
-      color: scheme.onSurfaceHex,
+      ...M3Constants.labelLargeText,
       textAlign: "center",
       textAlignVertical: "center",
     },
@@ -182,8 +177,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       opacity: 0.38,
     },
     boxShadowElevation1: settings.boxShadowElevation1,
-    boxShadowElevation2: settings.boxShadowElevation2,
-    boxShadowElevation4: settings.boxShadowElevation4,
     icon: {
       marginRight: 8,
     },
