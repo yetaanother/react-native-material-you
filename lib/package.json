@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Prashant Chaubey",
+  "author": "Prashant Chaubey <prashantchaubey9795@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "@expo/vector-icons": "^12.0.5",

@@ -16,7 +16,7 @@ from [Google Material 3 Design Kit](https://www.figma.com/community/file/1035203
 
 ## How to install
 
-Coming soon...
+> npm i @yetaanother/react-native-material-you
 
 ## Show me the components
 
