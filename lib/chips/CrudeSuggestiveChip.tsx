@@ -18,142 +18,143 @@ interface CrudeSuggestiveChipProps {
 }
 
 // M3 docs: https://m3.material.io/components/chips/specs
-export const CrudeSuggestiveChip: FunctionComponent<CrudeSuggestiveChipProps> =
-  ({ label, selected, elevated, state, icon, containerStyle }) => {
-    const { scheme, settings } = useContext(ThemeContext);
-    const styles = createStyles(scheme, settings);
+export const CrudeSuggestiveChip: FunctionComponent<
+  CrudeSuggestiveChipProps
+> = ({ label, selected, elevated, state, icon, containerStyle }) => {
+  const { scheme, settings } = useContext(ThemeContext);
+  const styles = createStyles(scheme, settings);
 
-    state = !state ? "enabled" : state;
+  state = !state ? "enabled" : state;
 
-    const render = () => {
-      return (
-        <View style={getContainerStyles()}>
-          <View style={getStateOverlayStyles()}>{renderContent()}</View>
-        </View>
-      );
-    };
+  const render = () => {
+    return (
+      <View style={getContainerStyles()}>
+        <View style={getStateOverlayStyles()}>{renderContent()}</View>
+      </View>
+    );
+  };
 
-    const getContainerStyles = () => {
-      let containerStyles: ViewStyle = { ...styles.container };
-      if (!selected) {
-        if (!elevated) {
-          if (state === "disabled") {
-            containerStyles = {
-              ...containerStyles,
-              ...styles.containerStateDisabled,
-            };
-          } else if (state === "focused") {
-            containerStyles = {
-              ...containerStyles,
-              ...styles.containerStateFocused,
-            };
-          }
-        } else {
-          containerStyles = getElevatedContainerStyles(containerStyles);
-        }
-      } else {
-        containerStyles = { ...containerStyles, ...styles.containerSelected };
-        if (!elevated) {
-          if (state === "disabled") {
-            containerStyles = {
-              ...containerStyles,
-              ...styles.containerStateDisabled,
-            };
-          }
-        } else {
-          containerStyles = getElevatedContainerStyles(containerStyles);
-        }
-      }
-
-      if (containerStyle) {
-        return { ...containerStyles, ...containerStyle };
-      }
-      return containerStyles;
-    };
-
-    const getElevatedContainerStyles = (containerStyles: ViewStyle) => {
-      containerStyles = { ...containerStyles, ...styles.containerTypeElevated };
-      if (state === "enabled" || state === "pressed" || state === "focused") {
-        containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
-      } else if (state === "disabled") {
-        containerStyles = {
-          ...containerStyles,
-          ...styles.containerStateDisabled,
-        };
-      }
-      return containerStyles;
-    };
-
-    const getStateOverlayStyles = () => {
-      let stateOverlayStyles = { ...styles.stateOverlay };
-      if (!selected) {
-        if (state === "pressed" || state === "focused") {
-          stateOverlayStyles = {
-            ...stateOverlayStyles,
-            ...styles.stateOverlayStateFocusedOrPressed,
+  const getContainerStyles = () => {
+    let containerStyles: ViewStyle = { ...styles.container };
+    if (!selected) {
+      if (!elevated) {
+        if (state === "disabled") {
+          containerStyles = {
+            ...containerStyles,
+            ...styles.containerStateDisabled,
+          };
+        } else if (state === "focused") {
+          containerStyles = {
+            ...containerStyles,
+            ...styles.containerStateFocused,
           };
         }
       } else {
-        if (state === "pressed" || state === "focused") {
-          stateOverlayStyles = {
-            ...stateOverlayStyles,
-            ...styles.stateOverlaySelectedStateFocusedOrPressed,
+        containerStyles = getElevatedContainerStyles(containerStyles);
+      }
+    } else {
+      containerStyles = { ...containerStyles, ...styles.containerSelected };
+      if (!elevated) {
+        if (state === "disabled") {
+          containerStyles = {
+            ...containerStyles,
+            ...styles.containerStateDisabled,
           };
         }
+      } else {
+        containerStyles = getElevatedContainerStyles(containerStyles);
       }
-      if (icon) {
+    }
+
+    if (containerStyle) {
+      return { ...containerStyles, ...containerStyle };
+    }
+    return containerStyles;
+  };
+
+  const getElevatedContainerStyles = (containerStyles: ViewStyle) => {
+    containerStyles = { ...containerStyles, ...styles.containerTypeElevated };
+    if (state === "enabled" || state === "pressed" || state === "focused") {
+      containerStyles = { ...containerStyles, ...styles.boxShadowElevation1 };
+    } else if (state === "disabled") {
+      containerStyles = {
+        ...containerStyles,
+        ...styles.containerStateDisabled,
+      };
+    }
+    return containerStyles;
+  };
+
+  const getStateOverlayStyles = () => {
+    let stateOverlayStyles = { ...styles.stateOverlay };
+    if (!selected) {
+      if (state === "pressed" || state === "focused") {
         stateOverlayStyles = {
           ...stateOverlayStyles,
-          ...styles.stateOverlayWithIcon,
+          ...styles.stateOverlayStateFocusedOrPressed,
         };
       }
-      return stateOverlayStyles;
-    };
-
-    const renderContent = () => {
-      return (
-        <>
-          {icon && (
-            <View style={getIconStyles()}>
-              <Ionicons
-                name={icon}
-                size={iconSize}
-                color={
-                  state === "disabled" ? scheme.onSurfaceHex : scheme.primaryHex
-                }
-              />
-            </View>
-          )}
-          <Text style={getTextStyles()}>{label}</Text>
-        </>
-      );
-    };
-
-    const getIconStyles = () => {
-      let iconStyles = { ...styles.icon };
-      if (state === "disabled") {
-        iconStyles = { ...iconStyles, ...styles.iconStateDisabled };
+    } else {
+      if (state === "pressed" || state === "focused") {
+        stateOverlayStyles = {
+          ...stateOverlayStyles,
+          ...styles.stateOverlaySelectedStateFocusedOrPressed,
+        };
       }
-      return iconStyles;
-    };
-
-    const getTextStyles = () => {
-      let textStyles = { ...styles.text };
-      if (!selected) {
-        if (state === "disabled") {
-          textStyles = { ...textStyles, ...styles.textStateDisabled };
-        }
-      } else {
-        textStyles = { ...textStyles, ...styles.textSelected };
-        if (state === "disabled") {
-          textStyles = { ...textStyles, ...styles.textStateDisabled };
-        }
-      }
-      return textStyles;
-    };
-
-    return render();
+    }
+    if (icon) {
+      stateOverlayStyles = {
+        ...stateOverlayStyles,
+        ...styles.stateOverlayWithIcon,
+      };
+    }
+    return stateOverlayStyles;
   };
+
+  const renderContent = () => {
+    return (
+      <>
+        {icon && (
+          <View style={getIconStyles()}>
+            <Ionicons
+              name={icon}
+              size={iconSize}
+              color={
+                state === "disabled" ? scheme.onSurfaceHex : scheme.primaryHex
+              }
+            />
+          </View>
+        )}
+        <Text style={getTextStyles()}>{label}</Text>
+      </>
+    );
+  };
+
+  const getIconStyles = () => {
+    let iconStyles = { ...styles.icon };
+    if (state === "disabled") {
+      iconStyles = { ...iconStyles, ...styles.iconStateDisabled };
+    }
+    return iconStyles;
+  };
+
+  const getTextStyles = () => {
+    let textStyles = { ...styles.text };
+    if (!selected) {
+      if (state === "disabled") {
+        textStyles = { ...textStyles, ...styles.textStateDisabled };
+      }
+    } else {
+      textStyles = { ...textStyles, ...styles.textSelected };
+      if (state === "disabled") {
+        textStyles = { ...textStyles, ...styles.textStateDisabled };
+      }
+    }
+    return textStyles;
+  };
+
+  return render();
+};
 
 const iconSize = 18;
 
@@ -212,12 +213,7 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       paddingRight: 16,
     },
     text: {
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontSize: 14,
-      lineHeight: 20,
-      fontWeight: "500",
-      letterSpacing: 0.1,
+      ...M3Constants.labelLargeText,
       color: scheme.onSurfaceVariantHex,
       textAlign: "center",
       textAlignVertical: "center",
@@ -230,9 +226,6 @@ const createStyles = (scheme: SchemeAdapter, settings: Settings) =>
       color: scheme.onSecondaryContainerHex,
     },
     boxShadowElevation1: settings.boxShadowElevation1,
-    boxShadowElevation2: settings.boxShadowElevation2,
-    boxShadowElevation3: settings.boxShadowElevation3,
-    boxShadowElevation4: settings.boxShadowElevation4,
     icon: {
       marginRight: 8,
     },
