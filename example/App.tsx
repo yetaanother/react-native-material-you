@@ -17,7 +17,7 @@ import {
   ThemeProvider,
   AssistiveChip,
   CrudeFilterChip,
-  CrudeSuggestiveChip,
+  SuggestiveChip,
   Dialog,
   Avatar,
   FAB,
@@ -1331,112 +1331,116 @@ export default function App() {
         </View>
         <Text style={textStyle}>Unselected unelevated suggestive chips</Text>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
+            stateOverride={"enabled"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Disabled"}
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
           />
         </View>
         <Text style={textStyle}>Unselected elevated suggestive chips</Text>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
+            stateOverride={"enabled"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             elevated={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             elevated={true}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Disabled"}
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             elevated={true}
           />
         </View>
         <Text style={textStyle}>Selected unelevated suggestive chips</Text>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
+            stateOverride={"enabled"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             selected={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             selected={true}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Disabled"}
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             selected={true}
           />
         </View>
         <Text style={textStyle}>Selected elevated suggestive chips</Text>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             selected={true}
+            stateOverride={"enabled"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             elevated={true}
             selected={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             elevated={true}
             selected={true}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Disabled"}
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             elevated={true}
             selected={true}
           />
@@ -1445,29 +1449,30 @@ export default function App() {
           Unselected unelevated suggestive chips with icon
         </Text>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             icon={"car"}
+            stateOverride={"enabled"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             icon={"car"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             icon={"car"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Disabled"}
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             icon={"car"}
           />
         </View>
@@ -1475,32 +1480,33 @@ export default function App() {
           Unselected elevated suggestive chips with icons
         </Text>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             icon={"car"}
+            stateOverride={"enabled"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             elevated={true}
             icon={"car"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             elevated={true}
             icon={"car"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Disabled"}
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             elevated={true}
             icon={"car"}
           />
@@ -1509,32 +1515,33 @@ export default function App() {
           Selected unelevated suggestive chips with icons
         </Text>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
             icon={"car"}
+            stateOverride={"enabled"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             selected={true}
             icon={"car"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             selected={true}
             icon={"car"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Disabled"}
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             selected={true}
             icon={"car"}
           />
@@ -1543,35 +1550,35 @@ export default function App() {
           Selected elevated suggestive chips with icons
         </Text>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             selected={true}
             icon={"car"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Focused"}
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             elevated={true}
             selected={true}
             icon={"car"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Pressed"}
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             elevated={true}
             selected={true}
             icon={"car"}
           />
-          <CrudeSuggestiveChip
+          <SuggestiveChip
             label={"Disabled"}
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             elevated={true}
             selected={true}
             icon={"car"}

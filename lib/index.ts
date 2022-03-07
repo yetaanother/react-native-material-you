@@ -13,7 +13,7 @@ import { Avatar } from "./Avatar";
 import { HorizontalCard } from "./cards/HorizontalCard";
 import { AssistiveChip } from "./chips/AssistiveChip";
 import { CrudeFilterChip } from "./chips/CrudeFilterChip";
-import { CrudeSuggestiveChip } from "./chips/CrudeSuggestiveChip";
+import { SuggestiveChip } from "./chips/SuggestiveChip";
 import { NavBarItem } from "./nav/NavBarItem";
 
 export {
@@ -32,6 +32,6 @@ export {
   Avatar,
   AssistiveChip,
   CrudeFilterChip,
-  CrudeSuggestiveChip,
+  SuggestiveChip,
   NavBarItem,
 };
