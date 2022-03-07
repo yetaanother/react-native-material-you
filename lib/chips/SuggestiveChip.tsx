@@ -21,7 +21,7 @@ interface SuggestiveChipProps {
   label: string;
   selected?: boolean;
   elevated?: boolean;
-  stateOverride?: SuggestiveChipState;
+  stateOverride?: SuggestiveChipState; // For library testing, don't use it
   icon?: any;
   containerStyle?: ViewStyle;
   onPress?: (event: GestureResponderEvent) => void;

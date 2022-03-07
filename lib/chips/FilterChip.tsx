@@ -1,5 +1,14 @@
-import React, { FunctionComponent, useContext } from "react";
-import { StyleSheet, Text, View, ViewStyle } from "react-native";
+import React, { FunctionComponent, useContext, useState } from "react";
+import {
+  GestureResponderEvent,
+  NativeSyntheticEvent,
+  Pressable as NativePressable,
+  StyleSheet,
+  TargetedEvent,
+  Text,
+  View,
+  ViewStyle,
+} from "react-native";
 import { ColorScheme } from "../providers/ColorScheme";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
@@ -7,34 +16,85 @@ import { Ionicons } from "@expo/vector-icons";
 import { Shadows } from "../providers/Shadows";
 import { M3Constants } from "../utils/M3Constants";
 
-interface CrudeFilterChipProps {
+interface FilterChipProps {
   label: string;
   selected?: boolean;
   elevated?: boolean;
-  state?: FilterChipState;
+  stateOverride?: FilterChipState; // For library testing, don't use it
   containerStyle?: ViewStyle;
   dropdown?: boolean;
+  onPress?: (event: GestureResponderEvent) => void;
+  onPressIn?: (event: GestureResponderEvent) => void;
+  onPressOut?: (event: GestureResponderEvent) => void;
+  onFocus?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
+  onBlur?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
+  disabled?: boolean;
 }
 
 // M3 docs: https://m3.material.io/components/chips/specs
-export const CrudeFilterChip: FunctionComponent<CrudeFilterChipProps> = ({
+export const FilterChip: FunctionComponent<FilterChipProps> = ({
   label,
   selected,
   elevated,
-  state,
+  stateOverride,
   containerStyle,
   dropdown,
+  onPress,
+  onFocus,
+  onBlur,
+  onPressIn,
+  onPressOut,
+  disabled,
 }) => {
   const { scheme, settings } = useContext(ThemeContext);
   const styles = createStyles(scheme, settings);
 
-  state = !state ? "enabled" : state;
+  if (!__DEV__ && stateOverride) {
+    console.error(
+      "state prop is only used for testing as it will override any interaction with the component. Don't use it"
+    );
+  }
+  const [state, setState] = useState<FABState>(
+    !!stateOverride ? stateOverride : disabled ? "disabled" : "enabled"
+  );
+  const stateCanBeSet = !disabled && !stateOverride;
 
   const render = () => {
     return (
-      <View style={getContainerStyles()}>
+      <NativePressable
+        onPress={(event) => {
+          if (!disabled && onPress) {
+            onPress(event);
+          }
+        }}
+        onPressIn={(event) => {
+          if (stateCanBeSet) {
+            setState("pressed");
+          }
+          onPressIn && onPressIn(event);
+        }}
+        onPressOut={(event) => {
+          if (stateCanBeSet) {
+            setState("enabled");
+          }
+          onPressOut && onPressOut(event);
+        }}
+        onFocus={(event) => {
+          if (stateCanBeSet) {
+            setState("focused");
+          }
+          onFocus && onFocus(event);
+        }}
+        onBlur={(event) => {
+          if (stateCanBeSet) {
+            setState("enabled");
+          }
+          onBlur && onBlur(event);
+        }}
+        style={getContainerStyles()}
+      >
         <View style={getStateOverlayStyles()}>{renderContent()}</View>
-      </View>
+      </NativePressable>
     );
   };
 

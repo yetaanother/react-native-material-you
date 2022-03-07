@@ -16,7 +16,7 @@ import {
   HorizontalCard,
   ThemeProvider,
   AssistiveChip,
-  CrudeFilterChip,
+  FilterChip,
   SuggestiveChip,
   Dialog,
   Avatar,
@@ -1086,108 +1086,115 @@ export default function App() {
         </View>
         <Text style={textStyle}>Unselected filter chips without elevation</Text>
         <View style={childStyle}>
-          <CrudeFilterChip label={"Enabled"} containerStyle={{ margin: 4 }} />
-          <CrudeFilterChip
+          <FilterChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            stateOverride={"enabled"}
+          />
+          <FilterChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
           />
         </View>
         <Text style={textStyle}>Selected filter chips without elevation</Text>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Enabled"}
             selected={true}
             containerStyle={{ margin: 4 }}
+            stateOverride={"enabled"}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             selected={true}
             containerStyle={{ margin: 4 }}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             selected={true}
             containerStyle={{ margin: 4 }}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             selected={true}
             containerStyle={{ margin: 4 }}
           />
         </View>
         <Text style={textStyle}>Unselected elevated filter chips</Text>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
+            stateOverride={"enabled"}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             elevated={true}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             elevated={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
           />
         </View>
         <Text style={textStyle}>Selected elevated filter chips</Text>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Enabled"}
             selected={true}
             containerStyle={{ margin: 4 }}
             elevated={true}
+            stateOverride={"enabled"}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             selected={true}
             containerStyle={{ margin: 4 }}
             elevated={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             selected={true}
             containerStyle={{ margin: 4 }}
             elevated={true}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             selected={true}
             containerStyle={{ margin: 4 }}
             elevated={true}
@@ -1197,28 +1204,29 @@ export default function App() {
           Unselected dropdown filter chips without elevation
         </Text>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             dropdown={true}
+            stateOverride={"enabled"}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             dropdown={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             dropdown={true}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             dropdown={true}
           />
@@ -1227,33 +1235,34 @@ export default function App() {
           Selected dropdown filter chips without elevation
         </Text>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Enabled"}
             selected={true}
             containerStyle={{ margin: 4 }}
             dropdown={true}
+            stateOverride={"enabled"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             selected={true}
             containerStyle={{ margin: 4 }}
             dropdown={true}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             selected={true}
             containerStyle={{ margin: 4 }}
             dropdown={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             selected={true}
             containerStyle={{ margin: 4 }}
             dropdown={true}
@@ -1261,31 +1270,32 @@ export default function App() {
         </View>
         <Text style={textStyle}>Unselected dropdown elevated filter chips</Text>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             dropdown={true}
+            stateOverride={"enabled"}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             dropdown={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             dropdown={true}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             dropdown={true}
@@ -1293,26 +1303,27 @@ export default function App() {
         </View>
         <Text style={textStyle}>Selected dropdown elevated filter chips</Text>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Enabled"}
             selected={true}
             containerStyle={{ margin: 4 }}
             elevated={true}
             dropdown={true}
+            stateOverride={"enabled"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             selected={true}
             containerStyle={{ margin: 4 }}
             elevated={true}
             dropdown={true}
           />
-          <CrudeFilterChip
+          <FilterChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             selected={true}
             containerStyle={{ margin: 4 }}
             elevated={true}
@@ -1320,9 +1331,9 @@ export default function App() {
           />
         </View>
         <View style={childStyle}>
-          <CrudeFilterChip
+          <FilterChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             selected={true}
             containerStyle={{ margin: 4 }}
             elevated={true}
