@@ -20,7 +20,7 @@ import {
   CrudeSuggestiveChip,
   Dialog,
   Avatar,
-  CrudeFAB,
+  FAB,
   Select,
   NavBarItem,
   NavBar,
@@ -1631,274 +1631,262 @@ export default function App() {
       <View style={parentStyle}>
         <Text style={textStyle}>Surface FAB</Text>
         <View style={childStyle}>
-          <CrudeFAB containerStyle={{ margin: 4 }} />
-          <CrudeFAB containerStyle={{ margin: 4 }} state={"focused"} />
-          <CrudeFAB containerStyle={{ margin: 4 }} state={"pressed"} />
-          <CrudeFAB containerStyle={{ margin: 4 }} state={"disabled"} />
+          <FAB containerStyle={{ margin: 4 }} />
+          <FAB containerStyle={{ margin: 4 }} stateOverride={"focused"} />
+          <FAB containerStyle={{ margin: 4 }} stateOverride={"pressed"} />
+          <FAB containerStyle={{ margin: 4 }} stateOverride={"disabled"} />
         </View>
         <Text style={textStyle}>Primary FAB</Text>
         <View style={childStyle}>
-          <CrudeFAB containerStyle={{ margin: 4 }} type={"primary"} />
-          <CrudeFAB
+          <FAB containerStyle={{ margin: 4 }} type={"primary"} />
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             type={"primary"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             type={"primary"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             type={"primary"}
           />
         </View>
         <Text style={textStyle}>Secondary FAB</Text>
         <View style={childStyle}>
-          <CrudeFAB containerStyle={{ margin: 4 }} type={"secondary"} />
-          <CrudeFAB
+          <FAB containerStyle={{ margin: 4 }} type={"secondary"} />
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             type={"secondary"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             type={"secondary"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             type={"secondary"}
           />
         </View>
         <Text style={textStyle}>Tertiary FAB</Text>
         <View style={childStyle}>
-          <CrudeFAB containerStyle={{ margin: 4 }} type={"tertiary"} />
-          <CrudeFAB
+          <FAB containerStyle={{ margin: 4 }} type={"tertiary"} />
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             type={"tertiary"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             type={"tertiary"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             type={"tertiary"}
           />
         </View>
         <Text style={textStyle}>Surface large FAB</Text>
         <View style={childStyle}>
-          <CrudeFAB containerStyle={{ margin: 4 }} large={true} />
-          <CrudeFAB
+          <FAB containerStyle={{ margin: 4 }} large={true} />
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             large={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             large={true}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             large={true}
           />
         </View>
         <Text style={textStyle}>Primary large FAB</Text>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB containerStyle={{ margin: 4 }} type={"primary"} large={true} />
+          <FAB
             containerStyle={{ margin: 4 }}
-            type={"primary"}
-            large={true}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             type={"primary"}
             large={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             type={"primary"}
             large={true}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             type={"primary"}
             large={true}
           />
         </View>
         <Text style={textStyle}>Secondary large FAB</Text>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB containerStyle={{ margin: 4 }} type={"secondary"} large={true} />
+          <FAB
             containerStyle={{ margin: 4 }}
-            type={"secondary"}
-            large={true}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             type={"secondary"}
             large={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             type={"secondary"}
             large={true}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             type={"secondary"}
             large={true}
           />
         </View>
         <Text style={textStyle}>Tertiary large FAB</Text>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB containerStyle={{ margin: 4 }} type={"tertiary"} large={true} />
+          <FAB
             containerStyle={{ margin: 4 }}
-            type={"tertiary"}
-            large={true}
-          />
-          <CrudeFAB
-            containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             type={"tertiary"}
             large={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             type={"tertiary"}
             large={true}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             type={"tertiary"}
             large={true}
           />
         </View>
         <Text style={textStyle}>Surface FAB with label</Text>
         <View style={childStyle}>
-          <CrudeFAB containerStyle={{ margin: 4 }} label={"Enabled"} />
-          <CrudeFAB
+          <FAB containerStyle={{ margin: 4 }} label={"Enabled"} />
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             label={"Focused"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             label={"Pressed"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             label={"Disabled"}
           />
         </View>
         <Text style={textStyle}>Primary FAB with label</Text>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
             type={"primary"}
             label={"Enabled"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             type={"primary"}
             label={"Focused"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             type={"primary"}
             label={"Pressed"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             type={"primary"}
             label={"Disabled"}
           />
         </View>
         <Text style={textStyle}>Secondary FAB with label</Text>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
             type={"secondary"}
             label={"Enabled"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             type={"secondary"}
             label={"Focused"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             type={"secondary"}
             label={"Pressed"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             type={"secondary"}
             label={"Disabled"}
           />
         </View>
         <Text style={textStyle}>Tertiary FAB with label</Text>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
             type={"tertiary"}
             label={"Enabled"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"focused"}
+            stateOverride={"focused"}
             type={"tertiary"}
             label={"Focused"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"pressed"}
+            stateOverride={"pressed"}
             type={"tertiary"}
             label={"Pressed"}
           />
-          <CrudeFAB
+          <FAB
             containerStyle={{ margin: 4 }}
-            state={"disabled"}
+            stateOverride={"disabled"}
             type={"tertiary"}
             label={"Disabled"}
           />

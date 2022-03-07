@@ -3,7 +3,7 @@ import { CrudeButton } from "./buttons/CrudeButton";
 import { Card } from "./cards/Card";
 import { CrudeInputChip } from "./chips/CrudeInputChip";
 import { Dialog } from "./Dialog";
-import { CrudeFAB } from "./buttons/CrudeFAB";
+import { FAB } from "./buttons/FAB";
 import { Select } from "./Select";
 import { NavBar } from "./nav/NavBar";
 import { ThemeProvider } from "./providers/ThemeProvider";
@@ -21,7 +21,7 @@ export {
   CrudeInputChip,
   Card,
   Dialog,
-  CrudeFAB,
+  FAB,
   Select,
   NavBar,
   AppBar,

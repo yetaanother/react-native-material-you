@@ -1,5 +1,14 @@
-import React, { FunctionComponent, useContext } from "react";
-import { StyleSheet, View, ViewStyle, Text } from "react-native";
+import React, { FunctionComponent, useContext, useState } from "react";
+import { Pressable as NativePressable } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ViewStyle,
+  Text,
+  GestureResponderEvent,
+  NativeSyntheticEvent,
+  TargetedEvent,
+} from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { ColorScheme } from "../providers/ColorScheme";
 import { Shadows } from "../providers/Shadows";
@@ -7,30 +16,50 @@ import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
 import { M3Constants } from "../utils/M3Constants";
 
-interface CrudeFABProps {
+interface FABProps {
   type?: FABType;
   icon?: any;
   large?: boolean;
   label?: string;
   containerStyle?: ViewStyle;
-  state?: FABState;
+  stateOverride?: FABState; // For library testing, don't use it
+  onPress?: (event: GestureResponderEvent) => void;
+  onPressIn?: (event: GestureResponderEvent) => void;
+  onPressOut?: (event: GestureResponderEvent) => void;
+  onFocus?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
+  onBlur?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
+  disabled?: boolean;
 }
 
 // M3 docs: https://m3.material.io/components/floating-action-button/specs
 // M3 docs: https://m3.material.io/components/extended-fab/specs
-export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
+export const FAB: FunctionComponent<FABProps> = ({
   type,
   icon,
   large,
   label,
   containerStyle,
-  state,
+  stateOverride,
+  onPress,
+  onFocus,
+  onBlur,
+  onPressIn,
+  onPressOut,
+  disabled,
 }) => {
   const { scheme, settings } = useContext(ThemeContext);
   const styles = createStyles(scheme, settings);
 
   type = !type ? "surface" : type;
-  state = !state ? "enabled" : state;
+  if (!__DEV__ && stateOverride) {
+    console.error(
+      "state prop is only used for testing as it will override any interaction with the component. Don't use it"
+    );
+  }
+  const [state, setState] = useState<FABState>(
+    !!stateOverride ? stateOverride : disabled ? "disabled" : "enabled"
+  );
+  const stateCanBeSet = !disabled && !stateOverride;
 
   if (large && label) {
     console.warn("We can't have a large FAB with a label");
@@ -39,11 +68,42 @@ export const CrudeFAB: FunctionComponent<CrudeFABProps> = ({
 
   const render = () => {
     return (
-      <View style={getContainerStyles()}>
+      <NativePressable
+        onPress={(event) => {
+          if (!disabled && onPress) {
+            onPress(event);
+          }
+        }}
+        onPressIn={(event) => {
+          if (stateCanBeSet) {
+            setState("pressed");
+          }
+          onPressIn && onPressIn(event);
+        }}
+        onPressOut={(event) => {
+          if (stateCanBeSet) {
+            setState("enabled");
+          }
+          onPressOut && onPressOut(event);
+        }}
+        onFocus={(event) => {
+          if (stateCanBeSet) {
+            setState("focused");
+          }
+          onFocus && onFocus(event);
+        }}
+        onBlur={(event) => {
+          if (stateCanBeSet) {
+            setState("enabled");
+          }
+          onBlur && onBlur(event);
+        }}
+        style={getContainerStyles()}
+      >
         <View style={getSurfaceOverlayStyles()}>
           <View style={getStateOverlayStyles()}>{renderContent()}</View>
         </View>
-      </View>
+      </NativePressable>
     );
   };
 
