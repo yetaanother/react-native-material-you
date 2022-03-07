@@ -11,7 +11,7 @@ import { ThemeContext } from "./providers/ThemeProvider";
 import { Button } from "./buttons/Button";
 import { Avatar } from "./Avatar";
 import { HorizontalCard } from "./cards/HorizontalCard";
-import { CrudeAssistiveChip } from "./chips/CrudeAssistiveChip";
+import { AssistiveChip } from "./chips/AssistiveChip";
 import { CrudeFilterChip } from "./chips/CrudeFilterChip";
 import { CrudeSuggestiveChip } from "./chips/CrudeSuggestiveChip";
 import { NavBarItem } from "./nav/NavBarItem";
@@ -30,7 +30,7 @@ export {
   Button,
   HorizontalCard,
   Avatar,
-  CrudeAssistiveChip,
+  AssistiveChip,
   CrudeFilterChip,
   CrudeSuggestiveChip,
   NavBarItem,

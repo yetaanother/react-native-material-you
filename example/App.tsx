@@ -15,7 +15,7 @@ import {
   CrudeInputChip,
   HorizontalCard,
   ThemeProvider,
-  CrudeAssistiveChip,
+  AssistiveChip,
   CrudeFilterChip,
   CrudeSuggestiveChip,
   Dialog,
@@ -134,7 +134,7 @@ export default function App() {
         <View style={{ flexDirection: "row" }}>
           <View style={{ margin: 4 }}>
             <NativeButton
-              title={"FAB (L)"}
+              title={"FAB States (L)"}
               onPress={() => {
                 setCurrScreen("light fabs");
               }}
@@ -142,7 +142,7 @@ export default function App() {
           </View>
           <View style={{ margin: 4 }}>
             <NativeButton
-              title={"FAB (D)"}
+              title={"FAB States(D)"}
               onPress={() => {
                 setCurrScreen("dark fabs");
               }}
@@ -970,111 +970,115 @@ export default function App() {
         </View>
         <Text style={textStyle}>Assistive chips</Text>
         <View style={childStyle}>
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
+            stateOverride={"enabled"}
           />
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
           />
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
           />
         </View>
         <View style={childStyle}>
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
           />
         </View>
         <Text style={textStyle}>Assistive elevated chips</Text>
         <View style={childStyle}>
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
+            stateOverride={"enabled"}
           />
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             elevated={true}
           />
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             elevated={true}
           />
         </View>
         <View style={childStyle}>
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
           />
         </View>
         <Text style={textStyle}>Assistive chips with icons</Text>
         <View style={childStyle}>
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             icon={"car"}
+            stateOverride={"enabled"}
           />
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             icon={"car"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             icon={"car"}
           />
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             icon={"car"}
           />
         </View>
         <Text style={textStyle}>Assistive elevated chips with icons</Text>
         <View style={childStyle}>
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             icon={"car"}
+            stateOverride={"enabled"}
           />
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             icon={"car"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Pressed"}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             icon={"car"}
           />
-          <CrudeAssistiveChip
+          <AssistiveChip
             label={"Disabled"}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             elevated={true}
             icon={"car"}
@@ -1631,14 +1635,18 @@ export default function App() {
       <View style={parentStyle}>
         <Text style={textStyle}>Surface FAB</Text>
         <View style={childStyle}>
-          <FAB containerStyle={{ margin: 4 }} />
+          <FAB containerStyle={{ margin: 4 }} stateOverride={"enabled"} />
           <FAB containerStyle={{ margin: 4 }} stateOverride={"focused"} />
           <FAB containerStyle={{ margin: 4 }} stateOverride={"pressed"} />
           <FAB containerStyle={{ margin: 4 }} stateOverride={"disabled"} />
         </View>
         <Text style={textStyle}>Primary FAB</Text>
         <View style={childStyle}>
-          <FAB containerStyle={{ margin: 4 }} type={"primary"} />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"primary"}
+            stateOverride={"enabled"}
+          />
           <FAB
             containerStyle={{ margin: 4 }}
             stateOverride={"focused"}
@@ -1657,7 +1665,11 @@ export default function App() {
         </View>
         <Text style={textStyle}>Secondary FAB</Text>
         <View style={childStyle}>
-          <FAB containerStyle={{ margin: 4 }} type={"secondary"} />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"secondary"}
+            stateOverride={"enabled"}
+          />
           <FAB
             containerStyle={{ margin: 4 }}
             stateOverride={"focused"}
@@ -1676,7 +1688,11 @@ export default function App() {
         </View>
         <Text style={textStyle}>Tertiary FAB</Text>
         <View style={childStyle}>
-          <FAB containerStyle={{ margin: 4 }} type={"tertiary"} />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"tertiary"}
+            stateOverride={"enabled"}
+          />
           <FAB
             containerStyle={{ margin: 4 }}
             stateOverride={"focused"}
@@ -1695,7 +1711,11 @@ export default function App() {
         </View>
         <Text style={textStyle}>Surface large FAB</Text>
         <View style={childStyle}>
-          <FAB containerStyle={{ margin: 4 }} large={true} />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            large={true}
+            stateOverride={"enabled"}
+          />
           <FAB
             containerStyle={{ margin: 4 }}
             stateOverride={"focused"}
@@ -1716,7 +1736,12 @@ export default function App() {
         </View>
         <Text style={textStyle}>Primary large FAB</Text>
         <View style={childStyle}>
-          <FAB containerStyle={{ margin: 4 }} type={"primary"} large={true} />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"primary"}
+            large={true}
+            stateOverride={"enabled"}
+          />
           <FAB
             containerStyle={{ margin: 4 }}
             stateOverride={"focused"}
@@ -1740,7 +1765,12 @@ export default function App() {
         </View>
         <Text style={textStyle}>Secondary large FAB</Text>
         <View style={childStyle}>
-          <FAB containerStyle={{ margin: 4 }} type={"secondary"} large={true} />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"secondary"}
+            large={true}
+            stateOverride={"enabled"}
+          />
           <FAB
             containerStyle={{ margin: 4 }}
             stateOverride={"focused"}
@@ -1764,7 +1794,12 @@ export default function App() {
         </View>
         <Text style={textStyle}>Tertiary large FAB</Text>
         <View style={childStyle}>
-          <FAB containerStyle={{ margin: 4 }} type={"tertiary"} large={true} />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"tertiary"}
+            large={true}
+            stateOverride={"enabled"}
+          />
           <FAB
             containerStyle={{ margin: 4 }}
             stateOverride={"focused"}
@@ -1788,7 +1823,11 @@ export default function App() {
         </View>
         <Text style={textStyle}>Surface FAB with label</Text>
         <View style={childStyle}>
-          <FAB containerStyle={{ margin: 4 }} label={"Enabled"} />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            label={"Enabled"}
+            stateOverride={"enabled"}
+          />
           <FAB
             containerStyle={{ margin: 4 }}
             stateOverride={"focused"}
@@ -1813,6 +1852,7 @@ export default function App() {
             containerStyle={{ margin: 4 }}
             type={"primary"}
             label={"Enabled"}
+            stateOverride={"enabled"}
           />
           <FAB
             containerStyle={{ margin: 4 }}
@@ -1841,6 +1881,7 @@ export default function App() {
             containerStyle={{ margin: 4 }}
             type={"secondary"}
             label={"Enabled"}
+            stateOverride={"enabled"}
           />
           <FAB
             containerStyle={{ margin: 4 }}
@@ -1869,6 +1910,7 @@ export default function App() {
             containerStyle={{ margin: 4 }}
             type={"tertiary"}
             label={"Enabled"}
+            stateOverride={"enabled"}
           />
           <FAB
             containerStyle={{ margin: 4 }}
