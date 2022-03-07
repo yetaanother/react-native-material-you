@@ -54,7 +54,7 @@ export const FilterChip: FunctionComponent<FilterChipProps> = ({
       "state prop is only used for testing as it will override any interaction with the component. Don't use it"
     );
   }
-  const [state, setState] = useState<FABState>(
+  const [state, setState] = useState<FilterChipState>(
     !!stateOverride ? stateOverride : disabled ? "disabled" : "enabled"
   );
   const stateCanBeSet = !disabled && !stateOverride;

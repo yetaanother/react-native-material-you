@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useContext } from "react";
 import {
+  GestureResponderEvent,
   Image,
   ImageSourcePropType,
   StyleSheet,
@@ -30,9 +31,9 @@ interface CardProps {
   content: string;
   primaryAction?: boolean;
   secondaryAction?: boolean;
-  onPrimaryPress?: () => void;
+  onPrimaryPress?: (event: GestureResponderEvent) => void;
   primaryActionLabel?: string;
-  onSecondaryPress?: () => void;
+  onSecondaryPress?: (event: GestureResponderEvent) => void;
   secondaryActionLabel?: string;
   containerStyle?: ViewStyle;
 }

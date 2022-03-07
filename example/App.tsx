@@ -11,7 +11,6 @@ import {
 import {
   Button,
   Card,
-  CrudeButton,
   InputChip,
   HorizontalCard,
   ThemeProvider,
@@ -310,61 +309,63 @@ export default function App() {
       <>
         <Text style={textStyle}>Filled buttons</Text>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Enabled"}
             onPress={() => {}}
             containerStyle={{ margin: 4 }}
+            stateOverride={"enabled"}
           />
-          <CrudeButton
+          <Button
             title={"Focused"}
             onPress={() => {}}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Pressed"}
             onPress={() => {}}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
           />
-          <CrudeButton
+          <Button
             title={"Disabled"}
             onPress={() => {}}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Enabled"}
             onPress={() => {}}
             containerStyle={{ margin: 4 }}
             icon={"add"}
+            stateOverride={"enabled"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Focused"}
             onPress={() => {}}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
           />
-          <CrudeButton
+          <Button
             title={"Pressed"}
             onPress={() => {}}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Disabled"}
             onPress={() => {}}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
           />
@@ -381,68 +382,70 @@ export default function App() {
       <>
         <Text style={textStyle}>Outlined buttons</Text>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Enabled"}
             onPress={() => {}}
             containerStyle={{ margin: 4 }}
             type={"outlined"}
+            stateOverride={"enabled"}
           />
-          <CrudeButton
+          <Button
             title={"Focused"}
             onPress={() => {}}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             type={"outlined"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Pressed"}
             onPress={() => {}}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             type={"outlined"}
           />
-          <CrudeButton
+          <Button
             title={"Disabled"}
             onPress={() => {}}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             type={"outlined"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Enabled"}
             onPress={() => {}}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"outlined"}
+            stateOverride={"enabled"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Focused"}
             onPress={() => {}}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"outlined"}
           />
-          <CrudeButton
+          <Button
             title={"Pressed"}
             onPress={() => {}}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"outlined"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Disabled"}
             onPress={() => {}}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"outlined"}
@@ -457,68 +460,70 @@ export default function App() {
       <>
         <Text style={textStyle}>Text buttons</Text>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Enabled"}
             onPress={() => {}}
             containerStyle={{ margin: 4 }}
             type={"text"}
+            stateOverride={"enabled"}
           />
-          <CrudeButton
+          <Button
             title={"Focused"}
             onPress={() => {}}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             type={"text"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Pressed"}
             onPress={() => {}}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             type={"text"}
           />
-          <CrudeButton
+          <Button
             title={"Disabled"}
             onPress={() => {}}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             type={"text"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Enabled"}
             onPress={() => {}}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"text"}
+            stateOverride={"enabled"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Focused"}
             onPress={() => {}}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"text"}
           />
-          <CrudeButton
+          <Button
             title={"Pressed"}
             onPress={() => {}}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"text"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Disabled"}
             onPress={() => {}}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"text"}
@@ -536,68 +541,70 @@ export default function App() {
       <>
         <Text style={textStyle}>Elevated buttons</Text>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Enabled"}
             onPress={() => {}}
             containerStyle={{ margin: 4 }}
             type={"elevated"}
+            stateOverride={"enabled"}
           />
-          <CrudeButton
+          <Button
             title={"Focused"}
             onPress={() => {}}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             type={"elevated"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Pressed"}
             onPress={() => {}}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             type={"elevated"}
           />
-          <CrudeButton
+          <Button
             title={"Disabled"}
             onPress={() => {}}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             type={"elevated"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Enabled"}
             onPress={() => {}}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"elevated"}
+            stateOverride={"enabled"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Focused"}
             onPress={() => {}}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"elevated"}
           />
-          <CrudeButton
+          <Button
             title={"Pressed"}
             onPress={() => {}}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"elevated"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Disabled"}
             onPress={() => {}}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"elevated"}
@@ -615,68 +622,70 @@ export default function App() {
       <>
         <Text style={textStyle}>Tonal buttons</Text>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Enabled"}
             onPress={() => {}}
             containerStyle={{ margin: 4 }}
             type={"tonal"}
+            stateOverride={"enabled"}
           />
-          <CrudeButton
+          <Button
             title={"Focused"}
             onPress={() => {}}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             type={"tonal"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Pressed"}
             onPress={() => {}}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             type={"tonal"}
           />
-          <CrudeButton
+          <Button
             title={"Disabled"}
             onPress={() => {}}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             type={"tonal"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Enabled"}
             onPress={() => {}}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}
+            stateOverride={"enabled"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Focused"}
             onPress={() => {}}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}
           />
-          <CrudeButton
+          <Button
             title={"Pressed"}
             onPress={() => {}}
-            state={"pressed"}
+            stateOverride={"pressed"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}
           />
         </View>
         <View style={childStyle}>
-          <CrudeButton
+          <Button
             title={"Disabled"}
             onPress={() => {}}
-            state={"disabled"}
+            stateOverride={"disabled"}
             containerStyle={{ margin: 4 }}
             icon={"add"}
             type={"tonal"}

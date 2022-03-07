@@ -1,5 +1,11 @@
 import React, { FunctionComponent, useContext } from "react";
-import { StyleSheet, Text, TextStyle, View } from "react-native";
+import {
+  GestureResponderEvent,
+  StyleSheet,
+  Text,
+  TextStyle,
+  View,
+} from "react-native";
 import { ThemeContext } from "./providers/ThemeProvider";
 import { ColorScheme } from "./providers/ColorScheme";
 import { rgbaWithOpacity } from "./utils/colorUtils";
@@ -14,9 +20,9 @@ interface DialogProps {
   heroIcon?: any;
   primaryAction?: boolean;
   secondaryAction?: boolean;
-  onPrimaryPress?: () => void;
+  onPrimaryPress?: (event: GestureResponderEvent) => void;
   primaryActionLabel?: string;
-  onSecondaryPress?: () => void;
+  onSecondaryPress?: (event: GestureResponderEvent) => void;
   secondaryActionLabel?: string;
 }
 

@@ -1,5 +1,4 @@
 import { AppBar } from "./nav/AppBar";
-import { CrudeButton } from "./buttons/CrudeButton";
 import { Card } from "./cards/Card";
 import { InputChip } from "./chips/InputChip";
 import { Dialog } from "./Dialog";
@@ -17,7 +16,7 @@ import { SuggestiveChip } from "./chips/SuggestiveChip";
 import { NavBarItem } from "./nav/NavBarItem";
 
 export {
-  CrudeButton,
+  Button,
   InputChip,
   Card,
   Dialog,
@@ -27,7 +26,6 @@ export {
   AppBar,
   ThemeContext,
   ThemeProvider,
-  Button,
   HorizontalCard,
   Avatar,
   AssistiveChip,

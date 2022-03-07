@@ -54,7 +54,7 @@ export const InputChip: FunctionComponent<InputChipProps> = ({
       "state prop is only used for testing as it will override any interaction with the component. Don't use it"
     );
   }
-  const [state, setState] = useState<FABState>(
+  const [state, setState] = useState<InputChipState>(
     !!stateOverride ? stateOverride : "enabled"
   );
 
