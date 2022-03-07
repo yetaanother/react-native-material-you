@@ -12,7 +12,7 @@ import {
   Button,
   Card,
   CrudeButton,
-  CrudeInputChip,
+  InputChip,
   HorizontalCard,
   ThemeProvider,
   AssistiveChip,
@@ -849,102 +849,112 @@ export default function App() {
   ) => {
     return (
       <View style={parentStyle}>
-        <Text style={textStyle}>Input unslected chips</Text>
+        <Text style={textStyle}>Input unselected chips</Text>
         <View style={childStyle}>
-          <CrudeInputChip label={"Enabled"} containerStyle={{ margin: 4 }} />
-          <CrudeInputChip
+          <InputChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            stateOverride={"enabled"}
+          />
+          <InputChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
           />
         </View>
         <Text style={textStyle}>Input selected chips</Text>
         <View style={childStyle}>
-          <CrudeInputChip
+          <InputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
+            stateOverride={"enabled"}
           />
-          <CrudeInputChip
+          <InputChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             selected={true}
           />
         </View>
-        <Text style={textStyle}>Input unslected closable chips</Text>
+        <Text style={textStyle}>Input unselected closable chips</Text>
         <View style={childStyle}>
-          <CrudeInputChip
+          <InputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             closeable={true}
+            stateOverride={"enabled"}
           />
-          <CrudeInputChip
+          <InputChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             closeable={true}
           />
         </View>
         <Text style={textStyle}>Input selected closeable chips</Text>
         <View style={childStyle}>
-          <CrudeInputChip
+          <InputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
             closeable={true}
+            stateOverride={"enabled"}
           />
-          <CrudeInputChip
+          <InputChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             selected={true}
             closeable={true}
           />
         </View>
-        <Text style={textStyle}>Input unslected chips with avatar</Text>
+        <Text style={textStyle}>Input unselected chips with avatar</Text>
         <View style={childStyle}>
-          <CrudeInputChip
+          <InputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             avatar={true}
+            stateOverride={"enabled"}
           />
-          <CrudeInputChip
+          <InputChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             avatar={true}
           />
         </View>
         <Text style={textStyle}>Input selected chips with avaar</Text>
         <View style={childStyle}>
-          <CrudeInputChip
+          <InputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
             avatar={true}
+            stateOverride={"enabled"}
           />
-          <CrudeInputChip
+          <InputChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             selected={true}
             avatar={true}
           />
         </View>
         <Text style={textStyle}>
-          Input unslected closeable chips with avatar
+          Input unselected closeable chips with avatar
         </Text>
         <View style={childStyle}>
-          <CrudeInputChip
+          <InputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             avatar={true}
             closeable={true}
+            stateOverride={"enabled"}
           />
-          <CrudeInputChip
+          <InputChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             avatar={true}
             closeable={true}
@@ -952,16 +962,17 @@ export default function App() {
         </View>
         <Text style={textStyle}>Input selected chips with avatar</Text>
         <View style={childStyle}>
-          <CrudeInputChip
+          <InputChip
             label={"Enabled"}
             containerStyle={{ margin: 4 }}
             selected={true}
             avatar={true}
             closeable={true}
+            stateOverride={"enabled"}
           />
-          <CrudeInputChip
+          <InputChip
             label={"Focused"}
-            state={"focused"}
+            stateOverride={"focused"}
             containerStyle={{ margin: 4 }}
             selected={true}
             avatar={true}

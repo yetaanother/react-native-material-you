@@ -1,6 +1,15 @@
-import React, { FunctionComponent, useContext } from "react";
+import React, { FunctionComponent, useContext, useState } from "react";
 import { ColorScheme } from "../providers/ColorScheme";
-import { StyleSheet, Text, View, ViewStyle } from "react-native";
+import {
+  GestureResponderEvent,
+  NativeSyntheticEvent,
+  Pressable as NativePressable,
+  StyleSheet,
+  TargetedEvent,
+  Text,
+  View,
+  ViewStyle,
+} from "react-native";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { rgbaWithOpacity } from "../utils/colorUtils";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,39 +17,71 @@ import { Shadows } from "../providers/Shadows";
 import { M3Constants } from "../utils/M3Constants";
 
 // Input chips don't have an elevated version
-// In the specs it is mentioned that we an also use an icon instead of avatar. If it is the case then paddingLeft
+// In the specs it is mentioned that we can also use an icon instead of avatar. If it is the case then paddingLeft
 // will change to 8 instead of 4. But right now I am not implementing it.
 // Guidelines for 'selected' version are not given in specs
-interface CrudeInputChipProps {
+interface InputChipProps {
   label: string;
   selected?: boolean;
-  state?: InputChipState;
+  stateOverride?: InputChipState; // For library testing, don't use it
   containerStyle?: ViewStyle;
   closeable?: boolean;
   onClosePress?: () => void;
   avatar?: boolean;
+  onPress?: (event: GestureResponderEvent) => void;
+  onFocus?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
+  onBlur?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
 }
 
 // M3 docs: https://m3.material.io/components/chips/specs
-export const CrudeInputChip: FunctionComponent<CrudeInputChipProps> = ({
+export const InputChip: FunctionComponent<InputChipProps> = ({
   label,
   selected,
-  state,
+  stateOverride,
   containerStyle,
   closeable,
   onClosePress,
   avatar,
+  onPress,
+  onFocus,
+  onBlur,
 }) => {
   const { scheme, settings } = useContext(ThemeContext);
   const styles = createStyles(scheme, settings);
 
-  state = !state ? "enabled" : state;
+  if (!__DEV__ && stateOverride) {
+    console.error(
+      "state prop is only used for testing as it will override any interaction with the component. Don't use it"
+    );
+  }
+  const [state, setState] = useState<FABState>(
+    !!stateOverride ? stateOverride : "enabled"
+  );
 
   const render = () => {
     return (
-      <View style={getContainerStyles()}>
+      <NativePressable
+        onPress={(event) => {
+          if (onPress) {
+            onPress(event);
+          }
+        }}
+        onFocus={(event) => {
+          if (!stateOverride) {
+            setState("focused");
+          }
+          onFocus && onFocus(event);
+        }}
+        onBlur={(event) => {
+          if (!stateOverride) {
+            setState("enabled");
+          }
+          onBlur && onBlur(event);
+        }}
+        style={getContainerStyles()}
+      >
         <View style={getStateOverlayStyles()}>{renderContent()}</View>
-      </View>
+      </NativePressable>
     );
   };
 
