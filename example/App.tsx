@@ -99,7 +99,7 @@ export default function App() {
             <NativeButton
               title={"Chip states (L)"}
               onPress={() => {
-                setCurrScreen("light chips");
+                setCurrScreen("light chips states");
               }}
             />
           </View>
@@ -109,23 +109,23 @@ export default function App() {
             <NativeButton
               title={"Chip states (D)"}
               onPress={() => {
+                setCurrScreen("dark chips states");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Chip (L)"}
+              onPress={() => {
+                setCurrScreen("light chips");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Chip (D)"}
+              onPress={() => {
                 setCurrScreen("dark chips");
-              }}
-            />
-          </View>
-          <View style={{ margin: 4 }}>
-            <NativeButton
-              title={"Dialog (L)"}
-              onPress={() => {
-                setCurrScreen("light dialogs");
-              }}
-            />
-          </View>
-          <View style={{ margin: 4 }}>
-            <NativeButton
-              title={"Dialog (D)"}
-              onPress={() => {
-                setCurrScreen("dark dialogs");
               }}
             />
           </View>
@@ -155,6 +155,8 @@ export default function App() {
               }}
             />
           </View>
+        </View>
+        <View style={{ flexDirection: "row" }}>
           <View style={{ margin: 4 }}>
             <NativeButton
               title={"Select (D)"}
@@ -199,6 +201,22 @@ export default function App() {
               }}
             />
           </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Dialog (L)"}
+              onPress={() => {
+                setCurrScreen("light dialogs");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"Dialog (D)"}
+              onPress={() => {
+                setCurrScreen("dark dialogs");
+              }}
+            />
+          </View>
         </View>
       </>
     );
@@ -219,19 +237,31 @@ export default function App() {
       case "light button states":
         return getButtonStates(styles.parent, styles.child, styles.text);
       case "light buttons":
-        return getButtons(styles.parent, styles.child);
+        return getButtons(styles.parent, styles.child, styles.text);
       case "dark buttons":
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
-            {getButtons(styles.parentDark, styles.childDark)}
+            {getButtons(styles.parentDark, styles.childDark, styles.textDark)}
           </ThemeProvider>
         );
       case "light cards":
-        return getCards(styles.parent, styles.child);
+        return getCards(styles.parent, styles.child, styles.text);
       case "dark cards":
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
-            {getCards(styles.parentDark, styles.childDark)}
+            {getCards(styles.parentDark, styles.childDark, styles.textDark)}
+          </ThemeProvider>
+        );
+      case "light chips states":
+        return getChipStates(styles.parent, styles.child, styles.text);
+      case "dark chips states":
+        return (
+          <ThemeProvider hexColor={"#6750A4"} dark={true}>
+            {getChipStates(
+              styles.parentDark,
+              styles.childDark,
+              styles.textDark
+            )}
           </ThemeProvider>
         );
       case "light chips":
@@ -695,9 +725,14 @@ export default function App() {
     );
   };
 
-  const getButtons = (parentStyle: ViewStyle, childStyle: ViewStyle) => {
+  const getButtons = (
+    parentStyle: ViewStyle,
+    childStyle: ViewStyle,
+    textStyle: TextStyle
+  ) => {
     return (
       <View style={parentStyle}>
+        <Text style={textStyle}>Filled button</Text>
         <View style={childStyle}>
           <Button
             containerStyle={{ margin: 4 }}
@@ -707,55 +742,59 @@ export default function App() {
           <Button
             containerStyle={{ margin: 4 }}
             title={"Enabled"}
+            type={"filled"}
+            icon={"add"}
+          />
+        </View>
+        <Text style={textStyle}>Outlined button</Text>
+        <View style={childStyle}>
+          <Button
+            containerStyle={{ margin: 4 }}
+            title={"Enabled"}
             type={"outlined"}
           />
           <Button
             containerStyle={{ margin: 4 }}
             title={"Enabled"}
-            type={"text"}
+            type={"outlined"}
+            icon={"add"}
           />
         </View>
+        <Text style={textStyle}>Text button</Text>
+        <View style={childStyle}>
+          <Button
+            containerStyle={{ margin: 4 }}
+            title={"Enabled"}
+            type={"text"}
+          />
+          <Button
+            containerStyle={{ margin: 4 }}
+            title={"Enabled"}
+            type={"text"}
+            icon={"add"}
+          />
+        </View>
+        <Text style={textStyle}>Elevated button</Text>
         <View style={childStyle}>
           <Button
             containerStyle={{ margin: 4 }}
             title={"Enabled"}
             type={"elevated"}
           />
+          <Button
+            containerStyle={{ margin: 4 }}
+            title={"Enabled"}
+            type={"elevated"}
+            icon={"add"}
+          />
+        </View>
+        <Text style={textStyle}>Tonal button</Text>
+        <View style={childStyle}>
           <Button
             containerStyle={{ margin: 4 }}
             title={"Enabled"}
             type={"tonal"}
           />
-        </View>
-        <View style={childStyle}>
-          <Button
-            containerStyle={{ margin: 4 }}
-            title={"Enabled"}
-            type={"filled"}
-            icon={"add"}
-          />
-          <Button
-            containerStyle={{ margin: 4 }}
-            title={"Enabled"}
-            type={"outlined"}
-            icon={"add"}
-          />
-        </View>
-        <View style={childStyle}>
-          <Button
-            containerStyle={{ margin: 4 }}
-            title={"Enabled"}
-            type={"text"}
-            icon={"add"}
-          />
-          <Button
-            containerStyle={{ margin: 4 }}
-            title={"Enabled"}
-            type={"elevated"}
-            icon={"add"}
-          />
-        </View>
-        <View style={childStyle}>
           <Button
             containerStyle={{ margin: 4 }}
             title={"Enabled"}
@@ -767,9 +806,14 @@ export default function App() {
     );
   };
 
-  const getCards = (parentStyle: ViewStyle, childStyle: ViewStyle) => {
+  const getCards = (
+    parentStyle: ViewStyle,
+    childStyle: ViewStyle,
+    textStyle: TextStyle
+  ) => {
     return (
       <View style={parentStyle}>
+        <Text style={textStyle}>Filled card</Text>
         <View style={childStyle}>
           <Card
             primaryAction={true}
@@ -784,40 +828,7 @@ export default function App() {
             headerTitle={"Header"}
             headerSubTitle={"Subhead"}
             closable={true}
-          />
-        </View>
-        <View style={childStyle}>
-          <Card
-            primaryAction={true}
-            secondaryAction={true}
-            title={"Title"}
-            content={
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor"
-            }
-            subTitle={"Subhead"}
-            imageSrc={require("./assets/card-background.jpg")}
-            avatar={true}
-            headerTitle={"Header"}
-            headerSubTitle={"Subhead"}
-            closable={true}
-            type={"elevated"}
-          />
-        </View>
-        <View style={childStyle}>
-          <Card
-            primaryAction={true}
-            secondaryAction={true}
-            title={"Title"}
-            content={
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor"
-            }
-            subTitle={"Subhead"}
-            imageSrc={require("./assets/card-background.jpg")}
-            avatar={true}
-            headerTitle={"Header"}
-            headerSubTitle={"Subhead"}
-            closable={true}
-            type={"outlined"}
+            containerStyle={{ width: 320 }}
           />
         </View>
         <View style={childStyle}>
@@ -827,6 +838,26 @@ export default function App() {
             headerTitle={"Header"}
             headerSubTitle={"Subhead"}
             type={"filled"}
+            containerStyle={{ width: 320 }}
+          />
+        </View>
+        <Text style={textStyle}>Elevated card</Text>
+        <View style={childStyle}>
+          <Card
+            primaryAction={true}
+            secondaryAction={true}
+            title={"Title"}
+            content={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor"
+            }
+            subTitle={"Subhead"}
+            imageSrc={require("./assets/card-background.jpg")}
+            avatar={true}
+            headerTitle={"Header"}
+            headerSubTitle={"Subhead"}
+            closable={true}
+            type={"elevated"}
+            containerStyle={{ width: 320 }}
           />
         </View>
         <View style={childStyle}>
@@ -836,6 +867,26 @@ export default function App() {
             headerTitle={"Header"}
             headerSubTitle={"Subhead"}
             type={"elevated"}
+            containerStyle={{ width: 320 }}
+          />
+        </View>
+        <Text style={textStyle}>Outlined card</Text>
+        <View style={childStyle}>
+          <Card
+            primaryAction={true}
+            secondaryAction={true}
+            title={"Title"}
+            content={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor"
+            }
+            subTitle={"Subhead"}
+            imageSrc={require("./assets/card-background.jpg")}
+            avatar={true}
+            headerTitle={"Header"}
+            headerSubTitle={"Subhead"}
+            closable={true}
+            type={"outlined"}
+            containerStyle={{ width: 320 }}
           />
         </View>
         <View style={childStyle}>
@@ -845,6 +896,7 @@ export default function App() {
             headerTitle={"Header"}
             headerSubTitle={"Subhead"}
             type={"outlined"}
+            containerStyle={{ width: 320 }}
           />
         </View>
       </View>
@@ -852,6 +904,217 @@ export default function App() {
   };
 
   const getChips = (
+    parentStyle: ViewStyle,
+    childStyle: ViewStyle,
+    textStyle: TextStyle
+  ) => {
+    return (
+      <View style={parentStyle}>
+        <Text style={textStyle}>Input chips</Text>
+        <View style={childStyle}>
+          <InputChip label={"Enabled"} containerStyle={{ margin: 4 }} />
+          <InputChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+          />
+          <InputChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            closeable={true}
+          />
+        </View>
+        <View style={childStyle}>
+          <InputChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            closeable={true}
+          />
+          <InputChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            avatar={true}
+            stateOverride={"enabled"}
+          />
+          <InputChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            avatar={true}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <View style={childStyle}>
+          <InputChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            avatar={true}
+            closeable={true}
+            stateOverride={"enabled"}
+          />
+          <InputChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            avatar={true}
+            closeable={true}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <Text style={textStyle}>Assistive chips</Text>
+        <View style={childStyle}>
+          <AssistiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            stateOverride={"enabled"}
+          />
+          <AssistiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            stateOverride={"enabled"}
+          />
+          <AssistiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            icon={"car"}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <View style={childStyle}>
+          <AssistiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            icon={"car"}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <Text style={textStyle}>Filter chips</Text>
+        <View style={childStyle}>
+          <FilterChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            stateOverride={"enabled"}
+          />
+          <FilterChip
+            label={"Enabled"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            stateOverride={"enabled"}
+          />
+          <FilterChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <View style={childStyle}>
+          <FilterChip
+            label={"Enabled"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            stateOverride={"enabled"}
+          />
+          <FilterChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <View style={childStyle}>
+          <FilterChip
+            label={"Enabled"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            dropdown={true}
+            stateOverride={"enabled"}
+          />
+          <FilterChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <View style={childStyle}>
+          <FilterChip
+            label={"Enabled"}
+            selected={true}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            dropdown={true}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <Text style={textStyle}>Suggestive chips</Text>
+        <View style={childStyle}>
+          <SuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            stateOverride={"enabled"}
+          />
+          <SuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            stateOverride={"enabled"}
+          />
+          <SuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <View style={childStyle}>
+          <SuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            selected={true}
+            stateOverride={"enabled"}
+          />
+          <SuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            icon={"car"}
+            stateOverride={"enabled"}
+          />
+          <SuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            icon={"car"}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <View style={childStyle}>
+          <SuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            selected={true}
+            icon={"car"}
+            stateOverride={"enabled"}
+          />
+          <SuggestiveChip
+            label={"Enabled"}
+            containerStyle={{ margin: 4 }}
+            elevated={true}
+            selected={true}
+            icon={"car"}
+          />
+        </View>
+      </View>
+    );
+  };
+
+  const getChipStates = (
     parentStyle: ViewStyle,
     childStyle: ViewStyle,
     textStyle: TextStyle

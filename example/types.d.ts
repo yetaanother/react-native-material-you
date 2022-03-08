@@ -5,6 +5,8 @@ type ExampleScreen =
   | "dark buttons"
   | "light cards"
   | "dark cards"
+  | "light chips states"
+  | "dark chips states"
   | "light chips"
   | "dark chips"
   | "light dialogs"
