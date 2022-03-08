@@ -120,7 +120,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
       } else if (state === "disabled") {
         containerStyles = {
           ...containerStyles,
-          ...styles.containerStateDisabled,
+          ...styles.containerTypeOutlinedStateDisabled,
         };
       }
     } else if (type === "text") {
@@ -301,6 +301,12 @@ const createStyles = (scheme: ColorScheme, settings: Shadows) =>
     },
     containerTypeOutlinedStateFocused: {
       borderColor: scheme.primaryHex,
+    },
+    containerTypeOutlinedStateDisabled: {
+      borderColor: rgbaWithOpacity(
+        scheme.onSurfaceRGB,
+        M3Constants.disabledContainerOpacity
+      ),
     },
     containerTypeText: {
       backgroundColor: undefined,
