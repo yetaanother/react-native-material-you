@@ -135,7 +135,7 @@ export default function App() {
             <NativeButton
               title={"FAB States (L)"}
               onPress={() => {
-                setCurrScreen("light fabs");
+                setCurrScreen("light fab states");
               }}
             />
           </View>
@@ -143,7 +143,7 @@ export default function App() {
             <NativeButton
               title={"FAB States(D)"}
               onPress={() => {
-                setCurrScreen("dark fabs");
+                setCurrScreen("dark fab states");
               }}
             />
           </View>
@@ -162,6 +162,22 @@ export default function App() {
               title={"Select (D)"}
               onPress={() => {
                 setCurrScreen("dark select");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"FAB (L)"}
+              onPress={() => {
+                setCurrScreen("light fabs");
+              }}
+            />
+          </View>
+          <View style={{ margin: 4 }}>
+            <NativeButton
+              title={"FAB (D)"}
+              onPress={() => {
+                setCurrScreen("dark fabs");
               }}
             />
           </View>
@@ -278,6 +294,14 @@ export default function App() {
         return (
           <ThemeProvider hexColor={"#6750A4"} dark={true}>
             {getDialogs(styles.parentDark, styles.childDark)}
+          </ThemeProvider>
+        );
+      case "light fab states":
+        return getFabStates(styles.parent, styles.child, styles.text);
+      case "dark fab states":
+        return (
+          <ThemeProvider hexColor={"#6750A4"} dark={true}>
+            {getFabStates(styles.parentDark, styles.childDark, styles.textDark)}
           </ThemeProvider>
         );
       case "light fabs":
@@ -1927,7 +1951,7 @@ export default function App() {
     );
   };
 
-  const getFabs = (
+  const getFabStates = (
     parentStyle: ViewStyle,
     childStyle: ViewStyle,
     textStyle: TextStyle
@@ -2237,6 +2261,93 @@ export default function App() {
       </View>
     );
   };
+
+  const getFabs = (
+    parentStyle: ViewStyle,
+    childStyle: ViewStyle,
+    textStyle: TextStyle
+  ) => {
+    return (
+      <View style={parentStyle}>
+        <Text style={textStyle}>FAB</Text>
+        <View style={childStyle}>
+          <FAB containerStyle={{ margin: 4 }} stateOverride={"enabled"} />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"primary"}
+            stateOverride={"enabled"}
+          />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"secondary"}
+            stateOverride={"enabled"}
+          />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"tertiary"}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <Text style={textStyle}>Large FAB</Text>
+        <View style={childStyle}>
+          <FAB
+            containerStyle={{ margin: 4 }}
+            large={true}
+            stateOverride={"enabled"}
+          />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"primary"}
+            large={true}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <View style={childStyle}>
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"secondary"}
+            large={true}
+            stateOverride={"enabled"}
+          />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"tertiary"}
+            large={true}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <Text style={textStyle}>Extended FAB</Text>
+        <View style={childStyle}>
+          <FAB
+            containerStyle={{ margin: 4 }}
+            label={"Enabled"}
+            stateOverride={"enabled"}
+          />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"primary"}
+            label={"Enabled"}
+            stateOverride={"enabled"}
+          />
+        </View>
+        <View style={childStyle}>
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"secondary"}
+            label={"Enabled"}
+            stateOverride={"enabled"}
+          />
+          <FAB
+            containerStyle={{ margin: 4 }}
+            type={"tertiary"}
+            label={"Enabled"}
+            stateOverride={"enabled"}
+          />
+        </View>
+      </View>
+    );
+  };
+
   const getSelects = (
     parentStyle: ViewStyle,
     childStyle: ViewStyle,

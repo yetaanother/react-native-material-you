@@ -11,6 +11,8 @@ type ExampleScreen =
   | "dark chips"
   | "light dialogs"
   | "dark dialogs"
+  | "light fab states"
+  | "dark fab states"
   | "light fabs"
   | "dark fabs"
   | "light select"
