@@ -45,8 +45,8 @@ export const AssistiveChip: FunctionComponent<AssistiveChipProps> = ({
   onPressOut,
   disabled,
 }) => {
-  const { scheme, settings } = useContext(ThemeContext);
-  const styles = createStyles(scheme, settings);
+  const { scheme, shadows } = useContext(ThemeContext);
+  const styles = createStyles(scheme, shadows);
 
   if (!__DEV__ && stateOverride) {
     console.error(
@@ -186,7 +186,7 @@ export const AssistiveChip: FunctionComponent<AssistiveChipProps> = ({
 
 const iconSize = 18;
 
-const createStyles = (scheme: ColorScheme, settings: Shadows) =>
+const createStyles = (scheme: ColorScheme, shadows: Shadows) =>
   StyleSheet.create({
     container: {
       backgroundColor: scheme.surfaceHex,
@@ -236,7 +236,7 @@ const createStyles = (scheme: ColorScheme, settings: Shadows) =>
     textStateDisabled: {
       opacity: 0.38,
     },
-    boxShadowElevation1: settings.boxShadowElevation1,
+    boxShadowElevation1: shadows.boxShadowElevation1,
     icon: {
       marginRight: 8,
     },

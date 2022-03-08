@@ -46,8 +46,8 @@ export const InputChip: FunctionComponent<InputChipProps> = ({
   onFocus,
   onBlur,
 }) => {
-  const { scheme, settings } = useContext(ThemeContext);
-  const styles = createStyles(scheme, settings);
+  const { scheme, shadows } = useContext(ThemeContext);
+  const styles = createStyles(scheme, shadows);
 
   if (!__DEV__ && stateOverride) {
     console.error(
@@ -192,7 +192,7 @@ export const InputChip: FunctionComponent<InputChipProps> = ({
 
 const iconSize = 18;
 
-const createStyles = (scheme: ColorScheme, settings: Shadows) =>
+const createStyles = (scheme: ColorScheme, shadows: Shadows) =>
   StyleSheet.create({
     container: {
       backgroundColor: scheme.surfaceHex,
@@ -251,7 +251,7 @@ const createStyles = (scheme: ColorScheme, settings: Shadows) =>
     textSelected: {
       color: scheme.onSecondaryContainerHex,
     },
-    boxShadowElevation4: settings.boxShadowElevation4,
+    boxShadowElevation4: shadows.boxShadowElevation4,
     trailingIcon: {
       marginLeft: 8,
     },

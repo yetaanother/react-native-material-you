@@ -3,38 +3,42 @@ import { argbFromHex, Scheme } from "@material/material-color-utilities/dist";
 import { ColorScheme } from "./ColorScheme";
 import { Shadows } from "./Shadows";
 
-const coreLightScheme = ColorScheme.from(Scheme.light(argbFromHex("#6650a4")));
-const defaultSettings = Shadows.default(coreLightScheme);
+const googleDefaultThemeHex = "#6650a4";
+const defaultLightScheme = ColorScheme.from(
+  Scheme.light(argbFromHex(googleDefaultThemeHex))
+);
+const defaultShadows = Shadows.default(defaultLightScheme);
 export const ThemeContext = createContext({
-  scheme: coreLightScheme,
-  settings: defaultSettings,
+  scheme: defaultLightScheme,
+  shadows: defaultShadows,
 });
 
 interface ThemeProviderProps {
   dark?: boolean;
-  hexColor: string;
+  hexColor?: string;
   children?: ReactElement;
-  settingsFn?: (scheme: ColorScheme) => Shadows;
+  shadowsFn?: (scheme: ColorScheme) => Shadows;
 }
 
 export const ThemeProvider: FunctionComponent<ThemeProviderProps> = ({
   children,
   dark,
   hexColor,
-  settingsFn,
+  shadowsFn,
 }) => {
+  hexColor = !!hexColor ? hexColor : googleDefaultThemeHex;
   const scheme = !dark
     ? Scheme.light(argbFromHex(hexColor))
     : Scheme.dark(argbFromHex(hexColor));
-  const schemeAdapter = ColorScheme.from(scheme);
-  const settings = settingsFn
-    ? settingsFn(schemeAdapter)
-    : Shadows.default(schemeAdapter);
+  const colorScheme = ColorScheme.from(scheme);
+  const shadows = shadowsFn
+    ? shadowsFn(colorScheme)
+    : Shadows.default(colorScheme);
   return (
     <ThemeContext.Provider
       value={{
-        scheme: schemeAdapter,
-        settings,
+        scheme: colorScheme,
+        shadows,
       }}
     >
       {children}

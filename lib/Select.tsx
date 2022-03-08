@@ -36,8 +36,8 @@ export const Select: FunctionComponent<SelectProps> = ({
   mandatory,
   onSelect,
 }) => {
-  const { scheme, settings } = useContext(ThemeContext);
-  const styles = createStyles(scheme, settings);
+  const { scheme, shadows } = useContext(ThemeContext);
+  const styles = createStyles(scheme, shadows);
   const [dropdownIcon, setDropdownIcon] = useState<
     "caret-down-sharp" | "caret-up-sharp"
   >("caret-down-sharp");
@@ -333,7 +333,7 @@ export const Select: FunctionComponent<SelectProps> = ({
 const iconSize = 24;
 const dropDownIconSize = 18;
 
-const createStyles = (scheme: ColorScheme, settings: Shadows) =>
+const createStyles = (scheme: ColorScheme, shadows: Shadows) =>
   StyleSheet.create({
     container: {
       borderTopLeftRadius: 4,
@@ -445,7 +445,7 @@ const createStyles = (scheme: ColorScheme, settings: Shadows) =>
       maxHeight: 96,
       borderRadius: 4,
     },
-    boxShadowElevation2: settings.boxShadowElevation2,
+    boxShadowElevation2: shadows.boxShadowElevation2,
     choice: {
       minHeight: 32,
       flexDirection: "row",

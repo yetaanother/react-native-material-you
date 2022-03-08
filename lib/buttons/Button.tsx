@@ -44,8 +44,8 @@ export const Button: FunctionComponent<ButtonProps> = ({
   onBlur,
   disabled,
 }: ButtonProps) => {
-  const { scheme, settings } = useContext(ThemeContext);
-  const styles = createStyles(scheme, settings);
+  const { scheme, shadows } = useContext(ThemeContext);
+  const styles = createStyles(scheme, shadows);
 
   type = !type ? "filled" : type;
   if (!__DEV__ && stateOverride) {
@@ -281,7 +281,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
 const borderRadius = 20;
 const iconSize = 18;
 
-const createStyles = (scheme: ColorScheme, settings: Shadows) =>
+const createStyles = (scheme: ColorScheme, shadows: Shadows) =>
   StyleSheet.create({
     container: {
       borderRadius: borderRadius,
@@ -385,8 +385,8 @@ const createStyles = (scheme: ColorScheme, settings: Shadows) =>
     textTypeTonal: {
       color: scheme.onSecondaryContainerHex,
     },
-    boxShadowElevation1: settings.boxShadowElevation1,
-    boxShadowElevation2: settings.boxShadowElevation2,
+    boxShadowElevation1: shadows.boxShadowElevation1,
+    boxShadowElevation2: shadows.boxShadowElevation2,
     icon: {
       marginRight: 8,
     },

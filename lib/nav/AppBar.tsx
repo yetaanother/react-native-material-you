@@ -38,8 +38,8 @@ export const AppBar: FunctionComponent<AppBarProps> = ({
   type,
   titleCentered,
 }) => {
-  const { scheme, settings } = useContext(ThemeContext);
-  const styles = createStyles(scheme, settings);
+  const { scheme, shadows } = useContext(ThemeContext);
+  const styles = createStyles(scheme, shadows);
   size = !size ? "small" : size;
   type = !type ? "on-scroll" : type;
   if (size === "small" && titleCentered && Array.isArray(trailingIcon)) {
@@ -216,7 +216,7 @@ const iconSizeLarge = 30;
 
 // Because of fixed height required padding is set automatically
 const deviceWidth = Dimensions.get("window").width;
-const createStyles = (scheme: ColorScheme, settings: Shadows) =>
+const createStyles = (scheme: ColorScheme, shadows: Shadows) =>
   StyleSheet.create({
     container: {
       backgroundColor: scheme.surfaceHex,
@@ -240,7 +240,7 @@ const createStyles = (scheme: ColorScheme, settings: Shadows) =>
     surfaceOverlayTypeFlat: {
       backgroundColor: undefined,
     },
-    boxShadowElevation2: settings.boxShadowElevation2,
+    boxShadowElevation2: shadows.boxShadowElevation2,
     content: {
       flexDirection: "row",
       width: "100%",

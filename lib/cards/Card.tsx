@@ -60,8 +60,8 @@ export const Card: FunctionComponent<CardProps> = ({
   headerSubTitle,
   containerStyle,
 }) => {
-  const { scheme, settings } = useContext(ThemeContext);
-  const styles = createStyles(scheme, settings);
+  const { scheme, shadows } = useContext(ThemeContext);
+  const styles = createStyles(scheme, shadows);
 
   type = !type ? "filled" : type;
 
@@ -199,7 +199,7 @@ export const Card: FunctionComponent<CardProps> = ({
 
 const iconSize = 24;
 
-const createStyles = (scheme: ColorScheme, settings: Shadows) =>
+const createStyles = (scheme: ColorScheme, shadows: Shadows) =>
   StyleSheet.create({
     container: {
       alignItems: "flex-start",
@@ -276,5 +276,5 @@ const createStyles = (scheme: ColorScheme, settings: Shadows) =>
     button: {
       marginHorizontal: 8,
     },
-    boxShadowElevation1: settings.boxShadowElevation1,
+    boxShadowElevation1: shadows.boxShadowElevation1,
   });

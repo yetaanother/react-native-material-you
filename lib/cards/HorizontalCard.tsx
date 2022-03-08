@@ -33,8 +33,8 @@ export const HorizontalCard: FunctionComponent<HorizontalCardProps> = ({
   imageSrc,
   containerStyle,
 }) => {
-  const { scheme, settings } = useContext(ThemeContext);
-  const styles = createStyles(scheme, settings);
+  const { scheme, shadows } = useContext(ThemeContext);
+  const styles = createStyles(scheme, shadows);
 
   const render = () => {
     return <View style={getContainerStyles()}>{renderContent()}</View>;
@@ -97,7 +97,7 @@ export const HorizontalCard: FunctionComponent<HorizontalCardProps> = ({
   return render();
 };
 
-const createStyles = (scheme: ColorScheme, settings: Shadows) =>
+const createStyles = (scheme: ColorScheme, shadows: Shadows) =>
   StyleSheet.create({
     container: {
       flexDirection: "row",
@@ -116,7 +116,7 @@ const createStyles = (scheme: ColorScheme, settings: Shadows) =>
       borderStyle: "solid",
       borderColor: scheme.outlineHex,
     },
-    boxShadowElevation1: settings.boxShadowElevation1,
+    boxShadowElevation1: shadows.boxShadowElevation1,
     header: {
       height: "100%",
       flexDirection: "row",

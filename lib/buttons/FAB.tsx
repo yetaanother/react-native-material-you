@@ -47,8 +47,8 @@ export const FAB: FunctionComponent<FABProps> = ({
   onPressOut,
   disabled,
 }) => {
-  const { scheme, settings } = useContext(ThemeContext);
-  const styles = createStyles(scheme, settings);
+  const { scheme, shadows } = useContext(ThemeContext);
+  const styles = createStyles(scheme, shadows);
 
   type = !type ? "surface" : type;
   if (!__DEV__ && stateOverride) {
@@ -255,7 +255,7 @@ export const FAB: FunctionComponent<FABProps> = ({
 const iconSize = 24;
 const iconSizeLarge = 36;
 
-const createStyles = (scheme: ColorScheme, settings: Shadows) =>
+const createStyles = (scheme: ColorScheme, shadows: Shadows) =>
   StyleSheet.create({
     container: {
       borderRadius: 16,
@@ -279,8 +279,8 @@ const createStyles = (scheme: ColorScheme, settings: Shadows) =>
     containerTypeTertiary: {
       backgroundColor: scheme.tertiaryContainerHex,
     },
-    boxShadowElevation3: settings.boxShadowElevation3,
-    boxShadowElevation4: settings.boxShadowElevation4,
+    boxShadowElevation3: shadows.boxShadowElevation3,
+    boxShadowElevation4: shadows.boxShadowElevation4,
     surfaceOverlay: {
       borderRadius: 16,
       overflow: "hidden",

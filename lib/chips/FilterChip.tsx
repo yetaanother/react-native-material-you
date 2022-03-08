@@ -46,8 +46,8 @@ export const FilterChip: FunctionComponent<FilterChipProps> = ({
   onPressOut,
   disabled,
 }) => {
-  const { scheme, settings } = useContext(ThemeContext);
-  const styles = createStyles(scheme, settings);
+  const { scheme, shadows } = useContext(ThemeContext);
+  const styles = createStyles(scheme, shadows);
 
   if (!__DEV__ && stateOverride) {
     console.error(
@@ -257,7 +257,7 @@ export const FilterChip: FunctionComponent<FilterChipProps> = ({
 
 const iconSize = 18;
 
-const createStyles = (scheme: ColorScheme, settings: Shadows) =>
+const createStyles = (scheme: ColorScheme, shadows: Shadows) =>
   StyleSheet.create({
     container: {
       backgroundColor: scheme.surfaceHex,
@@ -319,9 +319,9 @@ const createStyles = (scheme: ColorScheme, settings: Shadows) =>
         M3Constants.focusedOrPressedContainerOpacity
       ),
     },
-    boxShadowElevation1: settings.boxShadowElevation1,
-    boxShadowElevation2: settings.boxShadowElevation2,
-    boxShadowElevation4: settings.boxShadowElevation4,
+    boxShadowElevation1: shadows.boxShadowElevation1,
+    boxShadowElevation2: shadows.boxShadowElevation2,
+    boxShadowElevation4: shadows.boxShadowElevation4,
     text: {
       ...M3Constants.labelLargeText,
       color: scheme.onSurfaceVariantHex,

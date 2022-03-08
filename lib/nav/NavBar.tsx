@@ -21,8 +21,8 @@ interface NavBarProps {
 
 // M3 docs: https://m3.material.io/components/navigation-bar/specs
 export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
-  const { scheme, settings } = useContext(ThemeContext);
-  const styles = createStyles(scheme, settings);
+  const { scheme, shadows } = useContext(ThemeContext);
+  const styles = createStyles(scheme, shadows);
   const [itemsMap, setItemsMap] = useState(new Map<number, NavBarItemComp>());
 
   useEffect(() => {
@@ -106,13 +106,13 @@ export const NavBar: FunctionComponent<NavBarProps> = ({ children }) => {
 };
 
 const deviceWidth = Dimensions.get("window").width;
-const createStyles = (scheme: ColorScheme, settings: Shadows) =>
+const createStyles = (scheme: ColorScheme, shadows: Shadows) =>
   StyleSheet.create({
     container: {
       backgroundColor: scheme.surfaceHex,
       width: deviceWidth,
     },
-    boxShadowElevation2: settings.boxShadowElevation2,
+    boxShadowElevation2: shadows.boxShadowElevation2,
     surfaceOverlay: {
       backgroundColor: rgbaWithOpacity(
         scheme.primaryRGB,
