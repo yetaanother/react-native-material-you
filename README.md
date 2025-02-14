@@ -1,3 +1,8 @@
+# 🚨 Unmaintained 🚨
+
+**This project is no longer actively maintained.**  
+Feel free to fork it if you'd like to continue its development.
+
 # React Native with Material You
 
 This library follows UI components
